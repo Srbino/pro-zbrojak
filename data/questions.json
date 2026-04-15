@@ -9716,7 +9716,7 @@
     "pdf_number": 608,
     "section": "provadeci_predpisy",
     "question": "Podle nařízení vlády o technických požadavcích a dalších specifikacích pro některé zbraně, střelivo a střelnice a pro zabezpečení zbraní a střeliva představuje výše uvedený obrazec:",
-    "image": "images/cbdcc058592d3cb8a64412bccc07f35016b0b9a0.png",
+    "image": "images/q608.png",
     "options": {
       "A": "předepsané identifikační označení tuzemského držitele zbrojní licence skupiny D, které je v rámci činnosti podnikatele v oboru zbraní a střeliva povinen používat k označení jím vyrobených, upravených nebo opravených zbraní.",
       "B": "kontrolní znehodnocovací značku, kterou držitel zbrojní licence vyznačuje na všechny hlavní části palné zbraně ihned po jejich znehodnocení.",
@@ -9732,7 +9732,7 @@
     "pdf_number": 609,
     "section": "provadeci_predpisy",
     "question": "Podle nařízení vlády o technických požadavcích a dalších specifikacích pro některé zbraně, střelivo a střelnice a pro zabezpečení zbraní a střeliva představují výše uvedené obrazce:",
-    "image": "images/97bbe51dfcc7e64020732ea0e5d1752a18c1f82f.png",
+    "image": "images/q609.png",
     "options": {
       "A": "verifikační znehodnocovací značky, jejichž vyznačením na znehodnocené zbrani příslušný orgán, kterým je Český úřad pro zkoušení zbraní a střeliva nebo Ministerstvo obrany, potvrzuje, že znehodnocená zbraň prošla kontrolou a znehodnocení bylo provedeno v souladu se stanovenými technickými požadavky.",
       "B": "kontrolní ověřovací značky, jejichž vyznačením na znehodnocené zbrani příslušný orgán, kterým je Český úřad pro zkoušení zbraní a střeliva nebo Ministerstvo obrany, potvrzuje, že daná zbraň byla v souladu s požadavky na přeshraniční přepravu dovezena z jiného členského státu Evropské unie nebo vyrobena na území České republiky pod dohledem autorizovaného zbrojního inspektora.",
@@ -10372,7 +10372,7 @@
     "pdf_number": 649,
     "section": "nauka_o_zbranich",
     "question": "Obě vyobrazení zobrazují stejný náboj, jedná se o:",
-    "image": "images/c59e36b94ad341eb649608a48dc7634e8b43fcfb.png",
+    "image": "images/q649.png",
     "options": {
       "A": "kulové střelivo, a to konkrétně o ráži 32 G pro revolvery.",
       "B": "brokové střelivo, a to konkrétně o ráži 12.",
@@ -10388,7 +10388,7 @@
     "pdf_number": 650,
     "section": "nauka_o_zbranich",
     "question": "Brokový náboj na vyobrazení výše je nábojem se střelou:",
-    "image": "images/b8aa615e307bc60ef43dd14b002e947abd729a39.png",
+    "image": "images/q650.png",
     "options": {
       "A": "jednotnou, typu Brenneke.",
       "B": "hromadnou s velkostí broku 67,5 mm.",
@@ -10404,7 +10404,7 @@
     "pdf_number": 651,
     "section": "nauka_o_zbranich",
     "question": "Na těle nábojnice výše vyobrazeného brokového náboje je uvedena hodnota „67,5“, toto číslo znamená:",
-    "image": "images/42ecf0dce32edb04f3cf7fdab96c29d736f2e428.png",
+    "image": "images/q651.png",
     "options": {
       "A": "maximální délku nábojové komory, ve které lze tento náboj bezpečně použít.",
       "B": "maximální počet nábojů tohoto typu, který lze ze zbraně bez přerušení vystřelit.",
@@ -10420,7 +10420,7 @@
     "pdf_number": 652,
     "section": "nauka_o_zbranich",
     "question": "Šipkou označená část brokového náboje se nazývá:",
-    "image": "images/f9f984a994cc081155c17c33fd447554c2f0a1c6.png",
+    "image": "images/q652.png",
     "options": {
       "A": "zátka.",
       "B": "střela.",
@@ -10436,7 +10436,7 @@
     "pdf_number": 653,
     "section": "nauka_o_zbranich",
     "question": "Šipkou označená část brokového náboje se nazývá:",
-    "image": "images/a202a314e10e68e2610c28becd2336677c1420b0.png",
+    "image": "images/q653.png",
     "options": {
       "A": "zápalka.",
       "B": "rázový středič.",
@@ -10452,7 +10452,7 @@
     "pdf_number": 654,
     "section": "nauka_o_zbranich",
     "question": "Šipkou označená část brokového náboje slouží k:",
-    "image": "images/ae6d49060c60460e29a71185e204ee2cda65b34d.png",
+    "image": "images/q654.png",
     "options": {
       "A": "iniciaci (zážehu) výmetné prachové náplně náboje při výstřelu.",
       "B": "inauguraci (uvedení) náboje do nábojové komory zbraně před výstřelem.",
@@ -10468,7 +10468,7 @@
     "pdf_number": 655,
     "section": "nauka_o_zbranich",
     "question": "Šipka na obrázku výše neukazuje na komponent brokového střeliva označovaný jako:",
-    "image": "images/93d87046e5a9253ed617f0d7fe405542c76b14a4.png",
+    "image": "images/q655.png",
     "options": {
       "A": "zápalka.",
       "B": "nábojnice.",
@@ -10484,7 +10484,7 @@
     "pdf_number": 656,
     "section": "nauka_o_zbranich",
     "question": "Výše vyobrazené brokové náboje mají na dnu nábojnice vyznačeny hodnoty „12“ (v případě horního náboje) a „20“ (v případě dolního náboje); který z těchto nábojů má větší ráži?",
-    "image": "images/2f7b9c01595255019739bdbe5ef8911f1be06bbf.png",
+    "image": "images/q656.png",
     "options": {
       "A": "Náboj ráže 20.",
       "B": "Náboj ráže 12.",
@@ -10500,7 +10500,7 @@
     "pdf_number": 657,
     "section": "nauka_o_zbranich",
     "question": "Výše jsou vyobrazeny náboje dvou nejčastějších brokových ráží, konkrétně ráže 12 a ráže 20; s náboji těchto ráží se pojí jedno významné uživatelské riziko, a to:",
-    "image": "images/a6f0757652114fe41e08adf98e857f8fc4ff76e4.png",
+    "image": "images/q657.png",
     "options": {
       "A": "náboj ráže 12 může být omylem nabit do zbraně ráže 20, přičemž ale při výstřelu dochází u brokového střeliva ráže 12 ke vzniku podstatně vyšších tlaků, než na jaké jsou konstruovány zbraně ráže 20, a může tedy dojít k destrukci zbraně ráže 20 a k ohrožení zdraví a případně života střelce a případně i dalších osob.",
       "B": "oba náboje mají extrémní zpětný ráz a v souvislé řadě nesmí střelec vystřelit více než 16 nábojů ráže 12 nebo více než 24 nábojů ráže 20, jinak může dojít k nevratnému poškození pohybového aparátu střelce, zejména pak k poškození ramenního kloubu, o který se zbraň při střelbě opírá.",
@@ -10516,7 +10516,7 @@
     "pdf_number": 658,
     "section": "nauka_o_zbranich",
     "question": "Výše zobrazené náboje ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže) jsou střelivem určeným pro:",
-    "image": "images/283ccc000d25d534d1854c998ccc6a91ad6a45b7.png",
+    "image": "images/q658.png",
     "options": {
       "A": "dlouhé palné zbraně s drážkovaným vývrtem hlavně, například pro pušky nebo kulovnice.",
       "B": "dlouhé palné zbraně s hladkým vývrtem hlavně, například pro samopaly nebo kulomety.",
@@ -10532,7 +10532,7 @@
     "pdf_number": 659,
     "section": "nauka_o_zbranich",
     "question": "Výše vyobrazené kulové náboje ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže) mají tvar nábojnice:",
-    "image": "images/2669cd62dba446f62b204b2ee40ab7a8dfb1153a.png",
+    "image": "images/q659.png",
     "options": {
       "A": "dvouválcový.",
       "B": "lahvovitý.",
@@ -10548,7 +10548,7 @@
     "pdf_number": 660,
     "section": "nauka_o_zbranich",
     "question": "Výše vyobrazené náboje ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže) představují typické zástupce kulových nábojů pro palné zbraně, tyto náboje se standardně skládají z:",
-    "image": "images/35092a90abf0760797975056d0f6c7a5c1384047.png",
+    "image": "images/q660.png",
     "options": {
       "A": "nábojnice, střely a závěru.",
       "B": "nábojnice, střely, prachové náplně a zápalky.",
@@ -10564,7 +10564,7 @@
     "pdf_number": 661,
     "section": "nauka_o_zbranich",
     "question": "Výše vyobrazené kulové náboje ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže) se liší mj.:",
-    "image": "images/cb10e2782e299dfa283582ebbdd7a025b50e427c.png",
+    "image": "images/q661.png",
     "options": {
       "A": "typem nábojnice, kdy horní dva náboje mají nábojnici s drážkou a spodní náboj má nábojnici s okrajem.",
       "B": "typem střely, kdy horní náboj má poloplášťovou střelu typu „dum-dum“ a spodní dva náboje mají standardní střelu s mazací drážkou (která je skryta v krčku nábojnice).",
@@ -10580,7 +10580,7 @@
     "pdf_number": 662,
     "section": "nauka_o_zbranich",
     "question": "Výše jsou vyobrazené kulové náboje ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže); vyberte z nabízených odpovědí pro tyto náboje odpověď, která uvádí parametry, které se mohou rámcově blížit jejich výkonu:",
-    "image": "images/3a4eafa6332c9ce18c6d5d0d6e29ece6db3862d3.png",
+    "image": "images/q662.png",
     "options": {
       "A": "úsťová rychlost střely cca 180 m/s, úsťová energie střely cca 250 J, maximální dostřel cca 800 m.",
       "B": "úsťová rychlost střely cca 25 km/min, úsťová energie střely cca 2000 kJ, maximální dostřel cca 25 km.",
@@ -10596,7 +10596,7 @@
     "pdf_number": 663,
     "section": "nauka_o_zbranich",
     "question": "S ohledem na konstrukci střely a celkové provedení výše vyobrazených kulových nábojů ráží 7,5 x 55 Swiss (dva náboje shora) a 7,62 x 54 R (náboj zobrazený nejníže) vyberte správné tvrzení:",
-    "image": "images/519dadae5329c9770f7abef1750bc2c8e9e8a151.png",
+    "image": "images/q663.png",
     "options": {
       "A": "jde o náboje pro lovecké účely, tradičním nábojem je v tomto směru je zejména spodní náboj, který má nábojnici lakovanou v myslivecké barvě.",
       "B": "jejich původním určením bylo vojenské využití, v případě že odpovídají požadavkům podle zákona o ověřování zbraní a střeliva (jako je tomu zřejmě zejm. v případě horního náboje), je lze využít například také pro sportovní střelbu.",
@@ -10612,7 +10612,7 @@
     "pdf_number": 664,
     "section": "nauka_o_zbranich",
     "question": "Výše jsou vyobrazené dva náboje stejné ráže, a to 7,62 x 39 mm; vyberte správné tvrzení:",
-    "image": "images/e03492f386a4cfd5b29815d9574a694ebbc788e0.png",
+    "image": "images/q664.png",
     "options": {
       "A": "typicky jde v případě střeliva této ráže o střední balistické výkonnosti vyvinutý pro vojenské použití, dnes pak často používaný též pro sportovní účely.",
       "B": "nejčastějším využitím tohoto střeliva je použití k loveckým účelům, typicky pro tzv. trojáčky.",
@@ -10628,7 +10628,7 @@
     "pdf_number": 665,
     "section": "nauka_o_zbranich",
     "question": "Výše jsou vyobrazené dva náboje stejné ráže, a to 7,62 x 39 mm; horní náboj je:",
-    "image": "images/f743f2125f2f6dc09107d72137c10e326a7cfb79.png",
+    "image": "images/q665.png",
     "options": {
       "A": "značkovacím střelivem určeným pro speciálně upravené zbraně dané ráže; jeho použití spočívá v označení cíle vystříknutou barvou, což se standardně využívá při tzv. soupeřských metodách výcviku.",
       "B": "svítícím nábojem, a z tohoto důvodu se jedná podle zákona o zbraních a střelivu o zakázané střelivo.",
@@ -10644,7 +10644,7 @@
     "pdf_number": 666,
     "section": "nauka_o_zbranich",
     "question": "Výše jsou vyobrazené dva náboje stejné ráže, a to 7,62 x 39 mm; v případě ostré střelby lze o parametrech náboje této ráže rámcově uvést:",
-    "image": "images/4fa4cfd9fa9a9f1f96ff0ff0125aafa4ea3568c8.png",
+    "image": "images/q666.png",
     "options": {
       "A": "maximální dostřel činí 400 m a střela má po celé této dráze letu potenciálně smrtící účinek.",
       "B": "maximální dostřel činí 1500 m a střela má na této dráze potenciálně smrtící účinek zhruba do vzdálenosti 600 m.",
@@ -10660,7 +10660,7 @@
     "pdf_number": 667,
     "section": "nauka_o_zbranich",
     "question": "Vyberte z výše vyobrazených nábojů náboje s okrajovým zápalem:",
-    "image": "images/af03bf5e70261a46198fede8eb1a5fdccf0b72b8.png",
+    "image": "images/q667.png",
     "options": {
       "A": "jde o náboj s číslem 1 (náboj ráže 22 Long Rifle) a náboj s číslem 2 (náboj ráže 9 mm Flobert).",
       "B": "jde o náboj s číslem 3 (náboj ráže 7,65 mm Browning) a náboj s číslem 4 (náboj ráže 9 mm Luger).",
@@ -10676,7 +10676,7 @@
     "pdf_number": 668,
     "section": "nauka_o_zbranich",
     "question": "Vyberte z výše vyobrazených nábojů náboj se střelou poloplášťovou:",
-    "image": "images/cbffdd15f554eeba2212ca39227cbbc21e75de76.png",
+    "image": "images/q668.png",
     "options": {
       "A": "jde o náboj s číslem 5 (náboj ráže 7,62x25 mm Tokarev).",
       "B": "jde o náboj s číslem 2 (náboj ráže 9 mm Flobert).",
@@ -10692,7 +10692,7 @@
     "pdf_number": 669,
     "section": "nauka_o_zbranich",
     "question": "Náboje s čísly 3 (ráže 7,65 mm Browning) a 4 (ráže 9 mm Luger) lze z hlediska určení považovat za typické zástupce nábojů pro:",
-    "image": "images/cf167bb7cf2fae1dafdd228be98f0ae5b4cb69b5.png",
+    "image": "images/q669.png",
     "options": {
       "A": "dlouhé opakovací kulové palné zbraně.",
       "B": "krátké samonabíjecí kulové palné zbraně.",
@@ -10708,7 +10708,7 @@
     "pdf_number": 670,
     "section": "nauka_o_zbranich",
     "question": "O výkonových parametrech výše vyobrazených nábojů lze rámcově uvést:",
-    "image": "images/2cadba77ca2e537d80886df2705df8a11612f6d5.png",
+    "image": "images/q670.png",
     "options": {
       "A": "maximální dostřel činí zhruba 1500 m či více a zhruba po dvě třetiny této dráhy (tj. minimálně do vzdálenosti 1000 m) má střela potenciálně smrtící účinek; podstatně nižší maximální dostřel má pouze náboj zobrazený nad číslem 2 (náboj ráže 9 mm Flobert).",
       "B": "maximální dostřel činí zhruba 50 až 100 m a po celé této dráze má střela potenciálně smrtící účinek; podstatně nižší maximální dostřel má pouze náboj zobrazený nad číslem 1 (náboj ráže 22 Long Rifle).",
@@ -10724,7 +10724,7 @@
     "pdf_number": 671,
     "section": "nauka_o_zbranich",
     "question": "Výše uvedené náboje představují střelivo, které je určeno:",
-    "image": "images/4b58af8fd6cfb8d08081abdc1b49cd4a599639c7.png",
+    "image": "images/q671.png",
     "options": {
       "A": "výhradně pro krátké palné zbraně, a to pouze pro zbraně s drážkovaným vývrtem hlavně nebo s hladkým vývrtem typu „Paradox“.",
       "B": "obvykle pro dlouhé palné zbraně a pouze pro zbraně s drážkovaným vývrtem hlavně.",
@@ -10740,7 +10740,7 @@
     "pdf_number": 672,
     "section": "nauka_o_zbranich",
     "question": "Z hlediska konstrukce nábojnice výše uvedených nábojů lze uvést, že:",
-    "image": "images/77f5614d39cf47efa8c8aee5152f373dbd4e5288.png",
+    "image": "images/q672.png",
     "options": {
       "A": "všechny vyobrazené náboje mají nábojnici s okrajem, přičemž náboje zobrazené nad čísly 1 a 2 jsou náboji s okrajovým zápalem, a proto má jejich nábojnice tzv. zápich.",
       "B": "nábojnice nábojů zobrazených nad čísly 1 a 2 mají okraj a nábojnice nábojů zobrazených nad čísly 3, 4 a 5 mají drážku; v případě nábojnice náboje zobrazeného nad číslem 3 (ráže 7,65 Browning) se někdy hovoří o tzv. polookraji (semi-rim).",
@@ -10756,7 +10756,7 @@
     "pdf_number": 673,
     "section": "nauka_o_zbranich",
     "question": "Šipkou označená část kulového náboje se nazývá:",
-    "image": "images/45f6781f89fb0cd78b9baa0f83edd4b0a3d5d895.png",
+    "image": "images/q673.png",
     "options": {
       "A": "nábojnice.",
       "B": "dutinka.",
@@ -10772,7 +10772,7 @@
     "pdf_number": 674,
     "section": "nauka_o_zbranich",
     "question": "Náboj na obrázku představuje typického zástupce jednotných kulových nábojů. Z hlediska použití tohoto střeliva vyznačuje šipka na obrázku:",
-    "image": "images/58c7f780860b0d474c49a47e71d72a99e046610a.png",
+    "image": "images/q674.png",
     "options": {
       "A": "směr, který je opačný vůči směru, ve kterém je náboj vkládán (zasouván) do nábojové komory.",
       "B": "směr, ve kterém je náboj nebo nábojnice vytahována (vysouvána) ven z nábojové komory.",
@@ -10788,7 +10788,7 @@
     "pdf_number": 675,
     "section": "nauka_o_zbranich",
     "question": "Šipka na vyobrazení výše ukazuje na část náboje, která se nazývá:",
-    "image": "images/88be51d4c13471d8b5742c61947f21f1e2df7db7.png",
+    "image": "images/q675.png",
     "options": {
       "A": "kování.",
       "B": "kalíšková zápalka.",
@@ -10804,7 +10804,7 @@
     "pdf_number": 676,
     "section": "nauka_o_zbranich",
     "question": "Šipka na vyobrazení výše směřuje ve směru, ve kterém:",
-    "image": "images/3e3d52029bba83edcc95aad988be513d19e44cd7.png",
+    "image": "images/q676.png",
     "options": {
       "A": "se po stisknutí spouště pohybuje úderník (zápalník) před dopadem na zápalku, kterou tím iniciuje.",
       "B": "jsou náboj nebo nábojnice vytahovány (vysouvány) ven z nábojové komory.",
@@ -10820,7 +10820,7 @@
     "pdf_number": 677,
     "section": "nauka_o_zbranich",
     "question": "Vyobrazený předmět s největší pravděpodobností je:",
-    "image": "images/8a5860f85920c2af1ec9d41190edab3d7e9b3943.png",
+    "image": "images/q677.png",
     "options": {
       "A": "pyrotechnickým výrobkem kategorie F1 podle zákona o zbraních a střelivu.",
       "B": "municí podle zákona o munici.",
@@ -10836,7 +10836,7 @@
     "pdf_number": 678,
     "section": "nauka_o_zbranich",
     "question": "Na vyobrazené zbrani byla provedena nevratná úprava:",
-    "image": "images/55501736b30f2cdb96df26e4a52e1ccbe0dc4141.png",
+    "image": "images/q678.png",
     "options": {
       "A": "úprava zbraně palné na zbraň plynovou.",
       "B": "znehodnocení podle přímo použitelného předpisu Evropské unie.",
@@ -10852,7 +10852,7 @@
     "pdf_number": 679,
     "section": "nauka_o_zbranich",
     "question": "Kterým číslem je na vyobrazené zbrani označena hlavní část zbraně – tělo pistole?",
-    "image": "images/16af48546c05116c6476c23be216ba671a28881e.png",
+    "image": "images/q679.png",
     "options": {
       "A": "1",
       "B": "4",
@@ -10868,7 +10868,7 @@
     "pdf_number": 680,
     "section": "nauka_o_zbranich",
     "question": "Kterým číslem je na vyobrazené zbrani označena část těla pistole nazývaná lučík?",
-    "image": "images/f6de565eb3e6b16f2c80f4f39efda38c357e284a.png",
+    "image": "images/q680.png",
     "options": {
       "A": "2",
       "B": "1",
@@ -10884,7 +10884,7 @@
     "pdf_number": 681,
     "section": "nauka_o_zbranich",
     "question": "Vyobrazená zbraň je:",
-    "image": "images/72590145ea117743a1cd10caf2744fbad5927fe9.png",
+    "image": "images/q681.png",
     "options": {
       "A": "revolver, neboli krátká kulová samonabíjecí palná zbraň.",
       "B": "revolver, neboli krátká kulová opakovací palná zbraň.",
@@ -10900,7 +10900,7 @@
     "pdf_number": 682,
     "section": "nauka_o_zbranich",
     "question": "Vyobrazená zbraň je zřejmě z hlediska svého použití primárně, resp. standardně určena pro:",
-    "image": "images/b08c6c787daafd2f2d82beed63c6c11e43c0dd7f.png",
+    "image": "images/q682.png",
     "options": {
       "A": "sportovní mířenou terčovou střelbu, a to od krátkých po střední vzdálenosti.",
       "B": "ochranu života, zdraví nebo majetku a obdobné účely.",
@@ -10916,7 +10916,7 @@
     "pdf_number": 683,
     "section": "nauka_o_zbranich",
     "question": "Na vyobrazené zbrani je číslem „3“ označena součást nazývaná:",
-    "image": "images/c8207cf4a416df6f598256a4b85ecee5b18259b2.png",
+    "image": "images/q683.png",
     "options": {
       "A": "difuzor, jedná se o hlavní část zbraně ve smyslu zákona o zbraních a střelivu.",
       "B": "bubínek, nejedná se o hlavní část zbraně ve smyslu zákona o zbraních a střelivu.",
@@ -10932,7 +10932,7 @@
     "pdf_number": 684,
     "section": "nauka_o_zbranich",
     "question": "Na vyobrazené zbrani je červené číslo „2“ umístěno na:",
-    "image": "images/4fddcb63f6c68b5ca92720bc6ba7e4ca5e2b58a7.png",
+    "image": "images/q684.png",
     "options": {
       "A": "výklopné konzoli válce.",
       "B": "předpažbí revolverové zbraně.",
@@ -10948,7 +10948,7 @@
     "pdf_number": 685,
     "section": "nauka_o_zbranich",
     "question": "Vnější bicí kohout je na vyobrazené zbrani označen číslem:",
-    "image": "images/d2956fd8c37feef2839f7054f72162228029c211.png",
+    "image": "images/q685.png",
     "options": {
       "A": "„6“.",
       "B": "„3“.",
@@ -10964,7 +10964,7 @@
     "pdf_number": 686,
     "section": "nauka_o_zbranich",
     "question": "U vyobrazeného revolveru došlo k havárii, přičemž již podle tohoto vyobrazení lze s jistotou říci, že došlo minimálně k podstatnému poškození:",
-    "image": "images/bf556ffc829ede8dba36dc90d7b5e982f9e0205a.png",
+    "image": "images/q686.png",
     "options": {
       "A": "rámu a revolverového válce.",
       "B": "hlavně a otočného závěru.",
@@ -10980,7 +10980,7 @@
     "pdf_number": 687,
     "section": "nauka_o_zbranich",
     "question": "U vyobrazeného revolveru došlo k havárii, jejíž příčinou mohlo být např.:",
-    "image": "images/6ce37db3bf6808b627f325c4f1859fe6a9b532ab.png",
+    "image": "images/q687.png",
     "options": {
       "A": "špatné upevnění pažbičky, chybně instalovaná předsuvná pružina nebo zablokování revolverového válce nevyhozenou nábojnicí (např. v důsledku závady typu „zádržka“).",
       "B": "zlomení zápalníku nebo nefunkční přenášecí páka kohoutu.",
@@ -10996,7 +10996,7 @@
     "pdf_number": 688,
     "section": "nauka_o_zbranich",
     "question": "Obrázek výše zobrazuje střední část dlouhé brokové zbraně s vnějšími bicími kohouty a sklopným hlavňovým svazkem, která se obvykle nazývá:",
-    "image": "images/5efda39d038b7d4ecd12801df0e482840e6ddb94.png",
+    "image": "images/q688.png",
     "options": {
       "A": "browning.",
       "B": "lankasterka.",
@@ -11012,7 +11012,7 @@
     "pdf_number": 689,
     "section": "nauka_o_zbranich",
     "question": "Šipka na vyobrazení výše ukazuje na jeden běžný ovládací prvek zbraní s lůžkovým závěrem a sklopným hlavňovým svazkem; tento ovládací prvek se nazývá:",
-    "image": "images/b70d0671299cba030661d80951eed3dd39b55c36.png",
+    "image": "images/q689.png",
     "options": {
       "A": "temenní klička.",
       "B": "klika závěru.",
@@ -11028,7 +11028,7 @@
     "pdf_number": 690,
     "section": "nauka_o_zbranich",
     "question": "Vyobrazená dlouhá broková zbraň má hlavňový svazek se dvěma hlavněmi umístěnými vertikálně nad sebou; tento druh dlouhé zbraně se nazývá:",
-    "image": "images/1d6200e1d46241d3c93c24dcdc4823b6da425dac.png",
+    "image": "images/q690.png",
     "options": {
       "A": "kozderka.",
       "B": "kozlík.",
@@ -11044,7 +11044,7 @@
     "pdf_number": 691,
     "section": "nauka_o_zbranich",
     "question": "Vyobrazená zbraň bude v obvyklém případě (bez skrytých nestandardních úprav):",
-    "image": "images/cdc8b8258bedd42d31e36199c8ccfc5ef212ef06.png",
+    "image": "images/q691.png",
     "options": {
       "A": "brokovou zbraní s lůžkovým závěrem a sklopným hlavňovým svazkem.",
       "B": "kulobrokovou zbraní s vertikálně posuvným blokovým závěrem.",
@@ -11060,7 +11060,7 @@
     "pdf_number": 692,
     "section": "nauka_o_zbranich",
     "question": "Části zbraně označené šipkami na vyobrazení výše se nazývají:",
-    "image": "images/2169d9c17ada6b85d40b2e0b23380cf99c4c6a20.png",
+    "image": "images/q692.png",
     "options": {
       "A": "část označená šipkou směřující vpravo se nazývá polopažba a část označená šipkou směřující vzhůru se nazývá nabiják.",
       "B": "část označená horizontálně orientovanou šipkou se nazývá pažba a část označená vertikálně orientovanou šipkou se nazývá předpažbí.",
@@ -11076,7 +11076,7 @@
     "pdf_number": 693,
     "section": "nauka_o_zbranich",
     "question": "Na obrázku výše je zbraň vycházející z historické konstrukce palné zbraně určené pro černý prach a nabíjené ústím nábojové komory revolverového válce, tento druh zbraně se nazývá:",
-    "image": "images/f690b6be70083953fd75340bfc81e714c85d220e.png",
+    "image": "images/q693.png",
     "options": {
       "A": "křesadlový revolver.",
       "B": "bubínkový revolver.",
@@ -11092,7 +11092,7 @@
     "pdf_number": 694,
     "section": "nauka_o_zbranich",
     "question": "Zbraň na obrázku výše je standardně určena pro",
-    "image": "images/9e1d8143d671465800d7e9e36e8c4de86112d7b0.png",
+    "image": "images/q694.png",
     "options": {
       "A": "jednotné náboje se středovým zápalem, které jsou jednotlivě nabíjeny do komor bubnového zásobníku.",
       "B": "jednotné náboje s okrajovým zápalem, které jsou do zbraně nabíjeny ručně zepředu ústím hlavně.",
@@ -11108,7 +11108,7 @@
     "pdf_number": 695,
     "section": "nauka_o_zbranich",
     "question": "Na obrázku výše je zbraň vycházející z historické konstrukce palné zbraně určené pro černý prach a nabíjené ústím hlavně, tento druh zbraně lze označit jako:",
-    "image": "images/e480914c0ba6c5f6f6b5bc55e891bde7442529a5.png",
+    "image": "images/q695.png",
     "options": {
       "A": "palnou zbraň s konstrukcí založenou na křesadlovém zámkovém systému.",
       "B": "palnou zbraň s konstrukcí založenou na doutnákovém zámkovém systému.",
@@ -11124,7 +11124,7 @@
     "pdf_number": 696,
     "section": "nauka_o_zbranich",
     "question": "O výše vyobrazené zbrani lze z hlediska zásad bezpečné manipulace se zbraněmi a střelivem říci, že:",
-    "image": "images/ea078d9867247fb96059255f5ff5de5cbce9397c.png",
+    "image": "images/q696.png",
     "options": {
       "A": "je vybitá, protože je vypuštěný bicí kohout, a tedy je možné s ní jakkoliv manipulovat.",
       "B": "není možno určit zda je nabitá nebo vybitá, a před další manipulací s ní by tedy bylo bezpodmínečně nutné provést důkladnou kontrolu jejího stavu.",
@@ -11140,7 +11140,7 @@
     "pdf_number": 697,
     "section": "nauka_o_zbranich",
     "question": "Umístění zásobníku ve zbrani vyobrazené výše odpovídají čísla:",
-    "image": "images/1a57cd9ec7efe0d5ab87842c5a743c83a94442fd.png",
+    "image": "images/q697.png",
     "options": {
       "A": "„1“ a „3“.",
       "B": "„2“ a „6“.",
@@ -11156,7 +11156,7 @@
     "pdf_number": 698,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „1“ se na obrázku výše nachází součást zbraně označovaná jako:",
-    "image": "images/b0a7caf477560d822d2dd9cb2c2cb3e916e48611.png",
+    "image": "images/q698.png",
     "options": {
       "A": "výhozná komůrka, která se nachází pod odemčenou kulisou palné zbraně.",
       "B": "výhozné okénko, přičemž ve výhozném okénku je vidět část hlavně s nábojovou komorou.",
@@ -11172,7 +11172,7 @@
     "pdf_number": 699,
     "section": "nauka_o_zbranich",
     "question": "Na obrázku výše je ústí hlavně vyobrazené zbraně označeno:",
-    "image": "images/e8ab478848f86618afc03eeb3e946af11dab8ba0.png",
+    "image": "images/q699.png",
     "options": {
       "A": "číslem „1“.",
       "B": "číslem „2“.",
@@ -11188,7 +11188,7 @@
     "pdf_number": 700,
     "section": "nauka_o_zbranich",
     "question": "Čísla „3“, „5“ a „6“ na obrázku výše označují:",
-    "image": "images/adbc751acd6e27e977bb0c78166f631b4ea84497.png",
+    "image": "images/q700.png",
     "options": {
       "A": "hlavní části zbraně ve smyslu zákona o zbraních a střelivu.",
       "B": "součásti zbraně umožňující samočinnou střelbu.",
@@ -11204,7 +11204,7 @@
     "pdf_number": 701,
     "section": "nauka_o_zbranich",
     "question": "Čísla „1“, „2“ a „4“ na obrázku výše označují:",
-    "image": "images/4491734c5c2527351f916036d9e393abebd9a955.png",
+    "image": "images/q701.png",
     "options": {
       "A": "hlavní části zbraně ve smyslu zákona o zbraních a střelivu.",
       "B": "součásti zbraně umožňující samočinnou střelbu.",
@@ -11220,7 +11220,7 @@
     "pdf_number": 702,
     "section": "nauka_o_zbranich",
     "question": "Hlavní části zbraně ve smyslu zákona o zbraních a střelivu se na obrázku výše nacházejí pod čísly:",
-    "image": "images/623f5b177e8cad773e0ec61ea04f91a2debabce1.png",
+    "image": "images/q702.png",
     "options": {
       "A": "„1“, „2“, „3“ a „6“.",
       "B": "„4“ a „5“.",
@@ -11236,7 +11236,7 @@
     "pdf_number": 703,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „1“ se na obrázku výše nachází hlavní část zbraně, kterou lze z technického pohledu označit jako:",
-    "image": "images/8c48a4738a3e6f8e7bb2c7b4c6624b0915721ff4.png",
+    "image": "images/q703.png",
     "options": {
       "A": "kluzný pistolový závěr.",
       "B": "závěr opakovací palné zbraně.",
@@ -11252,7 +11252,7 @@
     "pdf_number": 704,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „2“ se na obrázku výše nachází součást samonabíjecí pistole označovaná jako:",
-    "image": "images/7095e50964225d43d8fcf29021082e54bb64057e.png",
+    "image": "images/q704.png",
     "options": {
       "A": "hlaveň; v tomto případě hlaveň nese též uzamykací ozuby a odemykací kulisu.",
       "B": "lauf; zde jde konkrétně o svazek laufů s drážkováním z horní strany.",
@@ -11268,7 +11268,7 @@
     "pdf_number": 705,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „3“ se na obrázku výše nachází součást samonabíjecí pistole označovaná jako:",
-    "image": "images/db7884feb780abe3e2d0e99e78f0aa542321d140.png",
+    "image": "images/q705.png",
     "options": {
       "A": "vývrt hlavně s vložkou nábojové komory; tato součást se vkládá do hlavně, kde uděluje rotaci střele (projektilu), čímž ji stabilizuje v letu.",
       "B": "bicí pružina s úderníkem; tato součást je u vyobrazené zbraně určena k tomu, aby po stisknutí kohoutku udeřila hlavní o závěr a tím iniciovala zápalku náboje, čímž dojde k výstřelu.",
@@ -11284,7 +11284,7 @@
     "pdf_number": 706,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „4“ se na obrázku výše nachází součást samonabíjecí pistole označovaná jako:",
-    "image": "images/068b79752e0fd38cc22b704b07c39c1f352d6a25.png",
+    "image": "images/q706.png",
     "options": {
       "A": "pažba, přičemž v tomto případě se jedná o pažbu s přední pistolovou rukojetí.",
       "B": "tělo zbraně.",
@@ -11300,7 +11300,7 @@
     "pdf_number": 707,
     "section": "nauka_o_zbranich",
     "question": "Pod číslem „6“ se na obrázku výše nachází součást samonabíjecí pistole označovaná jako:",
-    "image": "images/27e6ac3451878659cfb42a354fd963eb0b83be95.png",
+    "image": "images/q707.png",
     "options": {
       "A": "blokový pistolový závěr.",
       "B": "záchyt závěru.",
@@ -11316,7 +11316,7 @@
     "pdf_number": 708,
     "section": "nauka_o_zbranich",
     "question": "Kterým číslem je na vyobrazené zbrani označena vnější manuální pojistka?",
-    "image": "images/5119cd6ad5a5808f62a78f9a3b51d0b6e700620b.png",
+    "image": "images/q708.png",
     "options": {
       "A": "Vnější manuální pojistka je označena číslem „5“.",
       "B": "Žádným z čísel není vnější manuální pojistka zbraně označena.",
@@ -11332,7 +11332,7 @@
     "pdf_number": 709,
     "section": "nauka_o_zbranich",
     "question": "Zbraň na obrázku je vybavena bicím a spoušťovým mechanismem:",
-    "image": "images/231c37d878997a5791a9f985eb615aa4ffac193d.png",
+    "image": "images/q709.png",
     "options": {
       "A": "s přepnutým úderníkovým kohoutem.",
       "B": "s vnějším bicím kohoutem a dvojčinnou spouští (DA/SA).",
@@ -11348,7 +11348,7 @@
     "pdf_number": 710,
     "section": "nauka_o_zbranich",
     "question": "Zbraň na obrázku je:",
-    "image": "images/2414bfd5e23f054c40c7be51388bb228e7faa195.png",
+    "image": "images/q710.png",
     "options": {
       "A": "samonabíjecí pistole s odnímatelným zásobníkem a pevnými mechanickými mířidly.",
       "B": "samonabíjecí zbraň typu PDW (Personal Defense Weapon, čili osobní obranná zbraň) s pevnou zásobníkovou schránkou a odnímatelnými mířidly.",
@@ -11364,7 +11364,7 @@
     "pdf_number": 711,
     "section": "nauka_o_zbranich",
     "question": "Vyberte správnou odpověď:",
-    "image": "images/5088bbe1cd6c62d6ab49b5437dc9ee5112385cbc.png",
+    "image": "images/q711.png",
     "options": {
       "A": "Závěr je na obrázku výše označen číslem „3“ a pažba je označena číslem „4“.",
       "B": "Tělo zbraně je na obrázku výše označeno číslem „1“ a „4“ a čísla „3“ a „2“ označují zásobovací ústrojí zbraně.",
@@ -11380,7 +11380,7 @@
     "pdf_number": 712,
     "section": "nauka_o_zbranich",
     "question": "Zbraň, jejíž část je vyobrazena výše, je patrně zbraní:",
-    "image": "images/875610dd66008e1cff3fad8448304fd93e819bbb.png",
+    "image": "images/q712.png",
     "options": {
       "A": "palnou samonabíjecí.",
       "B": "zápalnou samoplnící.",
@@ -11396,7 +11396,7 @@
     "pdf_number": 713,
     "section": "nauka_o_zbranich",
     "question": "Na vyobrazení výše jsou alespoň částečně viditelné součásti zbraně:",
-    "image": "images/90ba06063ffe3049ac954dbe743a23fbe5303625.png",
+    "image": "images/q713.png",
     "options": {
       "A": "pažba, lučík, spoušť, klika závěru, závěr, hmatník pojistky, pouzdro závěru, výhozné okénko, hlaveň, hledí, dno zásobníku.",
       "B": "pažba, předpažbí, spoušť, natahovací páka závěru, závěr, hmatník pojistky, pouzdro závěru, hlaveň, muška, dno zásobníku.",
@@ -11412,7 +11412,7 @@
     "pdf_number": 714,
     "section": "nauka_o_zbranich",
     "question": "Výše je vyobrazena pouze střední část dlouhé palné zbraně – opakovací malorážky. Určete, které tvrzení níže platí z hlediska správného používání této zbraně:",
-    "image": "images/10d1c144cbee1da206c8ced47810797da3b652f2.png",
+    "image": "images/q714.png",
     "options": {
       "A": "šipka nad zbraní označuje směr, pro který je z hlediska používání zbraně charakteristické zejména to, že jde o bezpečný směr a pokud zbraň ve směru této šipky směřuje k osobám, nejedná se nikdy o porušení zásad bezpečné manipulace se zbraní, zatímco ve směru naznačeném šipkou pod zbraní se o bezpečný směr jedná pouze tehdy, směřuje-li zbraň k rameni střelce.",
       "B": "šipka nad zbraní označuje směr, pro který je z hlediska používání zbraně charakteristické zejména to, že jde o směr působení zpětného rázu zbraně, zatímco šipka pod zbraní směřuje pryč od místa, kde se zbraň opírá do ramene střelce.",
@@ -11428,7 +11428,7 @@
     "pdf_number": 715,
     "section": "nauka_o_zbranich",
     "question": "Brokovou zbraň označenou výše vyobrazenou zkušební značkou lze použít:",
-    "image": "images/753833f4da2fd0676b5d27006764df1813ee9281.png",
+    "image": "images/q715.png",
     "options": {
       "A": "ke střelbě jednotnou střelou bez ohledu na velikost zahrdlení.",
       "B": "ke střelbě ocelovými broky.",
@@ -11444,7 +11444,7 @@
     "pdf_number": 716,
     "section": "nauka_o_zbranich",
     "question": "O zbrani označené výše vyobrazenou značkou lze říci, že:",
-    "image": "images/2ae92ad2dbfdbf3b787230c055572c5712ac5c0f.png",
+    "image": "images/q716.png",
     "options": {
       "A": "jde o zbraň ověřenou státní autoritou v České republice (od roku 2000 je touto autoritou Český úřad pro zkoušení zbraní a střeliva).",
       "B": "jde o zbraň zařazenou do výzbroje ozbrojených sil České republiky, jedná se o tzv. přejímku.",
@@ -11460,7 +11460,7 @@
     "pdf_number": 717,
     "section": "nauka_o_zbranich",
     "question": "Výše vyobrazená jednotná zkušební značka dokládá, že touto značkou označená palná zbraň byla:",
-    "image": "images/c97136335c1472f06d3353a6df6e3c861a69ca93.png",
+    "image": "images/q717.png",
     "options": {
       "A": "otestována na maximálně přípustný obsah dusíku v kovových součástech, čímž je garantována minimální vyžadovaná pružnost těchto součástí.",
       "B": "ověřena na základě tzv. obyčejné zkoušky, přičemž jde o značku uznávanou podle Úmluvy o vzájemném uznávání zkušebních značek ručních palných zbraní („C.I.P.“).",

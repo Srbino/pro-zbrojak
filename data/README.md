@@ -22,7 +22,7 @@ Pole objektů ve struktuře (pydantic model `src/parser/models.py::Question`):
   "pdf_number": 711,
   "section": "nauka_o_zbranich",
   "question": "Vyberte správnou odpověď:",
-  "image": "images/5088bbe1cd6c62d6ab49b5437dc9ee5112385cbc.png",
+  "image": "images/q711.png",
   "options": {
     "A": "Závěr je na obrázku výše označen číslem „3" a pažba je označena číslem „4".",
     "B": "Tělo zbraně je na obrázku výše označeno čísly „1" a „4"…",
@@ -45,7 +45,7 @@ Pole objektů ve struktuře (pydantic model `src/parser/models.py::Question`):
 | `question` | string | Text otázky (po normalizaci font glyphů — `Ɵ`→`ti` atd.). |
 | `options` | object | `{A, B, C}` → text varianty. Vždy právě 3. |
 | `correct` | `"A"` \| `"B"` \| `"C"` | Správná odpověď, detekovaná z šedého pozadí v PDF (fill ≈ 0.827). |
-| `image` | string \| null | Relativní cesta k PNG obrázku (`images/<hash>.png`). Null pro otázky bez obrázku. |
+| `image` | string \| null | Relativní cesta k PNG obrázku (`images/q<pdf_number>.png`). Null pro otázky bez obrázku. |
 | `source_page` | int | Stránka PDF (1-based), kde se otázka nachází. |
 | `source_pdf` | string | Název zdrojového PDF souboru pro audit. |
 | `parsed_at` | ISO 8601 | Kdy parser vygeneroval tento záznam. |
@@ -67,7 +67,8 @@ považují za jeden záznam.
   s vyznačenými čísly částí (1, 2, 3, …).
 - Obrázky jsou **rasterizované výřezy stránek PDF** přes `PyMuPDF.get_pixmap(clip=rect, dpi=170)`.
   Metoda `extract_image(xref)` by vrátila jen base JPEG **bez overlay čísel** — proto rasterizace.
-- Název souboru = SHA-1 hash obsahu otázky (stejný jako `id` v JSON).
+- Název souboru = **`q<pdf_number>.png`** (např. `q711.png` pro otázku č. 711).
+  Přehlednější než hash — přímá korespondence s číslem otázky v PDF.
 
 ## Regenerace obsahu (pro maintainery)
 

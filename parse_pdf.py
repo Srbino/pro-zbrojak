@@ -327,13 +327,8 @@ def extract_images_for_questions(pdf_path: Path, questions: list[tuple[RawQuesti
                 if j in used:
                     continue
                 if q_top - 5 <= img_rect.y0 <= next_top:
-                    qid = hash_id(
-                        rq.question_text(),
-                        rq.option_text("A"),
-                        rq.option_text("B"),
-                        rq.option_text("C"),
-                    )
-                    out = IMAGES_DIR / f"{qid}.png"
+                    # Filename = q<pdf_number>.png (prehlednejsi nez hash)
+                    out = IMAGES_DIR / f"q{rq.pdf_number}.png"
                     try:
                         # Vyrenderuj vyrez stranky vcetne overlay (cisla, anotace)
                         # Padding kolem image bbox pro zachyceni blizkych anotaci
@@ -354,7 +349,7 @@ def extract_images_for_questions(pdf_path: Path, questions: list[tuple[RawQuesti
                                 im.save(out, "PNG", optimize=True)
                         except Exception:
                             pass
-                        image_map[rq.pdf_number] = f"images/{qid}.png"
+                        image_map[rq.pdf_number] = f"images/q{rq.pdf_number}.png"
                         used.add(j)
                         log.info(f"  Q{rq.pdf_number}: rendered {out.name} ({out.stat().st_size // 1024} KB)")
                         break
