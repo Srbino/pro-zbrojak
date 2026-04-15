@@ -27,25 +27,26 @@ Oficiální katalog MV ČR **837 otázek** (z toho 71 s obrázkem zbraně), 6 re
 - **Python 3.11+** (`python3 --version`)
 - **Git**
 
-### macOS / Linux
+### macOS — dvojklikem
 
 ```bash
 git clone https://github.com/Srbino/pro-zbrojak.git
 cd pro-zbrojak
-make install
-make run
+chmod +x start.command
 ```
 
-Otevře se **http://127.0.0.1:8080**.
+Pak ve **Finderu dvojklik na `start.command`** → otevře Terminál, nainstaluje závislosti (jen poprvé) a spustí aplikaci. Prohlížeč se otevře sám.
 
-### Windows
+### Windows — dvojklikem
 
-```cmd
+Po klonu repa **dvojklik na `start.bat`** v Exploreru.
+
+### Linux / pokročilí
+
+```bash
 git clone https://github.com/Srbino/pro-zbrojak.git
 cd pro-zbrojak
-python -m venv .venv
-.venv\Scripts\pip install -e .
-.venv\Scripts\python app.py
+make install && make run
 ```
 
 ---
