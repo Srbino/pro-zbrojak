@@ -224,29 +224,31 @@ def rating_bar(on_rate: Callable[[str], None]):
 
 def confirm_button(label: str, *, on_confirm: Callable[[], None],
                    confirm_label: str = "OPRAVDU SMAZAT VŠE",
+                   dialog_message: str = "Tato akce je nevratná. Opravdu chceš pokračovat?",
                    icon_name: str = "delete",
                    color: str = "negative"):
-    """Dvojklikove potvrzeni destruktivni akce."""
-    state = {"armed": False}
+    """Potvrzovaci dialog pro destruktivni akce.
 
-    def _click():
-        if not state["armed"]:
-            state["armed"] = True
-            btn.text = confirm_label
-            btn.update()
-            ui.notify("Klikni ještě jednou pro potvrzení",
-                      color="warning", position="top", timeout=3000)
-            ui.timer(3.0, lambda: _disarm(), once=True)
-        else:
-            on_confirm()
-            _disarm()
+    Klik na tlacitko → modalni dialog se 2 tlacitky (zrusit + potvrdit).
+    """
+    # Definujeme dialog predem v aktualnim page scope
+    with ui.dialog() as dialog, ui.card().style("max-width: 420px; padding: 1.5rem;"):
+        with ui.row().classes("zp-row zp-gap-sm zp-nowrap w-full zp-mb-sm"):
+            icon("warning", size="md", color="var(--zp-danger)")
+            ui.label("Potvrzení").classes("zp-h2").style("margin: 0;")
+        ui.label(dialog_message).classes("zp-body").style("margin-bottom: 1rem;")
+        with ui.row().classes("w-full zp-gap-sm").style("justify-content: flex-end;"):
+            ui.button("Zrušit", on_click=dialog.close).props("flat")
 
-    def _disarm():
-        state["armed"] = False
-        btn.text = label
-        btn.update()
+            def _confirm():
+                dialog.close()
+                on_confirm()
 
-    btn = ui.button(label, icon=I[icon_name], on_click=_click).props(f"color={color}")
+            ui.button(confirm_label, icon=I[icon_name], on_click=_confirm).props(
+                f"color={color} unelevated"
+            )
+
+    btn = ui.button(label, icon=I[icon_name], on_click=dialog.open).props(f"color={color}")
     return btn
 
 

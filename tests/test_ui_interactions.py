@@ -125,17 +125,21 @@ def test_mastery_shows_all_sections(server, browser):
     ctx.close()
 
 
-def test_settings_reset_is_double_click_confirmed(server, browser):
-    """Reset historie vyzaduje dve kliknuti."""
+def test_settings_reset_opens_confirm_dialog(server, browser):
+    """Reset historie otevre modalni dialog s potvrzenim."""
     ctx = browser.new_context(viewport={"width": 1280, "height": 900})
     page = ctx.new_page()
     page.goto(server + "/settings", wait_until="networkidle")
     page.wait_for_timeout(400)
-    # Click reset once — label should change to "OPRAVDU SMAZAT VŠE".
-    # get_by_role targets the button specifically (not the heading)
+    # Click reset button — should open confirm dialog
     page.get_by_role("button", name="Reset historie").click()
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(600)
+    # Dialog text + confirm button visible
+    assert page.get_by_text("Potvrzení").count() >= 1, "Confirm dialog se neotevrel"
     assert page.get_by_text("OPRAVDU SMAZAT VŠE").count() >= 1
+    # Close via Zrušit (not confirm — nechceme skutečně smazat v testu)
+    page.get_by_role("button", name="Zrušit").click()
+    page.wait_for_timeout(400)
     ctx.close()
 
 

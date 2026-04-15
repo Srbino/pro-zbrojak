@@ -305,6 +305,15 @@ body.body--dark .zp-hm-l4 { background: #39d353; }
 .zp-nav-link.active { background: var(--zp-primary); color: white; font-weight: 600; }
 .zp-nav-icon { width: 20px; text-align: center; }
 
+/* Quiz wrap — narrower centered container pro kvizy */
+.zp-quiz-wrap {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Page container — flex column with children stretching to full width */
 .zp-container {
   width: 100%;

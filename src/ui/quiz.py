@@ -51,56 +51,58 @@ class QuizCard:
         self._opt_elements: dict[str, ui.html] = {}
 
     def render(self):
-        if self.progress_ratio is not None:
-            progress_bar(self.progress_ratio)
+        # Wrap whole card v narrow centered container (max 720px)
+        with ui.element("div").classes("zp-quiz-wrap"):
+            if self.progress_ratio is not None:
+                progress_bar(self.progress_ratio)
 
-        # Meta-row: progress label + section badge + pdf number
-        with ui.row().classes("zp-row zp-nowrap w-full zp-mt-sm zp-mb-sm"):
-            if self.progress_label:
-                ui.label(self.progress_label).classes("zp-body-sm zp-flex-1").style(
-                    "font-weight: 500;"
-                )
-            else:
-                ui.element("div").classes("zp-flex-1")
-            section_badge(self.q.get("section"))
-            ui.label(f"č. {self.q['pdf_number']}").classes("zp-caption").style(
-                "margin-left: .75rem;"
-            )
-
-        # Main question card
-        with ui.element("div").classes("zp-card").style("padding: 1.5rem;"):
-            if self.q.get("image"):
-                self._render_image()
-            ui.label(self.q["question"]).classes("zp-h2 zp-mb-md")
-
-            with ui.column().classes("w-full zp-gap-sm"):
-                for key in ("A", "B", "C"):
-                    text = _escape(self.q["options"][key])
-                    html = (
-                        f'<button class="zp-opt" data-key="{key}">'
-                        f'<span class="opt-key">{key.lower()}</span>{text}</button>'
+            # Meta-row: progress label + section badge + pdf number
+            with ui.row().classes("zp-row zp-nowrap w-full zp-mt-sm zp-mb-sm"):
+                if self.progress_label:
+                    ui.label(self.progress_label).classes("zp-body-sm zp-flex-1").style(
+                        "font-weight: 500;"
                     )
-                    el = ui.html(html).classes("w-full")
-                    el.on("click", lambda e, k=key: self._handle_click(k))
-                    self._opt_elements[key] = el
+                else:
+                    ui.element("div").classes("zp-flex-1")
+                section_badge(self.q.get("section"))
+                ui.label(f"č. {self.q['pdf_number']}").classes("zp-caption").style(
+                    "margin-left: .75rem;"
+                )
 
-        # Footer
-        with ui.row().classes("zp-row zp-nowrap w-full zp-mt-md"):
-            bm_key = "bookmark" if self.is_bookmarked else "bookmark_off"
-            self._bookmark_btn = ui.button(
-                icon=I[bm_key],
-                on_click=self._toggle_bookmark,
-            ).props(
-                f"flat dense round {'color=amber' if self.is_bookmarked else 'color=grey-7'}"
-            ).tooltip("Označit otázku (F)")
+            # Main question card
+            with ui.element("div").classes("zp-card").style("padding: 1.5rem;"):
+                if self.q.get("image"):
+                    self._render_image()
+                ui.label(self.q["question"]).classes("zp-h2 zp-mb-md")
 
-            ui.element("div").classes("zp-flex-1")
+                with ui.column().classes("w-full zp-gap-sm"):
+                    for key in ("A", "B", "C"):
+                        text = _escape(self.q["options"][key])
+                        html = (
+                            f'<button class="zp-opt" data-key="{key}">'
+                            f'<span class="opt-key">{key.lower()}</span>{text}</button>'
+                        )
+                        el = ui.html(html).classes("w-full")
+                        el.on("click", lambda e, k=key: self._handle_click(k))
+                        self._opt_elements[key] = el
 
-            if self.show_next_button:
-                self._next_btn = ui.button(
-                    "Další", icon=I["next"], on_click=self._do_next
-                ).props("color=primary unelevated")
-                self._next_btn.visible = False
+            # Footer — VYSTREDENY: bookmark + next button vedle sebe, centered
+            with ui.row().classes("w-full zp-mt-md").style(
+                "justify-content: center; align-items: center; gap: 1rem;"
+            ):
+                bm_key = "bookmark" if self.is_bookmarked else "bookmark_off"
+                self._bookmark_btn = ui.button(
+                    icon=I[bm_key],
+                    on_click=self._toggle_bookmark,
+                ).props(
+                    f"flat dense round {'color=amber' if self.is_bookmarked else 'color=grey-7'}"
+                ).tooltip("Označit otázku (F)")
+
+                if self.show_next_button:
+                    self._next_btn = ui.button(
+                        "Další", icon=I["next"], on_click=self._do_next
+                    ).props("color=primary unelevated size=md")
+                    self._next_btn.visible = False
 
         self._kb = ui.keyboard(on_key=self._on_key)
 
