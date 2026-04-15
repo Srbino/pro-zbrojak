@@ -33,14 +33,12 @@ data/stats.db-shm
 exports/*.md
 logs/*.log
 
-# PDF source (licence MV ČR, ~3 MB — stáhni ručně, viz README)
+# PDF source — jen pro maintainery (regenerace obsahu při nové verzi MV ČR)
+# Runtime ho aplikace nepotřebuje; obsah je v data/questions.json + images/
 MV-Soubor_testovych_otazek_*.pdf
 
-# Parser output — regenerovatelné z PDF
-data/questions.json
+# Parser mezivýstup (diagnostika neparsovatelných otázek)
 data/unparsed.json
-images/*.png
-!images/.gitkeep
 
 # Test artifacts
 tests/screenshots/

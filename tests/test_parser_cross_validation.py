@@ -102,6 +102,12 @@ def questions() -> list[dict]:
 
 @pytest.fixture(scope="module")
 def pdf():
+    # PDF neni soucasti repa (viz data/README.md). Test je validni jen pro maintainery.
+    if not PDF_PATH.exists():
+        pytest.skip(
+            "Zdrojove PDF MV CR v repu neni (licencni duvody). "
+            "Tento test je pro maintainery regenerujici data z noveho PDF."
+        )
     p = pdfplumber.open(PDF_PATH)
     yield p
     p.close()

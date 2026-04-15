@@ -1,12 +1,14 @@
-# Makefile — uzivatelske prikazy pro ZP Trenazer.
+# Makefile — uzivatelske prikazy pro Pro Zbrojak.
 # Pouziti:
 #   make install   — vytvori venv + nainstaluje zavislosti
-#   make parse     — naparsuje PDF do data/questions.json + images/
 #   make run       — spusti aplikaci (http://127.0.0.1:8080)
 #   make test      — pusti testy (pytest)
 #   make test-ui   — spusti jen E2E UI testy (Playwright)
 #   make mindmap   — vygeneruje QUESTIONS_MINDMAP.md
-#   make clean     — smaze DB, obrazky, cache
+#   make clean     — smaze DB a cache
+#
+# Pro maintainery (regenerace obsahu z noveho PDF MV CR):
+#   make parse     — naparsuje MV-Soubor_testovych_otazek_*.pdf → data/questions.json + images/
 
 PYTHON ?= python3
 VENV   := .venv
@@ -16,15 +18,17 @@ PY     := $(VENV)/bin/python
 .PHONY: help install parse run test test-ui mindmap lint clean
 
 help:
-	@echo "ZP Trenazer — dostupne prikazy:"
+	@echo "Pro Zbrojak — dostupne prikazy:"
 	@echo "  make install    vytvori venv a nainstaluje zavislosti"
-	@echo "  make parse      naparsuje PDF (vyzaduje MV-Soubor...pdf)"
-	@echo "  make run        spusti aplikaci"
+	@echo "  make run        spusti aplikaci (http://127.0.0.1:8080)"
 	@echo "  make test       vsechny testy"
 	@echo "  make test-ui    jen UI E2E testy"
 	@echo "  make mindmap    vygeneruje QUESTIONS_MINDMAP.md"
 	@echo "  make lint       ruff check + format"
-	@echo "  make clean      smaze generated data"
+	@echo "  make clean      smaze DB a cache (user-local)"
+	@echo ""
+	@echo "Pro maintainery:"
+	@echo "  make parse      regeneruje data/questions.json z PDF MV CR"
 
 $(VENV)/bin/python:
 	$(PYTHON) -m venv $(VENV)
@@ -41,7 +45,7 @@ parse: $(VENV)/bin/python
 	$(PY) parse_pdf.py
 
 run:
-	@test -f data/questions.json || make parse
+	@test -f data/questions.json || (echo "CHYBA: data/questions.json chybi v repu. Zkontroluj klon." && exit 1)
 	$(PY) app.py
 
 test:
@@ -58,8 +62,8 @@ lint:
 	$(VENV)/bin/ruff format . || true
 
 clean:
-	rm -rf data/stats.db data/questions.json data/unparsed.json
-	rm -rf images/*.png
+	# Smaze jen user-local artefakty. questions.json a images/ jsou soucasti repa.
+	rm -rf data/stats.db data/unparsed.json
 	rm -rf exports/*.md
 	rm -rf logs/*.log
 	find . -name __pycache__ -type d -exec rm -rf {} + 2>/dev/null || true

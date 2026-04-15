@@ -126,43 +126,6 @@ python -m venv .venv
 
 ---
 
-## Stažení oficiálního PDF
-
-Repo **neobsahuje PDF** (licenční důvody + velikost 3 MB). Stáhni si ho ručně:
-
-**1. Jdi na stránku MV ČR:**
-👉 https://www.mvcr.gov.cz/clanek/zbrane-strelivo-munice-a-bezpecnostni-material.aspx
-
-**2. Najdi „Soubor testových otázek pro teoretickou část ZOZ a komisionální zkoušku"** (verze 15. 12. 2025) a stáhni PDF.
-
-**3. Ulož do kořene repa** — název musí začínat `MV-Soubor_testovych_otazek_`:
-```
-pro-zbrojak/
-├── MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf
-├── app.py
-└── ...
-```
-
-**4. Naparsuj PDF** (jednorázově, trvá ~30 s):
-```bash
-make parse
-```
-
-Bez `make`:
-```bash
-.venv/bin/python parse_pdf.py      # macOS/Linux
-.venv\Scripts\python parse_pdf.py  # Windows
-```
-
-Výsledek:
-```
-✅ Zapsáno: 837 otázek → data/questions.json
-📷 S obrázkem: 71
-⚠️ Nedořešeno: 0
-```
-
----
-
 ## Spuštění aplikace
 
 ```bash
@@ -178,6 +141,11 @@ run.bat           # Windows
 Automaticky se otevře **http://127.0.0.1:8080** v tvém prohlížeči. 🎯
 
 **Ukončení:** `Ctrl+C` v terminálu.
+
+> **Poznámka:** Otázky + obrázky (`data/questions.json`, `images/`) jsou **přímo v repu**.
+> Aplikace funguje **hned po klonu** bez nutnosti cokoliv stahovat. Oficiální PDF MV ČR
+> je potřeba jen pro **maintainery** kteří regenerují obsah při nové verzi — viz sekce
+> „Pro maintainery" níže.
 
 ---
 
@@ -347,13 +315,41 @@ Obsahuje všech 837 otázek rozdělených po oblastech + **inline thumbnails** 7
 
 ---
 
+## Pro maintainery — regenerace obsahu z nové verze PDF
+
+Když MV ČR vydá novou verzi PDF „Soubor testových otázek":
+
+```bash
+# 1. Stáhni nové PDF z MV ČR
+#    https://www.mvcr.gov.cz/clanek/zbrane-strelivo-munice-a-bezpecnostni-material.aspx
+
+# 2. Ulož do kořene repa pod názvem MV-Soubor_testovych_otazek_*.pdf
+#    (PDF je v .gitignore — netřeba se bát že se omylem commitne)
+
+# 3. Regeneruj data/questions.json + images/
+make parse
+
+# 4. Ověř (~ 837 otázek, ~ 71 obrázků, 0 nedořešených)
+make test
+
+# 5. Commit nových dat
+git add data/questions.json images/
+git commit -m "data: update z PDF MV ČR verze YYYYMMDD"
+git push
+```
+
+Uživatelé aplikace **zachovají historii úspěšnosti** — otázky mají stabilní SHA-1 hash-ID
+odvozené z textu. Dokud MV nezmění znění, DB se spáruje automaticky.
+
+Víc v [`data/README.md`](data/README.md).
+
 ## Pro vývojáře
 
 ```bash
 make install        # .venv + dev deps + playwright chromium
 make lint           # ruff check + format
 make test           # pytest
-make clean          # smaže DB, obrázky, cache
+make clean          # smaže user-local (DB, cache), questions.json NE
 make clean-all      # + smaže venv
 ```
 
