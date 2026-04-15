@@ -1,0 +1,77 @@
+[project]
+name = "zp-trenazer"
+version = "0.3.0"
+description = "Trenažér testových otázek pro zkoušku odborné způsobilosti k vydání zbrojního průkazu (ZOZ)"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Pavel Srba"}]
+requires-python = ">=3.11"
+keywords = ["zbrojni-prukaz", "zoz", "quiz", "spaced-repetition", "fsrs", "nicegui"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Czech",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+]
+
+dependencies = [
+    "nicegui>=2.0",
+    "pdfplumber>=0.11",
+    "PyMuPDF>=1.24",
+    "Pillow>=10.0",
+    "sqlite-utils>=3.36",
+    "pydantic>=2.0",
+    "fsrs>=6.0",
+    "rich>=13.0",
+    "plotly>=5.0",
+    "pyperclip>=1.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "playwright>=1.40",
+    "ruff>=0.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/pavelsrba/zp-trenazer"
+Issues = "https://github.com/pavelsrba/zp-trenazer/issues"
+
+[project.scripts]
+zp-parse = "parse_pdf:main"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+    "E501",  # line too long — handled by formatter
+    "E741",  # ambiguous variable names (we use 'I' intentionally)
+    "B008",  # function calls in default args (NiceGUI patterns)
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["app", "parse_pdf"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

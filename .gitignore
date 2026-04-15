@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# User data (generated locally)
+data/stats.db
+data/stats.db-journal
+data/stats.db-wal
+data/stats.db-shm
+exports/*.md
+logs/*.log
+
+# PDF source (licence MV ČR, ~3 MB — stáhni ručně, viz README)
+MV-Soubor_testovych_otazek_*.pdf
+
+# Parser output — regenerovatelné z PDF
+data/questions.json
+data/unparsed.json
+images/*.png
+!images/.gitkeep
+
+# Test artifacts
+tests/screenshots/
+tests/_run_test_server.py
+
+# Temp
+/tmp/
+*.tmp
+
+# Mindmap — regenerable from questions.json via make mindmap
+QUESTIONS_MINDMAP.md
