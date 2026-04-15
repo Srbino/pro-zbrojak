@@ -125,6 +125,47 @@ def test_mastery_shows_all_sections(server, browser):
     ctx.close()
 
 
+def test_settings_reset_actually_deletes_data(server, browser):
+    """E2E: vlozi attempt pres random quiz, pak reset → overi ze DB je prazdna."""
+    import sqlite3
+    from pathlib import Path
+    ROOT_PATH = Path(__file__).resolve().parent.parent
+    db_path = ROOT_PATH / "data" / "stats.db"
+
+    ctx = browser.new_context(viewport={"width": 1280, "height": 900})
+    page = ctx.new_page()
+
+    # 1. Odpoved v random — vytvori zaznam v attempts
+    page.goto(server + "/random", wait_until="networkidle")
+    page.wait_for_timeout(800)
+    page.locator(".zp-opt").first.click(timeout=3000, force=True)
+    page.wait_for_timeout(600)
+
+    # Overime ze zaznam existuje
+    if db_path.exists():
+        conn = sqlite3.connect(db_path)
+        before = conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0]
+        conn.close()
+        assert before >= 1, "Test fixture: mel se vytvorit alespon 1 attempt"
+    else:
+        pytest.skip("DB neni jeste inicializovana")
+
+    # 2. Settings → Reset → potvrdit v dialogu
+    page.goto(server + "/settings", wait_until="networkidle")
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="Reset historie").click()
+    page.wait_for_timeout(800)
+    page.get_by_role("button", name="OPRAVDU SMAZAT VŠE").click(timeout=5000)
+    page.wait_for_timeout(1500)
+
+    # 3. Overime ze attempts je prazdny
+    conn = sqlite3.connect(db_path)
+    after = conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0]
+    conn.close()
+    assert after == 0, f"Reset nevymazal attempts — pred: {before}, po: {after}"
+    ctx.close()
+
+
 def test_settings_reset_opens_confirm_dialog(server, browser):
     """Reset historie otevre modalni dialog s potvrzenim."""
     ctx = browser.new_context(viewport={"width": 1280, "height": 900})

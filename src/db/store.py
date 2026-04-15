@@ -226,6 +226,14 @@ def list_exams(db: sqlite_utils.Database) -> list[dict]:
 # ---------- maintenance ----------
 
 def reset_all(db: sqlite_utils.Database):
-    for t in ("attempts", "marathon_runs", "bookmarks", "exam_results"):
-        if t in db.table_names():
-            db[t].delete_where()
+    """Smaze VSECHNA user data (attempts, marathons, bookmarks, exam results, SRS state).
+
+    Pouziva raw SQL + explicit commit, protoze sqlite_utils.Table.delete_where()
+    neni spolehlive persistovano na disk v nasi konfiguraci.
+    """
+    tables = ("attempts", "marathon_runs", "bookmarks", "exam_results", "srs_state")
+    existing = set(db.table_names())
+    for t in tables:
+        if t in existing:
+            db.conn.execute(f"DELETE FROM {t}")
+    db.conn.commit()

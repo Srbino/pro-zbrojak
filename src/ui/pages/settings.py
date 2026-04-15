@@ -33,9 +33,14 @@ def settings_page():
             ui.label(
                 "Nevratně smaže všechny pokusy, marathony, simulace a bookmarky."
             ).classes("zp-body-sm")
+
+            def _do_reset():
+                reset_all(db)
+                ui.notify("Historie smazána", color="positive", position="top")
+
             confirm_button(
                 "Reset historie",
-                on_confirm=lambda: (reset_all(db), ui.notify("Historie smazána", color="positive", position="top")),
+                on_confirm=_do_reset,
                 confirm_label="OPRAVDU SMAZAT VŠE",
             )
 

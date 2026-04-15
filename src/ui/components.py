@@ -231,22 +231,28 @@ def confirm_button(label: str, *, on_confirm: Callable[[], None],
 
     Klik na tlacitko → modalni dialog se 2 tlacitky (zrusit + potvrdit).
     """
-    # Definujeme dialog predem v aktualnim page scope
-    with ui.dialog() as dialog, ui.card().style("max-width: 420px; padding: 1.5rem;"):
-        with ui.row().classes("zp-row zp-gap-sm zp-nowrap w-full zp-mb-sm"):
-            icon("warning", size="md", color="var(--zp-danger)")
-            ui.label("Potvrzení").classes("zp-h2").style("margin: 0;")
-        ui.label(dialog_message).classes("zp-body").style("margin-bottom: 1rem;")
-        with ui.row().classes("w-full zp-gap-sm").style("justify-content: flex-end;"):
-            ui.button("Zrušit", on_click=dialog.close).props("flat")
+    # Dialog — oddeleny CM pro kazdy level (vice spolehlive v NiceGUI)
+    dialog = ui.dialog()
 
-            def _confirm():
-                dialog.close()
-                on_confirm()
+    def _confirm():
+        try:
+            on_confirm()
+        except Exception as e:
+            ui.notify(f"Chyba: {e}", color="negative", position="top")
+            return
+        dialog.close()
 
-            ui.button(confirm_label, icon=I[icon_name], on_click=_confirm).props(
-                f"color={color} unelevated"
-            )
+    with dialog:
+        with ui.card().style("max-width: 420px; padding: 1.5rem;"):
+            with ui.row().classes("zp-row zp-gap-sm zp-nowrap w-full zp-mb-sm"):
+                icon("warning", size="md", color="var(--zp-danger)")
+                ui.label("Potvrzení").classes("zp-h2").style("margin: 0;")
+            ui.label(dialog_message).classes("zp-body").style("margin-bottom: 1rem;")
+            with ui.row().classes("w-full zp-gap-sm").style("justify-content: flex-end;"):
+                ui.button("Zrušit", on_click=dialog.close).props("flat")
+                ui.button(confirm_label, icon=I[icon_name], on_click=_confirm).props(
+                    f"color={color} unelevated"
+                )
 
     btn = ui.button(label, icon=I[icon_name], on_click=dialog.open).props(f"color={color}")
     return btn
