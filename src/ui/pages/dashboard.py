@@ -20,6 +20,7 @@ from src.ui.layout import NAV_ITEMS, nav_items_for_dashboard, page_shell
 
 
 VERSION = "0.3.0"
+APP_NAME = "Pro Zbroják"
 
 
 @ui.page("/")
@@ -118,9 +119,9 @@ def index_page():
         # --- FOOTER ---
         ui.element("div").style("height: 3rem;")
         with ui.row().classes("zp-row zp-gap-xs w-full").style("justify-content: center;"):
-            ui.label(f"v{VERSION}").classes("zp-caption")
+            ui.label(f"{APP_NAME} v{VERSION}").classes("zp-caption")
             ui.label("·").classes("zp-caption")
-            ui.label("studijní pomůcka").classes("zp-caption")
+            ui.label("studijní pomůcka — ZOZ podle zák. 90/2024 Sb. a NV 238/2025 Sb.").classes("zp-caption")
 
 
 # ---------- helpers (private to this module) ----------
@@ -143,7 +144,7 @@ def _render_hero(*, total: int, active_run, n_due: int, ov: dict):
         )
     elif ov["attempts"] == 0:
         hero_primary(
-            title=f"Vítej! {total} otázek připraveno.",
+            title=f"Vítej v Pro Zbrojáku! {total} otázek připraveno.",
             subtitle="Doporučujeme začít Marathonem — projdeš celý katalog po pořadí a objevíš, kde jsi slabý.",
             cta_label="Začít Marathon", cta_target="/marathon",
         )

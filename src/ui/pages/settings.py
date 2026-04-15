@@ -40,11 +40,18 @@ def settings_page():
             )
 
         with ui.element("div").classes("zp-card"):
-            ui.label("Disclaimer").classes("zp-h3")
+            ui.label("O aplikaci").classes("zp-h3")
+            ui.label("Pro Zbroják").classes("zp-body").style("font-weight: 600;")
             ui.label(
-                "Tato aplikace je studijní pomůcka založená na otázkách MV ČR "
-                "(zdroj PDF z 15. 12. 2025). Není oficiálním zdrojem. Pro přípravu vždy konzultuj "
-                "zákon č. 90/2024 Sb. a NV č. 238/2025 Sb. v aktuálním znění."
+                "Český trenažér testových otázek pro zkoušku odborné způsobilosti (ZOZ) "
+                "k vydání zbrojního průkazu."
+            ).classes("zp-body-sm")
+            ui.separator().classes("my-2")
+            ui.label(
+                "Studijní pomůcka založená na oficiálním PDF MV ČR „Soubor testových otázek "
+                "pro teoretickou část ZOZ a komisionální zkoušku' (verze 15. 12. 2025). "
+                "Není oficiálním zdrojem. Pro přípravu vždy konzultuj zákon č. 90/2024 Sb. "
+                "a nařízení vlády č. 238/2025 Sb. v aktuálním znění (oba účinné od 1. 1. 2026)."
             ).classes("zp-body-sm")
 
 

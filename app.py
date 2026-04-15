@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-ZP Trenažér — NiceGUI aplikace pro samostudium na zkoušku odborné způsobilosti.
+Pro Zbroják — český trenažér testových otázek pro zkoušku odborné způsobilosti
+k vydání zbrojního průkazu (ZOZ). Podle zákona č. 90/2024 Sb. a NV č. 238/2025 Sb.
+
 Spuštění: python app.py  →  http://127.0.0.1:8080
 """
 from __future__ import annotations
@@ -31,7 +33,7 @@ if __name__ in {"__main__", "__mp_main__"}:
     ui.run(
         host="127.0.0.1",
         port=8080,
-        title="ZP Trenažér",
+        title="Pro Zbroják",
         reload=False,
         show=True,
         favicon="🎯",

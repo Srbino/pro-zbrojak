@@ -41,7 +41,7 @@ def nav_items_for_dashboard() -> tuple[NavItem, ...]:
 
 
 @contextmanager
-def page_shell(title: str = "ZP Trenažér", active_path: str | None = None):
+def page_shell(title: str = "Pro Zbroják", active_path: str | None = None):
     """Stranka: header + left_drawer + container pro obsah.
 
     Usage:
@@ -68,7 +68,7 @@ def page_shell(title: str = "ZP Trenažér", active_path: str | None = None):
                     icon("brand", size="md", color="var(--zp-primary)")
                     with ui.column().classes("zp-col").style("gap: 0; min-width: 0;"):
                         ui.label(title).classes("zp-header-title")
-                        ui.label("Trenažér zbrojního průkazu").classes("zp-header-sub")
+                        ui.label("Pro Zbroják — trenažér ZOZ").classes("zp-header-sub")
             with ui.row().classes("zp-row zp-gap-xs zp-nowrap"):
                 ui.button(icon=I["help"], on_click=_show_help_dialog).props(
                     "flat round dense color=primary size=md"

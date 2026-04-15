@@ -1,12 +1,16 @@
 [project]
-name = "zp-trenazer"
+name = "pro-zbrojak"
 version = "0.3.0"
-description = "Trenažér testových otázek pro zkoušku odborné způsobilosti k vydání zbrojního průkazu (ZOZ)"
+description = "Pro Zbroják — český trenažér testových otázek pro zkoušku odborné způsobilosti (ZOZ) podle zákona č. 90/2024 Sb. a NV č. 238/2025 Sb."
 readme = "README.md"
 license = {file = "LICENSE"}
-authors = [{name = "Pavel Srba"}]
+authors = [{name = "Pavel Srba", email = "srba@unify.cz"}]
 requires-python = ">=3.11"
-keywords = ["zbrojni-prukaz", "zoz", "quiz", "spaced-repetition", "fsrs", "nicegui"]
+keywords = [
+    "zbrojni-prukaz", "zbrojak", "pro-zbrojak", "zoz",
+    "zkouska-zbrojni-prukaz", "testy-zbrojak",
+    "quiz", "spaced-repetition", "fsrs", "nicegui",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: End Users/Desktop",
@@ -39,11 +43,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/pavelsrba/zp-trenazer"
-Issues = "https://github.com/pavelsrba/zp-trenazer/issues"
+Homepage = "https://github.com/Srbino/pro-zbrojak"
+Issues = "https://github.com/Srbino/pro-zbrojak/issues"
 
 [project.scripts]
-zp-parse = "parse_pdf:main"
+pro-zbrojak-parse = "parse_pdf:main"
 
 [tool.ruff]
 line-length = 110
