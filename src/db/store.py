@@ -89,6 +89,15 @@ def _ensure_schema(db: sqlite_utils.Database):
         }, pk="id", not_null={"user_email", "level", "score", "total", "passed", "duration_s", "ts"})
         db["exam_results"].create_index(["user_email"])
 
+    if "study_state" not in db.table_names():
+        db["study_state"].create({
+            "user_email": str,
+            "question_id": str,
+            "known": int,          # 1 = "umím", 0 = "ještě ne"
+            "updated_at": int,
+        }, pk=("user_email", "question_id"), not_null={"user_email", "question_id", "known"})
+        db["study_state"].create_index(["user_email"])
+
 
 def _migrate_multiuser(db: sqlite_utils.Database):
     """Doplní `user_email` do starých single-user tabulek a přiřadí je vlastníkovi."""
@@ -182,7 +191,7 @@ def stats_per_section(db: sqlite_utils.Database, questions: list[dict], user_ema
         bucket = out.setdefault(sec, {"attempts": 0, "correct": 0})
         bucket["attempts"] += 1
         bucket["correct"] += row["is_correct"]
-    for sec, b in out.items():
+    for b in out.values():
         b["pct"] = round(b["correct"] / b["attempts"] * 100, 1) if b["attempts"] else 0.0
     return out
 
@@ -317,11 +326,42 @@ def list_exams(db: sqlite_utils.Database, user_email: str) -> list[dict]:
     ))
 
 
+# ---------- study (režim Studium — kartičky/čtení) ----------
+
+def set_studied(db: sqlite_utils.Database, user_email: str, question_id: str, known: bool):
+    db["study_state"].insert({
+        "user_email": user_email,
+        "question_id": question_id,
+        "known": int(known),
+        "updated_at": int(time.time()),
+    }, pk=("user_email", "question_id"), replace=True)
+
+
+def studied_known_ids(db: sqlite_utils.Database, user_email: str) -> set[str]:
+    return {r["question_id"] for r in db.query(
+        "SELECT question_id FROM study_state WHERE user_email=? AND known=1", [user_email]
+    )}
+
+
+def studied_map(db: sqlite_utils.Database, user_email: str) -> dict[str, int]:
+    """{question_id: known} pro všechny otázky, které uživatel v Studiu potkal."""
+    return {r["question_id"]: r["known"] for r in db.query(
+        "SELECT question_id, known FROM study_state WHERE user_email=?", [user_email]
+    )}
+
+
+def studied_counts(db: sqlite_utils.Database, user_email: str) -> dict:
+    row = next(db.query(
+        "SELECT COUNT(*) AS n, SUM(known) AS k FROM study_state WHERE user_email=?", [user_email]
+    ))
+    return {"seen": row["n"] or 0, "known": row["k"] or 0}
+
+
 # ---------- maintenance ----------
 
 def reset_all(db: sqlite_utils.Database, user_email: str):
-    """Smaže data JEN daného uživatele (attempts, marathon, bookmarks, exam, SRS)."""
-    tables = ("attempts", "marathon_runs", "bookmarks", "exam_results", "srs_state")
+    """Smaže data JEN daného uživatele (attempts, marathon, bookmarks, exam, SRS, studium)."""
+    tables = ("attempts", "marathon_runs", "bookmarks", "exam_results", "srs_state", "study_state")
     existing = set(db.table_names())
     for t in tables:
         if t in existing:

@@ -531,6 +531,24 @@ body, html { overflow-x: hidden; max-width: 100vw; }
   .zp-header-sub { display: none !important; }
   .zp-brand .q-icon { display: none; } /* brand icon hidden, save space */
 }
+/* ---- Studium (režim čtení/kartička + navigátor otázek) ---- */
+.zp-study-grid { display: flex; flex-wrap: wrap; gap: 5px; max-height: 240px;
+  overflow-y: auto; padding: 6px 2px; }
+.zp-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 40px;
+  height: 30px; padding: 0 7px; font-size: .75rem; border: 1px solid var(--zp-border);
+  border-radius: 7px; background: var(--zp-surface); color: var(--zp-text); cursor: pointer;
+  font-variant-numeric: tabular-nums; user-select: none; transition: background .1s, border-color .1s; }
+.zp-chip:hover { border-color: var(--zp-primary); }
+.zp-chip.seen { background: var(--zp-primary-soft); border-color: var(--zp-primary); }
+.zp-chip.known { background: #ECFDF5; border-color: var(--zp-success); color: #15803D; font-weight: 600; }
+.zp-chip.cur { outline: 2px solid var(--zp-primary); outline-offset: 1px; font-weight: 700; }
+body.body--dark .zp-chip.known, .dark .zp-chip.known { background: #064E3B; border-color: #2f9e5c; color: #A7F3D0; }
+.zp-answer-correct { border: 1px solid var(--zp-success) !important; background: #ECFDF5 !important;
+  color: #14532D !important; border-radius: 10px; padding: .8rem 1rem; font-size: 1rem; }
+body.body--dark .zp-answer-correct, .dark .zp-answer-correct { background: #064E3B !important; color: #A7F3D0 !important; }
+.zp-answer-neutral { border: 1px solid var(--zp-border); border-radius: 10px; padding: .75rem 1rem;
+  font-size: .95rem; opacity: .7; }
+
 /* Uzivatelske jmeno v headeru — na uzkych displejich skryt, nechat jen ikony */
 .zp-user-name {
   max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;

@@ -22,6 +22,7 @@ class NavItem:
 NAV_ITEMS: tuple[NavItem | None, ...] = (
     NavItem("/",         "dashboard", "Přehled",           "Statistiky a doporučení"),
     None,  # separator
+    NavItem("/study",    "study",     "Studium",           "Projdi otázky + správné odpovědi"),
     NavItem("/marathon", "marathon",  "Marathon",          "Všechny otázky po pořadí"),
     NavItem("/srs",      "srs",       "Denní review",      "Spaced repetition (FSRS)"),
     NavItem("/random",   "random",    "Náhodně",           "Volné procvičování"),

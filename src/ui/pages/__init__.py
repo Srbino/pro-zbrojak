@@ -2,6 +2,7 @@
 
 # Order matters? Only for import-time side effects. All paths independent.
 from . import dashboard  # noqa: F401
+from . import study      # noqa: F401
 from . import marathon   # noqa: F401
 from . import practice   # noqa: F401
 from . import exam       # noqa: F401

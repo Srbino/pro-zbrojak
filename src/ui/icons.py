@@ -18,6 +18,8 @@ I: dict[str, str] = {
     # Navigace
     "dashboard":    "dashboard",
     "marathon":     "directions_run",
+    "study":        "menu_book",
+    "reveal":       "visibility",
     "srs":          "psychology",
     "random":       "shuffle",
     "mistakes":     "track_changes",
