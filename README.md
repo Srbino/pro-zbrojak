@@ -19,6 +19,9 @@ detekcí šedého zvýraznění) — **837/837 sedí**. K nahlédnutí:
 
 Ověření je zabudované jako test (`tests/test_all_answers_vs_pdf.py`), takže hlídá i budoucí aktualizace.
 
+📄 **[Kompletní přehled o zkoušce ZOZ](docs/o-zkousce.md)** — teorie, praktická část, postupy podle
+přílohy č. 2 NV 238/2025 Sb., střelnice, poplatky, časté mýty — vše s odkazy na paragrafy.
+
 ---
 
 ## Co aplikace umí
