@@ -9,6 +9,18 @@ Oficiální katalog MV ČR **837 otázek** (z toho 71 s obrázkem zbraně), 6 re
 
 ---
 
+## ✅ Ověření obsahu ([online přehled](https://srbino.github.io/pro-zbrojak/))
+
+Všech **837 správných odpovědí je ověřeno proti oficiálnímu PDF MV ČR** (nezávislou
+detekcí šedého zvýraznění) — **837/837 sedí**. K nahlédnutí:
+
+- **[Porovnání odpovědí: PDF vs aplikace](https://srbino.github.io/pro-zbrojak/porovnani.html)** — u každé otázky vedle sebe odpověď z PDF a z aplikace.
+- **[Přehled všech 837 otázek](https://srbino.github.io/pro-zbrojak/otazky.html)** — se správnou odpovědí, hledáním a filtrem oblastí.
+
+Ověření je zabudované jako test (`tests/test_all_answers_vs_pdf.py`), takže hlídá i budoucí aktualizace.
+
+---
+
 ## Co aplikace umí
 
 - 🏃 **Marathon** — projdi celý katalog 837 otázek; pozice se pamatuje mezi restarty.
