@@ -34,7 +34,7 @@ def test_startup_time():
     from src.db.store import get_db, stats_overall
     qs = load_questions()
     db = get_db()
-    stats_overall(db)
+    stats_overall(db, "perf@example.cz")
     dt = time.perf_counter() - t0
     print(f"\nstartup (imports + load_questions + DB open): {dt*1000:.0f} ms")
     assert dt < 2.0, f"Startup {dt:.2f}s > 2s"
@@ -101,10 +101,12 @@ def test_db_query_benchmarks(tmp_path, monkeypatch):
 
     # Naplň: 1000 attempts v 100 ruznych otazkach
     import random as _r
+    U = "perf@example.cz"
     rng = _r.Random(42)
     for i in range(1000):
         store.record_attempt(
             db,
+            user_email=U,
             question_id=f"q{rng.randint(0, 99)}",
             chosen=rng.choice(["A", "B", "C"]),
             correct="A",
@@ -115,19 +117,19 @@ def test_db_query_benchmarks(tmp_path, monkeypatch):
     results: dict[str, float] = {}
 
     t0 = time.perf_counter()
-    store.stats_overall(db)
+    store.stats_overall(db, U)
     results["stats_overall"] = (time.perf_counter() - t0) * 1000
 
     t0 = time.perf_counter()
-    store.question_ids_with_mistakes(db)
+    store.question_ids_with_mistakes(db, U)
     results["question_ids_with_mistakes"] = (time.perf_counter() - t0) * 1000
 
     t0 = time.perf_counter()
-    store.top_mistakes(db, 20)
+    store.top_mistakes(db, U, 20)
     results["top_mistakes"] = (time.perf_counter() - t0) * 1000
 
     t0 = time.perf_counter()
-    store.get_active_marathon(db)
+    store.get_active_marathon(db, U)
     results["get_active_marathon"] = (time.perf_counter() - t0) * 1000
 
     print("\nDB queries (s 1000 attempts):")
