@@ -71,12 +71,14 @@ def _session_email() -> str | None:
 
 def current_user() -> User | None:
     """Aktuální uživatel: Cloudflare Access hlavička má přednost, jinak session (LAN)."""
-    email = _header_email() or _session_email()
+    header_email = _header_email()
+    email = header_email or _session_email()
     if not email:
         return None
     # Cache do session + zajisti řádek v DB (auto-provisioning — Access už ověřil).
     try:
         app.storage.user["email"] = email
+        app.storage.user["via_access"] = bool(header_email)
     except Exception:
         pass
     from src.db.store import ensure_user, get_db
@@ -86,13 +88,30 @@ def current_user() -> User | None:
 
 def login_local(email: str) -> None:
     app.storage.user["email"] = email.strip().lower()
+    app.storage.user["via_access"] = False
 
 
 def logout() -> None:
     try:
         app.storage.user.pop("email", None)
+        app.storage.user.pop("via_access", None)
     except Exception:
         pass
+
+
+def do_logout() -> None:
+    """Chytré odhlášení: za Cloudflare Access odhlásí i z Accessu, jinak zpět na login."""
+    via_access = False
+    try:
+        via_access = bool(app.storage.user.get("via_access"))
+    except Exception:
+        pass
+    logout()
+    if via_access:
+        # Cloudflare zruší CF_Authorization cookie a ukáže odhlašovací stránku.
+        ui.navigate.to("/cdn-cgi/access/logout")
+    else:
+        ui.navigate.to("/")
 
 
 def require_login() -> User | None:

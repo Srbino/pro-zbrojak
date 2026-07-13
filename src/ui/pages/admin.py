@@ -1,6 +1,7 @@
 """Admin přehled — statistiky všech uživatelů. Jen pro adminy."""
 from __future__ import annotations
 
+import html
 import time
 
 from nicegui import ui
@@ -41,36 +42,38 @@ def admin_page():
             stat_card("Pokusů celkem", str(total_attempts), sub="napříč všemi")
             stat_card("Adminů", str(sum(1 for u in users if u["is_admin"])), sub="s právy")
 
-        with ui.element("div").classes("zp-card").style("padding: 0;"):
-            # Hlavička
-            with ui.row().classes("zp-row zp-nowrap w-full").style(
-                "padding: .6rem 1rem; border-bottom: 1px solid var(--zp-border); font-weight: 600;"
-            ):
-                ui.label("Uživatel").classes("zp-body-sm").style("flex: 2;")
-                ui.label("Pokusů").classes("zp-body-sm").style("width: 80px; text-align: right;")
-                ui.label("Úspěšnost").classes("zp-body-sm").style("width: 90px; text-align: right;")
-                ui.label("Zkoušky ✓").classes("zp-body-sm").style("width: 90px; text-align: right;")
-                ui.label("SRS").classes("zp-body-sm").style("width: 60px; text-align: right;")
-                ui.label("Naposledy").classes("zp-body-sm").style("width: 130px; text-align: right;")
-
-            for u in users:
-                ov = stats_overall(db, u["email"])
-                exams = list_exams(db, u["email"])
-                passed = sum(1 for e in exams if e["passed"])
-                srs_n = srs_mod.total_cards(db, u["email"])
-                last = time.strftime("%Y-%m-%d %H:%M", time.localtime(u["last_seen"])) if u.get("last_seen") else "—"
+        # Tabulka je na mobilu horizontálně scrollovatelná (nerozbíjí layout stránky).
+        with ui.element("div").classes("zp-card").style("padding: 0; overflow-x: auto;"):
+            with ui.element("div").style("min-width: 620px;"):
+                # Hlavička
                 with ui.row().classes("zp-row zp-nowrap w-full").style(
-                    "padding: .6rem 1rem; border-top: 1px solid var(--zp-border);"
+                    "padding: .6rem 1rem; border-bottom: 1px solid var(--zp-border); font-weight: 600;"
                 ):
-                    with ui.column().classes("zp-col").style("flex: 2; gap: 0; min-width: 0;"):
-                        badge = '  <span class="zp-badge success" style="min-width:auto;">admin</span>' if u["is_admin"] else ""
-                        ui.html(f'<span style="font-weight:600;">{u["name"]}</span>{badge}')
-                        ui.label(u["email"]).classes("zp-caption zp-mono").style("word-break: break-all;")
-                    ui.label(str(ov["attempts"])).classes("zp-body-sm zp-mono").style("width: 80px; text-align: right;")
-                    ui.label(f'{ov["pct"]} %').classes("zp-body-sm zp-mono").style("width: 90px; text-align: right;")
-                    ui.label(f'{passed}/{len(exams)}').classes("zp-body-sm zp-mono").style("width: 90px; text-align: right;")
-                    ui.label(str(srs_n)).classes("zp-body-sm zp-mono").style("width: 60px; text-align: right;")
-                    ui.label(last).classes("zp-caption zp-mono").style("width: 130px; text-align: right;")
+                    ui.label("Uživatel").classes("zp-body-sm").style("flex: 2; min-width: 160px;")
+                    ui.label("Pokusů").classes("zp-body-sm").style("width: 80px; text-align: right;")
+                    ui.label("Úspěšnost").classes("zp-body-sm").style("width: 90px; text-align: right;")
+                    ui.label("Zkoušky ✓").classes("zp-body-sm").style("width: 90px; text-align: right;")
+                    ui.label("SRS").classes("zp-body-sm").style("width: 60px; text-align: right;")
+                    ui.label("Naposledy").classes("zp-body-sm").style("width: 130px; text-align: right;")
+
+                for u in users:
+                    ov = stats_overall(db, u["email"])
+                    exams = list_exams(db, u["email"])
+                    passed = sum(1 for e in exams if e["passed"])
+                    srs_n = srs_mod.total_cards(db, u["email"])
+                    last = time.strftime("%Y-%m-%d %H:%M", time.localtime(u["last_seen"])) if u.get("last_seen") else "—"
+                    with ui.row().classes("zp-row zp-nowrap w-full").style(
+                        "padding: .6rem 1rem; border-top: 1px solid var(--zp-border);"
+                    ):
+                        with ui.column().classes("zp-col").style("flex: 2; gap: 0; min-width: 160px;"):
+                            badge = '  <span class="zp-badge success" style="min-width:auto;">admin</span>' if u["is_admin"] else ""
+                            ui.html(f'<span style="font-weight:600;">{html.escape(u["name"] or "")}</span>{badge}')
+                            ui.label(u["email"]).classes("zp-caption zp-mono").style("word-break: break-all;")
+                        ui.label(str(ov["attempts"])).classes("zp-body-sm zp-mono").style("width: 80px; text-align: right;")
+                        ui.label(f'{ov["pct"]} %').classes("zp-body-sm zp-mono").style("width: 90px; text-align: right;")
+                        ui.label(f'{passed}/{len(exams)}').classes("zp-body-sm zp-mono").style("width: 90px; text-align: right;")
+                        ui.label(str(srs_n)).classes("zp-body-sm zp-mono").style("width: 60px; text-align: right;")
+                        ui.label(last).classes("zp-caption zp-mono").style("width: 130px; text-align: right;")
 
         ui.element("div").style("height: 1.5rem;")
         back_home_button()

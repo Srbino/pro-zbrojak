@@ -531,6 +531,11 @@ body, html { overflow-x: hidden; max-width: 100vw; }
   .zp-header-sub { display: none !important; }
   .zp-brand .q-icon { display: none; } /* brand icon hidden, save space */
 }
+/* Uzivatelske jmeno v headeru — na uzkych displejich skryt, nechat jen ikony */
+.zp-user-name {
+  max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+@media (max-width: 560px) { .zp-user-name { display: none !important; } }
 .zp-header-title {
   font-size: 1.15rem !important;
   font-weight: 700 !important;

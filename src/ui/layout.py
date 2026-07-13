@@ -70,15 +70,21 @@ def page_shell(title: str = "Pro Zbroják", active_path: str | None = None):
                         ui.label(title).classes("zp-header-title")
                         ui.label("Pro Zbroják — trenažér ZOZ").classes("zp-header-sub")
             with ui.row().classes("zp-row zp-gap-xs zp-nowrap").style("align-items: center;"):
-                from src.auth import current_user
+                from src.auth import current_user, do_logout
                 _u = current_user()
                 if _u is not None:
+                    ui.label(_u.name).classes("zp-user-name zp-body-sm").style(
+                        "font-weight: 600; color: var(--zp-primary);"
+                    )
                     ui.button(
-                        _u.name, icon=I["settings"],
+                        icon=I["person"],
                         on_click=lambda: ui.navigate.to("/settings"),
-                    ).props("flat dense no-caps color=primary").tooltip(
+                    ).props("flat round dense color=primary size=md").tooltip(
                         _u.email + (" · admin" if _u.is_admin else "")
                     )
+                    ui.button(icon=I["logout"], on_click=do_logout).props(
+                        "flat round dense color=primary size=md"
+                    ).tooltip("Odhlásit se")
                 ui.button(icon=I["help"], on_click=_show_help_dialog).props(
                     "flat round dense color=primary size=md"
                 ).tooltip("Klávesové zkratky (?)")

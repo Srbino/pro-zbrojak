@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from nicegui import ui
 
-from src.auth import logout, require_login
+from src.auth import do_logout, require_login
 from src.db.questions import load_questions
 from src.db.store import get_db, reset_all
 from src.paths import DB_PATH, EXPORT_DIR
@@ -27,18 +27,15 @@ def settings_page():
             _kv("Jméno", user.name + ("  (admin)" if user.is_admin else ""))
             _kv("E-mail", user.email)
 
-            def _do_logout():
-                logout()
-                ui.navigate.to("/")
-
-            ui.button("Odhlásit se", icon=I["close"], on_click=_do_logout).props(
-                "flat color=primary"
-            ).classes("zp-mt-sm")
-            if user.is_admin:
-                ui.button("Admin přehled", icon=I["insights"],
-                          on_click=lambda: ui.navigate.to("/admin")).props(
-                    "flat color=primary"
-                ).classes("zp-mt-sm")
+            with ui.row().classes("zp-row zp-gap-sm zp-mt-md").style("flex-wrap: wrap;"):
+                ui.button("Odhlásit se", icon=I["logout"], on_click=do_logout).props(
+                    "unelevated color=primary"
+                )
+                if user.is_admin:
+                    ui.button("Admin přehled", icon=I["insights"],
+                              on_click=lambda: ui.navigate.to("/admin")).props(
+                        "outline color=primary"
+                    )
 
         with ui.element("div").classes("zp-card zp-mb-md"):
             ui.label("Aplikace").classes("zp-h3")

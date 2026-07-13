@@ -26,6 +26,8 @@ I: dict[str, str] = {
     "flagged":      "bookmarks",
     "export":       "ios_share",
     "settings":     "settings",
+    "logout":       "logout",
+    "person":       "account_circle",
     "help":         "help_outline",
     "menu":         "menu",
     "dark":         "dark_mode",
