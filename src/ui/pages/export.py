@@ -3,22 +3,29 @@ from __future__ import annotations
 
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import by_id
 from src.db.store import (
-    get_db, top_mistakes, question_ids_with_mistakes, all_flagged,
+    all_flagged,
+    get_db,
+    question_ids_with_mistakes,
+    top_mistakes,
 )
 from src.export.claude_md import export_questions, export_single
-from src.ui.components import SECTION_LABEL, SECTION_BADGE_VARIANT, section_badge
+from src.ui.components import section_badge
 from src.ui.icons import I
 from src.ui.layout import page_shell
 
 
 @ui.page("/export")
 def export_page():
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     qmap = by_id()
-    bad_ids = question_ids_with_mistakes(db)
-    flagged_ids = all_flagged(db)
+    bad_ids = question_ids_with_mistakes(db, user.email)
+    flagged_ids = all_flagged(db, user.email)
 
     with page_shell("Export pro Claude Code", active_path="/export"):
         ui.label("Export pro Claude Code").classes("zp-display")
@@ -62,7 +69,7 @@ def export_page():
         if bad_ids:
             ui.label("Top chybované otázky").classes("zp-h2 zp-mt-xl zp-mb-sm")
             with ui.element("div").classes("zp-card").style("padding: 0;"):
-                for i, row in enumerate(top_mistakes(db, 20)):
+                for i, row in enumerate(top_mistakes(db, user.email, 20)):
                     q = qmap.get(row["question_id"])
                     if not q:
                         continue

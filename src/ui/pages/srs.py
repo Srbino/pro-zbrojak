@@ -4,17 +4,21 @@ from __future__ import annotations
 from fsrs import Rating
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import by_id
 from src.db.store import get_db, record_attempt
 from src.learning import srs as srs_mod
 from src.ui.components import (
-    empty_state, hero_result, back_home_button, rating_bar,
-    is_flagged, toggle_flagged,
+    back_home_button,
+    empty_state,
+    hero_result,
+    is_flagged,
+    rating_bar,
+    toggle_flagged,
 )
 from src.ui.icons import I
 from src.ui.layout import page_shell
 from src.ui.quiz import QuizCard
-
 
 RATING_MAP = {
     "again": Rating.Again,
@@ -26,6 +30,9 @@ RATING_MAP = {
 
 @ui.page("/srs")
 def srs_page():
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     qmap = by_id()
     all_qids = list(qmap.keys())
@@ -33,9 +40,9 @@ def srs_page():
     state = {"queue": [], "index": 0, "container": None}
 
     def _build_queue():
-        due = srs_mod.due_today(db, limit=30)
+        due = srs_mod.due_today(db, user.email, limit=30)
         if len(due) < 20:
-            due = due + srs_mod.queue_for_unseen(db, all_qids, limit=20 - len(due))
+            due = due + srs_mod.queue_for_unseen(db, user.email, all_qids, limit=20 - len(due))
         state["queue"] = [qid for qid in due if qid in qmap]
         state["index"] = 0
 
@@ -77,10 +84,10 @@ def srs_page():
                 instant_feedback=True,
                 progress_label=f"SRS  {state['index']+1} / {total}",
                 progress_ratio=state["index"] / total,
-                is_bookmarked=is_flagged(db, qid),
+                is_bookmarked=is_flagged(db, user.email, qid),
                 on_answer=lambda chosen, ms, q=q: _on_answer(q, chosen, ms),
                 on_next=lambda: None,
-                on_bookmark_toggle=lambda q=q: toggle_flagged(db, q["id"]),
+                on_bookmark_toggle=lambda q=q: toggle_flagged(db, user.email, q["id"]),
                 show_next_button=False,
             )
             card.render()
@@ -88,14 +95,14 @@ def srs_page():
             rating_bar(lambda key, q=q: _rate(q, RATING_MAP[key]))
 
     def _on_answer(q, chosen, ms):
-        record_attempt(db, question_id=q["id"], chosen=chosen,
+        record_attempt(db, user_email=user.email, question_id=q["id"], chosen=chosen,
                        correct=q["correct"], mode="srs", time_ms=ms)
 
     def _rate(q, rating):
-        card = srs_mod.review(db, q["id"], rating)
+        card = srs_mod.review(db, user.email, q["id"], rating)
         # Feedback toast with next review interval
         import datetime as _dt
-        now = _dt.datetime.now(_dt.timezone.utc)
+        now = _dt.datetime.now(_dt.UTC)
         delta = card.due - now
         if delta.total_seconds() < 3600:
             when = f"{int(delta.total_seconds() // 60)} min"

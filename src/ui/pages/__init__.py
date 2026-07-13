@@ -9,3 +9,4 @@ from . import srs        # noqa: F401
 from . import mastery    # noqa: F401
 from . import export     # noqa: F401
 from . import settings   # noqa: F401
+from . import admin      # noqa: F401

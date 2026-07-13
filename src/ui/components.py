@@ -5,12 +5,11 @@ vytvoreny element strom. Zadne stateful singletons.
 """
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from nicegui import ui
 
 from src.ui.icons import I, icon
-
 
 SECTION_LABEL = {
     "pravo": "Právo",
@@ -287,17 +286,17 @@ def query_str(name: str, default: str) -> str:
 # Bookmark helper
 # ============================================================================
 
-def is_flagged(db, qid: str) -> bool:
+def is_flagged(db, user_email: str, qid: str) -> bool:
     from src.db.store import get_bookmark
-    bm = get_bookmark(db, qid)
+    bm = get_bookmark(db, user_email, qid)
     return bool(bm and bm.get("flagged"))
 
 
-def toggle_flagged(db, qid: str) -> bool:
+def toggle_flagged(db, user_email: str, qid: str) -> bool:
     """Prepne flag a vrati novy stav."""
     from src.db.store import set_bookmark
-    new_state = not is_flagged(db, qid)
-    set_bookmark(db, qid, flagged=new_state)
+    new_state = not is_flagged(db, user_email, qid)
+    set_bookmark(db, user_email, qid, flagged=new_state)
     return new_state
 
 
@@ -305,7 +304,7 @@ def toggle_flagged(db, qid: str) -> bool:
 # QuizSession — genericky runner pro vsechny kviz rezimy
 # ============================================================================
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 @dataclass
@@ -317,6 +316,7 @@ class QuizSession:
     """
     pool: list[dict]
     mode: str
+    user_email: str = ""
     empty_icon: str = "info"
     empty_heading: str = "Prázdné"
     empty_subtitle: str = "Nic k zobrazení."
@@ -325,8 +325,9 @@ class QuizSession:
 
     def run(self):
         """Pusti kviz loop uvnitr aktualniho NiceGUI kontextu."""
-        from src.ui.quiz import QuizCard
         import random as _random
+
+        from src.ui.quiz import QuizCard
 
         if not self.pool:
             empty_state(
@@ -367,10 +368,10 @@ class QuizSession:
                     instant_feedback=True,
                     progress_label=f"{state['index']+1} / {total}  ·  správně {state['correct']}",
                     progress_ratio=state["index"] / total,
-                    is_bookmarked=is_flagged(db, qid),
+                    is_bookmarked=is_flagged(db, self.user_email, qid),
                     on_answer=lambda chosen, ms, q=q: _on_answer(q, chosen, ms),
                     on_next=_advance,
-                    on_bookmark_toggle=lambda q=q: toggle_flagged(db, q["id"]),
+                    on_bookmark_toggle=lambda q=q: toggle_flagged(db, self.user_email, q["id"]),
                 )
                 card.render()
 

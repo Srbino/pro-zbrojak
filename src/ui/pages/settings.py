@@ -1,41 +1,61 @@
 """Nastaveni — info, reset historie, disclaimer."""
 from __future__ import annotations
 
-from pathlib import Path
-
 from nicegui import ui
 
+from src.auth import logout, require_login
 from src.db.questions import load_questions
 from src.db.store import get_db, reset_all
+from src.paths import DB_PATH, EXPORT_DIR
 from src.ui.components import confirm_button
+from src.ui.icons import I
 from src.ui.layout import page_shell
-
-
-ROOT = Path(__file__).resolve().parent.parent.parent.parent
 
 
 @ui.page("/settings")
 def settings_page():
     from src.ui.pages.dashboard import VERSION
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     with page_shell("Nastavení", active_path="/settings"):
         ui.label("Nastavení").classes("zp-display")
 
         with ui.element("div").classes("zp-card zp-mb-md"):
+            ui.label("Přihlášený uživatel").classes("zp-h3")
+            _kv("Jméno", user.name + ("  (admin)" if user.is_admin else ""))
+            _kv("E-mail", user.email)
+
+            def _do_logout():
+                logout()
+                ui.navigate.to("/")
+
+            ui.button("Odhlásit se", icon=I["close"], on_click=_do_logout).props(
+                "flat color=primary"
+            ).classes("zp-mt-sm")
+            if user.is_admin:
+                ui.button("Admin přehled", icon=I["insights"],
+                          on_click=lambda: ui.navigate.to("/admin")).props(
+                    "flat color=primary"
+                ).classes("zp-mt-sm")
+
+        with ui.element("div").classes("zp-card zp-mb-md"):
             ui.label("Aplikace").classes("zp-h3")
             _kv("Verze", VERSION)
-            _kv("DB", str(ROOT / "data" / "stats.db"))
+            _kv("DB", str(DB_PATH))
             _kv("Otázek v katalogu", str(len(load_questions())))
-            _kv("Export adresář", str(ROOT / "exports"))
+            _kv("Export adresář", str(EXPORT_DIR))
 
         with ui.element("div").classes("zp-card zp-accent-danger zp-mb-md"):
             ui.label("Reset historie").classes("zp-h3").style("color: var(--zp-danger);")
             ui.label(
-                "Nevratně smaže všechny pokusy, marathony, simulace a bookmarky."
+                "Nevratně smaže TVÉ pokusy, marathony, simulace a bookmarky "
+                "(ostatních uživatelů se netýká)."
             ).classes("zp-body-sm")
 
             def _do_reset():
-                reset_all(db)
+                reset_all(db, user.email)
                 ui.notify("Historie smazána", color="positive", position="top")
 
             confirm_button(

@@ -15,6 +15,12 @@ services:
       PORT: "8080"
       SHOW: "false"
       PRO_ZBROJAK_STATE_DIR: /state
+      # Podpis session cookie — NASTAV v Coolify na náhodný řetězec (jinak login není bezpečný).
+      STORAGE_SECRET: ${STORAGE_SECRET:-change-me-in-coolify}
+      # Admini (čárkami oddělené e-maily). Identita jinak z Cloudflare Access hlavičky.
+      PRO_ZBROJAK_ADMINS: ${PRO_ZBROJAK_ADMINS:-srba@unify.cz}
+      # Volitelný sdílený kód pro LAN login (prázdný = LAN bez kódu).
+      PRO_ZBROJAK_LOGIN_CODE: ${PRO_ZBROJAK_LOGIN_CODE:-}
     volumes:
       - pro-zbrojak-state:/state
     ports:

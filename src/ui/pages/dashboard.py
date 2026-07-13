@@ -5,37 +5,47 @@ import datetime as dt
 
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import load_questions
 from src.db.store import (
-    get_db, stats_overall, stats_per_section, get_active_marathon,
-    question_ids_with_mistakes, all_flagged,
+    all_flagged,
+    get_active_marathon,
+    get_db,
+    question_ids_with_mistakes,
+    stats_overall,
+    stats_per_section,
 )
 from src.learning import srs as srs_mod
 from src.learning.heatmap import daily_counts
 from src.ui.components import (
-    SECTION_LABEL, hero_primary, stat_card, mode_tile, progress_bar,
+    SECTION_LABEL,
+    hero_primary,
+    mode_tile,
+    progress_bar,
+    stat_card,
 )
-from src.ui.icons import I, icon
-from src.ui.layout import NAV_ITEMS, nav_items_for_dashboard, page_shell
+from src.ui.layout import nav_items_for_dashboard, page_shell
 
-
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 APP_NAME = "Pro Zbroják"
 
 
 @ui.page("/")
 def index_page():
+    user = require_login()
+    if user is None:
+        return
     with page_shell("Přehled", active_path="/"):
         db = get_db()
         questions = load_questions()
         total = len(questions)
-        ov = stats_overall(db)
-        per_sec = stats_per_section(db, questions)
-        active_run = get_active_marathon(db)
-        n_due = len(srs_mod.due_today(db, limit=999))
-        n_srs_total = srs_mod.total_cards(db)
-        n_mistakes = len(question_ids_with_mistakes(db))
-        n_flagged = len(all_flagged(db))
+        ov = stats_overall(db, user.email)
+        per_sec = stats_per_section(db, questions, user.email)
+        active_run = get_active_marathon(db, user.email)
+        n_due = len(srs_mod.due_today(db, user.email, limit=999))
+        n_srs_total = srs_mod.total_cards(db, user.email)
+        n_mistakes = len(question_ids_with_mistakes(db, user.email))
+        n_flagged = len(all_flagged(db, user.email))
 
         # --- HERO ---
         _render_hero(total=total, active_run=active_run, n_due=n_due, ov=ov)
@@ -110,7 +120,7 @@ def index_page():
                     _section_row(label, b["correct"], b["attempts"], b["pct"])
 
         # --- HEATMAP ---
-        heatmap = daily_counts(db, days=90)
+        heatmap = daily_counts(db, user.email, days=90)
         if any(v > 0 for v in heatmap.values()):
             ui.label("Aktivita (90 dní)").classes("zp-h2 zp-mt-xl zp-mb-sm")
             with ui.element("div").classes("zp-card"):

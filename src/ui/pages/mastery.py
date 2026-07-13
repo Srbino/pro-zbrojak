@@ -5,10 +5,14 @@ from collections import defaultdict
 
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import load_questions
 from src.db.store import get_db, record_attempt
 from src.ui.components import (
-    SECTION_LABEL, QuizSession, progress_bar, query_str,
+    SECTION_LABEL,
+    QuizSession,
+    progress_bar,
+    query_str,
 )
 from src.ui.icons import I
 from src.ui.layout import page_shell
@@ -16,6 +20,9 @@ from src.ui.layout import page_shell
 
 @ui.page("/mastery")
 def mastery_page():
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     questions = load_questions()
 
@@ -27,7 +34,10 @@ def mastery_page():
 
         recent_per_sec: dict[str, list[int]] = defaultdict(list)
         qid_to_sec = {q["id"]: q.get("section") for q in questions}
-        rows = list(db.query("SELECT question_id, is_correct FROM attempts ORDER BY ts DESC"))
+        rows = list(db.query(
+            "SELECT question_id, is_correct FROM attempts WHERE user_email=? ORDER BY ts DESC",
+            [user.email],
+        ))
         for r in rows:
             sec = qid_to_sec.get(r["question_id"])
             if sec and len(recent_per_sec[sec]) < 30:
@@ -72,18 +82,22 @@ def mastery_page():
 
 @ui.page("/mastery/run")
 def mastery_run_page():
+    user = require_login()
+    if user is None:
+        return
     section = query_str("section", "pravo")
     pool = [q for q in load_questions() if q.get("section") == section]
     title = f"Mastery — {SECTION_LABEL.get(section, section)}"
     db = get_db()
 
     def _rec(qid, chosen, correct, ms):
-        record_attempt(db, question_id=qid, chosen=chosen, correct=correct,
-                       mode="mastery", time_ms=ms)
+        record_attempt(db, user_email=user.email, question_id=qid, chosen=chosen,
+                       correct=correct, mode="mastery", time_ms=ms)
 
     with page_shell(title, active_path="/mastery"):
         QuizSession(
             pool=pool, mode="mastery",
+            user_email=user.email,
             empty_icon="info", empty_heading="Prázdná oblast",
             empty_subtitle="V této oblasti nejsou otázky.",
             on_record=_rec,

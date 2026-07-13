@@ -6,8 +6,8 @@ from dataclasses import dataclass
 
 from nicegui import ui
 
-from src.ui.theme import apply_theme
 from src.ui.icons import I, icon
+from src.ui.theme import apply_theme
 
 
 @dataclass(frozen=True)
@@ -69,7 +69,16 @@ def page_shell(title: str = "Pro Zbroják", active_path: str | None = None):
                     with ui.column().classes("zp-col").style("gap: 0; min-width: 0;"):
                         ui.label(title).classes("zp-header-title")
                         ui.label("Pro Zbroják — trenažér ZOZ").classes("zp-header-sub")
-            with ui.row().classes("zp-row zp-gap-xs zp-nowrap"):
+            with ui.row().classes("zp-row zp-gap-xs zp-nowrap").style("align-items: center;"):
+                from src.auth import current_user
+                _u = current_user()
+                if _u is not None:
+                    ui.button(
+                        _u.name, icon=I["settings"],
+                        on_click=lambda: ui.navigate.to("/settings"),
+                    ).props("flat dense no-caps color=primary").tooltip(
+                        _u.email + (" · admin" if _u.is_admin else "")
+                    )
                 ui.button(icon=I["help"], on_click=_show_help_dialog).props(
                     "flat round dense color=primary size=md"
                 ).tooltip("Klávesové zkratky (?)")

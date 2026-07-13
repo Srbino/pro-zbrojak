@@ -8,10 +8,10 @@ from collections import Counter
 import sqlite_utils
 
 
-def daily_counts(db: sqlite_utils.Database, days: int = 90) -> dict[str, int]:
-    """Vrati {ISO date: pocet pokusu} za poslednich `days` dni."""
+def daily_counts(db: sqlite_utils.Database, user_email: str, days: int = 90) -> dict[str, int]:
+    """Vrati {ISO date: pocet pokusu} za poslednich `days` dni pro daného uživatele."""
     cutoff = int(time.time()) - days * 86400
-    rows = db.query("SELECT ts FROM attempts WHERE ts >= ?", [cutoff])
+    rows = db.query("SELECT ts FROM attempts WHERE user_email=? AND ts >= ?", [user_email, cutoff])
     c: Counter = Counter()
     for r in rows:
         d = dt.date.fromtimestamp(r["ts"]).isoformat()

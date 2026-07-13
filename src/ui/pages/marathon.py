@@ -5,13 +5,22 @@ import time
 
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import load_questions
 from src.db.store import (
-    get_db, record_attempt, get_active_marathon, start_marathon,
-    update_marathon, finish_marathon, list_marathons,
+    finish_marathon,
+    get_active_marathon,
+    get_db,
+    list_marathons,
+    record_attempt,
+    start_marathon,
+    update_marathon,
 )
 from src.ui.components import (
-    hero_result, back_home_button, is_flagged, toggle_flagged,
+    back_home_button,
+    hero_result,
+    is_flagged,
+    toggle_flagged,
 )
 from src.ui.icons import I
 from src.ui.layout import page_shell
@@ -20,18 +29,21 @@ from src.ui.quiz import QuizCard
 
 @ui.page("/marathon")
 def marathon_page():
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     questions = load_questions()
     sorted_q = sorted(questions, key=lambda q: q["pdf_number"])
 
-    state = {"run": get_active_marathon(db), "container": None}
+    state = {"run": get_active_marathon(db, user.email), "container": None}
 
     def render():
         state["container"].clear()
         with state["container"]:
             run = state["run"]
             if run is None:
-                _marathon_intro(sorted_q, db, _start_new)
+                _marathon_intro(sorted_q, db, user.email, _start_new)
                 return
             pos = run["position"]
             if pos >= run["total"]:
@@ -55,29 +67,29 @@ def marathon_page():
                 instant_feedback=True,
                 progress_label=f"Otázka {pos+1} / {run['total']}   ·   správně {run['correct']}",
                 progress_ratio=pos / run["total"],
-                is_bookmarked=is_flagged(db, q["id"]),
+                is_bookmarked=is_flagged(db, user.email, q["id"]),
                 on_answer=lambda chosen, ms, q=q: _on_answer(q, chosen, ms),
                 on_next=_advance,
-                on_bookmark_toggle=lambda q=q: toggle_flagged(db, q["id"]),
+                on_bookmark_toggle=lambda q=q: toggle_flagged(db, user.email, q["id"]),
             )
             card.render()
 
     def _start_new():
-        start_marathon(db, len(sorted_q))
-        state["run"] = get_active_marathon(db)
+        start_marathon(db, user.email, len(sorted_q))
+        state["run"] = get_active_marathon(db, user.email)
         render()
 
     def _on_answer(q, chosen, ms):
-        record_attempt(db, question_id=q["id"], chosen=chosen, correct=q["correct"],
-                       mode="marathon", time_ms=ms)
+        record_attempt(db, user_email=user.email, question_id=q["id"], chosen=chosen,
+                       correct=q["correct"], mode="marathon", time_ms=ms)
         if chosen == q["correct"]:
             update_marathon(db, state["run"]["id"], position=state["run"]["position"], correct_inc=1)
-            state["run"] = get_active_marathon(db)
+            state["run"] = get_active_marathon(db, user.email)
 
     def _advance():
         new_pos = state["run"]["position"] + 1
         update_marathon(db, state["run"]["id"], position=new_pos)
-        state["run"] = get_active_marathon(db)
+        state["run"] = get_active_marathon(db, user.email)
         render()
 
     with page_shell("Marathon", active_path="/marathon"):
@@ -85,14 +97,14 @@ def marathon_page():
         render()
 
 
-def _marathon_intro(sorted_q, db, start_cb):
+def _marathon_intro(sorted_q, db, user_email, start_cb):
     ui.label("Marathon").classes("zp-display")
     ui.label(
         f"Sekvenční průchod všech {len(sorted_q)} otázek po pořadí podle PDF. "
         "Pozici si aplikace zapamatuje — můžeš kdykoli zavřít a pokračovat."
     ).classes("zp-body zp-prose zp-mb-lg")
 
-    history = list_marathons(db)
+    history = list_marathons(db, user_email)
     if history:
         with ui.element("div").classes("zp-card zp-mb-md"):
             ui.label("Předchozí běhy").classes("zp-h3 zp-mb-sm")

@@ -7,21 +7,29 @@ from collections import defaultdict
 
 from nicegui import ui
 
+from src.auth import require_login
 from src.db.questions import load_questions
-from src.db.store import get_db, record_attempt, record_exam, list_exams
+from src.db.store import get_db, list_exams, record_attempt, record_exam
 from src.export.claude_md import export_questions
 from src.ui.components import (
-    SECTION_LABEL, SECTION_BADGE_VARIANT, hero_result, stat_card,
-    back_home_button, section_badge,
-    query_int, query_str,
+    SECTION_LABEL,
+    back_home_button,
+    hero_result,
+    query_int,
+    query_str,
+    section_badge,
+    stat_card,
 )
-from src.ui.icons import I, icon
+from src.ui.icons import I
 from src.ui.layout import page_shell
 from src.ui.quiz import QuizCard
 
 
 @ui.page("/exam")
 def exam_page():
+    user = require_login()
+    if user is None:
+        return
     db = get_db()
     with page_shell("Simulace zkoušky", active_path="/exam"):
         ui.label("Simulace zkoušky").classes("zp-display")
@@ -55,7 +63,7 @@ def exam_page():
                 "size=lg color=primary unelevated"
             ).classes("w-full zp-mt-md")
 
-        history = list_exams(db)
+        history = list_exams(db, user.email)
         if history:
             ui.label("Historie simulací").classes("zp-h2 zp-mt-xl zp-mb-sm")
             _render_history(history)
@@ -63,6 +71,9 @@ def exam_page():
 
 @ui.page("/exam/run")
 def exam_run_page():
+    user = require_login()
+    if user is None:
+        return
     level = query_str("level", "standard")
     n = query_int("n", 30)
     t = query_int("t", 40)
@@ -128,11 +139,12 @@ def exam_run_page():
         state["finished"] = True
         score = sum(1 for q in pool if answers.get(q["id"]) == q["correct"])
         duration = int(time.time() - started_at)
-        record_exam(db, level=level, score=score, total=len(pool), duration_s=duration)
+        record_exam(db, user_email=user.email, level=level, score=score,
+                    total=len(pool), duration_s=duration)
         for q in pool:
             ch = answers.get(q["id"])
             if ch:
-                record_attempt(db, question_id=q["id"], chosen=ch,
+                record_attempt(db, user_email=user.email, question_id=q["id"], chosen=ch,
                                correct=q["correct"], mode="exam")
         _render_result(state["container"], pool, answers, level, score, duration)
 

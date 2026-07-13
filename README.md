@@ -114,8 +114,19 @@ docker run -d --name pro-zbrojak -p 8080:8080 \
 | `PORT` | `8080` | Port aplikace |
 | `SHOW` | `true` / `false` (Docker) | Otevřít systémový prohlížeč po startu |
 | `PRO_ZBROJAK_STATE_DIR` | kořen repa / `/state` (Docker) | Kam se ukládají DB + exporty |
+| `STORAGE_SECRET` | dev fallback | Podpis session cookie — v nasazení nastav náhodný řetězec |
+| `PRO_ZBROJAK_ADMINS` | `srba@unify.cz` | Čárkami oddělení admini (vidí `/admin`) |
+| `PRO_ZBROJAK_LOGIN_CODE` | prázdný | Volitelný sdílený kód pro LAN login |
 
 Viz [`.env.example`](.env.example).
+
+### Více uživatelů (multi-user)
+
+Aplikace je **multi-user** — každý má vlastní izolovaný progres (statistiky, SRS,
+bookmarky, simulace). Identita se bere automaticky z **Cloudflare Access** hlavičky
+`Cf-Access-Authenticated-User-Email` (přihlášení přes e-mailový kód, žádná hesla).
+Bez Cloudflare Access (např. v LAN) appka nabídne jednoduchý fallback login.
+Admini (viz `PRO_ZBROJAK_ADMINS`) mají na `/admin` přehled všech uživatelů.
 
 > ⚠️ **Data jsou single-user.** Aplikace vede jednu společnou databázi progresu.
 > Při vystavení více lidem sdílejí všichni stejné statistiky a SRS. Pro veřejné
@@ -141,4 +152,4 @@ Autor neodpovídá za chyby v parsování, změny v legislativě ani za neúspě
 
 ---
 
-<sub>Pro Zbroják · v0.3.0 · autor [Pavel Srba](mailto:srba@unify.cz)</sub>
+<sub>Pro Zbroják · v0.4.0 · autor [Pavel Srba](mailto:srba@unify.cz)</sub>

@@ -30,6 +30,10 @@ HOST = os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT", "8080"))
 SHOW = _env_bool("SHOW", default=True)
 
+# Tajemství pro podpis session cookie (app.storage.user — drží přihlášení).
+# V nasazení nastav přes env STORAGE_SECRET, ať sessions přežijí restart.
+STORAGE_SECRET = os.environ.get("STORAGE_SECRET", "pro-zbrojak-local-dev-secret")
+
 # Questions content is bundled in the repo (data/questions.json + images/).
 # If missing, user has a broken clone — fail fast with clear message.
 QUESTIONS_JSON = ROOT / "data" / "questions.json"
@@ -55,7 +59,6 @@ def _healthz():
 # Registrace vsech stranek (import ma side effect @ui.page)
 from src.ui import pages  # noqa: F401, E402
 
-
 if __name__ in {"__main__", "__mp_main__"}:
     ui.run(
         host=HOST,
@@ -65,4 +68,5 @@ if __name__ in {"__main__", "__mp_main__"}:
         show=SHOW,
         favicon="🎯",
         dark=None,
+        storage_secret=STORAGE_SECRET,
     )
