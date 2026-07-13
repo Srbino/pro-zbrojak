@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro Zbroják — příručka ke zkoušce ZOZ</title>
+<style>
+  :root{
+    --bg:#f6f8fb; --surface:#ffffff; --surface2:#eef2f7; --text:#131924; --muted:#5a6474;
+    --border:#e2e8f0; --accent:#1e40af; --accent-soft:#e7edfb;
+    --ok:#15803d; --ok-bg:#ecfdf3; --ok-bd:#a7e3bf;
+    --warn:#b45309; --warn-bg:#fff8ec; --warn-bd:#f3d9a5;
+    --bad:#b91c1c; --bad-bg:#fef2f2; --bad-bd:#f3c2c2;
+    --maxw:820px;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d1119; --surface:#151c28; --surface2:#1b2431; --text:#e6eaf1; --muted:#94a0b3;
+    --border:#26303f; --accent:#7ea2ff; --accent-soft:#182640;
+    --ok:#5fe08b; --ok-bg:#0e2a1c; --ok-bd:#255f3d;
+    --warn:#fbbf24; --warn-bg:#2a2109; --warn-bd:#5c471a;
+    --bad:#f87171; --bad-bg:#2a1214; --bad-bd:#5e2626; }}
+  :root[data-theme="dark"]{--bg:#0d1119;--surface:#151c28;--surface2:#1b2431;--text:#e6eaf1;--muted:#94a0b3;--border:#26303f;--accent:#7ea2ff;--accent-soft:#182640;--ok:#5fe08b;--ok-bg:#0e2a1c;--ok-bd:#255f3d;--warn:#fbbf24;--warn-bg:#2a2109;--warn-bd:#5c471a;--bad:#f87171;--bad-bg:#2a1214;--bad-bd:#5e2626;}
+  :root[data-theme="light"]{--bg:#f6f8fb;--surface:#fff;--surface2:#eef2f7;--text:#131924;--muted:#5a6474;--border:#e2e8f0;--accent:#1e40af;--accent-soft:#e7edfb;--ok:#15803d;--ok-bg:#ecfdf3;--ok-bd:#a7e3bf;--warn:#b45309;--warn-bg:#fff8ec;--warn-bd:#f3d9a5;--bad:#b91c1c;--bad-bg:#fef2f2;--bad-bd:#f3c2c2;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);line-height:1.6;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  a{color:var(--accent)}
+
+  header.hero{padding:40px 0 20px}
+  .kicker{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+  h1{font-size:2rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+  .sub{color:var(--muted);font-size:1.05rem;margin:0}
+
+  nav.toc{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--border);margin-top:16px}
+  .toc-in{max-width:var(--maxw);margin:0 auto;padding:10px 18px;display:flex;gap:6px;overflow-x:auto}
+  .toc a{white-space:nowrap;font-size:.82rem;color:var(--muted);text-decoration:none;padding:6px 11px;border-radius:8px}
+  .toc a:hover{background:var(--surface2);color:var(--text)}
+
+  main{padding:26px 0 70px}
+  section{margin:0 0 34px;scroll-margin-top:64px}
+  h2{font-size:1.35rem;letter-spacing:-.01em;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+  h2 .s{font-size:.7rem;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 7px;letter-spacing:.02em}
+  .hint{color:var(--muted);font-size:.9rem;margin:.2rem 0 14px}
+  h3{font-size:1rem;margin:18px 0 6px}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .stat .v{font-size:1.7rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .stat .l{font-size:.78rem;color:var(--muted);margin-top:5px}
+  @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  ul.pts{list-style:none;margin:0;padding:0}
+  ul.pts li{position:relative;padding:7px 0 7px 26px;border-bottom:1px solid var(--border)}
+  ul.pts li:last-child{border-bottom:0}
+  ul.pts li::before{content:"";position:absolute;left:6px;top:15px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  ul.pts li.ok::before{background:var(--ok)} ul.pts li.no::before{background:var(--bad)} ul.pts li.warn::before{background:var(--warn)}
+  b,strong{font-weight:700}
+  .tag{font-variant-numeric:tabular-nums;font-size:.8rem;color:var(--muted)}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .card h4{margin:0 0 4px;font-size:.98rem}
+  .card p{margin:0;color:var(--muted);font-size:.9rem}
+  .card .n{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:50%;
+    background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;margin-right:6px}
+
+  .callout{border:1px solid var(--border);border-left-width:4px;border-radius:10px;padding:12px 15px;margin:14px 0;background:var(--surface)}
+  .callout.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+  .callout.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+  .callout.bad{border-left-color:var(--bad);background:var(--bad-bg)}
+  .callout p{margin:0;font-size:.92rem}
+
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px}
+  .tw{overflow-x:auto;border:1px solid var(--border);border-radius:12px}
+  th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border)}
+  th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  td.myth{color:var(--muted)} td.fact{font-weight:600}
+
+  footer{border-top:1px solid var(--border);padding:22px 0 60px;color:var(--muted);font-size:.85rem}
+  .verif{display:inline-flex;align-items:center;gap:7px;background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-bd);
+    border-radius:999px;padding:5px 13px;font-size:.82rem;font-weight:600;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="kicker">Zbrojní oprávnění · zkouška odborné způsobilosti · od 1. 1. 2026</p>
+    <h1>Příručka ke zkoušce — co tě čeká, bod po bodu</h1>
+    <p class="sub">Stručný přehled k přípravě: teorie, co zkouší komisař, jaké zbraně tam budou, střelba, peníze a postup.</p>
+    <span class="verif">✅ Ověřeno proti zák. 90/2024 Sb. a NV 238/2025 Sb.</span>
+  </header>
+</div>
+
+<nav class="toc"><div class="toc-in">
+  <a href="#prehled">Přehled</a>
+  <a href="#teorie">Teorie</a>
+  <a href="#komisar">Co zkouší komisař</a>
+  <a href="#zavady">Tři závady</a>
+  <a href="#zbrane">Jaké zbraně</a>
+  <a href="#strelba">Střelba</a>
+  <a href="#penize">Peníze</a>
+  <a href="#postup">Postup</a>
+  <a href="#myty">Mýty</a>
+</div></nav>
+
+<main class="wrap">
+
+  <section id="prehled">
+    <h2>Rychlý přehled</h2>
+    <p class="hint">Nejdůležitější čísla, která u zkoušky platí.</p>
+    <div class="stats">
+      <div class="stat"><div class="v">30</div><div class="l">testových otázek</div></div>
+      <div class="stat"><div class="v">40 min</div><div class="l">na test</div></div>
+      <div class="stat"><div class="v">26 / 28</div><div class="l">nutno správně (obecné / rozšířené)</div></div>
+      <div class="stat"><div class="v">5 + 5</div><div class="l">ran (krátká 10 m + dlouhá 25 m)</div></div>
+      <div class="stat"><div class="v">6 / 8</div><div class="l">zásahů (obecné / rozšířené)</div></div>
+      <div class="stat"><div class="v">⌀ 500 mm</div><div class="l">kruhový terč, limit 5 min</div></div>
+    </div>
+  </section>
+
+  <section id="teorie">
+    <h2>Teoretická část <span class="s">§ 20 zák. · § 12 NV</span></h2>
+    <p class="hint">Písemný test, výběr jedné správné odpovědi ze tří.</p>
+    <ul class="pts">
+      <li><b>30 otázek</b>, formát A/B/C, čas <b>nejvýše 40 minut</b>.</li>
+      <li class="ok">Projdeš při <b>≥ 26/30</b> (obecné ZO), resp. <b>≥ 28/30</b> (rozšířené ZO).</li>
+      <li>Skladba testu: <b>17</b> právo · <b>5</b> nauka o zbraních · <b>5</b> bezpečné nakládání · <b>3</b> zdravotnické minimum.</li>
+      <li>Testový soubor si <b>losuješ</b> (číslo předem neznáš). Vyhodnocení proběhne ihned, na požádání můžeš nahlédnout do chyb.</li>
+      <li class="no">Neuspěješ-li v teorii, <b>praktickou už nekonáš</b> — celkově „neprospěl".</li>
+    </ul>
+  </section>
+
+  <section id="komisar">
+    <h2>Co u tebe zkouší komisař <span class="s">§ 17 NV · příloha č. 2</span></h2>
+    <p class="hint">Praktická část, blok „bezpečné nakládání" — předvádíš <b>s krátkou i dlouhou</b> kulovou zbraní. Používají se <b>školní náboje</b> (bez prachu i zápalky).</p>
+    <ul class="pts">
+      <li><span class="n">1</span> <b>Kontrola zbraně</b> — zjištění jejího stavu (vybití, bezpečný stav).</li>
+      <li><span class="n">2</span> <b>Příprava k částečnému rozebrání a složení</b> v rozsahu nezbytném pro vyčištění.</li>
+      <li><span class="n">3</span> <b>Příprava zbraně a střeliva ke střelbě.</b></li>
+      <li><span class="n">4</span> <b>Zjištění a odstranění závady</b> na zbrani nebo střelivu.</li>
+      <li><span class="n">5</span> <b>Ukončení střelby.</b></li>
+    </ul>
+    <div class="callout"><p><b>Konkrétní krátkou i dlouhou zbraň ti určí komisař</b> — nevybíráš si. Proto musíš umět všech 5 druhů (viz níže).</p></div>
+    <div class="callout bad"><p><b>„Neprospěl" dostaneš</b>, když v dostatečném rozsahu nepředvedeš postupy, nebo když porušíš bezpečnost tak, že bys ohrozil osoby, případně poruším zásady hrubě či opakovaně — pak komisař zkoušku ihned ukončí.</p></div>
+
+    <h3>Kontrola zbraně podle typu (stručně)</h3>
+    <div class="cards">
+      <div class="card"><h4>Samonabíjecí pistole</h4><p>Vyjmout zásobník → stáhnout závěr, vizuální kontrola komory → kontrola šachty → závěr vzadu, nebo dopředu + rána jistoty.</p></div>
+      <div class="card"><h4>Revolver</h4><p>Vyklopit válec → vizuální kontrola komor. Odkládá se s <b>vyklopeným</b> válcem.</p></div>
+      <div class="card"><h4>Samonabíjecí dlouhá</h4><p>Vyjmout zásobník → stáhnout závěr, kontrola komory → kontrola šachty → závěr vzadu, nebo dopředu + rána jistoty.</p></div>
+      <div class="card"><h4>Opakovací (otočný závěr)</h4><p>Vyjmout zásobník, otevřít závěr → kontrola komory a šachty. Odkládá se s <b>otevřeným</b> závěrem.</p></div>
+    </div>
+  </section>
+
+  <section id="zavady">
+    <h2>Tři závady, které musíš umět <span class="s">příloha č. 2, bod 3</span></h2>
+    <p class="hint">Zkouší se přesně tyto tři — nic víc.</p>
+    <div class="cards">
+      <div class="card"><h4>Selhač</h4><p>Vyčkat <b>≥ 10 s</b> (zbraň v bezpečném směru) → kontrola zbraně → zkontrolovat otisk zápalníku na zápalce (chyba zbraně, nebo střeliva?).</p></div>
+      <div class="card"><h4>Slabá rána</h4><p>Kontrola zbraně → kontrola průchodnosti hlavně (u většiny zbraní tomu předchází rozebrání). Uvízlá střela → <b>jen slovně popsat</b> odstranění.</p></div>
+      <div class="card"><h4>Zádržka</h4><p>Zpravidla vyjmout zásobník → vnější vizuální kontrola → zjistit druh závady → odstranit příčinu.</p></div>
+    </div>
+  </section>
+
+  <section id="zbrane">
+    <h2>Jaké zbraně tam budou <span class="s">§ 43 NV</span></h2>
+    <div class="callout ok"><p><b>Druhy zbraní jsou dané zákonem a jsou všude stejné.</b> Konkrétní modely se liší střelnici od střelnice — střelnice je musí <b>zveřejnit na webu ≥ 14 dní před termínem</b> (včetně mířidel a doplňků).</p></div>
+    <h3>Krátké kulové — 3 druhy</h3>
+    <div class="cards">
+      <div class="card"><h4>Samonabíjecí pistole DA/SA</h4><p>Dvojčinný i jednočinný spoušťový mechanismus, <b>vnější bicí kohout</b> (např. CZ 75, SIG P226).</p></div>
+      <div class="card"><h4>Samonabíjecí pistole „striker"</h4><p>Bicí mechanismus s přímoběžným úderníkem (např. Glock 17).</p></div>
+      <div class="card"><h4>Revolver</h4><p>S výklopným válcem, DA/SA (např. S&amp;W .38/.357).</p></div>
+    </div>
+    <h3>Dlouhé kulové — 2 druhy</h3>
+    <div class="cards">
+      <div class="card"><h4>Samonabíjecí</h4><p>S odnímatelným zásobníkem (např. AR‑15, vz. 58).</p></div>
+      <div class="card"><h4>Opakovací s otočným odsuvným závěrem</h4><p>S odnímatelným zásobníkem (např. malorážka ZKM/CZ).</p></div>
+    </div>
+    <ul class="pts" style="margin-top:14px">
+      <li>Ráže: <b>krátká</b> = jen středový zápal; <b>dlouhá</b> = středový zápal <b>nebo .22 LR / .22 WMR</b>.</li>
+      <li>Zbraně <b>mohou</b> mít mechanická mířidla, <b>kolimátor nebo optiku</b> i <b>tlumič</b> — není nárok na mechanická mířidla.</li>
+      <li class="no"><b>Brokovnice u zkoušky není.</b> Malorážkovou pistoli také nedostaneš.</li>
+    </ul>
+  </section>
+
+  <section id="strelba">
+    <h2>Střelba na terč <span class="s">§ 20 zák. · § 22 NV</span></h2>
+    <ul class="pts">
+      <li class="ok">Před hodnocenou střelbou máš <b>právo na 3 + 3 nástřelné rány</b> (krátká + dlouhá).</li>
+      <li><b>Krátká:</b> 5 ran na <b>10 m</b>. <b>Dlouhá:</b> 5 ran na <b>25 m</b>. Střílí se <b>vstoje</b>.</li>
+      <li>Terč <b>kruhový ⌀ 500 mm</b>. Zásah = zasažení kruhu, <b>i tečné</b>.</li>
+      <li>Časový limit <b>5 minut</b> na obě zbraně dohromady (přeruší se při přechodu mezi zbraněmi).</li>
+      <li class="ok">Projdeš při <b>≥ 6 zásazích</b> (obecné), resp. <b>≥ 8</b> (rozšířené) z 10 ran.</li>
+      <li class="no"><b>Opora:</b> u krátké zbraně se nepřipouští; u dlouhé jen ze zdravotních důvodů.</li>
+      <li>Po střelbě předložíš zbraň komisaři k <b>vizuální kontrole nábojové komory</b> (v bezpečném směru).</li>
+    </ul>
+  </section>
+
+  <section id="penize">
+    <h2>Peníze <span class="s">§ 31 zák.</span></h2>
+    <ul class="pts">
+      <li><b>Poplatek za žádost o zbrojní oprávnění: 3 000 Kč</b> (2 400 Kč přes Podací portál MV). Zahrnuje i odměnu komisaře a případné opakování zkoušky.</li>
+      <li class="ok"><b>Odměnu komisaře platí policie</b> — ne ty.</li>
+      <li><b>Náklady zapsané zkouškové střelnice platíš ty</b> (dle jejího ceníku).</li>
+      <li>Lékařský posudek ~800 Kč (dle lékaře).</li>
+    </ul>
+  </section>
+
+  <section id="postup">
+    <h2>Postup od začátku do konce</h2>
+    <ul class="pts">
+      <li><b>1.</b> Lékařský posudek (při podání žádosti ne starší 90 dnů).</li>
+      <li><b>2.</b> Žádost o zbrojní oprávnění na kterémkoli pracovišti + posudek + <b>3 000 Kč</b>.</li>
+      <li><b>3.</b> Policie prověří podmínky a zapíše do registru, že smíš prokázat odbornou způsobilost.</li>
+      <li class="warn"><b>4.</b> Od zápisu běží <b>lhůta 12 měsíců</b> na složení zkoušky.</li>
+      <li><b>5.</b> Přihlásíš se u provozovatele zkouškové střelnice — <b>jen na 1 termín</b>.</li>
+      <li><b>6.</b> Zkouška: teorie → manipulace → střelba. Výsledek se zapíše do registru.</li>
+    </ul>
+    <div class="callout"><p><b>Opakování:</b> celou zkoušku můžeš opakovat <b>jednou</b>. Když neuspěješ ani napodruhé, ale aspoň jednou jsi prošel teorii, můžeš na <b>komisionální zkoušku</b> (přes policii). Vše ve lhůtě 12 měsíců.</p></div>
+    <div class="callout warn"><p><b>Zkoušku konáš osobně</b> — tlumočník ani podpůrce se nepřipouští. Z praktické části policie pořizuje <b>zvukový a obrazový záznam</b>. Neúspěch? <b>Protest jen na místě, ihned</b>, s uvedením konkrétních nedostatků.</p></div>
+  </section>
+
+  <section id="myty">
+    <h2>Časté mýty</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Mýtus</th><th>Skutečnost</th></tr></thead>
+      <tbody>
+        <tr><td class="myth">Test má 25 otázek</td><td class="fact">30 otázek</td></tr>
+        <tr><td class="myth">Při neúspěchu v praktické opakuju jen praktickou</td><td class="fact">Opakuje se celá zkouška (teorie i praktická)</td></tr>
+        <tr><td class="myth">Komisaři se platí na místě</td><td class="fact">Komisaře platí policie</td></tr>
+        <tr><td class="myth">Zbraně jsou všude stejné</td><td class="fact">Stejné jsou jen druhy, ne konkrétní modely</td></tr>
+        <tr><td class="myth">Střílí se i z brokovnice</td><td class="fact">Brokovnice u zkoušky není</td></tr>
+        <tr><td class="myth">Nemám nárok na nástřel</td><td class="fact">Máš — 3 rány z krátké + 3 z dlouhé</td></tr>
+        <tr><td class="myth">Můžu se přihlásit na víc termínů</td><td class="fact">Jen na jeden termín</td></tr>
+        <tr><td class="myth">Protest podám i později</td><td class="fact">Jen na místě, ihned</td></tr>
+        <tr><td class="myth">U pistole si můžu opřít ruce</td><td class="fact">Opora krátké zbraně se nepřipouští</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  Zdroje: zákon č. 90/2024 Sb., nařízení vlády č. 238/2025 Sb. · Ověřeno proti plnému znění Sbírky zákonů.
+  Podrobná verze s odkazy na paragrafy: <a href="https://github.com/Srbino/pro-zbrojak/blob/main/docs/o-zkousce.md">o-zkousce.md</a>.
+  <br>Studijní pomůcka, není oficiálním zdrojem. · <a href="https://github.com/Srbino/pro-zbrojak">github.com/Srbino/pro-zbrojak</a>
+</div></footer>
+</body>
+</html>
