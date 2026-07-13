@@ -7,6 +7,10 @@ Oficiální katalog MV ČR **837 otázek** (z toho 71 s obrázkem zbraně), 6 re
 
 **Vše běží lokálně** (127.0.0.1:8080) — žádný cloud, žádný účet, žádná data neopouštějí tvůj počítač.
 
+> ## 📚 [Přehled o zkoušce ZOZ → `docs/o-zkousce.md`](docs/o-zkousce.md)
+> **Jaké zbraně u zkoušky budou · co komisař prakticky zkouší · teorie i praktická část.**
+> Ověřeno proti zákonu č. 90/2024 Sb. a NV č. 238/2025 Sb. (viz [online rozcestník](https://srbino.github.io/pro-zbrojak/)).
+
 ---
 
 ## ✅ Ověření obsahu ([online přehled](https://srbino.github.io/pro-zbrojak/))

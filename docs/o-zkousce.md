@@ -10,6 +10,20 @@ Zpracováno pro: **Pavel, Unify Technology s.r.o.**
 > Před finálním nasazením do aplikace doporučuji ověřit dva PDF dokumenty MV,
 > ke kterým jsem se nedostal (viz § 0.3).
 
+> **✅ Nezávislé ověření (13. 7. 2026):** Nosná tvrzení byla zkontrolována proti
+> **plnému oficiálnímu znění** zák. 90/2024 Sb. a NV 238/2025 Sb. (reprodukce Sbírky
+> zákonů na sagit.cz — zakonyprolidi.cz i e-Sbírka blokují automatizovaný přístup).
+> **Potvrzeno doslova:** 30 otázek / 40 min / ≥26 / ≥28 a terč 500 mm, 10 m + 25 m,
+> 5+5 ran, 5 min, 6/8 zásahů (§ 20 zák.); skladba testu 17/5/5/3 (§ 12 NV);
+> opakování celé ZOZ jednou (§ 24); komisaře platí policie, střelnici žadatel (§ 31);
+> zkouška osobně bez tlumočníka (§ 20/2); věk 18/21 (§ 14); **druhy zbraní** (§ 43/4,5),
+> ráže, optika/kolimátor/tlumič, zveřejnění modelů 14 dní předem, žádná brokovnice;
+> **5 činností, které komisař zkouší** (§ 17/1); 3+3 nástřelné rány (§ 22/3);
+> rozborka jako nepovinný postup (§ 18/2). Poplatek 3 000 Kč (2 400 Kč přes portál MV) —
+> a podle MV **v sobě zahrnuje i odměnu komisaře a případné opakování zkoušky**.
+> **⚠️ Neověřeno:** platnost lékařského posudku „5 let" (není v 90/2024 ani 238/2025 —
+> nutno ověřit proti NV 351/2025 Sb.).
+
 ---
 
 ## § 0 — Kritický audit rešerše
