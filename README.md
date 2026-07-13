@@ -92,7 +92,7 @@ takže po startu nic nestahuje.
 
 ### Coolify
 
-1. **New Resource → Docker Compose**, ukaž na tento repozitář (`docker-compose.yml`).
+1. **New Resource → Public Repository → Docker Compose**, ukaž na tento repozitář (`docker-compose.yaml`).
 2. Coolify sám doplní doménu, HTTPS (Traefik) i health-check.
 3. **Persistentní volume** `pro-zbrojak-state` (`/state`) drží progres uživatele
    (SQLite `data/stats.db` + exporty) přes redeploy — je už v compose souboru.
