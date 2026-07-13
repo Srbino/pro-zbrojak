@@ -1,0 +1,46 @@
+# Git
+.git
+.github
+.gitignore
+
+# Python cache / venv
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Testy a nástroje pro maintainery (v runtime image nejsou potřeba)
+tests/
+scripts/
+parse_pdf.py
+Makefile
+run.sh
+run.bat
+start.bat
+start.command
+PRD.md
+QUESTIONS_MINDMAP.md
+
+# Zdrojové PDF (jen pro regeneraci obsahu)
+MV-Soubor_testovych_otazek_*.pdf
+
+# Runtime data — patří na volume /state, ne do image
+data/stats.db*
+data/unparsed.json
+exports/*.md
+logs/*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~

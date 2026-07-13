@@ -9,6 +9,9 @@ __pycache__/
 .coverage
 htmlcov/
 
+# Deployment — lokální konfigurace (.env.example je verzovaný)
+.env
+
 # Virtual environments
 .venv/
 venv/

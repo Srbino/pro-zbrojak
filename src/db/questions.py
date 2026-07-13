@@ -19,9 +19,11 @@ def by_id() -> dict[str, dict]:
     return {q["id"]: q for q in load_questions()}
 
 
+@lru_cache(maxsize=1)
 def by_pdf_number() -> dict[int, dict]:
     return {q["pdf_number"]: q for q in load_questions()}
 
 
+@lru_cache(maxsize=None)
 def by_section(section: str) -> list[dict]:
     return [q for q in load_questions() if q.get("section") == section]

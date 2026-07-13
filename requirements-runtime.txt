@@ -1,0 +1,10 @@
+# Runtime závislosti pro nasazení (Docker/Coolify).
+# Záměrně BEZ parser stacku (PyMuPDF, pdfplumber, Pillow, rich) — ten je
+# potřeba jen pro regeneraci obsahu z PDF (`make parse`), ne za běhu aplikace.
+# Musí zůstat v souladu s [project.dependencies] v pyproject.toml.
+nicegui>=2.0
+sqlite-utils>=3.36
+pydantic>=2.0
+fsrs>=6.0
+plotly>=5.0
+pyperclip>=1.8

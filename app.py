@@ -7,6 +7,7 @@ Spuštění: python app.py  →  http://127.0.0.1:8080
 """
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -14,6 +15,20 @@ from nicegui import app, ui
 
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
+
+
+def _env_bool(name: str, default: bool) -> bool:
+    val = os.environ.get(name)
+    if val is None:
+        return default
+    return val.strip().lower() in {"1", "true", "yes", "on"}
+
+
+# Konfigurace přes prostředí — lokálně (dvojklik) fungují výchozí hodnoty,
+# v kontejneru (Coolify/Docker) se přepíší přes env: HOST=0.0.0.0, SHOW=false.
+HOST = os.environ.get("HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT", "8080"))
+SHOW = _env_bool("SHOW", default=True)
 
 # Questions content is bundled in the repo (data/questions.json + images/).
 # If missing, user has a broken clone — fail fast with clear message.
@@ -30,17 +45,24 @@ if not QUESTIONS_JSON.exists():
 # Static files (obrazky extrahovane z PDF)
 app.add_static_files("/images", str(ROOT / "images"))
 
+
+# Health-check endpoint pro Coolify / reverse proxy (Traefik).
+@app.get("/healthz")
+def _healthz():
+    return {"status": "ok"}
+
+
 # Registrace vsech stranek (import ma side effect @ui.page)
 from src.ui import pages  # noqa: F401, E402
 
 
 if __name__ in {"__main__", "__mp_main__"}:
     ui.run(
-        host="127.0.0.1",
-        port=8080,
+        host=HOST,
+        port=PORT,
         title="Pro Zbroják",
         reload=False,
-        show=True,
+        show=SHOW,
         favicon="🎯",
         dark=None,
     )

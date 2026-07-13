@@ -84,6 +84,45 @@ Víc v [`data/README.md`](data/README.md).
 
 ---
 
+## Nasazení na server (Coolify / Docker)
+
+Aplikaci lze vedle lokálního dvojkliku provozovat i jako kontejner — např. na
+**Coolify** (Proxmox homelab). Obsah (837 otázek + obrázky) je součástí image,
+takže po startu nic nestahuje.
+
+### Coolify
+
+1. **New Resource → Docker Compose**, ukaž na tento repozitář (`docker-compose.yml`).
+2. Coolify sám doplní doménu, HTTPS (Traefik) i health-check.
+3. **Persistentní volume** `pro-zbrojak-state` (`/state`) drží progres uživatele
+   (SQLite `data/stats.db` + exporty) přes redeploy — je už v compose souboru.
+
+### Přímo přes Docker
+
+```bash
+docker build -t pro-zbrojak .
+docker run -d --name pro-zbrojak -p 8080:8080 \
+  -v pro-zbrojak-state:/state pro-zbrojak
+# → http://SERVER:8080   (health: /healthz)
+```
+
+### Konfigurace (env)
+
+| Proměnná | Výchozí | Popis |
+|---|---|---|
+| `HOST` | `127.0.0.1` (lokálně) / `0.0.0.0` (Docker) | Rozhraní, na kterém se poslouchá |
+| `PORT` | `8080` | Port aplikace |
+| `SHOW` | `true` / `false` (Docker) | Otevřít systémový prohlížeč po startu |
+| `PRO_ZBROJAK_STATE_DIR` | kořen repa / `/state` (Docker) | Kam se ukládají DB + exporty |
+
+Viz [`.env.example`](.env.example).
+
+> ⚠️ **Data jsou single-user.** Aplikace vede jednu společnou databázi progresu.
+> Při vystavení více lidem sdílejí všichni stejné statistiky a SRS. Pro veřejné
+> nasazení dej appku za autentizaci (Coolify Basic Auth / privátní síť).
+
+---
+
 ## Licence
 
 **MIT** pro kód ([LICENSE](LICENSE)). Otázky pocházejí z oficiálního PDF MV ČR a zůstávají v držení vydavatele.

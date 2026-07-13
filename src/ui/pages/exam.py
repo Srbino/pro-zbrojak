@@ -237,8 +237,14 @@ def _render_result(container, pool, answers, level, score, duration):
                         ui.label(f"{len(qs)} chyb").classes("zp-caption").style("margin-left: .75rem;")
                     for q in qs[:10]:
                         ch = answers.get(q["id"])
-                        msg = f"Q{q['pdf_number']}  ·  tvá volba: {ch or '—'}  ·  správně: {q['correct']}"
-                        ui.label(msg).classes("zp-body-sm zp-mono").style("padding: .2rem 0;")
+                        correct_txt = q["options"][q["correct"]]
+                        with ui.column().classes("w-full").style("padding: .3rem 0; gap: .1rem;"):
+                            ui.label(
+                                f"Q{q['pdf_number']}  ·  tvá volba: {ch or '—'}  ·  správně: {q['correct']}"
+                            ).classes("zp-body-sm zp-mono")
+                            ui.label(f"{q['correct']}) {correct_txt}").classes("zp-caption").style(
+                                "opacity: .8;"
+                            )
                     if len(qs) > 10:
                         ui.label(f"… a {len(qs) - 10} dalších").classes("zp-caption")
 

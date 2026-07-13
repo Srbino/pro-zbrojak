@@ -4,8 +4,11 @@ from __future__ import annotations
 from datetime import datetime
 from pathlib import Path
 
+from src.paths import EXPORT_DIR
+
+# ROOT = kořen repa — používá se pro absolutní cesty k bundlovaným obrázkům
+# vloženým do exportovaného markdownu (obrázky nejsou v STATE_DIR).
 ROOT = Path(__file__).resolve().parent.parent.parent
-EXPORT_DIR = ROOT / "exports"
 
 
 SECTION_LABEL = {
@@ -77,7 +80,7 @@ def export_questions(
     notes: dict[str, str] | None = None,         # qid -> note
     filename_hint: str = "explain",
 ) -> Path:
-    EXPORT_DIR.mkdir(exist_ok=True)
+    EXPORT_DIR.mkdir(parents=True, exist_ok=True)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     n = len(questions)
     out = EXPORT_DIR / f"{filename_hint}_{n}q_{ts}.md"

@@ -1,0 +1,34 @@
+# Pro Zbroják — Docker Compose pro Coolify.
+#
+# V Coolify: New Resource → Docker Compose → ukaž na tento repo/soubor.
+# Coolify sám doplní Traefik labely, HTTPS a doménu. Persistentní volume
+# `pro-zbrojak-state` drží SQLite DB a exporty přes redeploy.
+#
+# Lokální test: `docker compose up --build` → http://localhost:8080
+
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8080"
+      SHOW: "false"
+      PRO_ZBROJAK_STATE_DIR: /state
+    volumes:
+      - pro-zbrojak-state:/state
+    ports:
+      - "8080"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import os,urllib.request,sys; p=os.environ.get('PORT','8080'); sys.exit(0 if urllib.request.urlopen(f'http://127.0.0.1:{p}/healthz',timeout=3).status==200 else 1)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  pro-zbrojak-state:

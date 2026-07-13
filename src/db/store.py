@@ -2,16 +2,14 @@
 from __future__ import annotations
 
 import time
-from pathlib import Path
-from typing import Iterable
 
 import sqlite_utils
 
-DB_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "stats.db"
+from src.paths import DB_PATH
 
 
 def get_db() -> sqlite_utils.Database:
-    DB_PATH.parent.mkdir(exist_ok=True)
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     db = sqlite_utils.Database(DB_PATH)
     _ensure_schema(db)
     return db
