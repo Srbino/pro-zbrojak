@@ -450,6 +450,20 @@ COMPONENTS = """
     white-space: nowrap; font-variant-numeric: tabular-nums;
   }
 
+  /* ---- pokrytí oblasti (Mastery) ---- */
+  /* Kolik různých otázek oblasti člověk vůbec viděl. Bez toho se nedá
+     posoudit, jestli procento úspěšnosti stojí na celé oblasti, nebo
+     na třiceti opakovaných otázkách. */
+  .zp-cov { position: relative; height: 4px; margin-top: var(--sp-3);
+    background: var(--zp-neutral-bg); border-radius: var(--zp-radius-pill); }
+  .zp-cov-fill { position: absolute; top: 0; bottom: 0; left: 0;
+    background: var(--zp-text-faint); border-radius: var(--zp-radius-pill);
+    transition: width .4s var(--zp-ease); }
+  .zp-cov-fill.ok { background: var(--zp-ok-line); }
+  .zp-cov-label { font-size: var(--fs-xs); color: var(--zp-text-soft);
+    margin-top: 5px; font-variant-numeric: tabular-nums; }
+  .zp-cov-label b { color: var(--zp-text); font-weight: 600; }
+
   /* ---- odkaz na paragraf / chyták ---- */
   .zp-law-chip {
     border: 1px solid var(--zp-border-strong);
