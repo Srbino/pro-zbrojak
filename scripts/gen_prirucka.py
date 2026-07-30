@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from datetime import date
 from pathlib import Path
 
@@ -283,6 +284,25 @@ def build_klic(questions: list[dict], scope: str) -> str:
 # hlavička dokumentu
 # --------------------------------------------------------------------------
 
+def chunk_evenly(items: list, max_size: int) -> list[list]:
+    """Rozdělí na nejmenší počet dílů, z nichž žádný nepřesáhne `max_size`.
+
+    Dělí rovnoměrně, ne po plných padesátkách. 151 otázek po 50 by dalo
+    50+50+50+1 a poslední díl s jedinou otázkou je k ničemu — rovnoměrně
+    z toho vyjde 38+38+38+37.
+    """
+    if max_size <= 0 or not items:
+        return [items] if items else []
+    pocet = math.ceil(len(items) / max_size)
+    zaklad, zbytek = divmod(len(items), pocet)
+    out, i = [], 0
+    for k in range(pocet):
+        velikost = zaklad + (1 if k < zbytek else 0)
+        out.append(items[i:i + velikost])
+        i += velikost
+    return out
+
+
 def header(n_questions: int, n_law: int, n_vyklad: int, scope: str,
            *, jen_spravne: bool = False) -> str:
     pct_law = round(n_law / n_questions * 100) if n_questions else 0
@@ -371,6 +391,9 @@ def main() -> int:
                          "podklad k předčítání (podcast)")
     ap.add_argument("--klic", action="store_true",
                     help="jen soupis číslo → správné písmeno (ke kontrole)")
+    ap.add_argument("--chunk", type=int, metavar="N",
+                    help="se --split: rozdělit každou oblast na díly nejvýš po N "
+                         "otázkách (rovnoměrně, bez zbytkového dílu o jedné otázce)")
     ap.add_argument("--out", help="cílový soubor (jinak na standardní výstup)")
     ap.add_argument("--split", help="adresář — jeden soubor na oblast")
     args = ap.parse_args()
@@ -418,6 +441,21 @@ def main() -> int:
             group = [q for q in picked if q.get("section") == sec]
             if not group:
                 continue
+
+            if args.chunk:
+                dily = chunk_evenly(group, args.chunk)
+                for i, dil in enumerate(dily, start=1):
+                    od, do = dil[0]["pdf_number"], dil[-1]["pdf_number"]
+                    popis = (
+                        f"{SECTION_LABEL[sec]} — díl {i}/{len(dily)}, otázky {od}–{do}"
+                    )
+                    text = build(dil, refs, traps, vyklady, popis,
+                                 jen_spravne=args.jen_spravne)
+                    path = outdir / f"{sec}-{i}z{len(dily)}-otazky-{od}-{do}.md"
+                    path.write_text(text, encoding="utf-8")
+                    written.append(f"  {path}  ({len(dil)} otázek, č. {od}–{do})")
+                continue
+
             text = build(group, refs, traps, vyklady, SECTION_LABEL[sec],
                          jen_spravne=args.jen_spravne)
             path = outdir / f"{sec}.md"

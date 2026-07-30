@@ -214,6 +214,36 @@ def test_klic_hlasi_rozlozeni_pismen(questions):
         assert f"**{letter}** {n}×" in text
 
 
+def test_deleni_nikdy_neprekroci_limit():
+    """Nástroj na podcast bere jen omezený počet otázek — díl přes limit je k ničemu."""
+    for celkem in (1, 37, 38, 48, 50, 51, 151, 561, 837):
+        for limit in (10, 30, 50):
+            dily = gp.chunk_evenly(list(range(celkem)), limit)
+            assert all(len(d) <= limit for d in dily), (celkem, limit)
+            assert sum(len(d) for d in dily) == celkem, "díly neobsáhly všechno"
+
+
+def test_deleni_nenecha_zbytkovy_dil_o_jedne():
+    """151 po 50 by dalo 50+50+50+1 — poslední díl s jedinou otázkou je k ničemu."""
+    dily = gp.chunk_evenly(list(range(151)), 50)
+    assert [len(d) for d in dily] == [38, 38, 38, 37]
+
+
+def test_deleni_zachova_poradi_a_nic_neztrati():
+    polozky = list(range(200))
+    ploche = [x for dil in gp.chunk_evenly(polozky, 50) for x in dil]
+    assert ploche == polozky
+
+
+def test_mala_oblast_se_nedeli():
+    """48 otázek se do padesátky vejde celých."""
+    assert len(gp.chunk_evenly(list(range(48)), 50)) == 1
+
+
+def test_prazdny_vstup_nespadne():
+    assert gp.chunk_evenly([], 50) == []
+
+
 def test_hlavicka_varuje_pred_editaci(data):
     questions, refs, traps, vyklady = data
     md = gp.build([_one(questions, 2)], refs, traps, vyklady, "test")

@@ -113,6 +113,7 @@ podcast:
 	python3 scripts/gen_prirucka.py --all --jen-spravne --out docs/studium/podcast.md
 	python3 scripts/gen_prirucka.py --all --jen-spravne --only-law --out docs/studium/podcast-se-zakonem.md
 	python3 scripts/gen_prirucka.py --all --jen-spravne --split docs/studium/podcast/
+	python3 scripts/gen_prirucka.py --all --jen-spravne --chunk 50 --split docs/studium/podcast-po-50/
 
 # Soupis cislo -> spravne pismeno, ke kontrole proti oficialni prirucce.
 klic:
