@@ -1,14 +1,17 @@
 """Rozsirene interaction testy — navigation, keyboard, bookmark, dark mode persistence."""
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 # Reuse fixtures
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
+from tests.test_ui_e2e import TEST_USER_EMAIL, browser, server  # noqa: F401, E402
 
 
 def test_nav_drawer_opens_from_header(server, browser):
@@ -16,7 +19,7 @@ def test_nav_drawer_opens_from_header(server, browser):
     page = ctx.new_page()
     page.goto(server + "/", wait_until="networkidle")
     # Drawer initially closed
-    drawer = page.locator(".q-drawer")
+    _drawer = page.locator(".q-drawer")
     # Click menu button (first header button)
     page.locator("header button").first.click()
     page.wait_for_timeout(400)
@@ -36,17 +39,166 @@ def test_dashboard_tile_click_navigates(server, browser):
     ctx.close()
 
 
-def test_keyboard_shortcut_answers_question(server, browser):
+def test_keyboard_selects_but_does_not_submit(server, browser):
+    """Klávesa odpověď jen vybere — vyhodnotí se až potvrzením.
+
+    Dřív klávesa (a klik) odpověď rovnou odeslala, takže omylem — třeba při
+    označování textu myší — šlo otázku nechtěně zkazit. Teď jde výběr překlikat
+    a potvrzuje se zvlášť.
+    """
     ctx = browser.new_context(viewport={"width": 1280, "height": 900})
     page = ctx.new_page()
     page.goto(server + "/random", wait_until="networkidle")
     page.wait_for_timeout(800)
-    # Press "1" — should select first option
+
     page.keyboard.press("1")
     page.wait_for_timeout(400)
-    # After keypress, some option should be marked correct or wrong
-    marked = page.locator(".zp-opt.correct, .zp-opt.wrong").count()
-    assert marked >= 1, "Stisk '1' by mel vybrat odpoved A"
+    assert page.locator(".zp-opt.selected").count() == 1, "'1' má vybrat odpověď A"
+    assert page.locator(".zp-opt.correct, .zp-opt.wrong").count() == 0, \
+        "výběr se nesmí sám vyhodnotit"
+
+    # výběr jde změnit
+    page.keyboard.press("3")
+    page.wait_for_timeout(400)
+    assert page.locator(".zp-opt.selected").first.get_attribute("data-key") == "C"
+
+    # teprve potvrzení vyhodnotí
+    page.keyboard.press("Enter")
+    page.wait_for_timeout(600)
+    assert page.locator(".zp-opt.correct").count() >= 1, "Enter má odpověď potvrdit"
+    ctx.close()
+
+
+def test_marathon_review_does_not_record_another_attempt(server, browser):
+    """Listování zpátky v marathonu je jen ke čtení.
+
+    Kdyby prohlížení zapisovalo pokusy, člověk by si procházením historie
+    rozhodil statistiky i „lekci z chyb".
+    """
+    ctx = browser.new_context(viewport={"width": 1280, "height": 1000})
+    page = ctx.new_page()
+    page.goto(server + "/marathon", wait_until="networkidle")
+    page.wait_for_timeout(600)
+
+    start = page.get_by_role("button", name=re.compile("Začít|Pokračovat", re.I))
+    if start.count():
+        start.first.click()
+        page.wait_for_timeout(800)
+
+    # zodpovědět dvě otázky
+    for _ in range(2):
+        page.locator("button.zp-opt").first.click()
+        page.wait_for_timeout(200)
+        page.get_by_role("button", name="Vyhodnotit").first.click()
+        page.wait_for_timeout(400)
+        page.locator(".q-btn").filter(has_text="Další").first.click()
+        page.wait_for_timeout(400)
+
+    before = page.inner_text("body")
+    progress = re.search(r"Otázka \d+ / \d+\s*·\s*správně \d+", re.sub(r"\s+", " ", before))
+    assert progress, "chybí ukazatel postupu"
+
+    page.locator(".zp-review-enter").first.click()
+    page.wait_for_timeout(600)
+    assert "Prohlížíš odpovězenou otázku" in page.inner_text("body")
+    # už vyhodnocené, bez možnosti odpovídat znovu
+    assert page.locator(".zp-opt.correct").count() == 1
+    assert page.locator(".zp-opt.disabled").count() >= 3
+
+    page.locator(".zp-review-exit").first.click()
+    page.wait_for_timeout(600)
+    after = re.search(
+        r"Otázka \d+ / \d+\s*·\s*správně \d+", re.sub(r"\s+", " ", page.inner_text("body"))
+    )
+    assert after and after.group(0) == progress.group(0), (
+        f"prohlížení historie změnilo postup: {progress.group(0)} → {after.group(0) if after else '—'}"
+    )
+    ctx.close()
+
+
+def test_marathon_navigator_search_and_jump(server, browser):
+    """Levý seznam otázek: hledání, proklik zpět, zákaz skoku dopředu."""
+    ctx = browser.new_context(viewport={"width": 1500, "height": 1000})
+    page = ctx.new_page()
+    page.goto(server + "/marathon", wait_until="networkidle")
+    page.wait_for_timeout(600)
+
+    start = page.get_by_role("button", name=re.compile("Začít|Pokračovat", re.I))
+    if start.count():
+        start.first.click()
+        page.wait_for_timeout(800)
+
+    assert page.locator(".zp-qnav").count() == 1, "chybí panel se seznamem otázek"
+    # Seznam se nevykresluje celý — 837 řádků s textem by bylo znát na načtení.
+    shown = page.locator(".zp-qnav-item").count()
+    assert 0 < shown <= 120, f"neočekávaný počet řádků: {shown}"
+
+    # zodpovědět dvě otázky, ať je kam skákat
+    for _ in range(2):
+        page.locator("button.zp-opt").first.click()
+        page.wait_for_timeout(200)
+        page.get_by_role("button", name="Vyhodnotit").first.click()
+        page.wait_for_timeout(400)
+        page.locator(".q-btn").filter(has_text="Další").first.click()
+        page.wait_for_timeout(400)
+
+    # hledání podle čísla
+    page.locator(".zp-qnav-search input").first.fill("50")
+    page.wait_for_timeout(700)
+    numbers = page.evaluate(
+        "() => [...document.querySelectorAll('.zp-qnav-num')].map(e => e.innerText)"
+    )
+    assert numbers and all(n.startswith("50") for n in numbers), numbers
+
+    # zpátky na začátek a proklik na už zodpovězenou otázku
+    page.locator(".zp-qnav-search input").first.fill("1")
+    page.wait_for_timeout(700)
+    page.locator(".zp-qnav-item").first.click()
+    page.wait_for_timeout(700)
+    assert "Prohlížíš odpovězenou otázku" in page.inner_text("body")
+    ctx.close()
+
+
+def test_marathon_navigator_refuses_jumping_ahead(server, browser):
+    """Dopředu se přeskakovat nesmí — jinak by otázky tiše zmizely z postupu."""
+    ctx = browser.new_context(viewport={"width": 1500, "height": 1000})
+    page = ctx.new_page()
+    page.goto(server + "/marathon", wait_until="networkidle")
+    page.wait_for_timeout(600)
+    start = page.get_by_role("button", name=re.compile("Začít|Pokračovat", re.I))
+    if start.count():
+        start.first.click()
+        page.wait_for_timeout(800)
+
+    before = re.search(
+        r"Otázka (\d+) / \d+", re.sub(r"\s+", " ", page.inner_text("body"))
+    )
+    assert before
+    page.locator(".zp-qnav-item").nth(30).click()
+    page.wait_for_timeout(700)
+
+    assert "přeskakovat nedá" in page.inner_text("body")
+    after = re.search(r"Otázka (\d+) / \d+", re.sub(r"\s+", " ", page.inner_text("body")))
+    assert after and after.group(1) == before.group(1), "skok dopředu posunul pozici"
+    ctx.close()
+
+
+def test_dragging_over_option_text_does_not_answer(server, browser):
+    """Označení textu myší nesmí otázku vyhodnotit (kvůli kopírování)."""
+    ctx = browser.new_context(viewport={"width": 1280, "height": 900})
+    page = ctx.new_page()
+    page.goto(server + "/random", wait_until="networkidle")
+    page.wait_for_timeout(800)
+
+    box = page.locator("button.zp-opt").first.bounding_box()
+    page.mouse.move(box["x"] + 30, box["y"] + box["height"] / 2)
+    page.mouse.down()
+    page.mouse.move(box["x"] + box["width"] - 30, box["y"] + box["height"] / 2)
+    page.mouse.up()
+    page.wait_for_timeout(500)
+
+    assert page.locator(".zp-opt.correct, .zp-opt.wrong").count() == 0, \
+        "tažení přes text nesmí odpověď odeslat"
     ctx.close()
 
 
@@ -56,7 +208,7 @@ def test_bookmark_button_toggles_icon(server, browser):
     page.goto(server + "/random", wait_until="networkidle")
     page.wait_for_timeout(800)
     # Find bookmark button via tooltip
-    bm_btn = page.locator('button[aria-label="Označit otázku (F)"], button:has(.q-icon:text("bookmark_border"))').first
+    _bm_btn = page.locator('button[aria-label="Označit otázku (F)"], button:has(.q-icon:text("bookmark_border"))').first
     # Click F to toggle
     page.keyboard.press("f")
     page.wait_for_timeout(400)
@@ -80,7 +232,7 @@ def test_dark_mode_persists_across_pages(server, browser):
     # Navigate to another page via link in drawer
     page.goto(server + "/marathon", wait_until="networkidle")
     page.wait_for_timeout(400)
-    body_cls_marathon = page.evaluate("document.body.className")
+    _body_cls_marathon = page.evaluate("document.body.className")
     # Both should have body--dark (NiceGUI persistence via cookie/session)
     # Note: if it doesn't persist, this is a known NiceGUI quirk — log but don't fail hard
     if "body--dark" in body_cls_home:
@@ -94,10 +246,11 @@ def test_help_dialog_opens_on_header_click(server, browser):
     page = ctx.new_page()
     page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(400)
-    # Header buttons: [0]=menu, [1]=help, [2]=dark
-    page.locator("header button").nth(1).click()
-    page.wait_for_timeout(400)
-    # Dialog should be visible with "Klávesové zkratky"
+    # Podle tridy, ne podle poradi — pocet tlacitek v hlavicce se lisi podle
+    # toho, jestli je nekdo prihlaseny (drive test klikal na ucet a skoncil
+    # na /settings, kde zadny dialog neni).
+    page.locator(".zp-help-btn").first.click()
+    page.wait_for_timeout(500)
     assert page.get_by_text("Klávesové zkratky").count() >= 1
     ctx.close()
 
@@ -118,10 +271,11 @@ def test_mastery_shows_all_sections(server, browser):
     page = ctx.new_page()
     page.goto(server + "/mastery", wait_until="networkidle")
     page.wait_for_timeout(500)
-    # Should have at least 3 section cards with progress bars
-    assert page.locator(".zp-progress").count() >= 3
-    # Each card has "Trénovat" button
-    assert page.get_by_text("Trénovat").count() >= 3
+    # Kazda oblast ma meridlo s ryskou na hranici zvladnuti.
+    assert page.locator(".zp-meter").count() >= 3
+    # Kazda karta ma tlacitko do treninku — "Zacit" u oblasti bez pokusu.
+    starts = page.get_by_text("Trénovat").count() + page.get_by_text("Začít").count()
+    assert starts >= 3, f"Chybi tlacitka do treninku: {starts}"
     ctx.close()
 
 
@@ -144,7 +298,11 @@ def test_settings_reset_actually_deletes_data(server, browser):
     # Overime ze zaznam existuje
     if db_path.exists():
         conn = sqlite3.connect(db_path)
-        before = conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0]
+        # Reset maze data JEN prihlaseneho uzivatele — pocitame tedy jeho
+        # radky, ne vsechny. Drive test scital napric uzivateli a padal.
+        before = conn.execute(
+            "SELECT COUNT(*) FROM attempts WHERE user_email=?", [TEST_USER_EMAIL]
+        ).fetchone()[0]
         conn.close()
         assert before >= 1, "Test fixture: mel se vytvorit alespon 1 attempt"
     else:
@@ -155,14 +313,16 @@ def test_settings_reset_actually_deletes_data(server, browser):
     page.wait_for_timeout(500)
     page.get_by_role("button", name="Reset historie").click()
     page.wait_for_timeout(800)
-    page.get_by_role("button", name="OPRAVDU SMAZAT VŠE").click(timeout=5000)
+    page.get_by_role("button", name="SMAZAT MOJI HISTORII").click(timeout=5000)
     page.wait_for_timeout(1500)
 
     # 3. Overime ze attempts je prazdny
     conn = sqlite3.connect(db_path)
-    after = conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0]
+    after = conn.execute(
+        "SELECT COUNT(*) FROM attempts WHERE user_email=?", [TEST_USER_EMAIL]
+    ).fetchone()[0]
     conn.close()
-    assert after == 0, f"Reset nevymazal attempts — pred: {before}, po: {after}"
+    assert after == 0, f"Reset nevymazal data testovaciho uzivatele — pred: {before}, po: {after}"
     ctx.close()
 
 
@@ -177,7 +337,7 @@ def test_settings_reset_opens_confirm_dialog(server, browser):
     page.wait_for_timeout(600)
     # Dialog text + confirm button visible
     assert page.get_by_text("Potvrzení").count() >= 1, "Confirm dialog se neotevrel"
-    assert page.get_by_text("OPRAVDU SMAZAT VŠE").count() >= 1
+    assert page.get_by_text("SMAZAT MOJI HISTORII").count() >= 1
     # Close via Zrušit (not confirm — nechceme skutečně smazat v testu)
     page.get_by_role("button", name="Zrušit").click()
     page.wait_for_timeout(400)

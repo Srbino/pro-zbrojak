@@ -13,9 +13,10 @@ from nicegui import ui
 from src.auth import require_login
 from src.db.questions import load_questions
 from src.db.store import get_db, set_studied, studied_counts, studied_map
-from src.ui.components import SECTION_LABEL, progress_bar, section_badge
+from src.ui.components import SECTION_LABEL, law_reference, progress_bar, section_badge
 from src.ui.icons import I
 from src.ui.layout import page_shell
+from src.ui.shuffle import display_letter, option_order
 
 
 def _esc(s: str) -> str:
@@ -32,7 +33,10 @@ def study_page():
 
     st = {
         "section": "all", "order": "seq",
-        "flashcard": True, "only_correct": False,
+        # Studium je čtení, ne zkoušení. Odpověď je vidět rovnou — mezikrok
+        # „odhalit" u látky, kterou člověk teprve poznává, jen přidává klik.
+        # Kdo si chce zkoušet paměť, zapne si režim kartičky.
+        "flashcard": False, "only_correct": False,
         "pool": [], "index": 0, "revealed": False,
         "known": studied_map(db, user.email),
         "chips": {},          # qid -> ui element
@@ -79,7 +83,9 @@ def study_page():
     # ---------- karta ----------
     def render_card():
         st["card"].clear()
-        with st["card"]:
+        # Stejný obal jako kvíz — bez něj se karta scvrkne na obsah,
+        # protože rodičovský sloupec má align-items: flex-start.
+        with st["card"], ui.element("div").classes("zp-quiz-wrap"):
             total = len(st["pool"])
             if total == 0:
                 ui.label("V této oblasti nejsou otázky.").classes("zp-body")
@@ -95,14 +101,14 @@ def study_page():
                 if st["known"].get(q["id"]) == 1:
                     ui.html('<span class="zp-badge success" style="margin-left:.5rem;">umím</span>')
 
-            with ui.element("div").classes("zp-card").style("padding:1.5rem;"):
+            with ui.element("div").classes("zp-card"):
                 if q.get("image"):
                     ui.html(
                         f'<div style="text-align:center;margin-bottom:1rem;">'
                         f'<img src="/{q["image"]}" style="max-height:300px;max-width:100%;object-fit:contain;">'
                         f'</div>'
                     )
-                ui.label(q["question"]).classes("zp-h2 zp-mb-md")
+                ui.label(q["question"]).classes("zp-question zp-mb-md")
 
                 if not reveal_now:
                     ui.button("Odhalit odpověď", icon=I["reveal"], on_click=_reveal).props(
@@ -111,13 +117,24 @@ def study_page():
                     ui.label("(mezerník)").classes("zp-caption zp-mt-xs")
                 else:
                     correct = q["correct"]
+                    # Stejné promíchání jako v kvízu — jinak by studium naučilo
+                    # právě tu polohu odpovědi, kterou se učit nemá.
+                    order = option_order(q, user_email=user.email)
                     with ui.column().classes("w-full zp-gap-sm"):
                         if st["only_correct"]:
-                            ui.html(f'<div class="zp-answer-correct"><b>{correct})</b> {_esc(q["options"][correct])}</div>')
+                            shown = display_letter(order.index(correct))
+                            ui.html(f'<div class="zp-answer-correct"><b>{shown})</b> {_esc(q["options"][correct])}</div>')
                         else:
-                            for k in ("A", "B", "C"):
-                                cls = "zp-answer-correct" if k == correct else "zp-answer-neutral"
-                                ui.html(f'<div class="{cls}"><b>{k})</b> {_esc(q["options"][k])}</div>')
+                            for position, canonical in enumerate(order):
+                                shown = display_letter(position)
+                                cls = "zp-answer-correct" if canonical == correct else "zp-answer-neutral"
+                                ui.html(f'<div class="{cls}"><b>{shown})</b> {_esc(q["options"][canonical])}</div>')
+                    # Když odkaz chybí, řekni to. Mlčení vypadá jako chyba
+                    # aplikace, přitom ověřený odkaz má 231 z 837 otázek.
+                    if not law_reference(q["pdf_number"]):
+                        ui.label(
+                            "K této otázce zatím nemáme ověřený odkaz do e-Sbírky."
+                        ).classes("zp-caption zp-mt-md")
 
             # ovládání
             with ui.row().classes("w-full zp-gap-sm zp-mt-md").style("flex-wrap:wrap;align-items:center;justify-content:center;"):
@@ -191,8 +208,9 @@ def study_page():
     with page_shell("Studium", active_path="/study"):
         ui.label("Studium").classes("zp-display")
         ui.label(
-            "Projdi si otázky a rovnou správné odpovědi. Ve výchozím režimu je to kartička — "
-            "zkus si odpověď vybavit a mezerníkem ji odhal (drží se to v paměti líp)."
+            "Projdi si otázky rovnou se správnou odpovědí a s ustanovením, ze kterého "
+            "plyne. Chceš se zkoušet po paměti? Zapni si režim kartičky — odpověď se "
+            "pak schová a odhalíš ji mezerníkem."
         ).classes("zp-body zp-prose zp-mb-md")
 
         with ui.element("div").classes("zp-card w-full zp-mb-md"):
@@ -203,7 +221,7 @@ def study_page():
                 order = ui.select(
                     {"seq": "Po pořadí", "rand": "Náhodně"}, value="seq", label="Pořadí",
                 ).props("outlined dense").style("min-width:150px;")
-                sw_read = ui.switch("Rovnou ukázat správnou")
+                sw_card = ui.switch("Režim kartičky")
                 sw_only = ui.switch("Jen správná odpověď")
 
             with ui.row().classes("w-full zp-gap-sm zp-mt-sm").style("align-items:center;"):
@@ -222,14 +240,14 @@ def study_page():
             render_card()
 
         def _on_toggle():
-            st["flashcard"] = not sw_read.value
+            st["flashcard"] = sw_card.value
             st["only_correct"] = sw_only.value
             st["revealed"] = False
             render_card()
 
         sec.on_value_change(lambda: (st.update(section=sec.value), _rebuild()))
         order.on_value_change(lambda: (st.update(order=order.value), _rebuild()))
-        sw_read.on_value_change(_on_toggle)
+        sw_card.on_value_change(_on_toggle)
         sw_only.on_value_change(_on_toggle)
 
         _rebuild()

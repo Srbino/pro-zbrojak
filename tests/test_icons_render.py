@@ -12,7 +12,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 
 def test_every_icon_glyph_renders(server, browser):
@@ -38,8 +38,22 @@ def test_every_icon_glyph_renders(server, browser):
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head><body>{glyphs_html}</body></html>
     """)
-    # Wait for font to load
-    page.wait_for_timeout(2000)
+    # Počkat, až se ligatury opravdu nahradí glyphy. Pevná pauza tu byla křehká:
+    # při pomalejším načtení fontu test hlásil jako chybějící i glyphy, které ve
+    # fontu jsou. Poznávacím znamením je referenční ikona — dokud se „menu"
+    # měří jako text, font ještě nenaskočil.
+    for _ in range(40):  # max ~10 s
+        ref_width = page.evaluate(
+            """() => {
+                const el = document.querySelector('.icon-test');
+                return el ? el.getBoundingClientRect().width : 0;
+            }"""
+        )
+        if 20 <= ref_width <= 30:
+            break
+        page.wait_for_timeout(250)
+    else:
+        pytest.skip("Material Icons font se nepodařilo načíst (offline?)")
 
     results = page.evaluate("""() => {
         const out = [];

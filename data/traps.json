@@ -1,0 +1,4156 @@
+{
+ "pozn": "Chytáky — otázky, kde se dá snadno šlápnout vedle: distraktor je jen drobně upravená správná odpověď, v zadání je zápor/výjimka, nebo má otázka dvojče se skoro stejným zadáním. Generuje scripts/gen_traps.py z katalogu; znění zákona k tomu nepotřebuje.",
+ "prah": {
+  "min_shoda": 0.6,
+  "max_zasahu": 3,
+  "podobnost_dvojcat": 0.85
+ },
+ "otazky": {
+  "4": {
+   "shoda": 0.938,
+   "spravne": "palná zbraň, plynová zbraň a další zařízení nebo přístroj, které jsou zařazeny do některé z kategorií zbraní nebo na které se podle § 9 použijí ustanovení o nakládání se zbraní určité kategorie.",
+   "pasti": [
+    {
+     "shoda": 0.938,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "zbraň, chladná"
+      }
+     ]
+    }
+   ]
+  },
+  "6": {
+   "shoda": 0.667,
+   "spravne": "hlavní část zbraně, součást zbraně umožňující samočinnou střelbu, polotovar hlavní části zbraně, tlumič hluku výstřelu, nebo nadlimitní zásobník.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "vypuštěno",
+       "spravne": "polotovar hlavní části zbraně,",
+       "past": ""
+      },
+      {
+       "typ": "záměna",
+       "spravne": "nadlimitní zásobník.",
+       "past": "noktovizor."
+      }
+     ]
+    }
+   ]
+  },
+  "7": {
+   "shoda": 0.667,
+   "spravne": "regulovanou součástí zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "regulovanou",
+       "past": "neregulovanou"
+      }
+     ]
+    }
+   ]
+  },
+  "9": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    10,
+    11,
+    12
+   ],
+   "spravne": "střelivo."
+  },
+  "10": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    9,
+    11,
+    12
+   ],
+   "spravne": "lafeta bezzákluzové zbraně."
+  },
+  "11": {
+   "dvojnici": [
+    9,
+    10,
+    12
+   ],
+   "spravne": "nadlimitní zásobník nebo tzv. bump-fire pažba."
+  },
+  "12": {
+   "dvojnici": [
+    9,
+    10,
+    11
+   ],
+   "spravne": "například spoušťové mechanismy samočinných zbraní, polotovary drážkovaných hlavní nebo nadlimitní zásobníky."
+  },
+  "14": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "upravuje-li takový případ zákon o zbraních a střelivu výslovně."
+  },
+  "19": {
+   "shoda": 0.636,
+   "spravne": "podléhají registraci, přičemž zbraně kategorie R1 a R2 jsou zakázanými zbraněmi.",
+   "pasti": [
+    {
+     "shoda": 0.636,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zakázanými zbraněmi.",
+       "past": "z povinnosti registrace vyňaty."
+      }
+     ]
+    }
+   ]
+  },
+  "21": {
+   "shoda": 0.8,
+   "spravne": "S1, S2, S3 a S4.",
+   "pasti": [
+    {
+     "shoda": 0.8,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "S0,"
+      }
+     ]
+    }
+   ]
+  },
+  "23": {
+   "shoda": 0.909,
+   "spravne": "zbrani nebo střelivu, kterým lze na základě konstrukčních vlastností nebo funkčního principu přiřadit různé kategorie, se přiřadí kategorie, která je z těchto kategorií nejpřísněji regulována; to neplatí v případě zbraní historických nebo neaktivních.",
+   "pasti": [
+    {
+     "shoda": 0.909,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "historických nebo neaktivních.",
+       "past": "poplašných a signalizačních."
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    24
+   ]
+  },
+  "24": {
+   "dvojnici": [
+    23
+   ],
+   "spravne": "pokud není určitá palná zbraň uvedena v příloze č. 2 zákona o zbraních a střelivu, zařadí se taková palná zbraň do stejné kategorie jako zbraň uvedená v příloze č. 2 zákona o zbraních a střelivu, které je svou konstrukcí, funkcí nebo účelem a účinkem nejbližší."
+  },
+  "25": {
+   "shoda": 0.643,
+   "spravne": "zbraň, která by jinak byla na základě konstrukčních vlastností nebo funkčního principu považována za zbraň kategorie PO nebo NO, ale která vznikla nevratnou úpravou zbraně podléhající registraci, je zbraní stejné kategorie jako zbraň podléhající registraci, z níž byla upravena; to neplatí v případě znehodnocené zbraně a řezu zbraně, které odpovídají požadavkům zákona o zbraních a střelivu.",
+   "pasti": [
+    {
+     "shoda": 0.643,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "případě znehodnocené",
+       "past": "případě, že úsťová energie střely vystřelené z takto upravené"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "a řezu zbraně, které odpovídají požadavkům zákona o zbraních a střelivu.",
+       "past": "nepřesahuje 50 J."
+      }
+     ]
+    }
+   ]
+  },
+  "26": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "spravne": "je zbraní podléhající registraci a přiřadí se jí konkrétní kategorie na základě jejích konstrukčních vlastností nebo funkčního principu."
+  },
+  "27": {
+   "dvojnici": [
+    31,
+    34,
+    37,
+    38,
+    39,
+    40
+   ],
+   "spravne": "držitel zbrojní licence skupiny ZL1, držitel zbrojní licence skupiny ZL2, kterému byla pro nakládání s každou takovou zbraní vydána výjimka kategorie R1, nebo osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně."
+  },
+  "28": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "dvojnici": [
+    32,
+    33,
+    35,
+    36
+   ],
+   "spravne": "držitel zbrojního oprávnění, a to s výjimkou určitých specifických případů, na které se vztahují přechodná ustanovení zákona o zbraních a střelivu."
+  },
+  "29": {
+   "shoda": 0.828,
+   "spravne": "R2, R3 a R4; se zbraněmi kategorie R2 a R3 je tento držitel oprávněn nakládat jen v případě, že mu byla k tomuto nakládání vydána příslušná výjimka nebo povolení.",
+   "pasti": [
+    {
+     "shoda": 0.828,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "R2, R3",
+       "past": "R4, R3, R2"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "R4;",
+       "past": "R1;"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "R2",
+       "past": "R4"
+      }
+     ]
+    }
+   ]
+  },
+  "30": {
+   "shoda": 0.6,
+   "spravne": "R1, R2, S1 a S2.",
+   "pasti": [
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "R3, R4,"
+      }
+     ]
+    }
+   ]
+  },
+  "31": {
+   "shoda": 0.706,
+   "spravne": "držitel zbrojní licence skupiny ZL1, držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému byla vydána pro nakládání s každou takovou zbraní výjimka kategorie R2 a osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.706,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "byla vydána",
+       "past": "bylo vydáno"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "výjimka",
+       "past": "povolení"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně.",
+       "past": "držitel zapsané autorizace."
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    27,
+    34,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  "32": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "dvojnici": [
+    28,
+    33,
+    35,
+    36
+   ],
+   "spravne": "držitel zapsané autorizace."
+  },
+  "33": {
+   "dvojnici": [
+    28,
+    32,
+    35,
+    36
+   ],
+   "spravne": "držitel zbrojní licence skupiny ZL1, držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému bylo vydáno pro nakládání s každou takovou zbraní povolení kategorie R3 a osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně."
+  },
+  "34": {
+   "dvojnici": [
+    27,
+    31,
+    37,
+    38,
+    39,
+    40
+   ],
+   "spravne": "držitel zbrojní licence, držitel zbrojního oprávnění, osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně."
+  },
+  "35": {
+   "dvojnici": [
+    28,
+    32,
+    33,
+    36
+   ],
+   "spravne": "držitel autorizace k nakládání se zbraní kategorie PO zapsané do centrálního registru zbraní, držitel zbrojní licence, držitel zbrojního oprávnění, osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně, nebo nevyňatá veřejnoprávní instituce."
+  },
+  "36": {
+   "dvojnici": [
+    28,
+    32,
+    33,
+    35
+   ],
+   "spravne": "plně svéprávná zletilá fyzická osoba, která má místo pobytu na území České republiky, právnická osoba se sídlem nebo odštěpným závodem na území České republiky, držitel zbrojní licence, držitel zbrojního oprávnění, osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně, nebo nevyňatá veřejnoprávní instituce."
+  },
+  "37": {
+   "dvojnici": [
+    27,
+    31,
+    34,
+    38,
+    39,
+    40
+   ],
+   "spravne": "držitel zbrojní licence skupiny ZL2, kterému byla pro nakládání s určitým počtem kusů takového střeliva vydána výjimka kategorie S1."
+  },
+  "38": {
+   "dvojnici": [
+    27,
+    31,
+    34,
+    37,
+    39,
+    40
+   ],
+   "spravne": "držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému byla vydána výjimka kategorie S2."
+  },
+  "39": {
+   "dvojnici": [
+    27,
+    31,
+    34,
+    37,
+    38,
+    40
+   ],
+   "spravne": "držitel zbrojního oprávnění."
+  },
+  "40": {
+   "dvojnici": [
+    27,
+    31,
+    34,
+    37,
+    38,
+    39
+   ],
+   "spravne": "plně svéprávná zletilá fyzická osoba, která má místo pobytu na území České republiky."
+  },
+  "42": {
+   "dvojnici": [
+    27,
+    31,
+    34,
+    37,
+    38,
+    39
+   ],
+   "spravne": "držitel zbrojního oprávnění, a to i pokud je mladší 18 let."
+  },
+  "45": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "osoba oprávněná nakládat se samočinnou zbraní příslušné kategorie."
+  },
+  "46": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "příslušné kategorie; pokud jde například o samočinnou akustickou nebo salutní zbraň kategorie R2, je s příslušnou součástí zbraně umožňující samočinnou střelbu oprávněn nakládat i oprávněný držitel takové zbraně."
+  },
+  "47": {
+   "shoda": 0.636,
+   "spravne": "držitel zbrojní licence nebo osoba oprávněná provést přeshraniční přemístění takového polotovaru.",
+   "pasti": [
+    {
+     "shoda": 0.636,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "zbrojního oprávnění nebo"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "nebo",
+       "past": "anebo"
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ]
+  },
+  "48": {
+   "shoda": 0.667,
+   "spravne": "střelivu kategorie S2.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "S2.",
+       "past": "S1."
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ]
+  },
+  "49": {
+   "dvojnici": [
+    50
+   ],
+   "spravne": "aby byl podnikatel držitelem zbrojní licence skupiny ZL1, pokud je předmětem podnikání například nákup, prodej nebo výroba zbraní podléhajících registraci, zbraní kategorie PO nebo se střeliva kategorie S1, S2 nebo S3."
+  },
+  "50": {
+   "dvojnici": [
+    49
+   ],
+   "spravne": "aby byl podnikatel držitelem zbrojní licence, pokud je předmětem podnikání například nákup, prodej nebo výroba zbraní kategorie NO nebo se střeliva kategorie S4."
+  },
+  "59": {
+   "shoda": 0.786,
+   "spravne": "Policii České republiky použití zbraně k ostré střelbě v krajní nouzi nebo nutné obraně.",
+   "pasti": [
+    {
+     "shoda": 0.786,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "Policii České republiky",
+       "past": "Ministerstvu obrany"
+      }
+     ]
+    },
+    {
+     "shoda": 0.714,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "Policii České republiky",
+       "past": "místně příslušné obecní policii"
+      }
+     ]
+    }
+   ]
+  },
+  "61": {
+   "shoda": 0.611,
+   "spravne": "v místech, kde je k tomu oprávněn podle zákona o zbraních a střelivu nebo podle jiného právního předpisu.",
+   "pasti": [
+    {
+     "shoda": 0.611,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "v místech, kde je k tomu oprávněn",
+       "past": "na střelnicích, jejichž provoz byl povolen"
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ]
+  },
+  "67": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "pokud k tomu není oprávněn."
+  },
+  "68": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "převést zbraň nebo střelivo nebo jinak s nimi umožnit nakládat osobě, která k tomu není oprávněna."
+  },
+  "69": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "jako zbraň nebo střelivo jiné kategorie, než která odpovídá jejich konstrukčním vlastnostem nebo funkčnímu principu."
+  },
+  "70": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "nakládat se zbraní nebo střelivem tak, že ohrozí život, zdraví nebo majetek jiné osoby tím, že nedbá zvýšené opatrnosti odpovídající povaze a stavu zbraně nebo střeliva."
+  },
+  "71": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "nakládat se zbraní nebo střelivem tak, že ohrozí život, zdraví nebo majetek jiné osoby tím, že manipuluje se zbraní nebo střelivem pod vlivem alkoholu nebo jiné návykové látky anebo je-li jeho schopnost bezpečně nakládat se zbraní nebo střelivem snížena užitím léků nebo v důsledku jeho zdravotního stavu."
+  },
+  "72": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "pod vlivem alkoholu nebo jiné návykové látky anebo je-li jeho schopnost bezpečně nakládat se zbraní nebo střelivem snížena užitím léků nebo v důsledku jeho zdravotního stavu."
+  },
+  "74": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "která nebyla zaregistrována; to neplatí, jde-li o zbraň přenechanou držitelem zbrojní licence skupiny ZL1."
+  },
+  "77": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "jiné osoby v důsledku použití zbraně nebo střeliva ve špatném technickém stavu anebo zbraně nebo střeliva, které neodpovídají požadavkům zákona o ověřování zbraní a střeliva."
+  },
+  "82": {
+   "shoda": 0.744,
+   "spravne": "má místo pobytu na území České republiky, dosáhla stanoveného věku, je plně svéprávná (nejde-li o vydání zbrojního oprávnění osobě mladší 18 let v případech, kdy to zákon o zbraních a střelivu umožňuje), je zdravotně způsobilá, je bezúhonná a spolehlivá a je odborně způsobilá.",
+   "pasti": [
+    {
+     "shoda": 0.744,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "má místo pobytu na území",
+       "past": "je občanem"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "zdravotně",
+       "past": "psychologicky"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "spolehlivá a je odborně způsobilá.",
+       "past": "politicky spolehlivá."
+      }
+     ]
+    }
+   ]
+  },
+  "84": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "občanství České republiky."
+  },
+  "86": {
+   "shoda": 0.667,
+   "spravne": "rozšířeného zbrojního oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "rozšířeného",
+       "past": "obecného"
+      }
+     ]
+    }
+   ]
+  },
+  "88": {
+   "shoda": 0.75,
+   "spravne": "zletilosti, tj. 18 let.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "18",
+       "past": "21"
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "výjimka",
+     "slovo": "s výjimkou"
+    }
+   ]
+  },
+  "89": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "jehož způsobilost bezpečně nakládat se zbraní nebo střelivem je vyloučena nebo omezena v důsledku stanovené nemoci, vady nebo stavu."
+  },
+  "91": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "dvojnici": [
+    93
+   ],
+   "spravne": "90 dnů."
+  },
+  "93": {
+   "dvojnici": [
+    91
+   ],
+   "spravne": "výsledků lékařské prohlídky u registrujícího poskytovatele zdravotních služeb a dalších potřebných odborných vyšetření."
+  },
+  "95": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "vždy"
+    }
+   ],
+   "spravne": "ke dni uplynutí platnosti předchozího lékařského posudku."
+  },
+  "97": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nelze"
+    }
+   ],
+   "spravne": "krajské ředitelství policie usnesením určí poskytovatele zdravotních služeb, který lékařský posudek vydá."
+  },
+  "100": {
+   "dvojnici": [
+    101
+   ],
+   "spravne": "tuto skutečnost oznámit bez zbytečného odkladu policii, pokud je tento pacient držitelem oprávnění k nakládání se zbraněmi a střelivem."
+  },
+  "101": {
+   "dvojnici": [
+    100
+   ],
+   "spravne": "ověřit, zda je daný pacient držitelem oprávnění k nakládání se zbraněmi a střelivem, a to prostřednictvím kmenového registru pacientů nebo centrálního registru zbraní anebo dotazem u krajského ředitelství policie."
+  },
+  "102": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepovažuj"
+    }
+   ],
+   "spravne": "byl v cizině pravomocně odsouzen za čin, jehož znaky odpovídají znakům některého z trestných činů podle trestního práva České republiky, které mají podle zákona o zbraních a střelivu vliv na posouzení bezúhonnosti."
+  },
+  "105": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nemůže"
+    }
+   ],
+   "spravne": "neomezenou dobu, přičemž jde o trestné činy, za jejichž spáchání trestní zákoník umožňuje uložení výjimečného trestu."
+  },
+  "108": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepovažuj"
+    }
+   ],
+   "spravne": "spolehlivého."
+  },
+  "109": {
+   "dvojnici": [
+    110,
+    111
+   ],
+   "spravne": "kdo byl v posledních 3 letech pravomocně uznán vinným ze spáchání více než 1 přestupku, jde-li o přestupek, kterého se fyzická osoba dopustí tím, že v provozu na pozemních komunikacích překročí nejvyšší dovolenou rychlost v obci o 40 km/h a a více nebo mimo obec o 50 km/h a více."
+  },
+  "110": {
+   "shoda": 0.828,
+   "spravne": "kdo byl v posledních 3 letech pravomocně uznán vinným ze spáchání více než 1 přestupku nebo jednání, které má znaky takového přestupku, pokud jej je třeba s ohledem na povahu činů, jimiž byly takové přestupky nebo jednání spáchány, považovat za vážné nebezpečí pro vnitřní pořádek nebo bezpečnost, a jde-li o přestupek neoprávněného lovu zvěře podle zákona o myslivosti.",
+   "pasti": [
+    {
+     "shoda": 0.828,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "3",
+       "past": "5"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "neoprávněného lovu zvěře podle zákona o myslivosti.",
+       "past": "proti mezinárodní organizaci nebo významným finančním zájmům Evropské unie."
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepovažuj"
+    }
+   ],
+   "dvojnici": [
+    109,
+    111
+   ]
+  },
+  "111": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepovažuj"
+    }
+   ],
+   "dvojnici": [
+    109,
+    110
+   ],
+   "spravne": "kdo byl v posledních 3 letech pravomocně uznán vinným ze spáchání více než 1 přestupku nebo jednání, které má znaky takového přestupku, pokud jej je třeba s ohledem na povahu činů, jimiž byly takové přestupky nebo jednání spáchány, považovat za vážné nebezpečí pro vnitřní pořádek nebo bezpečnost, a jde-li o přestupek na úseku nakládání se zbraněmi a střelivem."
+  },
+  "112": {
+   "shoda": 0.9,
+   "spravne": "není podle zákona o zbraních a střelivu považován za spolehlivého.",
+   "pasti": [
+    {
+     "shoda": 0.9,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "spolehlivého.",
+       "past": "bezúhonného."
+      }
+     ]
+    },
+    {
+     "shoda": 0.9,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "není",
+       "past": "je"
+      }
+     ]
+    }
+   ]
+  },
+  "118": {
+   "shoda": 0.769,
+   "spravne": "při střelbě na kruhový terč o průměru 500 mm na vzdálenost 10 m z 5 výstřelů krátkou kulovou zbraní a na vzdálenost 25 m z 5 výstřelů dlouhou kulovou zbraní v čase nejvýše 5 minut alespoň celkem 6 zásahů.",
+   "pasti": [
+    {
+     "shoda": 0.769,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "kruhový terč o průměru 200 mm na"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "25",
+       "past": "15"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "6",
+       "past": "8"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    119
+   ]
+  },
+  "119": {
+   "shoda": 0.974,
+   "spravne": "při střelbě na kruhový terč o průměru 500 mm na vzdálenost 10 m z 5 výstřelů krátkou kulovou zbraní a na vzdálenost 25 m z 5 výstřelů dlouhou kulovou zbraní v čase nejvýše 5 minut alespoň celkem 8 zásahů.",
+   "pasti": [
+    {
+     "shoda": 0.974,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "8",
+       "past": "6"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    118
+   ]
+  },
+  "121": {
+   "shoda": 0.667,
+   "spravne": "pozastavení, odnětí a zánik zbrojního oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "vypuštěno",
+       "spravne": "pozastavení,",
+       "past": ""
+      },
+      {
+       "typ": "záměna",
+       "spravne": "zánik",
+       "past": "zrušení"
+      }
+     ]
+    }
+   ]
+  },
+  "122": {
+   "dvojnici": [
+    123,
+    263
+   ],
+   "spravne": "je u držitele zbrojního oprávnění dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny."
+  },
+  "123": {
+   "dvojnici": [
+    122,
+    263
+   ],
+   "spravne": "držitel zbrojního oprávnění nedoložil po uplynutí platnosti jeho dosavadního posudku o zdravotní způsobilosti nový lékařský posudek, a proto je podle zákona o specifických zdravotních službách považován za zdravotně nezpůsobilého."
+  },
+  "125": {
+   "shoda": 0.667,
+   "spravne": "pozastavení zbrojního oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "pozastavení",
+       "past": "zánik"
+      }
+     ]
+    }
+   ]
+  },
+  "126": {
+   "shoda": 0.667,
+   "spravne": "odejme zbrojní oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "odejme",
+       "past": "pozastaví"
+      }
+     ]
+    }
+   ]
+  },
+  "127": {
+   "shoda": 0.667,
+   "spravne": "odejme zbrojní oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "odejme",
+       "past": "pozastaví"
+      }
+     ]
+    }
+   ]
+  },
+  "131": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nezaniká"
+    }
+   ],
+   "spravne": "odvolání souhlasu zákonného zástupce, opatrovníka nebo poručníka, spolku nebo střední školy s vydáním zbrojního oprávnění nezletilé osobě."
+  },
+  "133": {
+   "shoda": 0.829,
+   "spravne": "do 12 měsíců ode dne, kdy je krajským ředitelstvím policie do centrálního registru zbraní zapsána skutečnost, že je oprávněn prokázat odbornou způsobilost, úspěšně složí zkoušku odborné způsobilosti, kterou je oprávněn jednou opakovat, nebo komisionální zkoušku.",
+   "pasti": [
+    {
+     "shoda": 0.829,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "12",
+       "past": "6"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "jednou opakovat, nebo komisionální zkoušku.",
+       "past": "dvakrát opakovat."
+      }
+     ]
+    }
+   ]
+  },
+  "137": {
+   "shoda": 0.65,
+   "spravne": "krajské ředitelství policie v případě zkoušek odborné způsobilosti a Ministerstvo vnitra nebo Policejní prezidium České republiky v případě komisionálních zkoušek.",
+   "pasti": [
+    {
+     "shoda": 0.65,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "Ministerstvo vnitra nebo Policejní prezidium České republiky",
+       "past": "Český úřad pro zkoušení zbraní a střeliva"
+      }
+     ]
+    }
+   ]
+  },
+  "140": {
+   "shoda": 0.658,
+   "spravne": "na místě konání zkoušky odborné způsobilosti u krajského ředitelství policie, které provádí dozor nad jejím průběhem, a to ihned po oznámení výsledku zkoušky odborné způsobilosti a poučení o možnosti jej vznést; na později vznesený protest nelze brát zřetel.",
+   "pasti": [
+    {
+     "shoda": 0.658,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ihned po oznámení výsledku",
+       "past": "do 10 pracovních dnů ode dne ukončení"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "a poučení o možnosti jej vznést;",
+       "past": "nebo komisionální zkoušky;"
+      }
+     ]
+    }
+   ]
+  },
+  "147": {
+   "shoda": 0.894,
+   "spravne": "provozovatelem střelnice je držitel zbrojní licence nebo nevyňatá veřejnoprávní instituce, střelnice splňuje technické požadavky a požadavky na vybavenost za účelem zajištění průběhu zkoušek odborné způsobilosti a komisionálních zkoušek a v posledních 5 letech nebylo vůči stejnému provozovateli rozhodnuto o odnětí práva provozovat střelnici jako zapsanou zkouškovou střelnici.",
+   "pasti": [
+    {
+     "shoda": 0.894,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zbrojní licence",
+       "past": "zbrojního oprávnění"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "nevyňatá",
+       "past": "vyňatá"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "stejnému provozovateli",
+       "past": "stejné střelnici"
+      }
+     ]
+    }
+   ]
+  },
+  "149": {
+   "shoda": 0.926,
+   "spravne": "dosáhnout věku 30 let, úspěšně složit zkoušku zkušebního komisaře, být držitelem rozšířeného zbrojního oprávnění minimálně po dobu 3 let a mít alespoň střední vzdělání s maturitní zkouškou.",
+   "pasti": [
+    {
+     "shoda": 0.926,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "30",
+       "past": "21"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "rozšířeného",
+       "past": "obecného"
+      }
+     ]
+    }
+   ]
+  },
+  "151": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "pozastavení jeho zbrojního oprávnění."
+  },
+  "152": {
+   "shoda": 0.8,
+   "spravne": "nesmí vykonávat funkci zkušebního komisaře.",
+   "pasti": [
+    {
+     "shoda": 0.8,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nesmí",
+       "past": "musí"
+      }
+     ]
+    }
+   ]
+  },
+  "155": {
+   "dvojnici": [
+    156
+   ],
+   "spravne": "zániku zbrojního oprávnění zkušebního komisaře."
+  },
+  "156": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nezaniká"
+    }
+   ],
+   "dvojnici": [
+    155
+   ],
+   "spravne": "následujícím po dni, kdy zkušební komisař přestal splňovat některou z podmínek pro jmenování zkušebním komisařem."
+  },
+  "163": {
+   "shoda": 0.636,
+   "spravne": "ZL1 nebo ZL2 nemůže být současně držitelem zbrojní licence skupiny ZL3.",
+   "pasti": [
+    {
+     "shoda": 0.636,
+     "zmeny": [
+      {
+       "typ": "vypuštěno",
+       "spravne": "nebo ZL2",
+       "past": ""
+      },
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "ZL2 a"
+      }
+     ]
+    }
+   ]
+  },
+  "165": {
+   "shoda": 0.75,
+   "spravne": "zbrojní licence skupiny ZL2.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ZL2.",
+       "past": "ZL3."
+      }
+     ]
+    }
+   ]
+  },
+  "166": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "výhradně"
+    }
+   ],
+   "spravne": "zapsané autorizace, pokud není držitelem zbrojní licence skupiny ZL2."
+  },
+  "167": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "výhradně"
+    }
+   ],
+   "spravne": "nemusí být držitelem zbrojní licence nebo zapsané autorizace, se zbraněmi kategorie NO může nakládat každá právnické osoba se sídlem na území České republiky."
+  },
+  "170": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "provozována podnikatelská činnost."
+  },
+  "171": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "být vlastníkem alespoň jedné provozovny odpovídající povaze činnosti, která bude na jejím základě vykonávána."
+  },
+  "172": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neplatí"
+    }
+   ],
+   "spravne": "nebude-li při své činnosti držitele zbrojní licence nakládat se zbraněmi nebo střelivem."
+  },
+  "179": {
+   "dvojnici": [
+    180,
+    181
+   ],
+   "spravne": "rozšířeného zbrojního oprávnění a má alespoň střední vzdělání s výučním listem v oboru zaměřeném na oblast zbraní nebo střeliva anebo alespoň 3 roky praxe zaměřené na nakládání se zbraněmi nebo střelivem."
+  },
+  "180": {
+   "dvojnici": [
+    179,
+    181
+   ],
+   "spravne": "zbrojního oprávnění alespoň po dobu 3 let, přičemž tuto dobu lze u držitele rozšířeného zbrojního oprávnění nahradit oborovým vzděláním nebo praxí stanovenou pro hlavního zbrojíře držitele zbrojní licence skupiny ZL1."
+  },
+  "181": {
+   "dvojnici": [
+    179,
+    180
+   ],
+   "spravne": "rozšířeného zbrojního oprávnění."
+  },
+  "195": {
+   "shoda": 0.615,
+   "spravne": "nabytí právní moci rozhodnutí o odnětí zbrojního oprávnění hlavnímu zbrojíři držitele zbrojní licence.",
+   "pasti": [
+    {
+     "shoda": 0.615,
+     "zmeny": [
+      {
+       "typ": "vypuštěno",
+       "spravne": "zbrojního oprávnění hlavnímu zbrojíři držitele",
+       "past": ""
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nezaniká"
+    }
+   ]
+  },
+  "196": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nezaniká"
+    }
+   ],
+   "spravne": "smrti hlavního zbrojíře."
+  },
+  "198": {
+   "shoda": 0.6,
+   "spravne": "nelze vydat držiteli zbrojního oprávnění.",
+   "pasti": [
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nelze",
+       "past": "lze"
+      },
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "rozšířeného"
+      }
+     ]
+    }
+   ]
+  },
+  "199": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "Ministerstva obrany, které žádost posoudí z hlediska závazků České republiky podle mezinárodní smlouvy, která je součástí právního řádu, a z hlediska zájmů na zajišťování obrany České republiky."
+  },
+  "200": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nemůže"
+    }
+   ],
+   "spravne": "nákup, prodej nebo vypůjčování zbraní nebo střeliva realizované držitelem zbrojní licence skupiny ZL1."
+  },
+  "203": {
+   "shoda": 0.724,
+   "spravne": "ze kterého lze podle zákona o zbraních a střelivu vydat výjimku kategorie R1 nebo S1 a dále mj. též z důvodu spočívajícího v rekonstruování historických bitev nebo obdobných událostí.",
+   "pasti": [
+    {
+     "shoda": 0.724,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "R1",
+       "past": "R3"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "S1",
+       "past": "S3"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "rekonstruování historických bitev nebo obdobných událostí.",
+       "past": "zajišťování zážitkových střeleb."
+      }
+     ]
+    }
+   ]
+  },
+  "206": {
+   "shoda": 0.812,
+   "spravne": "jako výjimku kategorie S2 pro nadlimitní zásobníky, a to za obdobných podmínek jako výjimku kategorie R2.",
+   "pasti": [
+    {
+     "shoda": 0.812,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "S2",
+       "past": "R2"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "obdobných",
+       "past": "obdobních"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "R2.",
+       "past": "R1."
+      }
+     ]
+    }
+   ]
+  },
+  "207": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nelze"
+    }
+   ],
+   "spravne": "vyňaté veřejnoprávní instituci."
+  },
+  "215": {
+   "shoda": 0.75,
+   "spravne": "výjimku nebo povolení odejme.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "odejme.",
+       "past": "pozastaví."
+      }
+     ]
+    }
+   ]
+  },
+  "217": {
+   "shoda": 0.619,
+   "spravne": "zániku zbrojního oprávnění nebo zbrojní licence držitele výjimky nebo povolení nebo nabytí právní moci rozhodnutí o odnětí takové výjimky nebo povolení.",
+   "pasti": [
+    {
+     "shoda": 0.619,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nebo nabytí právní moci rozhodnutí o odnětí takové",
+       "past": "anebo uplynutim 12 měsíců ode dne vydání"
+      }
+     ]
+    }
+   ]
+  },
+  "221": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "odborná způsobilost a spolehlivost."
+  },
+  "227": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "rozhodnutí o prohlášení jejího držitele za nezvěstného."
+  },
+  "228": {
+   "shoda": 0.75,
+   "spravne": "oprávněna střílet mimo jiné na střelnici provozované podle zákona o zbraních a střelivu nebo na střelnici provozované vyňatou veřejnoprávní institucí.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "střelivu nebo",
+       "past": "střelivu, není ale oprávněna střílet"
+      }
+     ]
+    }
+   ]
+  },
+  "230": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek."
+  },
+  "231": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek."
+  },
+  "233": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nejsou"
+    }
+   ],
+   "spravne": "na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek."
+  },
+  "239": {
+   "dvojnici": [
+    241,
+    242
+   ],
+   "spravne": "příležitostné, které nejsou podle provozního řádu využívány častěji než 26 dnů v kalendářním roce, nebo stálé, kterými jsou střelnice, které nejsou příležitostnými střelnicemi."
+  },
+  "241": {
+   "dvojnici": [
+    239,
+    242
+   ],
+   "spravne": "kryté, u nichž se celý ohrožený prostor nachází v uzavřeném objektu, který je konstruován tak, aby byl únik střel do okolního prostoru při dodržení provozního řádu vyloučen, nebo otevřené, kterými jsou střelnice, které nejsou krytými střelnicemi."
+  },
+  "242": {
+   "dvojnici": [
+    239,
+    241
+   ],
+   "spravne": "kryté nebo otevřené."
+  },
+  "243": {
+   "shoda": 0.8,
+   "spravne": "musí být držitelem zbrojní licence.",
+   "pasti": [
+    {
+     "shoda": 0.8,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "musí",
+       "past": "nemusí"
+      }
+     ]
+    },
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zbrojní licence.",
+       "past": "akreditace."
+      }
+     ]
+    }
+   ]
+  },
+  "244": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "lze vydat pouze právnické osobě."
+  },
+  "251": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neodpovídá"
+    }
+   ],
+   "spravne": "je provozovatel střelnice povinen provést změnu provozního řádu střelnice."
+  },
+  "252": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nemá"
+    }
+   ],
+   "spravne": "může na střelnici provádět střelbu a je povinností provozovatele střelnice zajistit zápis této skutečnosti do centrálního registru zbraní v obdobném rozsahu jako do provozní knihy střelnice."
+  },
+  "253": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    },
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "která není členem orgánu nebo odpovědným zástupcem provozovatele střelnice."
+  },
+  "258": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    },
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "držitelem zbrojní licence."
+  },
+  "261": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "neplatné."
+  },
+  "263": {
+   "dvojnici": [
+    122,
+    123
+   ],
+   "spravne": "je ohrožován život, zdraví nebo majetek jiné osoby z důvodu rozporu skutečného technického stavu střelnice s jejím provozním řádem nebo s technicko-organizačními požadavky, které stanoví příloha č. 3 k tomuto zákonu."
+  },
+  "264": {
+   "shoda": 0.75,
+   "spravne": "krajské ředitelství policie může povolení provozovat střelnici pozastavit.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "pozastavit.",
+       "past": "bezprostředně zrušit."
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neodpovídá"
+    }
+   ]
+  },
+  "267": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nezaniká"
+    }
+   ],
+   "spravne": "smrti správce střelnice."
+  },
+  "269": {
+   "shoda": 0.909,
+   "spravne": "10 pracovních dnů ode dne, kdy s takovou zbraní začal nakládat.",
+   "pasti": [
+    {
+     "shoda": 0.909,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "pracovních",
+       "past": "kalendářních"
+      }
+     ]
+    },
+    {
+     "shoda": 0.818,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "10 pracovních",
+       "past": "30"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    271
+   ]
+  },
+  "271": {
+   "dvojnici": [
+    269
+   ],
+   "spravne": "předložit zbraň krajskému ředitelství policie k prohlídce jejího označení a technického stavu."
+  },
+  "272": {
+   "shoda": 0.938,
+   "spravne": "ohlásit její převod krajskému ředitelství policie, a to do 10 pracovních dnů ode dne jeho uskutečnění.",
+   "pasti": [
+    {
+     "shoda": 0.938,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "pracovních",
+       "past": "kalendářních"
+      }
+     ]
+    },
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krajskému ředitelství policie,",
+       "past": "Policejnímu prezidiu České republiky,"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    273
+   ]
+  },
+  "273": {
+   "shoda": 0.875,
+   "spravne": "ohlásit její převod krajskému ředitelství policie, a to do 10 pracovních dnů ode dne jeho uskutečnění.",
+   "pasti": [
+    {
+     "shoda": 0.875,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "10 pracovních",
+       "past": "30"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    272
+   ]
+  },
+  "275": {
+   "shoda": 0.833,
+   "spravne": "krajské ředitelství policie rozhodne o odmítnutí provést registraci zbraně a zbraň zadrží.",
+   "pasti": [
+    {
+     "shoda": 0.833,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "odmítnutí",
+       "past": "odmítnuti"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "zadrží.",
+       "past": "znehodnoti."
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ]
+  },
+  "279": {
+   "dvojnici": [
+    280
+   ],
+   "spravne": "je oprávněna v souladu se zákonem o zbraních a střelivu s danou zbraní nakládat a se svým zapsáním souhlasí."
+  },
+  "280": {
+   "dvojnici": [
+    279
+   ],
+   "spravne": "která je oprávněna s danou zbraní nakládat a se svým zapsáním souhlasí."
+  },
+  "283": {
+   "shoda": 0.923,
+   "spravne": "do 10 pracovních dnů ode dne, kdy s ní začal její držitel nakládat.",
+   "pasti": [
+    {
+     "shoda": 0.923,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "10",
+       "past": "14"
+      }
+     ]
+    }
+   ]
+  },
+  "287": {
+   "shoda": 0.688,
+   "spravne": "ohlásit její převod krajskému ředitelství policie, a to do 10 pracovních dnů ode dne jeho uskutečnění.",
+   "pasti": [
+    {
+     "shoda": 0.688,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "10 pracovních",
+       "past": "20"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "jeho uskutečnění.",
+       "past": "vydání zapsané autorizace."
+      }
+     ]
+    }
+   ]
+  },
+  "288": {
+   "shoda": 0.933,
+   "spravne": "krajské ředitelství policie zápis změny stavu zbraně do centrálního registru zbraní neprovede a zbraň zadrží.",
+   "pasti": [
+    {
+     "shoda": 0.933,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zadrží.",
+       "past": "znehodnoti."
+      }
+     ]
+    },
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "provede"
+      },
+      {
+       "typ": "vypuštěno",
+       "spravne": "neprovede",
+       "past": ""
+      },
+      {
+       "typ": "záměna",
+       "spravne": "zadrží.",
+       "past": "převezme dočasně do úschovy."
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ]
+  },
+  "290": {
+   "shoda": 0.848,
+   "spravne": "kterou nabyla k tomu oprávněná osoba, která tuto zbraň do 10 pracovních dnů ode dne, kdy s ní začala nakládat, v souladu s jiným právním předpisem trvale přeshraničně přemístí mimo území České republiky.",
+   "pasti": [
+    {
+     "shoda": 0.848,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "jiným právním předpisem trvale",
+       "past": "rozhodnutim Policejního prezidia dočasně"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "přemístí",
+       "past": "přemísti"
+      }
+     ]
+    },
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "pracovních",
+       "past": "kalendářních"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "v souladu s jiným právním předpisem trvale přeshraničně přemístí mimo",
+       "past": "přemísti po"
+      }
+     ]
+    }
+   ]
+  },
+  "291": {
+   "shoda": 0.88,
+   "spravne": "Povinnost ohlásit převod zbraně se netýká ani přenechání ani svěření zbraně podléhající registraci nebo zbraně kategorie PO v souladu se zákonem o zbraních a střelivu.",
+   "pasti": [
+    {
+     "shoda": 0.88,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ani",
+       "past": "pouze"
+      },
+      {
+       "typ": "vypuštěno",
+       "spravne": "ani svěření",
+       "past": ""
+      }
+     ]
+    },
+    {
+     "shoda": 0.88,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ani přenechání ani",
+       "past": "pouze"
+      }
+     ]
+    }
+   ]
+  },
+  "294": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "výhradně zbraněmi kategorie NO."
+  },
+  "299": {
+   "shoda": 0.632,
+   "spravne": "Držitel zbrojní licence musí zajistit, aby evidenční soupis obsahoval mimo jiné aktuální údaje identifikující každou palnou zbraň kategorie NO.",
+   "pasti": [
+    {
+     "shoda": 0.632,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "identifikující každou palnou zbraň kategorie NO.",
+       "past": "o druhu a ověření regulovaných součásti zbraně."
+      }
+     ]
+    }
+   ]
+  },
+  "302": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "údaje identifikující každou součást zbraně kategorie NO."
+  },
+  "304": {
+   "dvojnici": [
+    305
+   ],
+   "spravne": "dočasné umožnění jiné osobě samostatně nakládat se zbraní nebo střelivem osoby, která je přenechává; ten, komu byly zbraň nebo střelivo přenechány, je nesmí sám přenechat jiné osobě."
+  },
+  "305": {
+   "shoda": 0.929,
+   "spravne": "dočasné umožnění jiné osobě samostatně nakládat se zbraní nebo střelivem osoby, která je přenechává.",
+   "pasti": [
+    {
+     "shoda": 0.929,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "dočasné",
+       "past": "trvalé"
+      }
+     ]
+    },
+    {
+     "shoda": 0.857,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "samostatně",
+       "past": "pod dohledem"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    304
+   ]
+  },
+  "306": {
+   "shoda": 0.833,
+   "spravne": "je nesmí sama přenechat jiné osobě.",
+   "pasti": [
+    {
+     "shoda": 0.833,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nesmí",
+       "past": "může"
+      }
+     ]
+    }
+   ]
+  },
+  "310": {
+   "dvojnici": [
+    320
+   ],
+   "spravne": "osobě, která je oprávněna s nimi nakládat, nebo plně svéprávné zletilé fyzické osobě."
+  },
+  "311": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "osobě, o které nezná údaje potřebné k určení její totožnosti."
+  },
+  "314": {
+   "dvojnici": [
+    315
+   ],
+   "spravne": "umožnění jiné fyzické osobě nakládat se svěřenou zbraní nebo střelivem pod dohledem osoby oprávněné se svěřovanou zbraní a střelivem nakládat."
+  },
+  "315": {
+   "dvojnici": [
+    314
+   ],
+   "spravne": "umožnění jiné fyzické osobě nakládat se svěřenou zbraní nebo střelivem pod dohledem osoby oprávněné se svěřovanou zbraní a střelivem nakládat."
+  },
+  "317": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "zbraň kategorie R1 nebo střelivo kategorie S1 lze svěřit jiné fyzické osobě starší 21 let, a to při činnosti držitele zbrojní licence za účelem provedení zážitkové střelby."
+  },
+  "319": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "musí jít o přiměřeně rozumově a tělesně vyspělou osobu a dohled nad takovou osobou musí zajišťovat fyzická osoba, která dosáhla věku 21 let a je držitelem zbrojního oprávnění po dobu delší než 3 roky."
+  },
+  "320": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "dvojnici": [
+    310
+   ],
+   "spravne": "za dohledu osoby oprávněné s takovou zbraní a střelivem nakládat."
+  },
+  "325": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "Ano, výjimky stanoví zákon o zbraních a střelivu v § 81 pro vybrané akce a činnosti."
+  },
+  "331": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neplatí"
+    }
+   ],
+   "spravne": "není povinností osoby, která zbraně nebo střelivo veřejně vystavuje, zajistit zabezpečení vystavovaných zbraní nebo střeliva proti zneužití, ztrátě nebo odcizení."
+  },
+  "342": {
+   "shoda": 0.769,
+   "spravne": "její zákonný zástupce, opatrovník nebo poručník je povinen zajistit dodržování pravidel zabezpečení zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.769,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "sám"
+      },
+      {
+       "typ": "vypuštěno",
+       "spravne": "dodržování pravidel",
+       "past": ""
+      }
+     ]
+    }
+   ]
+  },
+  "346": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "vždy"
+    }
+   ],
+   "spravne": "jméno výrobce nebo jeho obchodní značka, země nebo místo výroby, výrobní číslo, rok výroby, pokud není součástí výrobního čísla, ráže a označení modelu, pokud výrobce nebo dovozce takové označení užívá."
+  },
+  "347": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neplatí"
+    }
+   ],
+   "dvojnici": [
+    351
+   ],
+   "spravne": "je-li při úpravě nebo opravě zbraně poškozeno nebo zničeno, nemusí již být obnoveno."
+  },
+  "348": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "rok uvedení na trh."
+  },
+  "351": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "neplatí"
+    }
+   ],
+   "dvojnici": [
+    347
+   ],
+   "spravne": "krajské ředitelství policie může chybějící identifikační údaje nahradit vlastním označením."
+  },
+  "361": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "vždy"
+    }
+   ],
+   "spravne": "Ano."
+  },
+  "362": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "vždy"
+    }
+   ],
+   "spravne": "nevratnou úpravu zbraně."
+  },
+  "363": {
+   "shoda": 0.923,
+   "spravne": "držitel zbrojní licence skupiny ZL1, a to na základě povolení nevratné úpravy zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.923,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ZL1,",
+       "past": "ZL2,"
+      }
+     ]
+    }
+   ]
+  },
+  "366": {
+   "shoda": 0.7,
+   "spravne": "povinnost předložit zbraň po provedení nevratné úpravy krajskému ředitelství policie.",
+   "pasti": [
+    {
+     "shoda": 0.7,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krajskému ředitelství policie.",
+       "past": "Kriminalistickému ústavu."
+      }
+     ]
+    }
+   ]
+  },
+  "371": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "pouze pro vlastní potřebu a při tom postupuje tak, aby nebyl ohrožen život, zdraví nebo majetek."
+  },
+  "372": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "nepodléhá povinnosti označení a ověření."
+  },
+  "374": {
+   "shoda": 0.75,
+   "spravne": "kterými jsou zápalky, střeliviny a střely obsahující aktivní náplň, lze nakládat pouze v souladu s technickými požadavky a v množství, které stanoví vláda nařízením.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zápalky, střeliviny",
+       "past": "střely"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "střely obsahující aktivní náplň,",
+       "past": "nábojnice,"
+      }
+     ]
+    }
+   ]
+  },
+  "376": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "zbrojního průvodního listu nebo evropského zbrojního pasu vydávaného jiným členským státem."
+  },
+  "380": {
+   "shoda": 0.857,
+   "spravne": "je oprávněn současně přepravit střelivo pro takovou zbraň v množství odpovídajícím účelu dočasného použití.",
+   "pasti": [
+    {
+     "shoda": 0.857,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "je",
+       "past": "není"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "použití.",
+       "past": "použiti."
+      }
+     ]
+    }
+   ]
+  },
+  "383": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "uplynutí doby 30 dnů od jejich vydání nebo od vydání rozhodnutí o pozastavení jejich platnosti."
+  },
+  "391": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "krajské ředitelství policie uveřejní informace o nalezené zbrani nebo střelivu na své úřední desce po dobu 12 měsíců."
+  },
+  "392": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nelze"
+    }
+   ],
+   "spravne": "připadají do vlastnictví státu."
+  },
+  "396": {
+   "dvojnici": [
+    397
+   ],
+   "spravne": "se předává prostřednictvím krajského ředitelství policie; zbraň nebo střelivo předané k úřednímu zničení předáním krajskému ředitelství policie připadá do vlastnictví státu."
+  },
+  "397": {
+   "dvojnici": [
+    396
+   ],
+   "spravne": "se předávají i přijímají bezplatně."
+  },
+  "399": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "Ministerstvo vnitra."
+  },
+  "404": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nejsou"
+    }
+   ],
+   "spravne": "může příslušník policie za účelem jejich zadržení vstoupit do obydlí, jiných prostor nebo na pozemek, má-li důvodné podezření, že se zde zbraň nebo střelivo nalézají."
+  },
+  "410": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nejsou"
+    }
+   ],
+   "spravne": "může příslušník policie za účelem jejich zajištění vstoupit do obydlí, jiných prostor nebo na pozemek, lze-li předpokládat, že se zde zbraň nebo střelivo nalézají."
+  },
+  "413": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nemůže"
+    }
+   ],
+   "spravne": "Požádat krajské ředitelství policie o stanovení lhůty, po kterou bude moci nakládat se zbraní nebo střelivem, přestože oprávnění pozbyl."
+  },
+  "419": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "se neposkytují podle jiného právního předpisu, tedy například ani podle zákona o svobodném přístupu k informacím."
+  },
+  "424": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "přestupku podle zákona o zbraních a střelivu."
+  },
+  "425": {
+   "shoda": 0.667,
+   "spravne": "se dopouští přestupku podle zákona o zbraních a střelivu.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zbraních a střelivu.",
+       "past": "silniční dopravě."
+      }
+     ]
+    }
+   ]
+  },
+  "428": {
+   "dvojnici": [
+    429
+   ],
+   "spravne": "5 000 000 Kč; pokutu v této výši lze uložit držiteli zbrojní licence například tehdy, pokud úmyslně, opakovaně nebo ve větším rozsahu nevede evidenci v souladu se zákonem o zbraních a střelivu."
+  },
+  "429": {
+   "dvojnici": [
+    428
+   ],
+   "spravne": "5 000 000 Kč; pokutu v této výši lze uložit držiteli zbrojní licence například tehdy, pokud úmyslně, opakovaně nebo ve větším množství dodá na trh zbraň nebo střelivo v rozporu se zákonem o zbraních a střelivu."
+  },
+  "432": {
+   "shoda": 0.6,
+   "spravne": "alespoň jednou za 10 let.",
+   "pasti": [
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "alespoň",
+       "past": "nanejvýše"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "10",
+       "past": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "433": {
+   "dvojnici": [
+    435,
+    436
+   ],
+   "spravne": "předložením zbrojního listu spolu s předložením občanského průkazu, cestovního pasu nebo obdobného dokladu osoby, které byl zbrojní list vydán."
+  },
+  "435": {
+   "dvojnici": [
+    433,
+    436
+   ],
+   "spravne": "před krajským ředitelstvím policie nebo Policejním prezidiem, které oprávnění ověří, a to popřípadě i na žádost osob, které navzájem chtějí oprávnění prokázat, nebo před držitelem zbrojní licence, který je oprávněn za tímto účelem v centrálním registru zbraní oprávnění ověřit."
+  },
+  "436": {
+   "dvojnici": [
+    433,
+    435
+   ],
+   "spravne": "předložením evropského zbrojního pasu vydávaného Českou republikou, ve kterém je zapsána zbraň, které se dané oprávnění týká."
+  },
+  "450": {
+   "shoda": 0.733,
+   "spravne": "zbraň, jejíž funkce je odvozena od okamžitého uvolnění chemické energie; za palnou zbraň se považují také jiné předměty, na které se vztahuje tento zákon a které lze na palnou zbraň upravit, zejména poplašné a signalizační zbraně, akustické a salutní zbraně a polotovary hlavních částí zbraní.",
+   "pasti": [
+    {
+     "shoda": 0.733,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zbraň, jejíž funkce je odvozena od okamžitého uvolnění chemické energie;",
+       "past": "zbraň určená pro použití jednotných nábojů, nábojek nebo děleného střeliva;"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "akustické",
+       "past": "plynové"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "salutní",
+       "past": "zápalné"
+      }
+     ]
+    },
+    {
+     "shoda": 0.622,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "chemické energie;",
+       "past": "potenciální mechanické energie akumulované ve střelném prachu;"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "polotovary hlavních částí zbraní.",
+       "past": "zbraňové systémy založené na principu laseru, vyzařování částic nebo energie."
+      }
+     ]
+    }
+   ]
+  },
+  "451": {
+   "dvojnici": [
+    452,
+    453,
+    454,
+    471
+   ],
+   "spravne": "akustická zbraň."
+  },
+  "452": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "dvojnici": [
+    451,
+    453,
+    454,
+    471
+   ],
+   "spravne": "zbraň, jejíž funkce je odvozena od okamžitého uvolnění energie stlačeného vzduchu nebo jiného plynu."
+  },
+  "453": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "dvojnici": [
+    451,
+    452,
+    454,
+    471
+   ],
+   "spravne": "plynová zbraň."
+  },
+  "454": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "dvojnici": [
+    451,
+    452,
+    453,
+    471
+   ],
+   "spravne": "střelná zbraň typu trébuchet."
+  },
+  "456": {
+   "shoda": 0.722,
+   "spravne": "palná zbraň, jejíž délka v nejkratším funkčním stavu nepřesahuje 600 mm nebo jejíž délka hlavně nepřesahuje 300 mm.",
+   "pasti": [
+    {
+     "shoda": 0.722,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "600",
+       "past": "300"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "300 mm.",
+       "past": "152,4 mm (6 palců)."
+      }
+     ]
+    }
+   ]
+  },
+  "457": {
+   "shoda": 0.667,
+   "spravne": "délka její hlavně je 200 mm.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "hlavně"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "200",
+       "past": "400"
+      }
+     ]
+    }
+   ]
+  },
+  "459": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "vždy"
+    }
+   ],
+   "spravne": "palná zbraň, která není krátkou zbraní."
+  },
+  "461": {
+   "shoda": 0.786,
+   "spravne": "v důsledku předchozího výstřelu a jejíž konstrukce neumožňuje více výstřelů na jedno stisknutí spouště.",
+   "pasti": [
+    {
+     "shoda": 0.786,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "v důsledku",
+       "past": "využitím energie"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "neumožňuje",
+       "past": "umožňuje"
+      }
+     ]
+    }
+   ],
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "dvojnici": [
+    463
+   ]
+  },
+  "463": {
+   "dvojnici": [
+    461
+   ],
+   "spravne": "v důsledku předchozího výstřelu a jejíž konstrukce neumožňuje více výstřelů na jedno stisknutí spouště."
+  },
+  "465": {
+   "shoda": 0.667,
+   "spravne": "opakovací palnou zbraň.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "opakovací",
+       "past": "samonabíjecí"
+      }
+     ]
+    }
+   ]
+  },
+  "466": {
+   "shoda": 0.909,
+   "spravne": "ručním vložením nebo nabitím střeliva do nábojové komory, hlavně nebo nábojiště.",
+   "pasti": [
+    {
+     "shoda": 0.909,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "ručním",
+       "past": "mechanickým"
+      }
+     ]
+    }
+   ]
+  },
+  "471": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesplňuj"
+    }
+   ],
+   "dvojnici": [
+    451,
+    452,
+    453,
+    454
+   ],
+   "spravne": "palná zbraň, která byla vyrobena do 31. prosince 1890, za podmínky, že všechny hlavní části zbraně byly vyrobeny do 31. prosince 1890, a taková zbraň střelbyschopná."
+  },
+  "475": {
+   "shoda": 0.889,
+   "spravne": "palná zbraň, která byla vyrobena do 31. prosince 1890.",
+   "pasti": [
+    {
+     "shoda": 0.889,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "1890.",
+       "past": "1869."
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    477
+   ]
+  },
+  "477": {
+   "dvojnici": [
+    475
+   ],
+   "spravne": "plynové zbraně, které byly zkonstruovány do 31. prosince 1890 (např. Girandoniho vojenská větrovka)."
+  },
+  "478": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "neaktivní torzo palné zbraně vyrobené a zavedené do výzbroje některé z válčících stran v období 1. světové války."
+  },
+  "493": {
+   "dvojnici": [
+    499,
+    500
+   ],
+   "spravne": "hlaveň, tělo zbraně, válec revolverové palné zbraně, závěr."
+  },
+  "494": {
+   "dvojnici": [
+    495
+   ],
+   "spravne": "hlaveň; hlavní je i vložná hlaveň a vložná nábojová komora."
+  },
+  "495": {
+   "dvojnici": [
+    494
+   ],
+   "spravne": "závěr; závěrem se rozumí také závorník a nosič závorníku."
+  },
+  "499": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    493,
+    500
+   ],
+   "spravne": "nadlimitní zásobník."
+  },
+  "500": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    493,
+    499
+   ],
+   "spravne": "noktovizor."
+  },
+  "501": {
+   "shoda": 0.609,
+   "spravne": "zařízení určené pro použití s palnou zbraní a konstruované pro celkové snížení hluku výstřelu, a to včetně snížení hluku výstřelu ve směru střelby.",
+   "pasti": [
+    {
+     "shoda": 0.609,
+     "zmeny": [
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "nebo plynovou"
+      },
+      {
+       "typ": "vypuštěno",
+       "spravne": "celkové snížení hluku výstřelu, a to včetně",
+       "past": ""
+      }
+     ]
+    },
+    {
+     "shoda": 0.609,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "výstřelu ve směru střelby.",
+       "past": "způsobovaného mechanickým pohybem součástí zbraně při jejím funkčním cyklu."
+      }
+     ]
+    }
+   ]
+  },
+  "502": {
+   "shoda": 0.909,
+   "spravne": "při použití běžného střeliva snižuje hluk výstřelu alespoň o 10 dB.",
+   "pasti": [
+    {
+     "shoda": 0.909,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "10",
+       "past": "45"
+      }
+     ]
+    },
+    {
+     "shoda": 0.818,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "běžného",
+       "past": "subsonického"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "10",
+       "past": "15"
+      }
+     ]
+    }
+   ]
+  },
+  "503": {
+   "shoda": 0.889,
+   "spravne": "20 nábojů v případě krátké palné zbraně nebo s kapacitou přesahující 10 nábojů v případě dlouhé palné zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.889,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "20",
+       "past": "10"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "10",
+       "past": "20"
+      }
+     ]
+    },
+    {
+     "shoda": 0.889,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krátké",
+       "past": "samonabíjecí"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "dlouhé",
+       "past": "opakovací"
+      }
+     ]
+    }
+   ]
+  },
+  "505": {
+   "dvojnici": [
+    506,
+    517,
+    531,
+    532,
+    537,
+    540
+   ],
+   "spravne": "zbraně zvláště účinné, kterými jsou zbraně pro střelbu munice, zápalné zbraně a zbraňové systémy na principu principu vyzařování částic nebo energie."
+  },
+  "506": {
+   "dvojnici": [
+    505,
+    517,
+    531,
+    532,
+    537,
+    540
+   ],
+   "spravne": "zákeřné zbraně."
+  },
+  "507": {
+   "shoda": 0.778,
+   "spravne": "zbraně zvláště účinné, zákeřné zbraně a samočinné palné zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.778,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zvláště",
+       "past": "hromadně"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "zákeřné",
+       "past": "záludné"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    512,
+    516,
+    518,
+    521,
+    535,
+    539
+   ]
+  },
+  "510": {
+   "dvojnici": [
+    511
+   ],
+   "spravne": "palné zbraně vyrobené z takových materiálů, které neumožňují tyto zbraně identifikovat při kontrolách osob a zavazadel pomocí detekčních přístrojů."
+  },
+  "511": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nejsou"
+    }
+   ],
+   "dvojnici": [
+    510
+   ],
+   "spravne": "nášlapné protipěchotní miny."
+  },
+  "512": {
+   "dvojnici": [
+    507,
+    516,
+    518,
+    521,
+    535,
+    539
+   ],
+   "spravne": "dlouhá samonabíjecí palná zbraň zkonstruovaná pro střelbu s použitím ramenní opěry, kterou lze sklopením, zasunutím nebo obdobnou manipulací s ramenní opěrou zkrátit na délku kratší než 600 mm."
+  },
+  "516": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    507,
+    512,
+    518,
+    521,
+    535,
+    539
+   ],
+   "spravne": "krátké palné zbraně nabíjené jednotlivě pro použití střeliva se středovým zápalem, nebo s okrajovým zápalem, jejichž celková délka je menší než 280 mm."
+  },
+  "517": {
+   "dvojnici": [
+    505,
+    506,
+    531,
+    532,
+    537,
+    540
+   ],
+   "spravne": "dlouhé samonabíjecí nebo opakovací palné zbraně s hlavní s hladkým vývrtem, pokud délka hlavně nepřesahuje 600 mm."
+  },
+  "518": {
+   "dvojnici": [
+    507,
+    512,
+    516,
+    521,
+    535,
+    539
+   ],
+   "spravne": "krátké palné zbraně nabíjené jednotlivě pro použití střeliva se středovým zápalem."
+  },
+  "519": {
+   "dvojnici": [
+    525
+   ],
+   "spravne": "R3."
+  },
+  "521": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    535,
+    539
+   ],
+   "spravne": "jednoranové nebo dvouranové palné zbraně nabíjené jednotlivě pro použití děleného střeliva."
+  },
+  "523": {
+   "dvojnici": [
+    529
+   ],
+   "spravne": "R4."
+  },
+  "525": {
+   "dvojnici": [
+    519
+   ],
+   "spravne": "R4."
+  },
+  "527": {
+   "dvojnici": [
+    528
+   ],
+   "spravne": "R4."
+  },
+  "528": {
+   "dvojnici": [
+    527
+   ],
+   "spravne": "R4."
+  },
+  "529": {
+   "dvojnici": [
+    523
+   ],
+   "spravne": "R4."
+  },
+  "530": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nelze"
+    }
+   ],
+   "spravne": "R4."
+  },
+  "531": {
+   "dvojnici": [
+    505,
+    506,
+    517,
+    532,
+    537,
+    540
+   ],
+   "spravne": "neletální zneschopňující prostředky založené na principu palné nebo plynové zbraně."
+  },
+  "532": {
+   "dvojnici": [
+    505,
+    506,
+    517,
+    531,
+    537,
+    540
+   ],
+   "spravne": "poplašné a signalizační zbraně."
+  },
+  "535": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    521,
+    539
+   ],
+   "spravne": "expanzní přístroje."
+  },
+  "537": {
+   "dvojnici": [
+    505,
+    506,
+    517,
+    531,
+    532,
+    540
+   ],
+   "spravne": "historické zbraně."
+  },
+  "539": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    521,
+    535
+   ],
+   "spravne": "laserové značkovače a obdobná přenosná ruční laserová zařízení, která mohou oslepit."
+  },
+  "540": {
+   "dvojnici": [
+    505,
+    506,
+    517,
+    531,
+    532,
+    537
+   ],
+   "spravne": "náboje nezjistitelné pomocí detekčních a rentgenových přístrojů."
+  },
+  "542": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "náboje s pyrotechnickým prostředkem podle zákona o pyrotechnice s akustickým, světelným nebo dýmovým efektem určené pro střelbu z palných zbraní."
+  },
+  "543": {
+   "dvojnici": [
+    505,
+    506,
+    517,
+    531,
+    532,
+    537
+   ],
+   "spravne": "náboje s průbojnou střelou, kterou se rozumí střela pro vojenské nebo speciální účely, která je tvořena materiálem tvrdším než 250 HB."
+  },
+  "544": {
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    521,
+    535
+   ],
+   "spravne": "náboje pro krátké palné zbraně obsahující ve své sestavě střelu s řízenou deformací nebo fragmentací určenou k vyvolání zvýšeného ranivého účinku."
+  },
+  "546": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "spravne": "cvičné náboje."
+  },
+  "547": {
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    521,
+    535
+   ],
+   "spravne": "náboje s hromadnou nebo jednotnou střelou neuvedené v jiných kategoriích střeliva."
+  },
+  "548": {
+   "shoda": 0.667,
+   "spravne": "střelivem kategorie S3.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "S3.",
+       "past": "S1."
+      }
+     ]
+    }
+   ]
+  },
+  "549": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nepatří"
+    }
+   ],
+   "dvojnici": [
+    507,
+    512,
+    516,
+    518,
+    521,
+    535
+   ],
+   "spravne": "nábojky."
+  },
+  "562": {
+   "dvojnici": [
+    565,
+    566
+   ],
+   "spravne": "v běžném rozsahu umožňoval předvedení postupů bezpečného nakládání se zbraněmi a střelivem; bezpečný směr je možno určit zejména tak, že směřuje k dopadišti střel vymezenému provozním řádem střelnice."
+  },
+  "564": {
+   "shoda": 0.75,
+   "spravne": "nesměřovala do bezpečného směru.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nesměřovala",
+       "past": "směřovala"
+      }
+     ]
+    }
+   ]
+  },
+  "565": {
+   "dvojnici": [
+    562,
+    566
+   ],
+   "spravne": "musí respektovat každá osoba přítomná při zkoušce odborné způsobilosti nebo komisionální zkoušce a nesmí do něj v jejím průběhu vstupovat nebo jinak zasahovat."
+  },
+  "566": {
+   "dvojnici": [
+    562,
+    565
+   ],
+   "spravne": "aby zbraň vždy směřovala do bezpečného směru."
+  },
+  "567": {
+   "dvojnici": [
+    570,
+    571,
+    572,
+    573
+   ],
+   "spravne": "uvedením zbraně do stavu, ve kterém je ke střelbě zapotřebí pouze přesunutí prstu ruky do prostoru lučíku a stisknutí spouště."
+  },
+  "568": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "musí být prst ruky mimo lučík zbraně; zbraň neustále směřuje do bezpečného směru."
+  },
+  "570": {
+   "dvojnici": [
+    567,
+    571,
+    572,
+    573
+   ],
+   "spravne": "s ohledem na konkrétní charakter situace, která k přerušení střelby vedla, například při vstupu osoby do prostoru ohroženého střelbou nebo v případě jiné události neumožňující pokračovat bezpečně ve střelbě; přitom je nezbytné směřovat zbraň do prostoru, kde by náhodný výstřel nezpůsobil škody."
+  },
+  "571": {
+   "dvojnici": [
+    567,
+    570,
+    572,
+    573
+   ],
+   "spravne": "provede kontrola zbraně."
+  },
+  "572": {
+   "dvojnici": [
+    567,
+    570,
+    571,
+    573
+   ],
+   "spravne": "její vybití a uvedení do stavu bezpečného pro odložení zbraně nebo další manipulaci, například rozebrání zbraně."
+  },
+  "573": {
+   "dvojnici": [
+    567,
+    570,
+    571,
+    572
+   ],
+   "spravne": "mimo případů naplněných zákonných podmínek nutné obrany a krajní nouze není přípustné mířit na osoby ani v případě, je-li zbraň vybitá, zkontrolovaná nebo nekompletní; úmyslné míření na osoby je v takovém případě porušením zásad bezpečného nakládání se zbraní."
+  },
+  "576": {
+   "dvojnici": [
+    577,
+    578,
+    579,
+    580,
+    581,
+    582
+   ],
+   "spravne": "se provede vyjmutí zásobníku, po stažení závěru do zadní polohy se přes výhozné okénko provede vizuální kontrola nábojové komory."
+  },
+  "577": {
+   "shoda": 0.676,
+   "spravne": "se provede kontrola zásobníkové šachty, zda se v ní nenachází zásobník; tuto kontrolu lze provést vizuálně pohledem přes výhozné okénko při stažení závěru do zadní polohy nebo pohmatem prsty ruky, která nedrží zbraň, přes ústí zásobníkové šachty.",
+   "pasti": [
+    {
+     "shoda": 0.676,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zásobníkové šachty, zda se v ní nenachází zásobník; tuto kontrolu lze provést",
+       "past": "celkové kapacity zásobníku, a to buď"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    576,
+    578,
+    579,
+    580,
+    581,
+    582
+   ]
+  },
+  "578": {
+   "shoda": 0.607,
+   "spravne": "po provedení kontroly lze závěr ponechat v zadní poloze, pokud to konstrukce zbraně umožňuje, nebo jej vypustit do přední polohy; v přední poloze závěru se provede rána jistoty.",
+   "pasti": [
+    {
+     "shoda": 0.607,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zadní",
+       "past": "přední"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "přední polohy;",
+       "past": "zadní polohy a zde jej zachytit na záchytu závěru;"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "přední",
+       "past": "zadní"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    576,
+    577,
+    579,
+    580,
+    581,
+    582
+   ]
+  },
+  "579": {
+   "dvojnici": [
+    576,
+    577,
+    578,
+    580,
+    581,
+    582
+   ],
+   "spravne": "se provede vyklopení nábojového válce a vizuální kontrola jeho nábojových komor."
+  },
+  "580": {
+   "dvojnici": [
+    576,
+    577,
+    578,
+    579,
+    581,
+    582
+   ],
+   "spravne": "odložení revolveru se provede s vyklopeným nábojovým válcem."
+  },
+  "581": {
+   "dvojnici": [
+    576,
+    577,
+    578,
+    579,
+    580,
+    582
+   ],
+   "spravne": "se provede vyjmutí zásobníku; pokud to konstrukce zbraně umožňuje, provede se vizuální kontrola nábojové komory po stažení závěru do zadní polohy přes výhozné okénko a pokud konstrukce zbraně vizuální kontrolu nábojové komory přes výhozné okénko neumožňuje, provede se opakované stažení závěru do zadní polohy s následným vypuštěním do přední polohy."
+  },
+  "582": {
+   "dvojnici": [
+    576,
+    577,
+    578,
+    579,
+    580,
+    581
+   ],
+   "spravne": "se provede kontrola zásobníkové šachty, zda se v ní nenachází zásobník; tuto kontrolu lze provést vizuálně pohledem přes výhozné okénko při stažení závěru do zadní polohy nebo pohmatem prsty ruky, která nedrží zbraň, přes ústí zásobníkové šachty."
+  },
+  "583": {
+   "shoda": 0.679,
+   "spravne": "po provedení kontroly lze závěr ponechat v zadní poloze, pokud to konstrukce zbraně umožňuje, nebo jej vypustit do přední polohy; v přední poloze závěru se provede rána jistoty.",
+   "pasti": [
+    {
+     "shoda": 0.679,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "závěr",
+       "past": "zásobník"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "závěru",
+       "past": "zásobníku"
+      },
+      {
+       "typ": "vsunuto",
+       "spravne": "",
+       "past": "jeho vizuální kontrola přes výhozné okénko nebo"
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    576,
+    577,
+    578,
+    579,
+    580,
+    581
+   ]
+  },
+  "584": {
+   "dvojnici": [
+    585
+   ],
+   "spravne": "se provede vyjmutí zásobníku, otevření závěru a následně vizuální kontrola nábojové komory a zásobníkové šachty."
+  },
+  "585": {
+   "dvojnici": [
+    584
+   ],
+   "spravne": "odložení zbraně se provede se závěrem v otevřené poloze; při uzamčení nenabité zkontrolované zbraně se provede vypuštění bicího mechanismu prostřednictvím rány jistoty."
+  },
+  "586": {
+   "dvojnici": [
+    587,
+    588,
+    589,
+    590,
+    591,
+    592
+   ],
+   "spravne": "nedojde-li k iniciaci náboje, je třeba vyčkat minimálně 10 sekund se zbraní směřující do bezpečného směru, výrobce zbraně nebo střeliva může v návodu k použití stanovovat též jinou (vesměs delší) minimální dobu, po kterou je třeba vyčkat, zda nedojde k opožděné iniciaci a k výstřelu."
+  },
+  "587": {
+   "dvojnici": [
+    586,
+    588,
+    589,
+    590,
+    591,
+    592
+   ],
+   "spravne": "po uplynutí doby, po kterou je nutné vyčkat, zda nedojde k opožděné iniciaci náboje a k výstřelu, se provede kontrola zbraně; následně je také třeba zkontrolovat otisk zápalníku na zápalce pro zjištění, zda je závada zapříčiněna zbraní nebo střelivem."
+  },
+  "588": {
+   "dvojnici": [
+    586,
+    587,
+    589,
+    590,
+    591,
+    592
+   ],
+   "spravne": "se provede kontrola zbraně a následně se provede kontrola průchodnosti vývrtu hlavně, které bude u zbraní většiny konstrukcí předcházet rozebrání zbraně; v případě, že střela je uvízlá v hlavni, pouze se slovně popíše správný postup jejího odstranění."
+  },
+  "589": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    590,
+    591,
+    592
+   ],
+   "spravne": "provedení rány jistoty po kontrole zbraně, u které došlo ke slabé ráně, není porušením zásad bezpečného nakládání se zbraní, a to zejména pokud je takový způsob uvolnění spoušťového a bicího mechanismu nezbytný pro její rozebrání."
+  },
+  "590": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    589,
+    591,
+    592
+   ],
+   "spravne": "po uplynutí doby, po kterou je nutné vyčkat, zda nedojde k opožděné iniciaci náboje a k výstřelu, se provede kontrola zbraně; následně je také třeba zkontrolovat otisk zápalníku na zápalce pro zjištění, zda je závada zapříčiněna zbraní nebo střelivem."
+  },
+  "591": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    589,
+    590,
+    592
+   ],
+   "spravne": "vyčkávání před dalším postupem po slabé ráně obdobně jako v případě selhače (tj. minimálně po dobu 10 sekund) je možné, ale nevyžaduje se."
+  },
+  "592": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    589,
+    590,
+    591
+   ],
+   "spravne": "závadu je třeba řešit s ohledem na její konkrétní charakter, přičemž zpravidla se nejprve provede vyjmutí zásobníku, je-li zbraň vybavena odnímatelným zásobníkem, a vnější vizuální kontrola zbraně a zjištění druhu závady."
+  },
+  "593": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    589,
+    590,
+    591
+   ],
+   "spravne": "odstranění závady se provádí s ohledem na její charakter, a to zejména odstraněním vzpříčeného nebo zaseklého náboje nebo nábojnice z zbraně; nejčastěji bude k odstranění závady typu zádržka postačovat po vyjmutí zásobníku opakované stažení a vypuštění závěru do přední polohy."
+  },
+  "594": {
+   "dvojnici": [
+    586,
+    587,
+    588,
+    589,
+    590,
+    591
+   ],
+   "spravne": "v případě, že nelze vysunout zásobník, například z důvodu náboje vzpříčeného ve vývodkách zásobníku, je třeba pokud možno zachytit závěr v zadní poloze a odstranit příčinu zádržky přes výhozné okénko."
+  },
+  "598": {
+   "dvojnici": [
+    599,
+    600
+   ],
+   "spravne": "při krátkodobém uložení nejvýše 2 zbraní kategorie R2, R3 nebo R4 anebo střeliva kategorie S2 nebo S3 v počtu nejvýše 1000 nábojů ve vozidle nepřesahujícím 4 hodiny musí být zabezpečení provedeno uzamčením zbraně nebo střeliva v uzamykatelné plastovém nebo kovovém kufru nebo obdobné schránce, které nejsou při pohledu z vnějšku vozidla ani částečně viditelné a které jsou upevněny ke karoserii vozidla; kufr nebo schránku nesmí být možné otevřít nebo oddělit od karoserie bez použití dílenského nářadí."
+  },
+  "599": {
+   "dvojnici": [
+    598,
+    600
+   ],
+   "spravne": "zbraň nebo střelivo, které jsou stanoveným způsobem zabezpečovány při jejich krátkodobém uložení ve vozidle, smí být umístěny pouze v té části vozidla, která je chráněna uzavřenou pevnou kovovou karoserií; okna a jiné obdobné otvory vozidla musí být plně uzavřeny a vozidlo musí být standardním způsobem uzamčeno."
+  },
+  "600": {
+   "shoda": 0.65,
+   "spravne": "zbraň zabezpečovaná při krátkodobém uložení ve vozidle nesmí být v nabitém stavu a střelivo musí být uloženo odděleně od zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.65,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "uloženo odděleně od zbraně.",
+       "past": "po celou dobu uložení ve vozidle delaborováno."
+      }
+     ]
+    }
+   ],
+   "dvojnici": [
+    598,
+    599
+   ]
+  },
+  "601": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "4 hodiny."
+  },
+  "602": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nesmí"
+    }
+   ],
+   "spravne": "dlouhodobé uložení zbraní nebo střeliva ve vozidle zákon o zbraních a střelivu nepřipouští."
+  },
+  "603": {
+   "dvojnici": [
+    604
+   ],
+   "spravne": "aktivní komponenty střeliva musí být přechovávány v uzavřených originálních obalech výrobce a takovým způsobem, aby nemohlo dojít k jejich zahoření nebo iniciaci anebo k přímému ohrožení života nebo zdraví osob po nezamýšleném zahoření nebo iniciaci těchto komponentů."
+  },
+  "604": {
+   "dvojnici": [
+    603
+   ],
+   "spravne": "aktivní komponenty střeliva musí být přechovávány v suchu a odděleně od lehce vznětlivých nebo snadno hořlavých látek a předmětů; každý druh aktivních komponentů střeliva musí být uložen odděleně od jiných druhů aktivních komponentů tak, aby nemohlo dojít k jejich řetězové iniciaci."
+  },
+  "608": {
+   "dvojnici": [
+    609
+   ],
+   "spravne": "kontrolní znehodnocovací značku, kterou držitel zbrojní licence vyznačuje na všechny hlavní části palné zbraně ihned po jejich znehodnocení."
+  },
+  "609": {
+   "dvojnici": [
+    608
+   ],
+   "spravne": "verifikační znehodnocovací značky, jejichž vyznačením na znehodnocené zbrani příslušný orgán, kterým je Český úřad pro zkoušení zbraní a střeliva nebo Ministerstvo obrany, potvrzuje, že znehodnocená zbraň prošla kontrolou a znehodnocení bylo provedeno v souladu se stanovenými technickými požadavky."
+  },
+  "623": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nejsou"
+    }
+   ],
+   "spravne": "podléhají povolení Ministerstva průmyslu a obchodu vydávanému podle zákona č. 228/2005 Sb., o kontrole obchodu s výrobky, jejichž držení se v České republice omezuje z bezpečnostních důvodů."
+  },
+  "627": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "není"
+    }
+   ],
+   "spravne": "Ověřování zbraně je prováděno pouze u zbraní pocházejících z nečlenských států Evropské unie."
+  },
+  "648": {
+   "shoda": 0.667,
+   "spravne": "přihlédne pouze jako k polehčující okolnosti.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "vypuštěno",
+       "spravne": "pouze",
+       "past": ""
+      },
+      {
+       "typ": "záměna",
+       "spravne": "polehčující",
+       "past": "přitěžující"
+      }
+     ]
+    }
+   ]
+  },
+  "649": {
+   "shoda": 0.75,
+   "spravne": "brokové střelivo, a to konkrétně o ráži 12.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "12.",
+       "past": "67,5 mm."
+      }
+     ]
+    }
+   ]
+  },
+  "651": {
+   "shoda": 0.909,
+   "spravne": "minimální délku nábojové komory, ve které lze tento náboj bezpečně použít.",
+   "pasti": [
+    {
+     "shoda": 0.909,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "minimální",
+       "past": "maximální"
+      }
+     ]
+    }
+   ]
+  },
+  "652": {
+   "dvojnici": [
+    653,
+    673
+   ],
+   "spravne": "kování."
+  },
+  "653": {
+   "dvojnici": [
+    652,
+    673
+   ],
+   "spravne": "zápalka."
+  },
+  "656": {
+   "shoda": 0.667,
+   "spravne": "Náboj ráže 12.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "12.",
+       "past": "20."
+      }
+     ]
+    }
+   ]
+  },
+  "658": {
+   "shoda": 0.75,
+   "spravne": "dlouhé palné zbraně s drážkovaným vývrtem hlavně, například pro pušky nebo kulovnice.",
+   "pasti": [
+    {
+     "shoda": 0.75,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "drážkovaným",
+       "past": "hladkým"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "pušky",
+       "past": "samopaly"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "kulovnice.",
+       "past": "kulomety."
+      }
+     ]
+    }
+   ]
+  },
+  "659": {
+   "dvojnici": [
+    661
+   ],
+   "spravne": "lahvovitý."
+  },
+  "661": {
+   "dvojnici": [
+    659
+   ],
+   "spravne": "typem nábojnice, kdy horní dva náboje mají nábojnici s drážkou a spodní náboj má nábojnici s okrajem."
+  },
+  "662": {
+   "shoda": 0.824,
+   "spravne": "úsťová rychlost střely cca 780 m/s, úsťová energie střely cca 3500 J, maximální dostřel cca 4000 m.",
+   "pasti": [
+    {
+     "shoda": 0.824,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "780",
+       "past": "180"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "3500",
+       "past": "250"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "4000",
+       "past": "800"
+      }
+     ]
+    },
+    {
+     "shoda": 0.647,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "780 m/s,",
+       "past": "25 km/min,"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "3500 J,",
+       "past": "2000 kJ,"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "4000 m.",
+       "past": "25 km."
+      }
+     ]
+    }
+   ]
+  },
+  "666": {
+   "shoda": 0.882,
+   "spravne": "maximální dostřel činí zhruba 2800 m a střela má po celé této dráze letu potenciálně smrtící účinek.",
+   "pasti": [
+    {
+     "shoda": 0.882,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "zhruba 2800",
+       "past": "400"
+      }
+     ]
+    }
+   ]
+  },
+  "668": {
+   "shoda": 0.818,
+   "spravne": "jde o náboj s číslem 4 (náboj ráže 9 mm Luger).",
+   "pasti": [
+    {
+     "shoda": 0.818,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "4",
+       "past": "2"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "Luger).",
+       "past": "Flobert)."
+      }
+     ]
+    },
+    {
+     "shoda": 0.727,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "4",
+       "past": "5"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "9",
+       "past": "7,62x25"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "Luger).",
+       "past": "Tokarev)."
+      }
+     ]
+    }
+   ]
+  },
+  "669": {
+   "shoda": 0.6,
+   "spravne": "krátké samonabíjecí kulové palné zbraně.",
+   "pasti": [
+    {
+     "shoda": 0.6,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krátké samonabíjecí",
+       "past": "dlouhé opakovací"
+      }
+     ]
+    }
+   ]
+  },
+  "673": {
+   "dvojnici": [
+    652,
+    653
+   ],
+   "spravne": "nábojnice."
+  },
+  "681": {
+   "shoda": 0.857,
+   "spravne": "revolver, neboli krátká kulová opakovací palná zbraň.",
+   "pasti": [
+    {
+     "shoda": 0.857,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "opakovací",
+       "past": "samonabíjecí"
+      }
+     ]
+    }
+   ]
+  },
+  "683": {
+   "shoda": 0.867,
+   "spravne": "revolverový válec, jedná se o hlavní část zbraně ve smyslu zákona o zbraních a střelivu.",
+   "pasti": [
+    {
+     "shoda": 0.867,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "revolverový válec,",
+       "past": "difuzor,"
+      }
+     ]
+    },
+    {
+     "shoda": 0.8,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "revolverový válec, jedná",
+       "past": "bubínek, nejedná"
+      }
+     ]
+    }
+   ]
+  },
+  "695": {
+   "shoda": 0.889,
+   "spravne": "palnou zbraň s konstrukcí založenou na křesadlovém zámkovém systému.",
+   "pasti": [
+    {
+     "shoda": 0.889,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "křesadlovém",
+       "past": "doutnákovém"
+      }
+     ]
+    },
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "křesadlovém zámkovém systému.",
+       "past": "dvojákovém trojáku."
+      }
+     ]
+    }
+   ]
+  },
+  "697": {
+   "shoda": 0.667,
+   "spravne": "„2“ a „5“.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "„5“.",
+       "past": "„6“."
+      }
+     ]
+    }
+   ]
+  },
+  "704": {
+   "dvojnici": [
+    705,
+    706,
+    707
+   ],
+   "spravne": "hlaveň; v tomto případě hlaveň nese též uzamykací ozuby a odemykací kulisu."
+  },
+  "705": {
+   "dvojnici": [
+    704,
+    706,
+    707
+   ],
+   "spravne": "předsuvná (nebo vratná) pružina s vodítkem; jde o pružinu, která působí na závěr a mimo jiné jej po výstřelu vrací do přední polohy."
+  },
+  "706": {
+   "dvojnici": [
+    704,
+    705,
+    707
+   ],
+   "spravne": "tělo zbraně."
+  },
+  "707": {
+   "dvojnici": [
+    704,
+    705,
+    706
+   ],
+   "spravne": "zásobník."
+  },
+  "714": {
+   "zadani": [
+    {
+     "typ": "absolutní tvrzení",
+     "slovo": "pouze"
+    }
+   ],
+   "spravne": "šipka nad zbraní označuje směr, pro který je z hlediska používání zbraně charakteristické zejména to, že jde o směr, ve kterém střela opouští zbraň, jde tedy o šipku směřující k ústí hlavně, zatímco šipka pod zbraní směřuje k rameni střelce."
+  },
+  "733": {
+   "shoda": 0.923,
+   "spravne": "manuálním ovládání spoušťového a bicího mechanismu; revolver je až na výjimky opakovací zbraní.",
+   "pasti": [
+    {
+     "shoda": 0.923,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "opakovací",
+       "past": "samonabíjecí"
+      }
+     ]
+    }
+   ]
+  },
+  "735": {
+   "shoda": 0.792,
+   "spravne": "manuálním ovládání posuvného předpažbí, kterým se ovládá závěrový a nabíjecí mechanismus zbraně; při posunu předpažbí směrem vzad dochází standardně také k natažení bicího mechanismu.",
+   "pasti": [
+    {
+     "shoda": 0.792,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nabíjecí",
+       "past": "spoušťový"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "vzad",
+       "past": "vpřed"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "natažení bicího mechanismu.",
+       "past": "odjištění uzamykacích válečků."
+      }
+     ]
+    }
+   ]
+  },
+  "740": {
+   "shoda": 0.778,
+   "spravne": "hlaveň menší ráže vkládaná do vývrtu hlavně větší ráže.",
+   "pasti": [
+    {
+     "shoda": 0.778,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "menší",
+       "past": "větší"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "větší",
+       "past": "menší"
+      }
+     ]
+    }
+   ]
+  },
+  "743": {
+   "shoda": 0.667,
+   "spravne": "dvouhlavňová brokovnice s hlavněmi vedle sebe.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "vedle sebe.",
+       "past": "nad sebou."
+      }
+     ]
+    }
+   ]
+  },
+  "746": {
+   "shoda": 0.818,
+   "spravne": "zbraň se dvěma hlavněmi nad sebou; obě tyto hlavně jsou brokové.",
+   "pasti": [
+    {
+     "shoda": 0.818,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "nad sebou;",
+       "past": "vedle sebe;"
+      }
+     ]
+    }
+   ]
+  },
+  "750": {
+   "shoda": 0.778,
+   "spravne": "lovecká dlouhá zbraň se dvěma kulovými hlavněmi vedle sebe.",
+   "pasti": [
+    {
+     "shoda": 0.778,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "vedle sebe.",
+       "past": "nad sebou."
+      }
+     ]
+    }
+   ]
+  },
+  "753": {
+   "shoda": 0.812,
+   "spravne": "krátká zbraň s pevnou nebo pohyblivou hlavní s nábojovou komorou; jednoranová, opakovací nebo samonabíjecí (popřípadě vícehlavňová).",
+   "pasti": [
+    {
+     "shoda": 0.812,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krátká",
+       "past": "dlouhá"
+      },
+      {
+       "typ": "vypuštěno",
+       "spravne": "nebo pohyblivou",
+       "past": ""
+      }
+     ]
+    }
+   ]
+  },
+  "754": {
+   "shoda": 0.905,
+   "spravne": "krátká zbraň s pevnou hlavní a otáčivým válcem s nábojovými komorami, které se mezi jednotlivými výstřely natáčejí do osy vývrtu hlavně.",
+   "pasti": [
+    {
+     "shoda": 0.905,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "krátká",
+       "past": "dlouhá"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "pevnou",
+       "past": "pohyblivou"
+      }
+     ]
+    }
+   ]
+  },
+  "755": {
+   "dvojnici": [
+    757
+   ],
+   "spravne": "vyjádřena některými nebo všemi údaji: smluvní velikostí průměru vodicí části vývrtu hlavně, technickým popisem nábojové komory, technickým popisem použitelného náboje, doplňkovými označeními."
+  },
+  "757": {
+   "dvojnici": [
+    755
+   ],
+   "spravne": "smluvní označení, ke kterému přísluší zejména smluvní velikost průměru vodící části hlavně a jmenovitá nebo skutečná délka nábojnice."
+  },
+  "765": {
+   "shoda": 0.875,
+   "spravne": "až 4 km, přičemž střela může způsobit vážnou újmu na zdraví po celé své dráze letu.",
+   "pasti": [
+    {
+     "shoda": 0.875,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "4 km,",
+       "past": "800 m,"
+      }
+     ]
+    }
+   ]
+  },
+  "771": {
+   "shoda": 0.667,
+   "spravne": "ničivý účinek střel na živé cíle, jehož výsledkem je vznik střelných poranění.",
+   "pasti": [
+    {
+     "shoda": 0.667,
+     "zmeny": [
+      {
+       "typ": "záměna",
+       "spravne": "živé",
+       "past": "pevné"
+      },
+      {
+       "typ": "záměna",
+       "spravne": "vznik střelných poranění.",
+       "past": "zničení cíle."
+      }
+     ]
+    }
+   ]
+  },
+  "831": {
+   "zadani": [
+    {
+     "typ": "zápor",
+     "slovo": "nemůže"
+    }
+   ],
+   "spravne": "Kyseliny, zásady, pěnidla."
+  }
+ }
+}

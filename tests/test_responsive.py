@@ -7,56 +7,77 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server, browser, _snap  # noqa: F401, E402
-
+from tests.test_ui_e2e import _snap, browser, server  # noqa: F401, E402
 
 MOBILE = {"width": 390, "height": 844}  # iPhone 14
 TABLET = {"width": 768, "height": 1024}
 DESKTOP = {"width": 1280, "height": 900}
 
 
-def test_hamburger_has_large_hit_area_on_mobile(server, browser):
-    """Hamburger button ma min 44x44px hit area (Apple HIG + WCAG)."""
+# Na mobilu se do plné navigace vstupuje položkou Menu ve spodní liště,
+# ne hamburgerem — ten je od 900 px výš. Testy drží stejnou záruku
+# (dost velký cíl, otevře drawer, funguje i klik u kraje) na novém prvku.
+MENU_TARGET = ".zp-tabbar-item:last-child"
+
+
+def test_mobile_menu_has_large_hit_area(server, browser):
+    """Vstup do menu ma min 44x44px hit area (Apple HIG + WCAG)."""
     ctx = browser.new_context(viewport=MOBILE)
     page = ctx.new_page()
     page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(500)
-    box = page.locator(".zp-hamburger").first.bounding_box()
-    assert box is not None, "Hamburger button not found"
-    assert box["width"] >= 44, f"Hamburger width {box['width']} < 44px"
-    assert box["height"] >= 44, f"Hamburger height {box['height']} < 44px"
+    box = page.locator(MENU_TARGET).first.bounding_box()
+    assert box is not None, "Polozka Menu ve spodni liste nenalezena"
+    assert box["width"] >= 44, f"Menu width {box['width']} < 44px"
+    assert box["height"] >= 44, f"Menu height {box['height']} < 44px"
     ctx.close()
 
 
-def test_hamburger_click_opens_drawer_on_mobile(server, browser):
-    """Klik na hamburger na mobile otevre drawer."""
+def test_hamburger_hidden_on_mobile_shown_on_desktop(server, browser):
+    """Dva vstupy do stejne navigace by si konkurovaly — na mobilu je jen lista."""
     ctx = browser.new_context(viewport=MOBILE)
     page = ctx.new_page()
     page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(500)
-    # Klik dvakrat (otevrit, zavrit) — dreiver to nekdy potrebuje
-    page.locator(".zp-hamburger").first.click()
+    assert page.locator(".zp-hamburger:visible").count() == 0, "Na mobilu ma byt hamburger skryty"
+    assert page.locator(".zp-tabbar:visible").count() == 1, "Na mobilu chybi spodni lista"
+    ctx.close()
+
+    ctx = browser.new_context(viewport=DESKTOP)
+    page = ctx.new_page()
+    page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(500)
-    # Drawer should contain nav links
+    assert page.locator(".zp-hamburger:visible").count() >= 1, "Na desktopu ma byt hamburger videt"
+    assert page.locator(".zp-tabbar:visible").count() == 0, "Na desktopu nema byt spodni lista"
+    ctx.close()
+
+
+def test_mobile_menu_opens_drawer(server, browser):
+    """Klik na Menu ve spodni liste otevre plnou navigaci."""
+    ctx = browser.new_context(viewport=MOBILE)
+    page = ctx.new_page()
+    page.goto(server + "/", wait_until="networkidle")
+    page.wait_for_timeout(500)
+    page.locator(MENU_TARGET).first.click()
+    page.wait_for_timeout(600)
     visible_links = page.locator(".zp-nav-link:visible").count()
     assert visible_links >= 5, f"Drawer neotevrelo dostatek nav links: {visible_links}"
     ctx.close()
 
 
-def test_hamburger_click_edge_works(server, browser):
-    """Klik na roh hamburger buttonu — musi take fungovat (cely button je klikatelny)."""
+def test_mobile_menu_edge_click_works(server, browser):
+    """Klik u kraje polozky Menu — cely cil musi byt klikatelny."""
     ctx = browser.new_context(viewport=MOBILE)
     page = ctx.new_page()
     page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(500)
-    box = page.locator(".zp-hamburger").first.bounding_box()
-    # Klik blizko rohu (85% sirky, 85% vysky)
+    box = page.locator(MENU_TARGET).first.bounding_box()
     x = box["x"] + box["width"] * 0.85
     y = box["y"] + box["height"] * 0.85
     page.mouse.click(x, y)
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(600)
     visible_links = page.locator(".zp-nav-link:visible").count()
-    assert visible_links >= 5, "Klik blizko rohu hamburger buttonu musi otevrit drawer"
+    assert visible_links >= 5, "Klik u kraje polozky Menu musi otevrit drawer"
     ctx.close()
 
 
@@ -83,7 +104,7 @@ def test_all_nav_items_have_visible_icons_on_mobile(server, browser):
     page.goto(server + "/", wait_until="networkidle")
     page.wait_for_timeout(500)
     # Open drawer
-    page.locator(".zp-hamburger").first.click()
+    page.locator(MENU_TARGET).first.click()
     page.wait_for_timeout(500)
     # Vsechny nav links maji .q-icon uvnitr s > 0 visible width
     icon_check = page.evaluate("""() => {

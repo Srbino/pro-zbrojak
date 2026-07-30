@@ -1,10 +1,13 @@
 """Vygeneruje porovnávací HTML: číslo otázky | odpověď z PDF | odpověď z appky | shoda."""
-import json, sys
+import json
+import sys
 from pathlib import Path
+
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 import pdfplumber
-from tests.test_all_answers_vs_pdf import _detect, PDF_PATH
+
+from tests.test_all_answers_vs_pdf import PDF_PATH, _detect
 
 OUT = ROOT / "docs" / "porovnani.html"
 SECTIONS = {"pravo": "Právo", "provadeci_predpisy": "Prováděcí předpisy",

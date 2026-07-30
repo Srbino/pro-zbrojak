@@ -14,8 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCREENSHOTS_DIR = ROOT / "tests" / "screenshots" / "responsive"
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
-
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 VIEWPORTS = {
     "mobile":  {"width": 390, "height": 844},

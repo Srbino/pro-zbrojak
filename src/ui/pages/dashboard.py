@@ -6,6 +6,7 @@ import datetime as dt
 from nicegui import ui
 
 from src.auth import require_login
+from src.db import traps
 from src.db.questions import load_questions
 from src.db.store import (
     all_flagged,
@@ -88,14 +89,17 @@ def index_page():
         # duplikovat ikony a popisy. Vynecha dashboard + marathon (jiz rendered).
         tiles = [it for it in nav_items_for_dashboard() if it.path not in ("/marathon", "/settings")]
 
+        n_traps = traps.count()
         badges = {
             "/srs":      str(n_due) if n_due > 0 else None,
             "/mistakes": str(n_mistakes) if n_mistakes else None,
             "/flagged":  str(n_flagged) if n_flagged else None,
+            "/traps":    str(n_traps) if n_traps else None,
         }
         disabled = {
             "/mistakes": n_mistakes == 0,
             "/flagged":  n_flagged == 0,
+            "/traps":    n_traps == 0,
         }
 
         with ui.element("div").classes("zp-grid-3 zp-mt-sm"):
@@ -136,10 +140,17 @@ def index_page():
 
 # ---------- helpers (private to this module) ----------
 
+def _plural_otazky(n: int) -> str:
+    """Česká shoda: 1 otázku, 2–4 otázky, 5+ otázek."""
+    if n == 1:
+        return "otázku"
+    return "otázky" if 2 <= n <= 4 else "otázek"
+
+
 def _render_hero(*, total: int, active_run, n_due: int, ov: dict):
     if n_due > 0:
         hero_primary(
-            title=f"Dnes máš {n_due} otázek k opakování",
+            title=f"Dnes máš {n_due} {_plural_otazky(n_due)} k opakování",
             subtitle="Spaced repetition drží znalosti dlouhodobě. Zabere to ~5–10 min.",
             cta_label="Začít review", cta_target="/srs",
         )
@@ -176,8 +187,22 @@ def _section_row(label: str, correct: int, attempts: int, pct: float):
         ui.label(f"{correct} / {attempts} správně").classes("zp-caption zp-mt-xs")
 
 
+MONTHS_CS = ["led", "úno", "bře", "dub", "kvě", "čvn",
+             "čvc", "srp", "zář", "říj", "lis", "pro"]
+
+# Rozměr jedné buňky a mezery — musí sedět s .zp-hm-body v theme.py,
+# protože podle toho se počítá šířka popisků měsíců.
+_HM_CELL = 11
+_HM_GAP = 3
+
+
 def _render_heatmap(daily: dict[str, int]):
-    """GitHub-style heatmap jako CSS grid — plne responzivni, bez knihovny."""
+    """Heatmapa aktivity — sloupec je týden, řádek den v týdnu.
+
+    Buňky se vypisují PO SLOUPCÍCH, protože mřížka má `grid-auto-flow: column`.
+    Dřív se plnily po řádcích do `repeat(n, 1fr)`, což je roztáhlo na pruhy
+    přes celý týden a popisky měsíců spadly pod sebe.
+    """
     items = sorted(daily.items())
     if not items:
         return
@@ -198,63 +223,67 @@ def _render_heatmap(daily: dict[str, int]):
     max_count = max((v[0] for v in cells.values()), default=0)
 
     def _level(cnt: int) -> int:
-        if cnt == 0: return 0
-        if max_count <= 1: return 4
-        if cnt <= max_count * 0.25: return 1
-        if cnt <= max_count * 0.50: return 2
-        if cnt <= max_count * 0.75: return 3
+        if cnt == 0:
+            return 0
+        if max_count <= 1:
+            return 4
+        if cnt <= max_count * 0.25:
+            return 1
+        if cnt <= max_count * 0.50:
+            return 2
+        if cnt <= max_count * 0.75:
+            return 3
         return 4
 
-    # Build month labels (first week of each month)
-    month_cols: list[tuple[int, str]] = []
+    # Popisky měsíců — každý zabere tolik, kolik má týdnů, aby seděl nad nimi.
+    month_starts: list[tuple[int, str]] = []
     last_month = None
     for c in range(n_cols):
         d = start + dt.timedelta(days=c * 7)
-        m = d.strftime("%b")
-        if m != last_month:
-            month_cols.append((c, m))
-            last_month = m
+        if d.month != last_month:
+            month_starts.append((c, MONTHS_CS[d.month - 1]))
+            last_month = d.month
 
-    # Build HTML
+    step = _HM_CELL + _HM_GAP
     day_labels = ["Po", "", "St", "", "Pá", "", "Ne"]
-    html_parts = ['<div class="zp-hm">']
-    # Months row
-    html_parts.append('<div class="zp-hm-months">')
-    prev_col = 0
-    for col, m in month_cols:
-        if col > prev_col:
-            # spacer
-            html_parts.append(f'<span style="grid-column: span {col - prev_col};"></span>')
-        html_parts.append(f'<span class="zp-hm-month" style="grid-column: span 1;">{m}</span>')
-        prev_col = col + 1
-    html_parts.append('</div>')
-    # Days grid (rows × cols)
-    html_parts.append(f'<div class="zp-hm-body" style="grid-template-columns: 20px repeat({n_cols}, 1fr);">')
-    for row in range(7):
-        # Day label
-        html_parts.append(f'<div class="zp-hm-day">{day_labels[row]}</div>')
-        for col in range(n_cols):
+
+    parts = ['<div class="zp-hm">']
+
+    # Sloupec s názvy dnů stojí mimo mřížku, takže mřížku nedeformuje.
+    parts.append('<div class="zp-hm-days">')
+    parts.extend(f"<span>{lbl}</span>" for lbl in day_labels)
+    parts.append("</div>")
+
+    parts.append('<div class="zp-hm-scroll">')
+    parts.append('<div class="zp-hm-months">')
+    for i, (col, name) in enumerate(month_starts):
+        end = month_starts[i + 1][0] if i + 1 < len(month_starts) else n_cols
+        width = (end - col) * step
+        # Pod dva týdny se název měsíce nevejde a ořízl by se do nesmyslu.
+        text = name if width >= 2 * step else ""
+        parts.append(f'<span class="zp-hm-month" style="width:{width}px;">{text}</span>')
+    parts.append("</div>")
+
+    parts.append('<div class="zp-hm-body">')
+    for col in range(n_cols):          # po sloupcích — grid-auto-flow: column
+        for row in range(7):
             if (row, col) in cells:
                 cnt, iso = cells[(row, col)]
-                lvl = _level(cnt)
-                html_parts.append(
-                    f'<div class="zp-hm-cell zp-hm-l{lvl}" title="{iso}: {cnt} odpovědí"></div>'
+                parts.append(
+                    f'<div class="zp-hm-cell zp-hm-l{_level(cnt)}" '
+                    f'title="{iso}: {cnt} odpovědí"></div>'
                 )
             else:
-                html_parts.append('<div class="zp-hm-cell"></div>')
-    html_parts.append('</div>')
-    html_parts.append('</div>')
+                parts.append('<div class="zp-hm-cell zp-hm-l0"></div>')
+    parts.append("</div></div></div>")
 
-    # Legend
-    html_parts.append(
-        '<div class="zp-hm-legend">'
-        '<span>Méně</span>'
+    parts.append(
+        '<div class="zp-hm-legend"><span>Méně</span>'
         '<span class="zp-hm-cell zp-hm-l0"></span>'
         '<span class="zp-hm-cell zp-hm-l1"></span>'
         '<span class="zp-hm-cell zp-hm-l2"></span>'
         '<span class="zp-hm-cell zp-hm-l3"></span>'
         '<span class="zp-hm-cell zp-hm-l4"></span>'
-        '<span>Více</span>'
-        '</div>'
+        '<span>Více</span></div>'
     )
-    ui.html("".join(html_parts)).classes("w-full").style("width: 100%; display: block;")
+    ui.html("".join(parts)).classes("w-full")

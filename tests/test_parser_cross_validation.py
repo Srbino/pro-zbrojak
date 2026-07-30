@@ -14,7 +14,9 @@ import pdfplumber
 import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
-PDF_PATH = ROOT / "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+PDF_NAME = "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+PDF_PATH = next((p for p in (ROOT / "docs" / PDF_NAME, ROOT / PDF_NAME) if p.exists()),
+                ROOT / "docs" / PDF_NAME)
 QUESTIONS_PATH = ROOT / "data" / "questions.json"
 
 GRAY_TARGET = 0.827
@@ -68,7 +70,7 @@ def _detect_correct_for_question(page, q_pdf_num: int) -> str | None:
     for key in sorted_keys:
         if key < q_start_top or key >= next_q_top:
             continue
-        first_word = sorted(lines[key], key=lambda x: x["x0"])[0]
+        _first_word = sorted(lines[key], key=lambda x: x["x0"])[0]
         text = " ".join(w["text"] for w in sorted(lines[key], key=lambda x: x["x0"]))
         m = RE_OPTION.match(text)
         if m:

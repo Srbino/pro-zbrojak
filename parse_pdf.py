@@ -12,13 +12,12 @@ Detekce správné odpovědi: šedé podbarvení (fill ~0.827 grayscale) v PDF re
 from __future__ import annotations
 
 import hashlib
-import io
 import json
 import logging
 import re
 import sys
 import unicodedata
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pdfplumber
@@ -26,13 +25,15 @@ import pymupdf  # PyMuPDF
 from PIL import Image
 from rich.console import Console
 from rich.logging import RichHandler
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TextColumn
 
-from src.parser.models import Question, Options, UnparsedQuestion, Section
-
+from src.parser.models import Options, Question, Section, UnparsedQuestion
 
 ROOT = Path(__file__).parent
-PDF_PATH = ROOT / "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+PDF_NAME = "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+# Verzovaná kopie je v docs/; v kořeni repa může ležet pracovní (ta je v .gitignore).
+PDF_PATH = next((p for p in (ROOT / "docs" / PDF_NAME, ROOT / PDF_NAME) if p.exists()),
+                ROOT / "docs" / PDF_NAME)
 DATA_DIR = ROOT / "data"
 IMAGES_DIR = ROOT / "images"
 LOGS_DIR = ROOT / "logs"
@@ -276,6 +277,29 @@ def detect_correct(rq: RawQuestion, gray_rects: list[dict]) -> str | None:
 
 # ----------------------------- Image extraction (PyMuPDF) -----------------------------
 
+IMAGE_CLIP_PAD = 6  # bod kolem obrazku, aby se chytly blizke anotace
+
+
+def question_image_clip(rects, page):
+    """Jeden vyrez pres VSECHNY obrazky, ktere k otazce patri.
+
+    Nektere otazky maji v PDF vic samostatnych obrazku pod sebou — treba
+    otazka 609 ma tri znehodnocovaci znacky, kazdou jako vlastni objekt.
+    Puvodni verze brala jen prvni z nich, takze se u takove otazky zobrazila
+    jedna znacka ze tri a zadani mluvici o „obrazcich" nedavalo smysl.
+    """
+    x0 = min(r.x0 for r in rects)
+    y0 = min(r.y0 for r in rects)
+    x1 = max(r.x1 for r in rects)
+    y1 = max(r.y1 for r in rects)
+    return pymupdf.Rect(
+        max(0, x0 - IMAGE_CLIP_PAD),
+        max(0, y0 - IMAGE_CLIP_PAD),
+        min(page.rect.width, x1 + IMAGE_CLIP_PAD),
+        min(page.rect.height, y1 + IMAGE_CLIP_PAD),
+    )
+
+
 def extract_images_for_questions(pdf_path: Path, questions: list[tuple[RawQuestion, list[dict]]]):
     """Pro kazdou otazku najde obrazek na jeji strance a RASTERIZUJE ho jako
     vyrez stranky (vcetne overlay, napr. cisel 1-6 nad pistoli).
@@ -323,38 +347,35 @@ def extract_images_for_questions(pdf_path: Path, questions: list[tuple[RawQuesti
         for i, rq in enumerate(qs_sorted):
             q_top = rq.marker_top
             next_top = qs_sorted[i + 1].marker_top if i + 1 < len(qs_sorted) else page.rect.height + 100
-            for j, img_rect in enumerate(img_rects):
-                if j in used:
-                    continue
-                if q_top - 5 <= img_rect.y0 <= next_top:
-                    # Filename = q<pdf_number>.png (prehlednejsi nez hash)
-                    out = IMAGES_DIR / f"q{rq.pdf_number}.png"
-                    try:
-                        # Vyrenderuj vyrez stranky vcetne overlay (cisla, anotace)
-                        # Padding kolem image bbox pro zachyceni blizkych anotaci
-                        pad = 6
-                        clip = pymupdf.Rect(
-                            max(0, img_rect.x0 - pad),
-                            max(0, img_rect.y0 - pad),
-                            min(page.rect.width, img_rect.x1 + pad),
-                            min(page.rect.height, img_rect.y1 + pad),
-                        )
-                        zoom = RENDER_DPI / 72.0
-                        mat = pymupdf.Matrix(zoom, zoom)
-                        pix = page.get_pixmap(clip=clip, matrix=mat, alpha=False)
-                        pix.save(str(out))
-                        # Optionalne optimalizovat pres Pillow (menej bytes)
-                        try:
-                            with Image.open(out) as im:
-                                im.save(out, "PNG", optimize=True)
-                        except Exception:
-                            pass
-                        image_map[rq.pdf_number] = f"images/q{rq.pdf_number}.png"
-                        used.add(j)
-                        log.info(f"  Q{rq.pdf_number}: rendered {out.name} ({out.stat().st_size // 1024} KB)")
-                        break
-                    except Exception as e:
-                        log.warning(f"  Q{rq.pdf_number}: chyba renderovani: {e}")
+            mine = [
+                (j, r) for j, r in enumerate(img_rects)
+                if j not in used and q_top - 5 <= r.y0 <= next_top
+            ]
+            if not mine:
+                continue
+
+            clip = question_image_clip([r for _, r in mine], page)
+            out = IMAGES_DIR / f"q{rq.pdf_number}.png"
+            try:
+                # Vyrenderuj vyrez stranky vcetne overlay (cisla, anotace)
+                zoom = RENDER_DPI / 72.0
+                mat = pymupdf.Matrix(zoom, zoom)
+                pix = page.get_pixmap(clip=clip, matrix=mat, alpha=False)
+                pix.save(str(out))
+                # Optionalne optimalizovat pres Pillow (menej bytes)
+                try:
+                    with Image.open(out) as im:
+                        im.save(out, "PNG", optimize=True)
+                except Exception:
+                    pass
+                image_map[rq.pdf_number] = f"images/q{rq.pdf_number}.png"
+                used.update(j for j, _ in mine)
+                log.info(
+                    f"  Q{rq.pdf_number}: rendered {out.name} "
+                    f"({len(mine)} obr., {out.stat().st_size // 1024} KB)"
+                )
+            except Exception as e:
+                log.warning(f"  Q{rq.pdf_number}: chyba renderovani: {e}")
     doc.close()
     return image_map
 
@@ -373,7 +394,7 @@ def main():
     console.rule("[bold green]Parsuji PDF MV ČR")
     console.print(f"Zdroj: [cyan]{PDF_PATH.name}[/cyan]")
 
-    parsed_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    parsed_at = datetime.now(UTC).isoformat(timespec="seconds")
     questions: list[Question] = []
     unparsed: list[UnparsedQuestion] = []
 

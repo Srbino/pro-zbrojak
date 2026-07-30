@@ -17,6 +17,10 @@ ROOT = Path(__file__).resolve().parent.parent
 SCREENSHOTS = ROOT / "tests" / "screenshots"
 PORT = 8765  # test port (different from 8080 to not collide)
 
+# Identita pro testy — stejná hlavička, jakou v provozu nastavuje Cloudflare Access.
+TEST_USER_HEADER = "Cf-Access-Authenticated-User-Email"
+TEST_USER_EMAIL = "test@pro-zbrojak.local"
+
 
 @pytest.fixture(scope="module")
 def server():
@@ -66,8 +70,35 @@ def server():
 
 @pytest.fixture(scope="module")
 def browser():
+    """Prohlížeč, jehož každá karta je rovnou přihlášená.
+
+    Od verze 0.4.0 je aplikace multi-user a všechny stránky vyžadují přihlášení
+    (`src.auth.require_login`). Bez identity testy skončí na přihlašovací
+    obrazovce a nenajdou vůbec nic — proto se do každého kontextu vkládá stejná
+    hlavička, jakou posílá Cloudflare Access.
+    """
     with sync_playwright() as p:
         b = p.chromium.launch()
+        original_new_context = b.new_context
+
+        def authenticated_context(**kwargs):
+            ctx = original_new_context(**kwargs)
+
+            def add_identity(route, request):
+                # Hlavička patří JEN naší aplikaci. Kdyby se posílala všude,
+                # odmítne kvůli ní požadavek i fonts.gstatic.com a testy ikon
+                # pak hlásí chybějící glyphy.
+                if "127.0.0.1" in request.url or "localhost" in request.url:
+                    route.continue_(
+                        headers={**request.headers, TEST_USER_HEADER: TEST_USER_EMAIL}
+                    )
+                else:
+                    route.continue_()
+
+            ctx.route("**/*", add_identity)
+            return ctx
+
+        b.new_context = authenticated_context
         yield b
         b.close()
 
@@ -133,13 +164,16 @@ def test_quiz_click_shows_feedback(server, browser):
     page = ctx.new_page()
     page.goto(server + "/random", wait_until="networkidle")
     page.wait_for_timeout(800)
-    # Click first option
+    # Klik odpověď jen vybere — vyhodnocuje se až tlačítkem.
     page.locator(".zp-opt").first.click()
     page.wait_for_timeout(400)
+    assert page.locator(".zp-opt.correct, .zp-opt.wrong").count() == 0, \
+        "samotný klik nesmí odpověď vyhodnotit"
+    page.get_by_role("button", name="Vyhodnotit").first.click()
+    page.wait_for_timeout(500)
     _snap(page, "03_quiz_answered")
-    # After click, one option should be .correct or .wrong
     marked = page.locator(".zp-opt.correct, .zp-opt.wrong").count()
-    assert marked >= 1, "clicking answer should mark correct/wrong"
+    assert marked >= 1, "po potvrzení má být odpověď obarvená"
     ctx.close()
 
 
@@ -170,8 +204,9 @@ def test_mastery_page_shows_sections(server, browser):
     page.goto(server + "/mastery", wait_until="networkidle")
     page.wait_for_timeout(500)
     _snap(page, "06_mastery")
-    # Should have all section cards and progress bars
-    assert page.locator(".zp-progress").count() >= 3
+    # Kazda oblast ma meridlo s ryskou na hranici zvladnuti.
+    assert page.locator(".zp-meter").count() >= 3
+    assert page.locator(".zp-meter-mark").count() >= 3
     ctx.close()
 
 
@@ -235,18 +270,18 @@ def test_exam_complete_flow_shows_result(server, browser):
     page.get_by_text("Spustit simulaci").click()
     page.wait_for_timeout(1000)
     # Answer 3 questions (click first option each time)
-    for i in range(3):
+    for _i in range(3):
         page.wait_for_selector(".zp-opt:not(.disabled)", timeout=5000)
         page.locator(".zp-opt:not(.disabled)").first.click()
         page.wait_for_timeout(1200)
     _snap(page, "11a_before_finish")
     # If not auto-finished, click "Ukoncit simulaci" fallback
-    if page.locator(".zp-hero-success, .zp-hero-danger").count() == 0:
+    if page.locator(".zp-verdict").count() == 0:
         ukoncit = page.get_by_text("Ukončit simulaci")
         if ukoncit.count():
             ukoncit.first.click()
             page.wait_for_timeout(800)
-    page.wait_for_selector(".zp-hero-success, .zp-hero-danger", timeout=10000)
+    page.wait_for_selector(".zp-verdict", timeout=10000)
     _snap(page, "11_exam_result")
     # Must contain the "Nová simulace" button
     assert page.get_by_text("Nová simulace").count() >= 1
@@ -263,9 +298,11 @@ def test_marathon_answer_flow(server, browser):
     if start_btn.count():
         start_btn.first.click()
         page.wait_for_timeout(500)
-    # Click an option
+    # Vybrat a potvrdit
     page.locator(".zp-opt").first.click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(300)
+    page.get_by_role("button", name="Vyhodnotit").first.click()
+    page.wait_for_timeout(500)
     _snap(page, "12_marathon_answered")
     # Next button appeared
     assert page.get_by_text("Další").count() >= 1

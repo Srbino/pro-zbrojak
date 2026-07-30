@@ -1,13 +1,15 @@
 """Page modules. Kazdy modul registruje @ui.page routes pri importu."""
 
 # Order matters? Only for import-time side effects. All paths independent.
-from . import dashboard  # noqa: F401
-from . import study      # noqa: F401
-from . import marathon   # noqa: F401
-from . import practice   # noqa: F401
-from . import exam       # noqa: F401
-from . import srs        # noqa: F401
-from . import mastery    # noqa: F401
-from . import export     # noqa: F401
-from . import settings   # noqa: F401
-from . import admin      # noqa: F401
+from . import (
+    admin,  # noqa: F401
+    dashboard,  # noqa: F401
+    exam,  # noqa: F401
+    export,  # noqa: F401
+    marathon,  # noqa: F401
+    mastery,  # noqa: F401
+    practice,  # noqa: F401
+    settings,  # noqa: F401
+    srs,  # noqa: F401
+    study,  # noqa: F401
+)

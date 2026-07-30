@@ -25,7 +25,7 @@ from src.ui.components import SECTION_LABEL
 
 def main():
     qs = json.loads((ROOT / "data" / "questions.json").read_text(encoding="utf-8"))
-    by_num = {q["pdf_number"]: q for q in qs}
+    _by_num = {q["pdf_number"]: q for q in qs}
 
     # Basic stats
     total = len(qs)
@@ -74,8 +74,8 @@ def main():
         "",
         "## Souhrnné statistiky",
         "",
-        f"| Metrika | Hodnota |",
-        f"|---|---|",
+        "| Metrika | Hodnota |",
+        "|---|---|",
         f"| **Celkem otázek** | {total} |",
         f"| **Otázek s obrázkem** | {n_images} ({n_images*100//total} %) |",
         f"| **Stránky PDF** | {page_range[0]} – {page_range[1]} |",
@@ -85,8 +85,8 @@ def main():
         "",
         "### Rozložení podle oblasti",
         "",
-        f"| Oblast | Otázek | Stránky PDF | S obrázkem |",
-        f"|---|---:|---:|---:|",
+        "| Oblast | Otázek | Stránky PDF | S obrázkem |",
+        "|---|---:|---:|---:|",
     ]
     for sec, label in SECTION_LABEL.items():
         if sec not in by_section:
@@ -114,8 +114,8 @@ def main():
             f"(č. {sec_qs[0]['pdf_number']}–{sec_qs[-1]['pdf_number']}, "
             f"strany {sec_qs[0]['source_page']}–{sec_qs[-1]['source_page']})</summary>",
             "",
-            f"| Č. | Strana | Správná | Náhled otázky |",
-            f"|---:|---:|:---:|:---|",
+            "| Č. | Strana | Správná | Náhled otázky |",
+            "|---:|---:|:---:|:---|",
         ]
         for q in sec_qs:
             img_mark = " 🖼" if q.get("image") else ""
@@ -152,7 +152,7 @@ def main():
         for q in qs_on_page:
             img_url = q["image"]
             preview = q["question"][:200].replace("\n", " ")
-            opts_preview = "  ".join(
+            _opts_preview = "  ".join(
                 f"**{k})** {q['options'][k][:80]}"
                 for k in "ABC"
             )
@@ -180,7 +180,7 @@ def main():
         "",
     ]
     if dup_groups:
-        lines += [f"| Hash | Pořadová čísla v PDF |", "|---|---|"]
+        lines += ["| Hash | Pořadová čísla v PDF |", "|---|---|"]
         for h, nums in sorted(dup_groups.items(), key=lambda x: min(x[1])):
             lines.append(f"| `{h[:12]}` | {', '.join(str(n) for n in nums)} |")
     else:

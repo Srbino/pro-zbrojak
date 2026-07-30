@@ -18,18 +18,29 @@ from nicegui import app, context, ui
 
 ACCESS_EMAIL_HEADER = "cf-access-authenticated-user-email"
 
-ADMIN_EMAILS = {
-    e.strip().lower()
-    for e in os.environ.get("PRO_ZBROJAK_ADMINS", "srba@unify.cz").split(",")
-    if e.strip()
-}
 
-# Přátelská jména pro známé e-maily (jinak se použije část před @).
-DISPLAY_NAMES = {
-    "srba@unify.cz": "Pavel",
-    "bena.matej@email.cz": "Matěj",
-    "ondrej.harant17@gmail.com": "Ondra",
-}
+def _emails(value: str) -> set[str]:
+    return {e.strip().lower() for e in value.split(",") if e.strip()}
+
+
+def _name_map(value: str) -> dict[str, str]:
+    """`mail@a.cz=Jméno,mail@b.cz=Jiné` → {mail: jméno}."""
+    out: dict[str, str] = {}
+    for part in value.split(","):
+        mail, _, name = part.partition("=")
+        mail, name = mail.strip().lower(), name.strip()
+        if mail and name:
+            out[mail] = name
+    return out
+
+
+# Kdo je admin. Prázdné = nikdo, administrace je nedostupná. Do zdrojáků se
+# konkrétní e-maily nepíšou — jinak by si každý, kdo si aplikaci nasadí,
+# přivedl cizího admina a zveřejnil něčí adresu.
+ADMIN_EMAILS = _emails(os.environ.get("PRO_ZBROJAK_ADMINS", ""))
+
+# Volitelná přátelská jména. Bez nich se použije část e-mailu před zavináčem.
+DISPLAY_NAMES = _name_map(os.environ.get("PRO_ZBROJAK_DISPLAY_NAMES", ""))
 
 # Volitelný sdílený kód pro LAN login. Prázdný = LAN login bez kódu (důvěryhodná síť).
 LOGIN_CODE = os.environ.get("PRO_ZBROJAK_LOGIN_CODE", "").strip()

@@ -21,12 +21,12 @@ tests/
 scripts/
 parse_pdf.py
 Makefile
-run.sh
-run.bat
-start.bat
-start.command
-PRD.md
+bin/
 QUESTIONS_MINDMAP.md
+
+# Dokumentace a studijní materiály — aplikace je neservíruje, v runtime
+# image jen zabírají místo (docs/ má přes 5 MB).
+docs/
 
 # Zdrojové PDF (jen pro regeneraci obsahu)
 MV-Soubor_testovych_otazek_*.pdf

@@ -7,9 +7,11 @@ from __future__ import annotations
 from nicegui import ui
 
 from src.auth import require_login
+from src.db import traps as traps_db
 from src.db.questions import load_questions
 from src.db.store import all_flagged, get_db, question_ids_with_mistakes
-from src.ui.components import QuizSession
+from src.db.traps import trap_numbers
+from src.ui.components import QuizSession, query_str
 from src.ui.layout import page_shell
 
 
@@ -36,6 +38,56 @@ def random_page():
         ).run()
 
 
+@ui.page("/traps")
+def traps_page():
+    """Chytáky — jen otázky, kde se distraktor liší od správné odpovědi o kousek.
+
+    Přesně na tyhle se u zkoušky padá: člověk látku zná, ale přehlédne jedno
+    slovo. Po odpovědi jde rozbalit, co bylo nastražené.
+    """
+    user = require_login()
+    if user is None:
+        return
+    kind = query_str("druh", "")
+    if kind not in traps_db.KINDS:
+        kind = ""
+    numbers = trap_numbers(kind or None)
+    pool = [q for q in load_questions() if q["pdf_number"] in numbers]
+
+    with page_shell("Chytáky", active_path="/traps"):
+        with ui.element("div").classes("zp-quiz-head zp-mb-md"):
+            ui.label(
+                "Otázky, na kterých se dá snadno šlápnout vedle. Po vyhodnocení se "
+                "v zadání vyznačí slovo, které obrací smysl, a pod otázkou si rozbalíš "
+                "rozbor — co přesně bylo nastražené."
+            ).classes("zp-body")
+            with ui.row().classes("w-full zp-gap-sm").style("flex-wrap: wrap;"):
+                _kind_chip("", "Vše", kind)
+                for key, (label, _field) in traps_db.KINDS.items():
+                    _kind_chip(key, label, kind)
+
+        QuizSession(
+            pool=pool,
+            mode="traps",
+            user_email=user.email,
+            empty_icon="info",
+            empty_heading="Žádné chytáky",
+            empty_subtitle="Spusť `make traps` — seznam se generuje z katalogu.",
+            on_record=_record("traps", user.email),
+        ).run()
+
+
+def _kind_chip(key: str, label: str, active: str) -> None:
+    """Přepínač druhu pasti. Počet je součástí popisku — bez něj se nedá odhadnout,
+    do čeho člověk jde."""
+    n = traps_db.count(key or None)
+    props = "unelevated color=primary" if key == active else "outline color=primary"
+    ui.button(
+        f"{label} ({n})",
+        on_click=lambda k=key: ui.navigate.to(f"/traps?druh={k}" if k else "/traps"),
+    ).props(f"{props} no-caps dense size=md")
+
+
 @ui.page("/mistakes")
 def mistakes_page():
     user = require_login()
@@ -53,6 +105,7 @@ def mistakes_page():
             empty_heading="Žádné chyby",
             empty_subtitle="Začni nějaký režim a když někde chybuješ, objeví se tady.",
             on_record=_record("mistakes", user.email),
+            show_navigator=True,
         ).run()
 
 

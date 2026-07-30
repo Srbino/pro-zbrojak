@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Pro Zbroják — dvojklikový launcher pro macOS.
-# Ulož v kořeni repa; v Finderu dvojklik → otevře Terminál a spustí aplikaci.
-# Před prvním použitím: v Terminálu spusť `chmod +x start.command` (nebo `make install`).
+# Leží v bin/; v Finderu dvojklik → otevře Terminál a spustí aplikaci.
+# Před prvním použitím: v Terminálu spusť `chmod +x bin/start.command` (nebo `make install`).
 
 set -e
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."   # kořen repa (skript je v bin/)
 
 # Barvy pro Terminál
 BLUE='\033[0;34m'

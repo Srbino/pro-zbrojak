@@ -1,6 +1,6 @@
 @echo off
 REM Spousteci skript pro Windows (alternative k `make run`).
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 if not exist ".venv" (
   echo Vytvarim virtualni prostredi...

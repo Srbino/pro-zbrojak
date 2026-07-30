@@ -1,8 +1,9 @@
 """Pydantic models for parsed questions."""
 from __future__ import annotations
-from typing import Literal
-from pydantic import BaseModel, Field
 
+from typing import Literal
+
+from pydantic import BaseModel
 
 Section = Literal["pravo", "provadeci_predpisy", "jine_predpisy", "nauka_o_zbranich", "zdravotni_minimum"]
 

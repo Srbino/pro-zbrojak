@@ -6,9 +6,11 @@ vytvoreny element strom. Zadne stateful singletons.
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import dataclass
 
 from nicegui import ui
 
+from src.db import law_refs, traps
 from src.ui.icons import I, icon
 
 SECTION_LABEL = {
@@ -58,6 +60,296 @@ def section_badge(section_key: str | None):
     label = SECTION_LABEL.get(section_key, section_key)
     cls = f"zp-badge {variant}".strip()
     ui.html(f'<span class="{cls}">{label}</span>')
+
+
+def law_reference_chip(pdf_number: int, panel) -> bool:
+    """Odkaz na ustanovení — do řádku k záložce pod otázkou.
+
+    Tlačítko samo o sobě jen říká, které ustanovení odpověď zakládá. Znění se
+    rozbalí AŽ NA KLIK do `panel` (ne při najetí myší) — nápověda má přijít,
+    když si o ni člověk řekne, a má být čitelná, ne bublina pod kurzorem.
+    """
+    ref = law_refs.ref_for(pdf_number)
+    if not ref:
+        return False
+
+    state = {"open": False}
+
+    def toggle():
+        state["open"] = not state["open"]
+        panel.clear()
+        chip.props(f"color={'primary' if state['open'] else 'grey-7'}")
+        if not state["open"]:
+            return
+        with panel:
+            with ui.element("div").classes("zp-law-ref"):
+                if ref.get("quote"):
+                    ui.label(f"„{ref['quote']}”").classes("zp-law-ref-quote")
+                with ui.row().classes("zp-row zp-nowrap items-center zp-gap-sm zp-mt-sm"):
+                    ui.link(
+                        f"Otevřít {ref['ref']} v e-Sbírce", ref["url"], new_tab=True
+                    ).classes("zp-law-ref-link")
+                    icon("external", size="sm")
+
+    chip = ui.button(ref["ref"], icon=I["law"], on_click=toggle)
+    chip.props("flat dense no-caps color=grey-7").classes("zp-law-chip")
+    return True
+
+
+def trap_chip(pdf_number: int, panel) -> bool:
+    """Tlačítko „Chyták" — rozbalí, čím přesně distraktor mění správnou odpověď.
+
+    Ukazuje se až po odpovědi. Písmena možností se schválně neuvádějí: pořadí
+    A/B/C se míchá (viz src/ui/shuffle.py), takže by nic neříkala — rozhoduje
+    znění.
+    """
+    trap = traps.trap_for(pdf_number)
+    if not trap:
+        return False
+
+    state = {"open": False}
+
+    def toggle():
+        state["open"] = not state["open"]
+        panel.clear()
+        chip.props(f"color={'warning' if state['open'] else 'grey-7'}")
+        if not state["open"]:
+            return
+        with panel:
+            with ui.element("div").classes("zp-trap-box"):
+                ui.label("Co bylo nastražené").classes("zp-trap-title")
+
+                for marker in trap.get("zadani", []):
+                    with ui.row().classes("zp-row zp-gap-sm items-baseline zp-trap-item"):
+                        ui.label(f"v zadání — {marker['typ']}:").classes("zp-trap-op")
+                        ui.label(f"„{marker['slovo']}”").classes("zp-trap-stem")
+
+                for past in trap.get("pasti", []):
+                    with ui.element("div").classes("zp-trap-item"):
+                        for change in past["zmeny"]:
+                            _render_trap_change(change)
+
+                if trap.get("dvojnici"):
+                    others = ", ".join(f"č. {n}" for n in trap["dvojnici"])
+                    with ui.element("div").classes("zp-trap-item"):
+                        ui.label(
+                            f"Skoro stejné zadání má i {others} — ale jinou správnou "
+                            "odpověď. Nespleť si je."
+                        ).classes("zp-trap-op")
+
+    chip = ui.button("Chyták", icon=I["trap"], on_click=toggle)
+    chip.props("flat dense no-caps color=grey-7").classes("zp-law-chip")
+    return True
+
+
+def _render_trap_change(change: dict) -> None:
+    typ = change["typ"]
+    with ui.row().classes("zp-row zp-gap-sm items-baseline").style("flex-wrap: wrap;"):
+        if typ == "vsunuto":
+            ui.label("navíc:").classes("zp-trap-op")
+            ui.label(f"„{change['past']}”").classes("zp-trap-bad")
+        elif typ == "vypuštěno":
+            ui.label("chybí:").classes("zp-trap-op")
+            ui.label(f"„{change['spravne']}”").classes("zp-trap-good")
+        else:
+            ui.label("místo").classes("zp-trap-op")
+            ui.label(f"„{change['spravne']}”").classes("zp-trap-good")
+            ui.label("bylo").classes("zp-trap-op")
+            ui.label(f"„{change['past']}”").classes("zp-trap-bad")
+
+
+def law_reference(pdf_number: int) -> bool:
+    """Odkaz na ustanovení zákona v e-Sbírce MV ČR. Vrací False, když odkaz není.
+
+    Vykresluje se až po odhalení odpovědi — je to vysvětlení („proč to tak je"),
+    ne nápověda. Znění zákona nedržíme, klikne se přímo na oficiální text.
+    """
+    ref = law_refs.ref_for(pdf_number)
+    if not ref:
+        return False
+
+    with ui.element("div").classes("zp-law-ref"):
+        with ui.row().classes("zp-row zp-nowrap items-center zp-gap-sm"):
+            icon("law", size="sm")
+            ui.link(ref["ref"], ref["url"], new_tab=True).classes("zp-law-ref-link")
+            icon("external", size="sm")
+        if ref.get("quote"):
+            ui.label(f"„{ref['quote']}”").classes("zp-law-ref-quote")
+    return True
+
+
+class QuestionNavigator:
+    """Levý panel se seznamem otázek — hledání + proklik na libovolnou.
+
+    Seznam se záměrně nevykresluje celý (837 řádků s textem je znát na rychlosti
+    načtení). Ukazuje se okno kolem aktuální otázky a hledání ho nahradí shodami;
+    na cokoli dál se dá skočit napsáním čísla.
+    """
+
+    WINDOW = 60  # kolik otázek kolem aktuální se ukáže bez hledání
+    MAX_RESULTS = 80  # strop pro výsledky hledání
+
+    # Filtry. Seznam 837 položek bez nich je jen k listování, ne k práci.
+    FILTERS: tuple[tuple[str, str], ...] = (
+        ("", "Vše"),
+        ("wrong", "Chybné"),
+        ("flagged", "Označené"),
+        ("trap", "Chytáky"),
+    )
+
+    def __init__(
+        self,
+        questions: list[dict],
+        *,
+        current_index: int,
+        status: dict[str, str] | None = None,
+        on_pick: Callable[[int], None],
+        flagged: set[str] | None = None,
+    ):
+        self.questions = questions
+        self.current_index = current_index
+        self.status = status or {}
+        self.on_pick = on_pick
+        self.flagged = flagged or set()
+        self._trap_numbers = traps.trap_numbers()
+        self._list = None
+        self._query = ""
+        self._filter = ""
+        self._info = None
+        self._filter_buttons: dict[str, ui.button] = {}
+
+    def render(self):
+        # Na mobilu je panel vysunovací. Kdyby se kreslil rovnou, sežral by
+        # celou první obrazovku a k zadání otázky by se člověk dostal až
+        # po odscrollování seznamu.
+        self._toggle = ui.button(
+            f"Otázky ({len(self.questions)})", icon=I["menu"], on_click=self._open
+        ).props("flat dense no-caps color=primary").classes("zp-qnav-toggle")
+
+        self._backdrop = ui.element("div").classes("zp-qnav-backdrop")
+        self._backdrop.on("click", self._close)
+
+        self._panel = ui.element("div").classes("zp-qnav")
+        with self._panel:
+            with ui.row().classes("zp-row-between zp-nowrap w-full zp-mb-sm"):
+                ui.label("Otázky").classes("zp-qnav-title")
+                ui.label(f"{len(self.questions)}").classes("zp-caption zp-flex-1").style(
+                    "text-align: right;"
+                )
+                ui.button(icon=I["close"], on_click=self._close).props(
+                    "flat dense round size=sm"
+                ).classes("zp-qnav-close").tooltip("Zavřít seznam")
+
+            search = ui.input(placeholder="Hledat nebo číslo otázky…").props(
+                "outlined dense clearable"
+            ).classes("w-full zp-qnav-search")
+            search.on("update:model-value", lambda e: self._on_search(e.args))
+
+            with ui.row().classes("zp-qnav-filters"):
+                for key, label in self.FILTERS:
+                    btn = ui.button(
+                        label, on_click=lambda k=key: self._set_filter(k)
+                    ).props("dense no-caps size=sm flat color=primary").classes("zp-qnav-filter")
+                    self._filter_buttons[key] = btn
+
+            self._info = ui.label("").classes("zp-caption zp-qnav-info")
+            self._list = ui.element("div").classes("zp-qnav-list")
+            self._sync_filter_buttons()
+            self._fill()
+
+    def _set_filter(self, key: str) -> None:
+        self._filter = "" if key == self._filter else key
+        self._sync_filter_buttons()
+        self._fill()
+
+    def _sync_filter_buttons(self) -> None:
+        for key, btn in self._filter_buttons.items():
+            btn.classes(
+                add="active" if key == self._filter else "",
+                remove="" if key == self._filter else "active",
+            )
+
+    def _passes_filter(self, q: dict) -> bool:
+        if self._filter == "wrong":
+            return self.status.get(q["id"]) == "wrong"
+        if self._filter == "flagged":
+            return q["id"] in self.flagged
+        if self._filter == "trap":
+            return q["pdf_number"] in self._trap_numbers
+        return True
+
+    def _open(self) -> None:
+        self._panel.classes(add="open")
+        self._backdrop.classes(add="open")
+
+    def _close(self) -> None:
+        self._panel.classes(remove="open")
+        self._backdrop.classes(remove="open")
+
+    def _on_search(self, value) -> None:
+        self._query = (value or "").strip() if isinstance(value, str) else ""
+        self._fill()
+
+    def _matches(self) -> tuple[list[tuple[int, dict]], str]:
+        indexed = [(i, q) for i, q in enumerate(self.questions) if self._passes_filter(q)]
+        query = self._query.lower()
+
+        if not query:
+            if self._filter:
+                hits = indexed[: self.MAX_RESULTS]
+                note = f"{len(indexed)} otázek v tomto filtru"
+                if len(indexed) > self.MAX_RESULTS:
+                    note += f", zobrazeno prvních {self.MAX_RESULTS}"
+                return hits, note
+            lo = max(0, self.current_index - self.WINDOW // 2)
+            window = indexed[lo: lo + self.WINDOW]
+            note = (
+                f"okolí aktuální otázky ({lo + 1}–{lo + len(window)}) "
+                "— hledej nebo napiš číslo"
+                if len(self.questions) > self.WINDOW else ""
+            )
+            return window, note
+
+        if query.isdigit():
+            hits = [(i, q) for i, q in indexed if str(q["pdf_number"]).startswith(query)]
+        else:
+            hits = [
+                (i, q) for i, q in indexed
+                if query in q["question"].lower()
+                or any(query in opt.lower() for opt in q["options"].values())
+            ]
+
+        note = f"nalezeno {len(hits)}"
+        if len(hits) > self.MAX_RESULTS:
+            note += f", zobrazeno prvních {self.MAX_RESULTS}"
+        return hits[: self.MAX_RESULTS], note
+
+    def _fill(self) -> None:
+        rows, note = self._matches()
+        self._info.text = note
+        self._list.clear()
+        with self._list:
+            if not rows:
+                ui.label("Nic nenalezeno.").classes("zp-caption")
+                return
+            for index, q in rows:
+                self._row(index, q)
+
+    def _row(self, index: int, q: dict) -> None:
+        cls = "zp-qnav-item"
+        state = self.status.get(q["id"])
+        if state:
+            cls += f" {state}"
+        if index == self.current_index:
+            cls += " current"
+
+        item = ui.element("div").classes(cls)
+        # Zavřít dřív, než se překreslí obsah — jinak by panel na mobilu
+        # zůstal otevřený přes nově vybranou otázku.
+        item.on("click", lambda e, i=index: (self._close(), self.on_pick(i)))
+        with item:
+            ui.label(str(q["pdf_number"])).classes("zp-qnav-num")
+            ui.label(q["question"]).classes("zp-qnav-text")
 
 
 def progress_bar(ratio: float, *, variant: str = "primary"):
@@ -177,33 +469,54 @@ def empty_state(*, icon_name: str, heading: str, subtitle: str,
 # Rating bar (SRS)
 # ============================================================================
 
-def rating_bar(on_rate: Callable[[str], None]):
+def format_interval(delta) -> str:
+    """Lidsky citelny interval do dalsiho review."""
+    seconds = max(0, int(delta.total_seconds()))
+    if seconds < 3600:
+        return f"za {max(1, seconds // 60)} min"
+    if seconds < 86400:
+        return f"za {seconds // 3600} h"
+    days = seconds // 86400
+    if days < 31:
+        return f"za {days} {'den' if days == 1 else 'dny' if days < 5 else 'dní'}"
+    months = round(days / 30.4)
+    if months < 12:
+        return f"za {months} {'měsíc' if months == 1 else 'měsíce' if months < 5 else 'měsíců'}"
+    years = round(days / 365)
+    return f"za {years} {'rok' if years == 1 else 'roky' if years < 5 else 'let'}"
+
+
+def rating_bar(on_rate: Callable[[str], None], *, intervals: dict[str, str] | None = None):
     """FSRS rating: Again / Hard / Good / Easy.
 
-    Kazdy rating = current answer + kdy ukaz otazku priste + next question.
-    Buttony maji vestavene obtiznostni hint (=kdy se vrati) pro jasnost.
+    `intervals` je {klic: text}, kdy se otazka vrati. Patri na tlacitko PREDEM
+    — z hlasky po kliknuti uz se rozhodovat neda.
     """
     with ui.element("div").classes("zp-col w-full").style("align-items: center; gap: .25rem;"):
         ui.label("Ohodnoť obtížnost — automaticky jedeš dál").classes("zp-body-sm").style(
             "text-align: center; font-weight: 500;"
         )
-        ui.label("Algoritmus rozhodne, kdy ti otázku ukáže znovu").classes("zp-caption")
+        ui.label("Podle hodnocení se rozhodne, kdy otázku uvidíš znovu").classes("zp-caption")
+    intervals = intervals or {}
+    # Bez ikon. Šipky u hodnocení nic neříkaly a jen soupeřily o pozornost
+    # s tím jediným, co je tu podstatné — za jak dlouho se otázka vrátí.
     buttons = [
-        ("again",  "Znovu",   I["rate_again"],  "1", "za < 10 min"),
-        ("hard",   "Těžké",   I["rate_hard"],   "2", "za ~1 den"),
-        ("good",   "Dobré",   I["rate_good"],   "3", "za pár dní"),
-        ("easy",   "Snadné",  I["rate_easy"],   "4", "za týden+"),
+        ("again",  "Znovu",   "1", intervals.get("again", "brzy")),
+        ("hard",   "Těžké",   "2", intervals.get("hard", "za ~1 den")),
+        ("good",   "Dobré",   "3", intervals.get("good", "za pár dní")),
+        ("easy",   "Snadné",  "4", intervals.get("easy", "za týden+")),
     ]
     with ui.element("div").classes("zp-rate-bar zp-mt-sm"):
-        for key, label, glyph, kbd, hint in buttons:
+        for key, label, kbd, hint in buttons:
             btn = ui.button(on_click=lambda k=key: on_rate(k)).props(
                 "flat no-caps padding=none"
             ).classes(f"zp-rate-btn {key}")
             with btn:
-                ui.icon(glyph).classes("text-lg")
-                ui.html(f"<span class='zp-rate-label'>{label}</span>")
-                ui.html(f"<span class='zp-rate-hint'>{hint}</span>")
-                ui.html(f"<span class='zp-kbd' style='font-size:.65rem;'>{kbd}</span>")
+                ui.html(
+                    f"<span class='zp-rate-key'>{kbd}</span>"
+                    f"<span class='zp-rate-label'>{label}</span>"
+                    f"<span class='zp-rate-hint'>{hint}</span>"
+                )
 
     # Keyboard shortcuts
     def _on_key(e):
@@ -304,9 +617,6 @@ def toggle_flagged(db, user_email: str, qid: str) -> bool:
 # QuizSession — genericky runner pro vsechny kviz rezimy
 # ============================================================================
 
-from dataclasses import dataclass
-
-
 @dataclass
 class QuizSession:
     """Generický runner pro vsechny kviz rezimy (random / mistakes / flagged / mastery).
@@ -322,6 +632,7 @@ class QuizSession:
     empty_subtitle: str = "Nic k zobrazení."
     on_record: Callable[[str, str, str, int], None] | None = None
     # (question_id, chosen, correct, time_ms) → void
+    show_navigator: bool = False  # levý panel se seznamem otázek + hledáním
 
     def run(self):
         """Pusti kviz loop uvnitr aktualniho NiceGUI kontextu."""
@@ -363,17 +674,55 @@ class QuizSession:
                 qid = q["id"]
                 from src.db.store import get_db
                 db = get_db()
-                card = QuizCard(
-                    q,
-                    instant_feedback=True,
-                    progress_label=f"{state['index']+1} / {total}  ·  správně {state['correct']}",
-                    progress_ratio=state["index"] / total,
-                    is_bookmarked=is_flagged(db, self.user_email, qid),
-                    on_answer=lambda chosen, ms, q=q: _on_answer(q, chosen, ms),
-                    on_next=_advance,
-                    on_bookmark_toggle=lambda q=q: toggle_flagged(db, self.user_email, q["id"]),
-                )
-                card.render()
+
+                # Obal musí mít vždy plnou šířku — rodičovský sloupec má
+                # align-items: flex-start, takže bezešvý div by se scvrkl na
+                # obsah a karta by skončila u levého okraje místo na středu.
+                with ui.element("div").classes(
+                    "zp-quiz-with-nav" if self.show_navigator else "w-full"
+                ):
+                    if self.show_navigator:
+                        _render_navigator(db, queue, state["index"])
+                    with ui.element("div").classes(
+                        "zp-quiz-main" if self.show_navigator else "w-full"
+                    ):
+                        QuizCard(
+                            q,
+                            user_email=self.user_email,
+                            instant_feedback=True,
+                            progress_label=(
+                                f"{state['index']+1} / {total}"
+                                f"  ·  správně {state['correct']}"
+                            ),
+                            progress_ratio=state["index"] / total,
+                            is_bookmarked=is_flagged(db, self.user_email, qid),
+                            on_answer=lambda chosen, ms, q=q: _on_answer(q, chosen, ms),
+                            on_next=_advance,
+                            on_bookmark_toggle=lambda q=q: toggle_flagged(
+                                db, self.user_email, q["id"]
+                            ),
+                        ).render()
+
+        def _render_navigator(db, queue, current):
+            """Seznam otázek kola. Na rozdíl od marathonu se tu smí skákat i dopředu —
+            není to sekvenční průchod s uloženou pozicí, jen jedno kolo procvičování."""
+            from src.db.store import last_answers
+
+            answered = last_answers(db, self.user_email, [q["id"] for q in queue])
+            status = {
+                q["id"]: ("correct" if answered[q["id"]] == q["correct"] else "wrong")
+                for q in queue
+                if q["id"] in answered
+            }
+            from src.db.store import all_flagged
+            QuestionNavigator(
+                queue, current_index=current, status=status, on_pick=_goto,
+                flagged=set(all_flagged(db, self.user_email)),
+            ).render()
+
+        def _goto(index: int):
+            state["index"] = max(0, min(index, len(queue) - 1))
+            render()
 
         def _on_answer(q, chosen, ms):
             if self.on_record:

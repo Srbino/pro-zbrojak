@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from functools import lru_cache
+from functools import cache, lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -24,6 +24,6 @@ def by_pdf_number() -> dict[int, dict]:
     return {q["pdf_number"]: q for q in load_questions()}
 
 
-@lru_cache(maxsize=None)
+@cache
 def by_section(section: str) -> list[dict]:
     return [q for q in load_questions() if q.get("section") == section]

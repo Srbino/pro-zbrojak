@@ -61,6 +61,14 @@ ignore = [
     "B008",  # function calls in default args (NiceGUI patterns)
 ]
 
+[tool.ruff.lint.per-file-ignores]
+# Sdílené pytest fixtury se importují a hned použijí jako parametry testů.
+# Ruff to hlásí jako předefinování, ale je to standardní pytest vzor —
+# bez tohohle ignoru topí 87 falešných nálezů skutečné chyby.
+"tests/*" = ["F811", "E402"]
+# sys.path se v generátorech nastavuje před importem projektových modulů.
+"scripts/*" = ["E402"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

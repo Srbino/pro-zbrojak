@@ -12,7 +12,6 @@ from __future__ import annotations
 
 from nicegui import ui
 
-
 # Sémantické jméno → Material Symbols glyph (https://fonts.google.com/icons)
 I: dict[str, str] = {
     # Navigace
@@ -61,6 +60,10 @@ I: dict[str, str] = {
     "insights":     "insights",
     "image":        "image",
     "schedule":     "schedule",
+    # Odkaz do e-Sbírky + chytáky
+    "law":          "gavel",
+    "trap":         "warning_amber",
+    "external":     "open_in_new",
     # Bookmark states
     "bookmark":     "bookmark",
     "bookmark_off": "bookmark_border",

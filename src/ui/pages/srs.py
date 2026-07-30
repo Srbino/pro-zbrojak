@@ -11,6 +11,7 @@ from src.learning import srs as srs_mod
 from src.ui.components import (
     back_home_button,
     empty_state,
+    format_interval,
     hero_result,
     is_flagged,
     rating_bar,
@@ -79,8 +80,19 @@ def srs_page():
 
             qid = state["queue"][state["index"]]
             q = qmap[qid]
+            # Kolikáté opakování to je, mění, jak přísně se má člověk hodnotit.
+            reps = srs_mod.review_count(db, user.email, qid)
+            with ui.row().classes("zp-row zp-gap-sm w-full").style(
+                "max-width: 720px; margin: 0 auto; flex-wrap: wrap;"
+            ):
+                if reps == 0:
+                    ui.html('<span class="zp-badge">nová otázka</span>')
+                else:
+                    ui.html(f'<span class="zp-badge neutral">{reps + 1}. opakování</span>')
+
             card = QuizCard(
                 q,
+                user_email=user.email,
                 instant_feedback=True,
                 progress_label=f"SRS  {state['index']+1} / {total}",
                 progress_ratio=state["index"] / total,
@@ -92,32 +104,34 @@ def srs_page():
             )
             card.render()
 
-            rating_bar(lambda key, q=q: _rate(q, RATING_MAP[key]))
+            # Intervaly se počítají dopředu, aby stály na tlačítkách.
+            preview = srs_mod.preview_intervals(db, user.email, qid)
+            intervals = {
+                key: format_interval(preview[rating])
+                for key, rating in RATING_MAP.items()
+                if rating in preview
+            }
+            # Bez plné šířky by se lišta hodnocení scvrkla k levému okraji.
+            with ui.element("div").classes("w-full"):
+                rating_bar(lambda key, q=q: _rate(q, RATING_MAP[key]), intervals=intervals)
 
     def _on_answer(q, chosen, ms):
         record_attempt(db, user_email=user.email, question_id=q["id"], chosen=chosen,
                        correct=q["correct"], mode="srs", time_ms=ms)
 
     def _rate(q, rating):
-        card = srs_mod.review(db, user.email, q["id"], rating)
-        # Feedback toast with next review interval
         import datetime as _dt
-        now = _dt.datetime.now(_dt.UTC)
-        delta = card.due - now
-        if delta.total_seconds() < 3600:
-            when = f"{int(delta.total_seconds() // 60)} min"
-        elif delta.total_seconds() < 86400:
-            when = f"{int(delta.total_seconds() // 3600)} h"
-        else:
-            when = f"{delta.days} dní"
+
+        card = srs_mod.review(db, user.email, q["id"], rating)
         label_map = {
             Rating.Again: "Znovu",
             Rating.Hard:  "Těžké",
             Rating.Good:  "Dobré",
             Rating.Easy:  "Snadné",
         }
+        when = format_interval(card.due - _dt.datetime.now(_dt.UTC))
         ui.notify(
-            f"{label_map.get(rating, '')} — otázka se vrátí za {when}",
+            f"{label_map.get(rating, '')} — otázka se vrátí {when}",
             position="top", timeout=1800, color="positive",
         )
         state["index"] += 1

@@ -28,6 +28,11 @@ Thumbs.db
 .idea/
 *.iml
 
+# Session storage NiceGUI — obsahuje e-maily přihlášených, do repa nepatří.
+# Sedm souborů se do historie dostalo dřív; ze sledování jsou odebrané, ale
+# v git historii zůstávají, dokud se nepřepíše (viz README, sekce Známé dluhy).
+.nicegui/
+
 # User data (generated locally)
 data/stats.db
 data/stats.db-journal
@@ -36,12 +41,25 @@ data/stats.db-shm
 exports/*.md
 logs/*.log
 
-# PDF source — jen pro maintainery (regenerace obsahu při nové verzi MV ČR)
-# Runtime ho aplikace nepotřebuje; obsah je v data/questions.json + images/
+# Zdrojová PDF v repu NEDRŽÍME — 3 MB na soubor a jsou veřejně ke stažení
+# u MV ČR. Katalog `data/questions.json` je z nich odvozený a verzovaný.
+#
+# Důsledek, se kterým je potřeba počítat: bez PDF se testy, které porovnávají
+# katalog se zdrojem (`test_all_answers_vs_pdf`, `test_option_mapping_vs_pdf`,
+# `test_images_vs_pdf`), samy PŘESKOČÍ. V CI tedy neběží — spouští se lokálně
+# přes `make test-data`, které na chybějící PDF upozorní.
 MV-Soubor_testovych_otazek_*.pdf
 
 # Parser mezivýstup (diagnostika neparsovatelných otázek)
 data/unparsed.json
+
+# Znění zákonů v repu NEDRŽÍME — zdrojem pravdy je e-Sbírka MV ČR a u otázek
+# si vedeme jen ověřený odkaz na konkrétní ustanovení (data/law_refs.json),
+# který verzovaný JE. Plný text potřebuje jen maintainer, když přegenerovává
+# odkazy (`make law-links`) nebo tematické okruhy (`make okruhy`).
+docs/Zákon *.pdf
+data/zakon_90_2024.txt
+data/eli_fragmenty.html
 
 # Test artifacts
 tests/screenshots/

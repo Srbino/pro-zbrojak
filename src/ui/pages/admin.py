@@ -52,7 +52,7 @@ def admin_page():
                     ui.label("Uživatel").classes("zp-body-sm").style("flex: 2; min-width: 160px;")
                     ui.label("Pokusů").classes("zp-body-sm").style("width: 80px; text-align: right;")
                     ui.label("Úspěšnost").classes("zp-body-sm").style("width: 90px; text-align: right;")
-                    ui.label("Zkoušky ✓").classes("zp-body-sm").style("width: 90px; text-align: right;")
+                    ui.label("Zkoušky OK").classes("zp-body-sm").style("width: 90px; text-align: right;")
                     ui.label("SRS").classes("zp-body-sm").style("width: 60px; text-align: right;")
                     ui.label("Naposledy").classes("zp-body-sm").style("width: 130px; text-align: right;")
 

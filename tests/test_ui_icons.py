@@ -5,14 +5,11 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import pytest
-from playwright.sync_api import expect
-
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 # Reuse fixtures from test_ui_e2e
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 
 def test_nav_uses_q_icons_not_emojis(server, browser):
@@ -72,9 +69,9 @@ def test_quiz_card_has_material_option_keys(server, browser):
     assert opts.count() == 3
     key_chips = page.locator(".zp-opt .opt-key")
     assert key_chips.count() == 3
-    # Should contain a, b, c
+    # Verzálky — v badge o 26 px se čtou líp a odpovídají oficiálnímu zadání.
     keys = [k.inner_text().strip() for k in key_chips.all()]
-    assert set(keys) == {"a", "b", "c"}
+    assert set(keys) == {"A", "B", "C"}
     ctx.close()
 
 

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import datetime as dt
 import json
-import os
 import time
 from pathlib import Path
 
@@ -12,9 +11,9 @@ from fsrs import Card, Rating, Scheduler
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 
-_LEGACY_OWNER = (
-    os.environ.get("PRO_ZBROJAK_ADMINS", "srba@unify.cz").split(",")[0] or "srba@unify.cz"
-).strip().lower()
+# Komu připadnou stará „single-user" data při migraci. Musí sedět se
+# `src.db.store._LEGACY_OWNER`, jinak by se SRS karty rozešly s pokusy.
+from src.db.store import _LEGACY_OWNER  # noqa: E402
 
 # Mapping uzivatelske volby v UI → FSRS Rating
 RATING_LABELS = {
@@ -94,6 +93,37 @@ def review(db: sqlite_utils.Database, user_email: str, question_id: str, rating:
 
 def _safe_attr(obj, name, default):
     return getattr(obj, name, default)
+
+
+def preview_intervals(
+    db: sqlite_utils.Database, user_email: str, question_id: str
+) -> dict[Rating, dt.timedelta]:
+    """Za jak dlouho se otázka vrátí při každém z hodnocení — bez uložení.
+
+    Interval patří na tlačítko předem. Dřív se člověk „vrátí se za 6 dní"
+    dozvěděl z hlášky až po kliknutí, tedy když už se rozhodovat nedalo.
+    """
+    _ensure_schema(db)
+    sch = _scheduler()
+    stored = get_card(db, user_email, question_id)
+    now = dt.datetime.now(dt.UTC)
+    out: dict[Rating, dt.timedelta] = {}
+    for rating in (Rating.Again, Rating.Hard, Rating.Good, Rating.Easy):
+        # Kopie přes to_dict/from_dict — review_card si smí kartu upravit
+        # a náhled nesmí ovlivnit skutečný stav.
+        card = _deserialize_card(_serialize_card(stored)) if stored else Card()
+        try:
+            preview, _ = sch.review_card(card, rating, now)
+            out[rating] = preview.due - now
+        except Exception:
+            continue
+    return out
+
+
+def review_count(db: sqlite_utils.Database, user_email: str, question_id: str) -> int:
+    """Kolikrát už otázka prošla review (0 = nová)."""
+    card = get_card(db, user_email, question_id)
+    return int(_safe_attr(card, "reps", 0)) if card else 0
 
 
 def due_today(db: sqlite_utils.Database, user_email: str, *, limit: int = 30) -> list[str]:

@@ -55,10 +55,16 @@ def settings_page():
                 reset_all(db, user.email)
                 ui.notify("Historie smazána", color="positive", position="top")
 
+            # Popisek říká, co se doopravdy stane. „SMAZAT VŠE" sliboval víc,
+            # než reset dělá — maže jen data přihlášeného uživatele.
             confirm_button(
                 "Reset historie",
                 on_confirm=_do_reset,
-                confirm_label="OPRAVDU SMAZAT VŠE",
+                confirm_label="SMAZAT MOJI HISTORII",
+                dialog_message=(
+                    f"Nevratně smaže veškerý tvůj postup ({user.email}). "
+                    "Data ostatních uživatelů zůstanou nedotčená."
+                ),
             )
 
         with ui.element("div").classes("zp-card"):

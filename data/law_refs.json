@@ -1,0 +1,1351 @@
+{
+ "zdroj": "e-Sbírka MV ČR — zákon č. 90/2024 Sb., znění od 1. 1. 2026",
+ "eli": "eli/cz/sb/2024/90/2026-01-01",
+ "pozn": "Odkazy jsou strojově odvozené z lexikálního ověření (scripts/validate_vs_zakon.py) a potvrzené proti e-Sbírce. Nejde o právní výklad — ustanovení je vodítko, ne autorita.",
+ "otazky": {
+  "2": {
+   "ref": "§ 1 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_1-odst_2",
+   "quote": "Tento zákon zapracovává příslušné předpisy Evropské unie1), zároveň navazuje na přímo použitelné předpisy Evropské unie2) a upravuje nakládání se zbraněmi a střelivem, provozování střelnic a výkon státní správy na tomto úseku.",
+   "verdict": "DOLOŽENO"
+  },
+  "3": {
+   "ref": "§ 1 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_1-odst_3",
+   "quote": "Nakládá-li se zbraní nebo střelivem nebo provozuje-li střelnici vyňatá veřejnoprávní instituce, kterou je Ministerstvo vnitra (dále jen „ministerstvo“), Ministerstvo obrany, ozbrojené síly České republiky, bezpečnostní sbor České republiky nebo Český úřad pro zkoušení zbraní a střeliva, použije se tento zákon, pouze je-li tak dále výslovně stanoveno.",
+   "verdict": "DOLOŽENO"
+  },
+  "4": {
+   "ref": "§ 2 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_2-odst_2",
+   "quote": "Zbraní je pro účely tohoto zákona palná zbraň, plynová zbraň a další zařízení nebo přístroj, které jsou zařazeny do některé z kategorií zbraní nebo na které se podle § 9 použijí ustanovení o nakládání se zbraní určité kategorie.",
+   "verdict": "DOLOŽENO"
+  },
+  "5": {
+   "ref": "§ 2 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_2-odst_3",
+   "quote": "Střelivem jsou pro účely tohoto zákona náboje, nábojky a aktivní komponenty střeliva, které jsou zařazeny do některé z kategorií střeliva.",
+   "verdict": "DOLOŽENO"
+  },
+  "6": {
+   "ref": "§ 2 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_2-odst_4",
+   "quote": "Regulovanou součástí zbraně jsou pro účely tohoto zákona hlavní část zbraně, součást zbraně umožňující samočinnou střelbu, polotovar hlavní části zbraně, tlumič hluku výstřelu, nebo nadlimitní zásobník.",
+   "verdict": "DOLOŽENO"
+  },
+  "13": {
+   "ref": "§ 3 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_3-pism_a",
+   "quote": "Pro účely tohoto zákona je nakládáním se zbraní nebo střelivem jakékoli fyzické zacházení se zbraní nebo střelivem, a to včetně zajištění jejich přepravy nebo uložení;",
+   "verdict": "DOLOŽENO"
+  },
+  "15": {
+   "ref": "§ 3 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_3-pism_b",
+   "quote": "Pro účely tohoto zákona je nošením zbraně způsob nakládání se zbraní, při kterém ji fyzická osoba má na místě veřejnosti přístupném při sobě nabitou nebo viditelně,",
+   "verdict": "DOLOŽENO"
+  },
+  "17": {
+   "ref": "§ 3 písm. f)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_3-pism_f",
+   "quote": "Pro účely tohoto zákona je sběratelskou činností činnost spočívající ve shromažďování a uchovávání zbraní, jejich hlavních částí nebo střeliva pro historické, kulturní, vědecké, technické, vzdělávací nebo památkové účely.",
+   "verdict": "DOLOŽENO"
+  },
+  "23": {
+   "ref": "§ 5 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_5-odst_1",
+   "quote": "Zbrani nebo střelivu, kterým lze na základě konstrukčních vlastností nebo funkčního principu přiřadit různé kategorie, se přiřadí kategorie, která je z těchto kategorií nejpřísněji regulována;",
+   "verdict": "DOLOŽENO"
+  },
+  "25": {
+   "ref": "§ 6 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_6-odst_1",
+   "quote": "Zbraň, která by jinak byla na základě konstrukčních vlastností nebo funkčního principu považována za zbraň kategorie PO nebo NO, ale která vznikla nevratnou úpravou zbraně podléhající registraci, je zbraní stejné kategorie jako zbraň podléhající registraci, z níž byla upravena;",
+   "verdict": "DOLOŽENO"
+  },
+  "31": {
+   "ref": "§ 7 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_7-pism_b",
+   "quote": "Oprávnění nakládat se zbraněmi Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se zbraněmi je v případě zbraní kategorie R2 držitel zbrojní licence skupiny ZL1, držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému byla vydána pro nakládání s každou takovou zbraní výjimka kategorie R2, osoba oprávněná uskutečnit přeshraniční přemístění takové zbraně, nebo n",
+   "verdict": "DOLOŽENO"
+  },
+  "33": {
+   "ref": "§ 7 písm. c) bod 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_7-pism_c-bod_2",
+   "quote": "Oprávnění nakládat se zbraněmi Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se zbraněmi je v případě zbraní kategorie / R3 držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému bylo vydáno pro nakládání s každou takovou zbraní povolení kategorie R3,",
+   "verdict": "DOLOŽENO"
+  },
+  "37": {
+   "ref": "§ 8 písm. a) bod 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_8-pism_a-bod_2",
+   "quote": "Oprávnění nakládat se střelivem Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se střelivem je v případě střeliva kategorie / S1 držitel zbrojní licence skupiny ZL2, kterému byla pro nakládání s určitým počtem kusů takového střeliva vydána výjimka kategorie S1,",
+   "verdict": "DOLOŽENO"
+  },
+  "38": {
+   "ref": "§ 8 písm. b) bod 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_8-pism_b-bod_2",
+   "quote": "Oprávnění nakládat se střelivem Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se střelivem je v případě střeliva kategorie / S2 držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, kterému byla vydána výjimka kategorie S2,",
+   "verdict": "DOLOŽENO"
+  },
+  "40": {
+   "ref": "§ 8 písm. d) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_8-pism_d-bod_1",
+   "quote": "Oprávnění nakládat se střelivem Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se střelivem je v případě střeliva kategorie / S4 plně svéprávná zletilá fyzická osoba, která má místo pobytu na území České republiky,",
+   "verdict": "DOLOŽENO"
+  },
+  "43": {
+   "ref": "§ 9 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_9-odst_4",
+   "quote": "Na nakládání s tlumičem hluku výstřelu se použijí ustanovení o nakládání se zbraní kategorie R4.",
+   "verdict": "DOLOŽENO"
+  },
+  "44": {
+   "ref": "§ 9 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_9-odst_1",
+   "quote": "Na nakládání s hlavní částí zbraně jako se samostatným předmětem se použijí ustanovení o nakládání se zbraní, jejíž taková hlavní část zbraně je nebo má být součástí.",
+   "verdict": "DOLOŽENO"
+  },
+  "45": {
+   "ref": "§ 9 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_9-odst_2",
+   "quote": "Se součástí zbraně umožňující samočinnou střelbu smí nakládat pouze osoba oprávněná nakládat se samočinnou zbraní příslušné kategorie.",
+   "verdict": "DOLOŽENO"
+  },
+  "46": {
+   "ref": "§ 150 odst. 15 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_150-odst_15-pism_b",
+   "quote": "119/2002 Sb., ve znění účinném přede dnem nabytí účinnosti tohoto zákona, ke dni nabytí účinnosti tohoto zákona, je povinen do 12 měsíců ode dne nabytí účinnosti tohoto zákona pořídit evidenční soupis podle § 75, pokud jde o palné zbraně kategorie NO, součásti zbraně umožňující samočinnou střelbu a polotovary hlavních částí zbraní podléhajících registraci, se kterými nakládá a které nabyl přede dn",
+   "verdict": "DOLOŽENO"
+  },
+  "47": {
+   "ref": "§ 9 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_9-odst_3",
+   "quote": "S polotovarem hlavní části zbraně určeným pro zhotovení hlavní části zbraně podléhající registraci smí nakládat pouze držitel zbrojní licence nebo osoba oprávněná provést přeshraniční přemístění takového polotovaru.",
+   "verdict": "DOLOŽENO"
+  },
+  "51": {
+   "ref": "§ 10 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_10-odst_3",
+   "quote": "Se samonabíjecí palnou zbraní určenou pro jednotné střelivo se středovým zápalem, do které je vložen nadlimitní zásobník, je držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2 oprávněn nakládat na základě výjimky kategorie R2 nebo výjimky kategorie S2 vydané pro nadlimitní zásobníky.",
+   "verdict": "DOLOŽENO"
+  },
+  "52": {
+   "ref": "§ 10 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_10-odst_3",
+   "quote": "Se samonabíjecí palnou zbraní určenou pro jednotné střelivo se středovým zápalem, do které je vložen nadlimitní zásobník, je držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2 oprávněn nakládat na základě výjimky kategorie R2 nebo výjimky kategorie S2 vydané pro nadlimitní zásobníky.",
+   "verdict": "DOLOŽENO"
+  },
+  "54": {
+   "ref": "§ 10 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_10-odst_4",
+   "quote": "Nabývání zbraní podléhajících registraci, zbraní kategorie PO, palných zbraní kategorie NO a střeliva prostřednictvím spotřebitelských smluv uzavřených na dálku je zakázáno.",
+   "verdict": "DOLOŽENO"
+  },
+  "55": {
+   "ref": "§ 11 odst. 1 písm. a) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_a-bod_1",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen / předložit na výzvu Policie České republiky (dále jen „policie“) zbraň nebo střelivo, se kterými nakládá, popřípadě související doklady a listiny, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "58": {
+   "ref": "§ 11 odst. 1 písm. b) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_b-bod_1",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen / neprodleně ohlásit policii ztrátu nebo odcizení zbraně, jde-li o zbraň podléhající registraci nebo zbraň kategorie PO,",
+   "verdict": "DOLOŽENO"
+  },
+  "60": {
+   "ref": "§ 11 odst. 1 písm. b) bod 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_b-bod_3",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen / neprodleně ohlásit policii použití zbraně k ostré střelbě v krajní nouzi nebo nutné obraně,",
+   "verdict": "DOLOŽENO"
+  },
+  "61": {
+   "ref": "§ 11 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_c",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen střílet ze zbraně, se kterou nakládá, pouze v místech, kde je k tomu oprávněn podle tohoto zákona nebo podle jiného právního předpisu,",
+   "verdict": "DOLOŽENO"
+  },
+  "62": {
+   "ref": "§ 11 odst. 1 písm. d)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_d",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen uposlechnout na místě konání akce, při které se nakládá se zbraněmi a střelivem, pokyny pořadatele, které směřují k zajištění bezpečného nakládání se zbraněmi a střelivem,",
+   "verdict": "DOLOŽENO"
+  },
+  "63": {
+   "ref": "§ 11 odst. 1 písm. e)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_e",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen dodržovat provozní řád střelnice a uposlechnout pokyny správce střelnice, které směřují k zajištění bezpečného nakládání se zbraněmi a střelivem,",
+   "verdict": "DOLOŽENO"
+  },
+  "65": {
+   "ref": "§ 11 odst. 1 písm. g)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_g",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen v případě, že je držitelem evropského zbrojního pasu, ohlásit bez zbytečného odkladu jeho ztrátu nebo odcizení krajskému ředitelství policie a",
+   "verdict": "DOLOŽENO"
+  },
+  "66": {
+   "ref": "§ 11 odst. 1 písm. h)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_1-pism_h",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Každý je povinen oznámit policii na hraničním přechodu podle zákona o ochraně státních hranic, že cestuje se zbraní nebo se střelivem.",
+   "verdict": "DOLOŽENO"
+  },
+  "68": {
+   "ref": "§ 11 odst. 3 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_b",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí převést zbraň nebo střelivo nebo jinak s nimi umožnit nakládat osobě, která k tomu není oprávněna,",
+   "verdict": "DOLOŽENO"
+  },
+  "69": {
+   "ref": "§ 11 odst. 3 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_c",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí dodat na trh zbraň nebo střelivo jako zbraň nebo střelivo jiné kategorie, než která odpovídá jejich konstrukčním vlastnostem nebo funkčnímu principu,",
+   "verdict": "DOLOŽENO"
+  },
+  "70": {
+   "ref": "§ 11 odst. 3 písm. d) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_d-bod_1",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí / nakládat se zbraní nebo střelivem tak, že ohrozí život, zdraví nebo majetek jiné osoby tím, že nedbá zvýšené opatrnosti odpovídající povaze a stavu zbraně nebo střeliva, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "71": {
+   "ref": "§ 11 odst. 3 písm. d) bod 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_d-bod_2",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí / nakládat se zbraní nebo střelivem tak, že ohrozí život, zdraví nebo majetek jiné osoby tím, že manipuluje se zbraní nebo střelivem pod vlivem alkoholu nebo jiné návykové látky anebo je-li jeho schopnost bezpečně nakládat se zbraní nebo střelivem snížena užitím léků nebo v důsledku jeho zdravotního stavu,",
+   "verdict": "DOLOŽENO"
+  },
+  "72": {
+   "ref": "§ 11 odst. 3 písm. d) bod 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_d-bod_2",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí / nakládat se zbraní nebo střelivem tak, že ohrozí život, zdraví nebo majetek jiné osoby tím, že manipuluje se zbraní nebo střelivem pod vlivem alkoholu nebo jiné návykové látky anebo je-li jeho schopnost bezpečně nakládat se zbraní nebo střelivem snížena užitím léků nebo v důsledku jeho zdravotního stavu,",
+   "verdict": "DOLOŽENO"
+  },
+  "77": {
+   "ref": "§ 11 odst. 3 písm. j)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_11-odst_3-pism_j",
+   "quote": "Obecné povinnosti při nakládání se zbraněmi a střelivem / Nikdo nesmí ohrozit život, zdraví nebo majetek jiné osoby v důsledku použití zbraně nebo střeliva ve špatném technickém stavu anebo zbraně nebo střeliva, které neodpovídají požadavkům zákona o ověřování zbraní a střeliva.",
+   "verdict": "DOLOŽENO"
+  },
+  "79": {
+   "ref": "§ 12 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_12-odst_2-pism_a",
+   "quote": "Součástí rozšířeného zbrojního oprávnění je rovněž obecné zbrojní oprávnění.",
+   "verdict": "DOLOŽENO"
+  },
+  "81": {
+   "ref": "§ 12 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_12-odst_2",
+   "quote": "Rozšířené zbrojní oprávnění je podle tohoto zákona vyžadováno pro výkon činnosti zkušebního komisaře, pro výkon činnosti hlavního zbrojíře držitele zbrojní licence skupiny ZL1 nebo ZL3, pro skryté nošení zbraně podléhající registraci a u osob, které plní některé úkoly držitele zbrojní licence a o kterých tak stanoví § 90.",
+   "verdict": "K OVĚŘENÍ"
+  },
+  "82": {
+   "ref": "§ 13 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_13-odst_1",
+   "quote": "Podmínky zbrojního oprávnění splňuje fyzická osoba, která má místo pobytu na území České republiky, dosáhla stanoveného věku, je plně svéprávná, nejde-li o vydání zbrojního oprávnění podle § 14 odst.",
+   "verdict": "K OVĚŘENÍ"
+  },
+  "85": {
+   "ref": "§ 13 odst. 2 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_13-odst_2-pism_b",
+   "quote": "Podmínky zbrojního oprávnění a jeho vydání / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zamítnout žádost o vydání zbrojního oprávnění i v případě, že jsou splněny podmínky uvedené v odstavci 1, jestliže je žadatelem cizinec, který není občanem členského státu Organizace Severoatlantické smlouvy,",
+   "verdict": "DOLOŽENO"
+  },
+  "89": {
+   "ref": "§ 15 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_15-odst_1",
+   "quote": "Zdravotně způsobilý není ten, jehož způsobilost bezpečně nakládat se zbraní nebo střelivem je vyloučena nebo omezena v důsledku stanovené nemoci, vady nebo stavu anebo stanoví-li tak § 16.",
+   "verdict": "DOLOŽENO"
+  },
+  "95": {
+   "ref": "§ 15 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_15-odst_3",
+   "quote": "Osoba, u níž se zjišťuje splnění podmínek zbrojního oprávnění, předkládá krajskému ředitelství policie lékařský posudek k ověření její zdravotní způsobilosti jako přílohu žádosti o vydání zbrojního oprávnění a vždy nejpozději ke dni uplynutí platnosti předchozího lékařského posudku.",
+   "verdict": "DOLOŽENO"
+  },
+  "96": {
+   "ref": "§ 15 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_15-odst_4",
+   "quote": "krajské ředitelství policie současně držitele zbrojního oprávnění vyzve, aby se k lékařské prohlídce dostavil ve lhůtě, která nesmí být kratší než 10 pracovních dnů.",
+   "verdict": "DOLOŽENO"
+  },
+  "97": {
+   "ref": "§ 15 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_15-odst_5",
+   "quote": "Nemůže-li takový poskytovatel zdravotních služeb lékařský posudek vydat nebo je-li podezření, že se posuzovaná osoba snaží ovlivnit nestrannost zjištění své zdravotní způsobilosti, anebo nelze-li její zdravotní způsobilost zjistit jiným způsobem, krajské ředitelství policie usnesením určí poskytovatele zdravotních služeb, který lékařský posudek vydá.",
+   "verdict": "DOLOŽENO"
+  },
+  "100": {
+   "ref": "§ 17 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_17-odst_1",
+   "quote": "Ošetřující lékař, který zjistí, že pacient trpí nemocí, vadou nebo stavem, které vylučují nebo omezují zdravotní způsobilost, je povinen tuto skutečnost oznámit bez zbytečného odkladu policii, pokud je tento pacient držitelem oprávnění k nakládání se zbraněmi a střelivem.",
+   "verdict": "DOLOŽENO"
+  },
+  "101": {
+   "ref": "§ 17 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_17-odst_2",
+   "quote": "Lékař uvedený v odstavci 1 je povinen ověřit, zda je daná osoba držitelem oprávnění k nakládání se zbraněmi a střelivem, a to prostřednictvím informačního systému veřejné správy vedeného podle jiného právního předpisu12) nebo centrálního registru zbraní anebo dotazem u krajského ředitelství policie;",
+   "verdict": "DOLOŽENO"
+  },
+  "102": {
+   "ref": "§ 18 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_18-odst_3",
+   "quote": "Za bezúhonného se dále nepovažuje ten, kdo byl v cizině pravomocně odsouzen za čin, jehož znaky odpovídají znakům některého z trestných činů uvedených v odstavci 1.",
+   "verdict": "DOLOŽENO"
+  },
+  "103": {
+   "ref": "§ 18 odst. 2 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_18-odst_2-pism_b",
+   "quote": "Bezúhonnost / Byl-li úmyslný trestný čin spáchán násilím, pohrůžkou násilí nebo pohrůžkou jiné těžké újmy nebo v souvislosti s nakládáním se zbraní, střelivem, municí nebo výbušninou, doba, po kterou se osoba nepovažuje za bezúhonnou, činí 15 let, stanoví-li odstavec 1 písm.",
+   "verdict": "DOLOŽENO"
+  },
+  "107": {
+   "ref": "§ 18 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_18-odst_4",
+   "quote": "Při posuzování bezúhonnosti se nepřihlíží k zahlazení odsouzení podle jiného právního předpisu, ani k jiným případům, v nichž nastává účinek, že se na pachatele hledí, jako by nebyl odsouzen.",
+   "verdict": "DOLOŽENO"
+  },
+  "110": {
+   "ref": "§ 19 písm. d) bod 9",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_19-pism_d-bod_9",
+   "quote": "Spolehlivost Za spolehlivého podle tohoto zákona se nepovažuje ten, / kdo byl v posledních 3 letech pravomocně uznán vinným ze spáchání více než 1 přestupku nebo jednání, které má znaky takového přestupku, pokud jej je třeba s ohledem na povahu činů, jimiž byly takové přestupky nebo jednání spáchány, považovat za vážné nebezpečí pro vnitřní pořádek nebo bezpečnost, a jde-li o přestupek neoprávněné",
+   "verdict": "DOLOŽENO"
+  },
+  "111": {
+   "ref": "§ 19 písm. d) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_19-pism_d-bod_1",
+   "quote": "Spolehlivost Za spolehlivého podle tohoto zákona se nepovažuje ten, / kdo byl v posledních 3 letech pravomocně uznán vinným ze spáchání více než 1 přestupku nebo jednání, které má znaky takového přestupku, pokud jej je třeba s ohledem na povahu činů, jimiž byly takové přestupky nebo jednání spáchány, považovat za vážné nebezpečí pro vnitřní pořádek nebo bezpečnost, a jde-li o přestupek na úseku na",
+   "verdict": "DOLOŽENO"
+  },
+  "114": {
+   "ref": "§ 20 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_2",
+   "quote": "Využití tlumočníka, podpůrce nebo obdobné osoby při vykonání teoretické nebo praktické části zkoušky odborné způsobilosti nebo komisionální zkoušky se nepřipouští.",
+   "verdict": "DOLOŽENO"
+  },
+  "116": {
+   "ref": "§ 20 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_1-pism_a",
+   "quote": "Odborná způsobilost / Odborná způsobilost žadatele o vydání zbrojního oprávnění se ověřuje zkouškou odborné způsobilosti nebo komisionální zkouškou, které se skládají z teoretické části konané formou písemného testu, při němž žadatel o vydání zbrojního oprávnění prokazuje znalosti právních předpisů z oblasti nakládání se zbraněmi a střelivem, ověřování střelných zbraní a střeliva, trestněprávních ",
+   "verdict": "DOLOŽENO"
+  },
+  "117": {
+   "ref": "§ 20 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_1-pism_b",
+   "quote": "Odborná způsobilost / Odborná způsobilost žadatele o vydání zbrojního oprávnění se ověřuje zkouškou odborné způsobilosti nebo komisionální zkouškou, které se skládají z praktické části, při níž žadatel o vydání zbrojního oprávnění prokazuje znalosti, schopnosti a dovednosti v oblasti postupů bezpečného nakládání se zbraněmi a střelivem a střelby na terč.",
+   "verdict": "DOLOŽENO"
+  },
+  "118": {
+   "ref": "§ 20 odst. 3 písm. c) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_3-pism_c-bod_1",
+   "quote": "Odborná způsobilost / Žadatel při zkoušce odborné způsobilosti nebo komisionální zkoušce prokáže, že je odborně způsobilý, pokud / v praktické části zkoušky dosáhne při střelbě na kruhový terč o průměru 500 mm na vzdálenost 10 m z 5 výstřelů krátkou kulovou zbraní a na vzdálenost 25 m z 5 výstřelů dlouhou kulovou zbraní v čase nejvýše 5 minut alespoň celkem 6 zásahů, jde-li o žadatele o obecné zbr",
+   "verdict": "DOLOŽENO"
+  },
+  "121": {
+   "ref": "§ 21 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_21-odst_1-pism_a",
+   "quote": "Pozastavení zbrojního oprávnění / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zbrojní oprávnění pozastavit na dobu, po kterou je u držitele zbrojního oprávnění dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny,",
+   "verdict": "DOLOŽENO"
+  },
+  "122": {
+   "ref": "§ 21 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_21-odst_1-pism_a",
+   "quote": "Pozastavení zbrojního oprávnění / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zbrojní oprávnění pozastavit na dobu, po kterou je u držitele zbrojního oprávnění dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny,",
+   "verdict": "DOLOŽENO"
+  },
+  "130": {
+   "ref": "§ 23 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_23-pism_c",
+   "quote": "Zánik zbrojního oprávnění Zbrojní oprávnění zaniká dnem nabytí právní moci rozhodnutí o jeho odnětí, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "133": {
+   "ref": "§ 24 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_24-odst_2",
+   "quote": "Žadatel o vydání zbrojního oprávnění může odbornou způsobilost prokázat tak, že do 12 měsíců ode dne zápisu skutečnosti uvedené v odstavci 1 do centrálního registru zbraní úspěšně složí zkoušku odborné způsobilosti, kterou je oprávněn jednou opakovat, nebo komisionální zkoušku.",
+   "verdict": "DOLOŽENO"
+  },
+  "134": {
+   "ref": "§ 24 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_24-odst_3",
+   "quote": "Komisionální zkoušku může vykonat žadatel o vydání zbrojního oprávnění, který neuspěl ani při opakované zkoušce odborné způsobilosti, pokud alespoň jednou uspěl v teoretické části zkoušky odborné způsobilosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "138": {
+   "ref": "§ 28 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_28-odst_2",
+   "quote": "O průběhu praktické části každé zkoušky odborné způsobilosti pořizuje krajské ředitelství policie zvukový a obrazový záznam, který je součástí protokolu o vykonání dozoru.",
+   "verdict": "DOLOŽENO"
+  },
+  "140": {
+   "ref": "§ 29 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_29-odst_2",
+   "quote": "Protest se vznáší na místě konání zkoušky odborné způsobilosti u krajského ředitelství policie, které provádí dozor nad jejím průběhem, a to ihned po oznámení výsledku zkoušky odborné způsobilosti a poučení o možnosti jej vznést;",
+   "verdict": "DOLOŽENO"
+  },
+  "141": {
+   "ref": "§ 29 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_29-odst_2",
+   "quote": "Žadatel musí současně uvést nedostatky, které v průběhu nebo na výsledku zkoušky spatřuje a na jejichž základě protest vznáší.",
+   "verdict": "DOLOŽENO"
+  },
+  "142": {
+   "ref": "§ 29 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_29-odst_3",
+   "quote": "Krajské ředitelství policie, které provádí dozor nad průběhem zkoušky odborné způsobilosti, protest na místě přezkoumá z hlediska souladu průběhu zkoušky s tímto zákonem a právními předpisy vydanými k jeho provedení, a shledá-li jej důvodným, umožní žadateli o vydání zbrojního oprávnění opakování příslušné části zkoušky odborné způsobilosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "153": {
+   "ref": "§ 36 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_36-odst_2-pism_a",
+   "quote": "Překážky výkonu činnosti zkušebního komisaře, zánik oprávnění zkušebního komisaře a jeho odvolání / Ministerstvo odvolá zkušebního komisaře, který závažným způsobem nebo opakovaně poruší své povinnosti stanovené tímto zákonem nebo právním předpisem vydaným k jeho provedení,",
+   "verdict": "DOLOŽENO"
+  },
+  "154": {
+   "ref": "§ 36 odst. 2 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_36-odst_2-pism_b",
+   "quote": "Překážky výkonu činnosti zkušebního komisaře, zánik oprávnění zkušebního komisaře a jeho odvolání / Ministerstvo odvolá zkušebního komisaře, který opakovaně znemožňuje dosažení účelu zkoušky odborné způsobilosti nebo komisionální zkoušky, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "159": {
+   "ref": "§ 37 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_37-odst_5",
+   "quote": "Zbrojní licence skupiny ZL3 opravňuje svého držitele jednorázově provést nebo za konkrétním účelem provádět činnost, pro kterou se jinak vyžaduje zbrojní licence skupiny ZL1 nebo ZL2;",
+   "verdict": "DOLOŽENO"
+  },
+  "163": {
+   "ref": "§ 37 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_37-odst_2",
+   "quote": "Držitel zbrojní licence skupiny ZL1 nebo ZL2 nemůže být současně držitelem zbrojní licence skupiny ZL3.",
+   "verdict": "DOLOŽENO"
+  },
+  "168": {
+   "ref": "§ 37 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_37-odst_5",
+   "quote": "Zbrojní licence skupiny ZL3 opravňuje svého držitele jednorázově provést nebo za konkrétním účelem provádět činnost, pro kterou se jinak vyžaduje zbrojní licence skupiny ZL1 nebo ZL2;",
+   "verdict": "DOLOŽENO"
+  },
+  "169": {
+   "ref": "§ 37 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_37-odst_5",
+   "quote": "Zbrojní licence skupiny ZL3 opravňuje svého držitele jednorázově provést nebo za konkrétním účelem provádět činnost, pro kterou se jinak vyžaduje zbrojní licence skupiny ZL1 nebo ZL2;",
+   "verdict": "DOLOŽENO"
+  },
+  "173": {
+   "ref": "§ 38 odst. 2 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_38-odst_2-pism_b",
+   "quote": "Podmínky zbrojní licence a její vydání / Podmínky zbrojní licence skupiny ZL1 nebo ZL2 splňuje právnická osoba nebo podnikající fyzická osoba, která je oprávněna vykonávat podnikatelskou nebo jinou činnost, pro niž má být zbrojní licence vydána,",
+   "verdict": "DOLOŽENO"
+  },
+  "176": {
+   "ref": "§ 38 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_38-odst_4",
+   "quote": "krajské ředitelství policie může v rozhodnutí o vydání zbrojní licence skupiny ZL3 stanovit pro činnost jejího držitele další podmínky, je-li to potřeba v zájmu ochrany vnitřního pořádku nebo bezpečnosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "179": {
+   "ref": "§ 39 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_39-odst_2-pism_a",
+   "quote": "Odborná způsobilost / Hlavní zbrojíř je odborně způsobilý, pokud je držitelem rozšířeného zbrojního oprávnění a má alespoň střední vzdělání s výučním listem v oboru zaměřeném na oblast zbraní nebo střeliva anebo alespoň 3 roky praxe zaměřené na nakládání se zbraněmi nebo střelivem, pokud jde o podmínku zbrojní licence skupiny ZL1,",
+   "verdict": "DOLOŽENO"
+  },
+  "183": {
+   "ref": "§ 42 odst. 1 písm. d)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_42-odst_1-pism_d",
+   "quote": "Další povinnosti držitele zbrojní licence / Držitel zbrojní licence je dále povinen oznámit krajskému ředitelství policie bez zbytečného odkladu ustanovení a ukončení výkonu hlavního zbrojíře a",
+   "verdict": "DOLOŽENO"
+  },
+  "184": {
+   "ref": "§ 42 odst. 1 písm. e)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_42-odst_1-pism_e",
+   "quote": "Další povinnosti držitele zbrojní licence / Držitel zbrojní licence je dále povinen umožnit za účelem provedení kontroly činnosti držitele zbrojní licence kontrolujícímu vstup do obydlí, ve kterém takový držitel zbrojní licence při své činnosti nakládá se zbraněmi nebo střelivem.",
+   "verdict": "DOLOŽENO"
+  },
+  "187": {
+   "ref": "§ 42 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_42-odst_3",
+   "quote": "Držitel zbrojní licence, který podniká v oboru zbraní a střeliva, oznámí policii převod zbraně nebo střeliva nebo právní jednání směřující k takovému převodu, které důvodně považuje za podezřelé.",
+   "verdict": "DOLOŽENO"
+  },
+  "188": {
+   "ref": "§ 43 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_43-odst_1-pism_a",
+   "quote": "Pozastavení zbrojní licence / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zbrojní licenci pozastavit na dobu, po kterou je u držitele zbrojní licence dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny,",
+   "verdict": "DOLOŽENO"
+  },
+  "189": {
+   "ref": "§ 43 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_43-odst_1-pism_c",
+   "quote": "Pozastavení zbrojní licence / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zbrojní licenci pozastavit na dobu, po kterou držitel zbrojní licence přeruší výkon činnosti, pro kterou byla zbrojní licence vydána, nebo po dobu přerušení nebo pozastavení výkonu této činnosti rozhodnutím jiného orgánu veřejné moci, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "190": {
+   "ref": "§ 43 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_43-odst_2",
+   "quote": "Odvolání proti rozhodnutí o pozastavení zbrojní licence nemá odkladný účinek.",
+   "verdict": "DOLOŽENO"
+  },
+  "191": {
+   "ref": "§ 44 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_44-odst_1",
+   "quote": "Krajské ředitelství policie odejme zbrojní licenci, jestliže držitel zbrojní licence přestal splňovat některou z podmínek zbrojní licence.",
+   "verdict": "DOLOŽENO"
+  },
+  "197": {
+   "ref": "§ 46 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_46-odst_1-pism_a",
+   "quote": "Krajské ředitelství policie na žádost vydá výjimku kategorie R1 nebo S1 držiteli zbrojní licence skupiny ZL2 z důvodu uvedeného v § 47, pokud žadatel prokáže potřebnost nakládání se zbraní kategorie R1 nebo střelivem kategorie S1 při své činnosti vykonávané na základě zbrojní licence skupiny ZL2 a",
+   "verdict": "DOLOŽENO"
+  },
+  "199": {
+   "ref": "§ 46 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_46-odst_2",
+   "quote": "Je-li předmětem žádosti o vydání výjimky kategorie R1 zbraň zvláště účinná, která podléhá mezinárodním kontrolním režimům, lze výjimku vydat pouze na základě závazného stanoviska Ministerstva obrany, které žádost posoudí z hlediska závazků České republiky podle mezinárodní smlouvy, která je součástí právního řádu, a z hlediska zájmů na zajišťování obrany České republiky.",
+   "verdict": "DOLOŽENO"
+  },
+  "201": {
+   "ref": "§ 48 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_48-odst_1-pism_a",
+   "quote": "Krajské ředitelství policie na žádost vydá výjimku kategorie R2 držiteli zbrojního oprávnění nebo zbrojní licence skupiny ZL2 z důvodu uvedeného v § 47,",
+   "verdict": "DOLOŽENO"
+  },
+  "203": {
+   "ref": "§ 48 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_48-odst_1-pism_b",
+   "quote": "Krajské ředitelství policie na žádost vydá výjimku kategorie R2 držiteli zbrojního oprávnění nebo zbrojní licence skupiny ZL2 z důvodu spočívajícího v rekonstruování historických bitev nebo obdobných událostí, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "205": {
+   "ref": "§ 48 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_48-odst_2",
+   "quote": "K žádosti musí být přiloženo potvrzení držitele zbrojní licence, že žadatel během posledních 12 měsíců jako osoba v pracovněprávním, členském nebo obdobném poměru k tomuto držiteli zbrojní licence opakovaně aktivně trénoval nebo se opakovaně účastnil soutěží ve střelbě a zbraň kategorie R2 uvedená v žádosti splňuje specifikace požadované pro mezinárodně uznanou střeleckou disciplínu, kterou se ten",
+   "verdict": "DOLOŽENO"
+  },
+  "206": {
+   "ref": "§ 49",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_49",
+   "quote": "Krajské ředitelství policie na žádost vydá výjimku kategorie S2 pro nakládání se střelivem kategorie S2 nebo pro nadlimitní zásobníky držiteli zbrojního oprávnění nebo zbrojní licence skupiny ZL2 za obdobných podmínek jako výjimku kategorie R2.",
+   "verdict": "DOLOŽENO"
+  },
+  "208": {
+   "ref": "§ 49",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_49",
+   "quote": "Krajské ředitelství policie na žádost vydá výjimku kategorie S2 pro nakládání se střelivem kategorie S2 nebo pro nadlimitní zásobníky držiteli zbrojního oprávnění nebo zbrojní licence skupiny ZL2 za obdobných podmínek jako výjimku kategorie R2.",
+   "verdict": "DOLOŽENO"
+  },
+  "210": {
+   "ref": "§ 50 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_50-pism_c",
+   "quote": "Povolení kategorie R3 Krajské ředitelství policie na žádost vydá povolení kategorie R3 držiteli zbrojního oprávnění nebo zbrojní licence skupiny ZL2 z důvodu spočívajícího v rekonstruování historických bitev nebo obdobných událostí, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "211": {
+   "ref": "§ 51 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_51-odst_3",
+   "quote": "Pro každou zbraň kategorie R1, R2 a R3, s níž držitel zbrojního oprávnění nebo zbrojní licence skupiny ZL2 nakládá, musí být vydáno samostatné rozhodnutí o výjimce nebo o povolení.",
+   "verdict": "DOLOŽENO"
+  },
+  "212": {
+   "ref": "§ 52",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_52",
+   "quote": "Pozastavení výjimky nebo povolení Výjimka kategorie R1, S1, R2 nebo S2 anebo povolení kategorie R3 jsou pozastaveny po dobu, po kterou je jejich držiteli pozastaveno zbrojní oprávnění nebo zbrojní licence.",
+   "verdict": "DOLOŽENO"
+  },
+  "213": {
+   "ref": "§ 52",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_52",
+   "quote": "Pozastavení výjimky nebo povolení Výjimka kategorie R1, S1, R2 nebo S2 anebo povolení kategorie R3 jsou pozastaveny po dobu, po kterou je jejich držiteli pozastaveno zbrojní oprávnění nebo zbrojní licence.",
+   "verdict": "DOLOŽENO"
+  },
+  "214": {
+   "ref": "§ 53 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_53-odst_1",
+   "quote": "Krajské ředitelství policie odejme výjimku kategorie R1, S1, R2 nebo S2 anebo povolení kategorie R3, pominul-li trvale důvod, pro který byly vydány;",
+   "verdict": "DOLOŽENO"
+  },
+  "216": {
+   "ref": "§ 53 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_53-odst_2",
+   "quote": "Krajské ředitelství policie odejme povolení kategorie R3 vydané pro příslušnou samonabíjecí palnou zbraň pro střelivo se středovým zápalem, pokud osoba, která s takovou zbraní nakládá, neoprávněně nakládá s nadlimitním zásobníkem určeným pro použití v této zbrani.",
+   "verdict": "DOLOŽENO"
+  },
+  "224": {
+   "ref": "§ 8 písm. d) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_8-pism_d-bod_1",
+   "quote": "Oprávnění nakládat se střelivem Osobou oprávněnou nakládat za podmínek stanovených tímto zákonem se střelivem je v případě střeliva kategorie / S4 plně svéprávná zletilá fyzická osoba, která má místo pobytu na území České republiky,",
+   "verdict": "DOLOŽENO"
+  },
+  "225": {
+   "ref": "§ 56 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_56-odst_1",
+   "quote": "Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti rozhodnutím pozastavit zapsanou autorizaci na dobu, po kterou je u jejího držitele dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny.",
+   "verdict": "DOLOŽENO"
+  },
+  "226": {
+   "ref": "§ 57 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_57-odst_1-pism_b",
+   "quote": "Odnětí zapsané autorizace / Krajské ředitelství policie odejme zapsanou autorizaci, pokud se prokáže, že zdravotní stav jejího držitele by mohl v souvislosti s nakládáním se zbraní nebo střelivem představovat ohrožení života nebo zdraví;",
+   "verdict": "DOLOŽENO"
+  },
+  "230": {
+   "ref": "§ 59 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_59-odst_1-pism_c",
+   "quote": "Osoba nakládající se zbraní a střelivem je oprávněna střílet na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek, pokud jde o střelbu ze zbraně, u které není úsťová energie střely vyšší než 50 J, nebo ze signální zbraně nebo o jinou než ostrou střelbu, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "231": {
+   "ref": "§ 59 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_59-odst_1-pism_c",
+   "quote": "Osoba nakládající se zbraní a střelivem je oprávněna střílet na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek, pokud jde o střelbu ze zbraně, u které není úsťová energie střely vyšší než 50 J, nebo ze signální zbraně nebo o jinou než ostrou střelbu, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "232": {
+   "ref": "§ 59 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_59-odst_1-pism_c",
+   "quote": "Osoba nakládající se zbraní a střelivem je oprávněna střílet na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek, pokud jde o střelbu ze zbraně, u které není úsťová energie střely vyšší než 50 J, nebo ze signální zbraně nebo o jinou než ostrou střelbu, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "233": {
+   "ref": "§ 59 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_59-odst_1-pism_c",
+   "quote": "Osoba nakládající se zbraní a střelivem je oprávněna střílet na místě, kde je zajištěno, že nebude ohrožen život, zdraví, majetek nebo veřejný pořádek, pokud jde o střelbu ze zbraně, u které není úsťová energie střely vyšší než 50 J, nebo ze signální zbraně nebo o jinou než ostrou střelbu, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "235": {
+   "ref": "§ 59 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_59-odst_3",
+   "quote": "Na střelnici, jejíž provoz byl povolen podle tohoto zákona, lze střílet munici se střelou bez obsahu aktivních muničních náplní, pokud je její kinetická energie srovnatelná se střelivem, jehož použití je na střelnici povoleno.",
+   "verdict": "DOLOŽENO"
+  },
+  "238": {
+   "ref": "§ 60 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_60-odst_1",
+   "quote": "Jako střelnici lze využít zejména pozemek, stavbu nebo technické zařízení, pokud je v souladu s pravidly stanovenými tímto zákonem zajištěna bezpečnost jejího provozu.",
+   "verdict": "DOLOŽENO"
+  },
+  "239": {
+   "ref": "§ 60 odst. 3 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_60-odst_3-pism_a",
+   "quote": "Vymezení a obecné podmínky provozování střelnic / Pro účely tohoto zákona se rozlišují střelnice podle způsobu provozování na střelnice příležitostné, které nejsou podle provozního řádu využívány častěji než 26 dnů v kalendářním roce, nebo stálé, kterými jsou střelnice, které nejsou příležitostnými střelnicemi, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "241": {
+   "ref": "§ 60 odst. 3 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_60-odst_3-pism_b",
+   "quote": "Vymezení a obecné podmínky provozování střelnic / Pro účely tohoto zákona se rozlišují střelnice podle konstrukce na střelnice kryté, u nichž se celý ohrožený prostor nachází v uzavřeném objektu, který je konstruován tak, aby byl únik střel do okolního prostoru při dodržení provozního řádu vyloučen, nebo otevřené, kterými jsou střelnice, které nejsou krytými střelnicemi.",
+   "verdict": "DOLOŽENO"
+  },
+  "250": {
+   "ref": "§ 63 odst. 1 písm. d)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_63-odst_1-pism_d",
+   "quote": "Další povinnosti provozovatele střelnice / Provozovatel střelnice je dále povinen ustanovit správce střelnice a oznámit krajskému ředitelství policie bez zbytečného odkladu ustanovení a ukončení výkonu funkce každého správce střelnice a",
+   "verdict": "DOLOŽENO"
+  },
+  "251": {
+   "ref": "§ 63 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_63-odst_1-pism_c",
+   "quote": "Další povinnosti provozovatele střelnice / Provozovatel střelnice je dále povinen provést změnu provozního řádu střelnice v případech, kdy již neodpovídá podmínkám provozování střelnice nebo požadavkům tohoto zákona,",
+   "verdict": "DOLOŽENO"
+  },
+  "252": {
+   "ref": "§ 63 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_63-odst_2",
+   "quote": "Tento zápis musí být proveden do centrálního registru zbraní v obdobném rozsahu jako zápis do provozní knihy střelnice, a to bez zbytečného odkladu a v mimořádných odůvodněných případech pak nejdéle do 2 pracovních dnů ode dne, kdy cizinec na střelnici prováděl střelbu.",
+   "verdict": "DOLOŽENO"
+  },
+  "255": {
+   "ref": "§ 64 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_64-odst_2",
+   "quote": "Správce střelnice v souladu s provozním řádem střelnice dohlíží na dodržování provozního řádu střelnice a je oprávněn za účelem zajištění bezpečného nakládání se zbraněmi a střelivem udělovat osobám na střelnici pokyny.",
+   "verdict": "DOLOŽENO"
+  },
+  "257": {
+   "ref": "§ 65 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_65-odst_1",
+   "quote": "Stanoví-li tak provozní řád střelnice, může správce střelnice určit řídícího střelby, který správci střelnice poskytuje součinnost při dohledu nad dodržováním provozního řádu střelnice a při zajišťování bezpečného nakládání se zbraněmi a střelivem na střelnici.",
+   "verdict": "DOLOŽENO"
+  },
+  "259": {
+   "ref": "§ 65 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_65-odst_3",
+   "quote": "O určení řídícího střelby musí být vyhotoven písemný záznam, který podepíše správce střelnice a řídící střelby a ve kterém se vymezí rozsah úkolů řídícího střelby;",
+   "verdict": "DOLOŽENO"
+  },
+  "260": {
+   "ref": "§ 65 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_65-odst_3",
+   "quote": "O určení řídícího střelby musí být vyhotoven písemný záznam, který podepíše správce střelnice a řídící střelby a ve kterém se vymezí rozsah úkolů řídícího střelby;",
+   "verdict": "DOLOŽENO"
+  },
+  "263": {
+   "ref": "§ 67 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_67-odst_1-pism_b",
+   "quote": "Pozastavení povolení provozovat střelnici / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti povolení provozovat střelnici pozastavit na dobu, po kterou je ohrožován život, zdraví nebo majetek jiné osoby z důvodu rozporu skutečného technického stavu střelnice s jejím provozním řádem nebo s technicko-organizačními požadavky, které stanoví příloha č.",
+   "verdict": "DOLOŽENO"
+  },
+  "265": {
+   "ref": "§ 68 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_68-odst_1-pism_b",
+   "quote": "Odnětí povolení provozovat střelnici / Krajské ředitelství policie povolení provozovat střelnici odejme, jestliže provozovatel střelnice ani v přiměřené dodatečné lhůtě, kterou stanoví krajské ředitelství policie a která nesmí být kratší než 60 dnů, neodstraní nedostatky, které vedly k pozastavení povolení provozovat střelnici.",
+   "verdict": "DOLOŽENO"
+  },
+  "268": {
+   "ref": "§ 70 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_1",
+   "quote": "Držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, který nabude zbraň podléhající registraci, je povinen ohlásit tuto skutečnost do 10 pracovních dnů ode dne, kdy s takovou zbraní začal nakládat, krajskému ředitelství policie a předložit mu tuto zbraň k prohlídce jejího označení a technického stavu.",
+   "verdict": "DOLOŽENO"
+  },
+  "269": {
+   "ref": "§ 70 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_1",
+   "quote": "Držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, který nabude zbraň podléhající registraci, je povinen ohlásit tuto skutečnost do 10 pracovních dnů ode dne, kdy s takovou zbraní začal nakládat, krajskému ředitelství policie a předložit mu tuto zbraň k prohlídce jejího označení a technického stavu.",
+   "verdict": "DOLOŽENO"
+  },
+  "270": {
+   "ref": "§ 70 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_1",
+   "quote": "Držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, který nabude zbraň podléhající registraci, je povinen ohlásit tuto skutečnost do 10 pracovních dnů ode dne, kdy s takovou zbraní začal nakládat, krajskému ředitelství policie a předložit mu tuto zbraň k prohlídce jejího označení a technického stavu.",
+   "verdict": "DOLOŽENO"
+  },
+  "271": {
+   "ref": "§ 70 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_1",
+   "quote": "Držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, který nabude zbraň podléhající registraci, je povinen ohlásit tuto skutečnost do 10 pracovních dnů ode dne, kdy s takovou zbraní začal nakládat, krajskému ředitelství policie a předložit mu tuto zbraň k prohlídce jejího označení a technického stavu.",
+   "verdict": "DOLOŽENO"
+  },
+  "272": {
+   "ref": "§ 70 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_2",
+   "quote": "Držitel zbrojního oprávnění nebo držitel zbrojní licence skupiny ZL2, který převedl registrovanou zbraň na jinou osobu, je povinen ohlásit její převod krajskému ředitelství policie, a to do 10 pracovních dnů ode dne jeho uskutečnění.",
+   "verdict": "DOLOŽENO"
+  },
+  "274": {
+   "ref": "§ 70 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_70-odst_3",
+   "quote": "Krajské ředitelství policie rozhodne o odmítnutí provést registraci zbraně podléhající registraci, pokud jde o zbraň, s níž její držitel není oprávněn nakládat;",
+   "verdict": "DOLOŽENO"
+  },
+  "276": {
+   "ref": "§ 71 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_71-odst_1",
+   "quote": "Hlavním držitelem zbraně je osoba, které byla tato zbraň zaregistrována podle § 70 odst.",
+   "verdict": "DOLOŽENO"
+  },
+  "279": {
+   "ref": "§ 71 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_71-odst_3",
+   "quote": "Jako vedlejší držitel zbraně může být do centrálního registru zbraní zapsána osoba, která je oprávněna v souladu s § 7 s danou zbraní nakládat a se svým zapsáním souhlasí.",
+   "verdict": "DOLOŽENO"
+  },
+  "280": {
+   "ref": "§ 71 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_71-odst_3",
+   "quote": "Jako vedlejší držitel zbraně může být do centrálního registru zbraní zapsána osoba, která je oprávněna v souladu s § 7 s danou zbraní nakládat a se svým zapsáním souhlasí.",
+   "verdict": "DOLOŽENO"
+  },
+  "282": {
+   "ref": "§ 71 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_71-odst_4",
+   "quote": "Krajské ředitelství policie bez zbytečného odkladu uvědomí hlavního držitele zbraně o skutečnosti, že vedlejšímu držiteli zbraně bylo zbrojní oprávnění pozastaveno nebo mu zaniklo.",
+   "verdict": "DOLOŽENO"
+  },
+  "283": {
+   "ref": "§ 72 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_72-odst_1",
+   "quote": "Nabytí zbraně kategorie PO musí být ohlášeno krajskému ředitelství policie, a to do 10 pracovních dnů ode dne, kdy s ní začal její držitel nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "284": {
+   "ref": "§ 150 odst. 2 písm. a) bod 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_150-odst_2-pism_a-bod_4",
+   "quote": "ledna 2021 a jde-li o signální zbraň pro použití signálních nábojů nejvýše ráže 16 mm, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "285": {
+   "ref": "§ 72 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_72-odst_1",
+   "quote": "Nabytí zbraně kategorie PO musí být ohlášeno krajskému ředitelství policie, a to do 10 pracovních dnů ode dne, kdy s ní začal její držitel nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "287": {
+   "ref": "§ 72 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_72-odst_2",
+   "quote": "Držitel zbraně kategorie PO, který tuto zbraň převedl na jinou osobu, je povinen ohlásit její převod krajskému ředitelství policie, a to do 10 pracovních dnů ode dne jeho uskutečnění.",
+   "verdict": "DOLOŽENO"
+  },
+  "290": {
+   "ref": "§ 73 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_73-odst_1-pism_b",
+   "quote": "2 se nepostupuje, pokud jde o zbraň, kterou nabyla k tomu oprávněná osoba, která tuto zbraň do 10 pracovních dnů ode dne, kdy s ní začala nakládat, v souladu s jiným právním předpisem trvale přeshraničně přemístí mimo území České republiky.",
+   "verdict": "DOLOŽENO"
+  },
+  "296": {
+   "ref": "§ 74 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_74-odst_3",
+   "quote": "Krajské ředitelství policie bez zbytečného odkladu uvědomí držitele zbrojní licence o skutečnosti, že osobě, kterou zapsal do centrálního registru zbraní podle odstavce 1, bylo zbrojní oprávnění pozastaveno nebo jí zaniklo.",
+   "verdict": "DOLOŽENO"
+  },
+  "298": {
+   "ref": "§ 75 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_75-odst_1",
+   "quote": "Držitel zbrojní licence vede evidenční soupis palných zbraní kategorie NO, součástí zbraně umožňujících samočinnou střelbu a polotovarů hlavních částí zbraní podléhajících registraci, se kterými nakládá.",
+   "verdict": "DOLOŽENO"
+  },
+  "300": {
+   "ref": "§ 75 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_75-odst_5",
+   "quote": "Údaje, které jsou vedeny v evidenčním soupisu, je držitel zbrojní licence povinen uchovávat po dobu 10 let ode dne jejich zápisu do evidenčního soupisu.",
+   "verdict": "DOLOŽENO"
+  },
+  "301": {
+   "ref": "§ 76 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_76-odst_1",
+   "quote": "Držitel zbrojní licence skupiny ZL1 je povinen do centrálního registru zbraní zapisovat údaje o zbraních podléhajících registraci, zbraních kategorie PO a střelivu, s nimiž nakládá.",
+   "verdict": "DOLOŽENO"
+  },
+  "302": {
+   "ref": "§ 111 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_111-odst_1-pism_a",
+   "quote": "Hlášení podléhá, jde-li o zbraně podléhající registraci, zbraně kategorie PO a palné zbraně kategorie NO nebo střelivo, přeprava více než 100 kusů zbraní nebo více než 200000 nábojů anebo nábojek, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "303": {
+   "ref": "§ 76 odst. 2 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_76-odst_2-pism_b",
+   "quote": "Další evidenční povinnost držitele zbrojní licence skupiny ZL1 / Držitel zbrojní licence skupiny ZL1 je povinen zapsat do centrálního registru zbraní nejpozději před předáním a bez zbytečného odkladu po převzetí zbraně nebo střeliva a v mimořádných odůvodněných případech pak nejdéle do 2 pracovních dnů ode dne, kdy byly zbraň nebo střelivo převzaty, každou změnu stavu evidované zbraně nebo střeliv",
+   "verdict": "DOLOŽENO"
+  },
+  "304": {
+   "ref": "§ 78 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_1",
+   "quote": "Přenecháním zbraně nebo střeliva je pro účely tohoto zákona dočasné umožnění jiné osobě samostatně nakládat se zbraní nebo střelivem osoby, která je přenechává.",
+   "verdict": "DOLOŽENO"
+  },
+  "307": {
+   "ref": "§ 78 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_2",
+   "quote": "Držitel zbrojní licence je oprávněn přenechávat zbraň podléhající registraci držiteli zbrojního oprávnění, který je k němu v pracovněprávním, členském nebo obdobném vztahu, a to pro plnění úkolů při výkonu činnosti, pro kterou byla zbrojní licence vydána.",
+   "verdict": "DOLOŽENO"
+  },
+  "308": {
+   "ref": "§ 78 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_3",
+   "quote": "Držiteli zbrojního oprávnění, nejde-li o přenechání zbraně podle odstavce 2, nebo držiteli zbrojní licence skupiny ZL2 může být zbraň podléhající registraci přenechána, pokud jde o vedlejšího držitele zbraně, přenechání zbraně kategorie R2, R3 nebo R4 držitelem zbrojní licence na střelnici, nebo přenechání zbraně kategorie R4 vždy na dobu nejvýše 30 dnů po sobě jdoucích.",
+   "verdict": "DOLOŽENO"
+  },
+  "309": {
+   "ref": "§ 78 odst. 3 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_3-pism_b",
+   "quote": "Přenechání zbraně nebo střeliva / Držiteli zbrojního oprávnění, nejde-li o přenechání zbraně podle odstavce 2, nebo držiteli zbrojní licence skupiny ZL2 může být zbraň podléhající registraci přenechána, pokud jde o přenechání zbraně kategorie R2, R3 nebo R4 držitelem zbrojní licence na střelnici, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "310": {
+   "ref": "§ 78 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_4",
+   "quote": "Zbraň kategorie PO nebo NO a střelivo pro takovou zbraň lze přenechat osobě, která je oprávněna s nimi nakládat, nebo plně svéprávné zletilé fyzické osobě.",
+   "verdict": "DOLOŽENO"
+  },
+  "311": {
+   "ref": "§ 78 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_4",
+   "quote": "Držitel zbraně kategorie PO nebo NO nesmí takovou zbraň nebo střelivo pro takovou zbraň přenechat osobě, o které nezná údaje potřebné k určení její totožnosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "312": {
+   "ref": "§ 78 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_4",
+   "quote": "Držitel zbraně kategorie PO nebo NO nesmí takovou zbraň nebo střelivo pro takovou zbraň přenechat osobě, o které nezná údaje potřebné k určení její totožnosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "313": {
+   "ref": "§ 78 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_78-odst_5",
+   "quote": "s přenecháním takové zbraně této osobě musí udělit souhlas její zákonný zástupce, opatrovník nebo poručník.",
+   "verdict": "DOLOŽENO"
+  },
+  "314": {
+   "ref": "§ 79 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_1",
+   "quote": "Svěřením zbraně nebo střeliva je pro účely tohoto zákona umožnění jiné fyzické osobě nakládat se svěřenou zbraní nebo střelivem pod dohledem osoby oprávněné se svěřovanou zbraní a střelivem nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "315": {
+   "ref": "§ 79 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_1",
+   "quote": "Svěřením zbraně nebo střeliva je pro účely tohoto zákona umožnění jiné fyzické osobě nakládat se svěřenou zbraní nebo střelivem pod dohledem osoby oprávněné se svěřovanou zbraní a střelivem nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "316": {
+   "ref": "§ 79 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_2",
+   "quote": "Zbraň kategorie R1 nebo střelivo kategorie S1 lze svěřit po předchozím poučení a případném jiném nezbytném zaškolení držiteli zbrojního oprávnění, nebo jiné plně svéprávné zletilé fyzické osobě, a to při činnosti držitele zbrojní licence;",
+   "verdict": "DOLOŽENO"
+  },
+  "318": {
+   "ref": "§ 79 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_4",
+   "quote": "Zbraň kategorie PO nebo NO a střelivo pro takovou zbraň lze svěřit pouze za dohledu osoby oprávněné s takovou zbraní a střelivem nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "319": {
+   "ref": "§ 79 odst. 3 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_3-pism_c",
+   "quote": "v takovém případě musí dohled zajišťovat fyzická osoba, která dosáhla věku 21 let a je držitelem zbrojního oprávnění po dobu delší než 3 roky.",
+   "verdict": "DOLOŽENO"
+  },
+  "320": {
+   "ref": "§ 79 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_4",
+   "quote": "Zbraň kategorie PO nebo NO a střelivo pro takovou zbraň lze svěřit pouze za dohledu osoby oprávněné s takovou zbraní a střelivem nakládat.",
+   "verdict": "DOLOŽENO"
+  },
+  "321": {
+   "ref": "§ 79 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_79-odst_5",
+   "quote": "Ten, kdo dohlíží na osobu, které byla svěřena zbraň nebo střelivo, je povinen poučit tuto osobu o bezpečném nakládání se svěřenou zbraní a střelivem a provádět dohled v potřebném rozsahu tak, aby osoba, které byly zbraň a střelivo svěřeny, neporušila povinnost nebo zákaz stanovený tímto zákonem a zejména neohrozila život nebo zdraví.",
+   "verdict": "DOLOŽENO"
+  },
+  "322": {
+   "ref": "§ 80 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_80-odst_1-pism_a",
+   "quote": "to neplatí, jde-li o nošení zbraně v provozovně držitele zbrojní licence, na střelnici nebo v jiném zřetelně ohraničeném prostoru, ve kterém se se zbraní nakládá se souhlasem jeho majitele, nájemce nebo provozovatele, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "324": {
+   "ref": "§ 80 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_80-odst_1-pism_b",
+   "quote": "Skryté nošení zbraně / Zbraň musí být nošena skrytě;",
+   "verdict": "DOLOŽENO"
+  },
+  "326": {
+   "ref": "§ 81 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_81-odst_1-pism_b",
+   "quote": "Viditelné nošení zbraně / Osoba, která nakládá se zbraní, je oprávněna ji viditelně nosit, pokud se v souladu s tímto nebo jiným zákonem účastní akce nebo provádí činnost, při kterých se obvykle nakládá se zbraněmi, a pokud způsob nošení zbraně je přiměřený povaze této akce nebo činnosti.",
+   "verdict": "DOLOŽENO"
+  },
+  "327": {
+   "ref": "§ 81 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_81-odst_1",
+   "quote": "Účelem akce nebo činnosti uvedené ve větě první může být kulturní činnost, zejména filmová nebo divadelní činnost, rekonstrukce historické bitvy nebo obdobné události nebo pietní akce, výuka nebo výcvik v nakládání se zbraní, sportovně-střelecká nebo obdobná zájmová činnost, nebo provedení lovu nebo obdobné činnosti podle jiného právního předpisu.",
+   "verdict": "DOLOŽENO"
+  },
+  "329": {
+   "ref": "§ 81 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_81-odst_2",
+   "quote": "Nenabitou zbraň je osoba, která se účastní akce nebo provádí činnost uvedenou v odstavci 1, oprávněna přepravovat na místo a z místa konání příslušné akce nebo provádění činnosti viditelně, připouští-li to zvolený způsob přepravy, a pokud je to s ohledem na místní podmínky obvyklé anebo lze-li takovou přepravu považovat za přiměřenou povaze této akce nebo činnosti;",
+   "verdict": "DOLOŽENO"
+  },
+  "330": {
+   "ref": "§ 82 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_82-odst_1",
+   "quote": "Účelem veřejného vystavování zbraní nebo střeliva může být také účast na specializovaných veletrzích, výstavách a předváděcích akcích za účelem uvádění zbraní nebo střeliva na trh.",
+   "verdict": "DOLOŽENO"
+  },
+  "332": {
+   "ref": "§ 82 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_82-odst_2",
+   "quote": "Osoba, která zbraně nebo střelivo veřejně vystavuje, je povinna zajistit zabezpečení vystavovaných zbraní nebo střeliva proti zneužití, ztrátě nebo odcizení a zajistit, aby při veřejném vystavování zbraní nebo střeliva nebyl ohrožen život, zdraví, majetek nebo veřejný pořádek.",
+   "verdict": "DOLOŽENO"
+  },
+  "333": {
+   "ref": "§ 83 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_83-odst_1",
+   "quote": "Osoba, která nakládá se zbraní nebo střelivem, je povinna zbraně a střelivo, které ukládá mimo svou bezprostřední kontrolu, zabezpečit s ohledem na jejich povahu a místní podmínky tak, aby bylo zabráněno jejich zneužití, ztrátě, odcizení nebo zašantročení.",
+   "verdict": "DOLOŽENO"
+  },
+  "335": {
+   "ref": "§ 83 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_83-odst_1",
+   "quote": "Osoba, která nakládá se zbraní nebo střelivem, je povinna zbraně a střelivo, které ukládá mimo svou bezprostřední kontrolu, zabezpečit s ohledem na jejich povahu a místní podmínky tak, aby bylo zabráněno jejich zneužití, ztrátě, odcizení nebo zašantročení.",
+   "verdict": "DOLOŽENO"
+  },
+  "336": {
+   "ref": "§ 83 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_83-odst_2-pism_a",
+   "quote": "Zabezpečení uložené zbraně nebo střeliva / Uložené zbraně podléhající registraci se zabezpečují s ohledem na počet současně ukládaných zbraní, a to nejvýše 10 kusů uložením do uzamčené ocelové schránky nebo uzamčené ocelové skříně nebo zvláštního uzamčeného zařízení,",
+   "verdict": "DOLOŽENO"
+  },
+  "338": {
+   "ref": "§ 83 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_83-odst_2-pism_a",
+   "quote": "Zabezpečení uložené zbraně nebo střeliva / Uložené zbraně podléhající registraci se zabezpečují s ohledem na počet současně ukládaných zbraní, a to nejvýše 10 kusů uložením do uzamčené ocelové schránky nebo uzamčené ocelové skříně nebo zvláštního uzamčeného zařízení,",
+   "verdict": "DOLOŽENO"
+  },
+  "340": {
+   "ref": "§ 83 odst. 4 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_83-odst_4-pism_a",
+   "quote": "Zabezpečení uložené zbraně nebo střeliva / Zbraně kategorie R2, R3 nebo R4 a střelivo kategorie S2 nebo S3 lze odchylně od způsobu uvedeného v odstavci 2 nebo 3 vhodně zabezpečit, pokud jde o nejvýše 2 zbraně nebo nejvýše 1000 nábojů a jde-li zároveň o zbraně nebo střelivo, se kterými nakládá osoba, která současně nenakládá s více než celkem 2 zbraněmi kategorie R2, R3 nebo R4 nebo více než celkem",
+   "verdict": "DOLOŽENO"
+  },
+  "343": {
+   "ref": "§ 84 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_84-odst_1",
+   "quote": "Nelze-li s ohledem na rozměry zbraní nebo střeliva, jejich množství nebo účel zajistit zabezpečení podle § 83 anebo odpovídá-li to zvláštním místním podmínkám, krajské ředitelství policie na žádost povolí jiný způsob zabezpečení, pokud je zaručena jejich ochrana proti zneužití, ztrátě nebo odcizení.",
+   "verdict": "DOLOŽENO"
+  },
+  "344": {
+   "ref": "§ 84 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_84-odst_3",
+   "quote": "K žádosti o povolení jiného způsobu zabezpečení zbraní nebo střeliva žadatel přiloží projekt jiného způsobu zabezpečení, o jehož povolení žádá.",
+   "verdict": "DOLOŽENO"
+  },
+  "346": {
+   "ref": "§ 86 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_86-odst_1",
+   "quote": "Palná a plynová zbraň musí být označeny jedinečnými údaji umožňujícími jejich individuální identifikaci, a to vždy alespoň jménem výrobce nebo jeho obchodní značkou, zemí nebo místem výroby, výrobním číslem, rokem výroby, pokud není součástí výrobního čísla, ráží a označením modelu, pokud výrobce nebo dovozce takové označení užívá.",
+   "verdict": "DOLOŽENO"
+  },
+  "349": {
+   "ref": "§ 86 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_86-odst_2",
+   "quote": "Označení zbraně identifikačními údaji musí být trvalé, je zakázáno existující označení zbraně identifikačními údaji odstraňovat.",
+   "verdict": "DOLOŽENO"
+  },
+  "350": {
+   "ref": "§ 87 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_87-odst_1",
+   "quote": "Krajské ředitelství policie může držiteli zbraně rozhodnutím uložit, aby zajistil dodatečné provedení označení zbraně identifikačními údaji v souladu s § 86, je-li to nezbytné pro umožnění její individuální identifikace.",
+   "verdict": "DOLOŽENO"
+  },
+  "352": {
+   "ref": "§ 88 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_88-pism_a",
+   "quote": "Údaje o ověření a kontrole identifikačních údajů zbraně Údaje o ověření a kontrole identifikačních údajů zbraně podléhající registraci nebo zbraně kategorie PO vyznačí v centrálním registru zbraní Český úřad pro zkoušení zbraní a střeliva, pokud jde o zbraň, kterou ověřil nebo u které provedl kontrolu identifikačních údajů,",
+   "verdict": "DOLOŽENO"
+  },
+  "353": {
+   "ref": "§ 89",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_89",
+   "quote": "Označení střeliva Každé jednotlivé základní balení kompletního střeliva musí být označeno tak, aby označení uvádělo jméno výrobce, identifikační číslo série nebo šarže, ráži a druh střeliva.",
+   "verdict": "DOLOŽENO"
+  },
+  "356": {
+   "ref": "§ 91 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_91-odst_1",
+   "quote": "Předmětem školení je zejména právní úprava nakládání se zbraněmi a střelivem a zásady bezpečného nakládání se zbraněmi a střelivem s přihlédnutím k povaze úkolů plněných při činnosti držitele zbrojní licence a vnitřní předpis držitele zbrojní licence.",
+   "verdict": "DOLOŽENO"
+  },
+  "357": {
+   "ref": "§ 91 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_91-odst_2",
+   "quote": "Pokud osoba uvedená v odstavci 1 vykonává pro držitele zbrojní licence činnost spočívající v ochraně života, zdraví nebo majetku anebo obdobnou činnost nebo pokud při takové činnosti nosí zbraň, musí být součástí jejího pravidelného školení rovněž praktické ověření střeleckých dovedností a bezpečné manipulace se zbraní a střelivem.",
+   "verdict": "DOLOŽENO"
+  },
+  "358": {
+   "ref": "§ 91 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_91-odst_2",
+   "quote": "Pokud osoba uvedená v odstavci 1 vykonává pro držitele zbrojní licence činnost spočívající v ochraně života, zdraví nebo majetku anebo obdobnou činnost nebo pokud při takové činnosti nosí zbraň, musí být součástí jejího pravidelného školení rovněž praktické ověření střeleckých dovedností a bezpečné manipulace se zbraní a střelivem.",
+   "verdict": "DOLOŽENO"
+  },
+  "359": {
+   "ref": "§ 92 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_1",
+   "quote": "Nevratnou úpravou zbraně je úprava zbraně, kterou dochází ke změně kategorie zbraně, ke změně druhu nebo funkce zbraně anebo ke znemožnění anebo ztížení budoucí balistické identifikace zbraně.",
+   "verdict": "DOLOŽENO"
+  },
+  "360": {
+   "ref": "§ 92 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_1",
+   "quote": "Nevratnou úpravou zbraně je úprava zbraně, kterou dochází ke změně kategorie zbraně, ke změně druhu nebo funkce zbraně anebo ke znemožnění anebo ztížení budoucí balistické identifikace zbraně.",
+   "verdict": "DOLOŽENO"
+  },
+  "363": {
+   "ref": "§ 92 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_2",
+   "quote": "Nevratnou úpravu zbraně podléhající registraci nebo zbraně kategorie PO je oprávněn provést držitel zbrojní licence skupiny ZL1, a to na základě povolení nevratné úpravy zbraně.",
+   "verdict": "DOLOŽENO"
+  },
+  "364": {
+   "ref": "§ 92 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_3",
+   "quote": "krajské ředitelství policie může před vydáním povolení nevratné úpravy zbraně předloženou zbraň převzít a uložit provedení jejího kriminalistického zkoumání.",
+   "verdict": "DOLOŽENO"
+  },
+  "365": {
+   "ref": "§ 92 odst. 6",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_6",
+   "quote": "Krajské ředitelství policie může v povolení nevratné úpravy zbraně stanovit technické podmínky provedení nevratné úpravy, povinnost doložení příslušné technické dokumentace nebo povinnost předložit zbraň po provedení nevratné úpravy krajskému ředitelství policie, a to za účelem zajištění souladu nevratné úpravy s navrhovanou změnou kategorie zbraně nebo za účelem vykonání dozoru nad technickou úro",
+   "verdict": "DOLOŽENO"
+  },
+  "366": {
+   "ref": "§ 92 odst. 6",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_92-odst_6",
+   "quote": "Krajské ředitelství policie může v povolení nevratné úpravy zbraně stanovit technické podmínky provedení nevratné úpravy, povinnost doložení příslušné technické dokumentace nebo povinnost předložit zbraň po provedení nevratné úpravy krajskému ředitelství policie, a to za účelem zajištění souladu nevratné úpravy s navrhovanou změnou kategorie zbraně nebo za účelem vykonání dozoru nad technickou úro",
+   "verdict": "DOLOŽENO"
+  },
+  "367": {
+   "ref": "§ 95 odst. 3 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_95-odst_3-pism_a",
+   "quote": "Držitel zbrojní licence skupiny ZL1 po zhotovení řezu zbraně předloží tuto zbraň ke kontrole Českému úřadu pro zkoušení zbraní a střeliva, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "369": {
+   "ref": "§ 94 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_94-odst_3",
+   "quote": "Po znehodnocení předkládá držitel zbrojní licence skupiny ZL1 zbraň ke kontrole Českému úřadu pro zkoušení zbraní a střeliva, nebo Ministerstvu obrany, jde-li o znehodnocení zvláště účinné zbraně, která podléhá mezinárodnímu kontrolnímu režimu.",
+   "verdict": "DOLOŽENO"
+  },
+  "370": {
+   "ref": "§ 94 odst. 5",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_94-odst_5",
+   "quote": "Pokud byla zbraň znehodnocena v souladu se stanovenými technickými požadavky, Český úřad pro zkoušení zbraní a střeliva nebo Ministerstvo obrany vydá po provedené kontrole certifikát znehodnocené zbraně a označí znehodnocenou zbraň svou verifikační znehodnocovací značkou;",
+   "verdict": "DOLOŽENO"
+  },
+  "371": {
+   "ref": "§ 96 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_96-odst_1",
+   "quote": "Osoba, která není držitelem zbrojní licence skupiny ZL1, je oprávněna vyrábět, přebíjet, delaborovat, znehodnocovat nebo ničit střelivo, se kterým je oprávněna nakládat, nebo zhotovovat jeho řezy pouze pro vlastní potřebu a při tom postupuje tak, aby nebyl ohrožen život, zdraví nebo majetek.",
+   "verdict": "DOLOŽENO"
+  },
+  "373": {
+   "ref": "§ 96 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_96-odst_3",
+   "quote": "Na nakládání s aktivními komponenty střeliva v množství větším, než které stanoví vláda v nařízení vydaném podle věty první, se použijí obdobně právní předpisy upravující nakládání s výbušninami.",
+   "verdict": "DOLOŽENO"
+  },
+  "376": {
+   "ref": "§ 97 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_97-odst_1",
+   "quote": "Zbraň podléhající registraci, zbraň kategorie PO nebo palnou zbraň kategorie NO, nejde-li o vojenský materiál podle zákona o zahraničním obchodu s vojenským materiálem, lze za jiným účelem, než je podnikání v oboru zbraní a střeliva, dočasně na území České republiky přemístit a za stanoveným účelem používat pouze na základě zbrojního průvodního listu nebo platného evropského zbrojního pasu vydávan",
+   "verdict": "DOLOŽENO"
+  },
+  "377": {
+   "ref": "§ 102 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_102-odst_1-pism_b",
+   "quote": "Evropský zbrojní pas vydávaný Českou republikou vydá na žádost krajské ředitelství policie fyzické osobě, která žádá o zápis zbraně do evropského zbrojního pasu a při podání žádosti doloží, že je oprávněným držitelem zbraně.",
+   "verdict": "DOLOŽENO"
+  },
+  "381": {
+   "ref": "§ 103 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_103-odst_1",
+   "quote": "1 oprávněn bez jiného předchozího povolení dočasně na území České republiky přemístit a používat zbraň kategorie R2, R3, R4 nebo PO nebo palnou zbraň kategorie NO zapsanou ve svém evropském zbrojním pasu nebo za tímto účelem přes území České republiky cestovat do jiného státu.",
+   "verdict": "DOLOŽENO"
+  },
+  "382": {
+   "ref": "§ 105 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_105-odst_1",
+   "quote": "Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti platnost zbrojního průvodního listu nebo evropského zbrojního pasu vydávaného Českou republikou pozastavit na dobu, po kterou je dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny.",
+   "verdict": "DOLOŽENO"
+  },
+  "385": {
+   "ref": "§ 111 odst. 1 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_111-odst_1-pism_b",
+   "quote": "Hlášení podléhá, jde-li o zbraně podléhající registraci, zbraně kategorie PO a palné zbraně kategorie NO nebo střelivo, přeprava aktivních komponentů střeliva v množství vyšším, než jaké stanoví vláda nařízením.",
+   "verdict": "DOLOŽENO"
+  },
+  "387": {
+   "ref": "§ 111 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_111-odst_2",
+   "quote": "Hlášení přepravy zbraní nebo střeliva musí být provedeno prostřednictvím centrálního registru zbraní nejméně 1 hodinu před započetím přepravy.",
+   "verdict": "DOLOŽENO"
+  },
+  "390": {
+   "ref": "§ 115 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_115-odst_3",
+   "quote": "Ten, kdo nalezne zbraň nebo střelivo ve vojenském objektu, nebo policie, pokud jí byl nález zbraně nebo střeliva ve vojenském objektu oznámen v souladu s odstavcem 1 nebo 2, oznámí takový nález Vojenské policii.",
+   "verdict": "DOLOŽENO"
+  },
+  "391": {
+   "ref": "§ 116 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_116-odst_1",
+   "quote": "Krajské ředitelství policie vyzve vlastníka nalezené zbraně nebo střeliva k jejich převzetí, a není-li vlastník zbraně nebo střeliva znám, krajské ředitelství policie uveřejní informace o nalezené zbrani nebo střelivu na své úřední desce po dobu 12 měsíců.",
+   "verdict": "DOLOŽENO"
+  },
+  "393": {
+   "ref": "§ 116 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_116-odst_3",
+   "quote": "Má se za to, že vlastník zbraně nebo střeliva uložených u krajského ředitelství policie tuto zbraň nebo střelivo opustil, pokud si je nepřevezme do 12 měsíců ode dne doručení výzvy nebo uveřejnění informace podle odstavce 1.",
+   "verdict": "DOLOŽENO"
+  },
+  "395": {
+   "ref": "§ 117 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_117-odst_1",
+   "quote": "Zbraň podléhající registraci nebo zbraň kategorie PO lze zničit pouze formou úředního zničení zbraně, není-li dále stanoveno jinak.",
+   "verdict": "DOLOŽENO"
+  },
+  "396": {
+   "ref": "§ 117 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_117-odst_2",
+   "quote": "Zbraň nebo střelivo předané k úřednímu zničení předáním krajskému ředitelství policie připadá do vlastnictví státu.",
+   "verdict": "DOLOŽENO"
+  },
+  "400": {
+   "ref": "§ 123 odst. 1 písm. g)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_123-odst_1-pism_g",
+   "quote": "Zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny / Krajské ředitelství policie může rozhodnout o zajištění zbraně podléhající registraci nebo zbraně kategorie PO, střeliva kategorie S1, S2 nebo S3 nebo souvisejícího dokladu nebo listiny, jsou-li proti osobě, která s nimi nakládá, uplatněna sankční opatření podle zákona o provádění mezinárodních sankcí nebo podle sankčního zákona,",
+   "verdict": "DOLOŽENO"
+  },
+  "402": {
+   "ref": "§ 122 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_122-odst_1",
+   "quote": "Příslušník policie může zadržet zbraň, střelivo nebo související doklad nebo listinu, je-li to nezbytné, aby jejich držiteli zabránil v jednání při nakládání se zbraní nebo střelivem, kterým porušuje povinnost nebo nedodržuje zákaz stanovený tímto nebo jiným zákonem nebo které může představovat ohrožení života nebo zdraví.",
+   "verdict": "DOLOŽENO"
+  },
+  "404": {
+   "ref": "§ 122 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_122-odst_2",
+   "quote": "Pokud nejsou zbraň nebo střelivo, které mají být zadrženy, na výzvu příslušníka policie neprodleně vydány a je-li to nezbytné pro ochranu života nebo zdraví, může příslušník policie za účelem jejich zadržení vstoupit do obydlí, jiných prostor nebo na pozemek, má-li důvodné podezření, že se zde zbraň nebo střelivo nalézají.",
+   "verdict": "DOLOŽENO"
+  },
+  "406": {
+   "ref": "§ 123 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_123-odst_1-pism_c",
+   "quote": "Zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny / Krajské ředitelství policie může rozhodnout o zajištění zbraně podléhající registraci nebo zbraně kategorie PO, střeliva kategorie S1, S2 nebo S3 nebo souvisejícího dokladu nebo listiny, je-li podezření, že zdravotní stav osoby, která s nimi nakládá, představuje v souvislosti s tímto nakládáním ohrožení života nebo zdraví,",
+   "verdict": "DOLOŽENO"
+  },
+  "407": {
+   "ref": "§ 123 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_123-odst_1-pism_c",
+   "quote": "Zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny / Krajské ředitelství policie může rozhodnout o zajištění zbraně podléhající registraci nebo zbraně kategorie PO, střeliva kategorie S1, S2 nebo S3 nebo souvisejícího dokladu nebo listiny, je-li podezření, že zdravotní stav osoby, která s nimi nakládá, představuje v souvislosti s tímto nakládáním ohrožení života nebo zdraví,",
+   "verdict": "DOLOŽENO"
+  },
+  "408": {
+   "ref": "§ 21 odst. 1 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_21-odst_1-pism_a",
+   "quote": "Pozastavení zbrojního oprávnění / Krajské ředitelství policie může z důvodu ochrany vnitřního pořádku nebo bezpečnosti zbrojní oprávnění pozastavit na dobu, po kterou je u držitele zbrojního oprávnění dán důvod pro zajištění zbraně, střeliva nebo souvisejícího dokladu nebo listiny,",
+   "verdict": "DOLOŽENO"
+  },
+  "409": {
+   "ref": "§ 123 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_123-odst_3",
+   "quote": "Osoba, která zajištěnou zbraň, střelivo nebo související doklad nebo listinu přechovává, je povinna je bez zbytečného odkladu odevzdat do úschovy útvaru policie, který o jejich zajištění rozhodl, nebo sdělit místo jejich uložení a umožnit jejich převzetí policií.",
+   "verdict": "DOLOŽENO"
+  },
+  "410": {
+   "ref": "§ 123 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_123-odst_4",
+   "quote": "Pokud nejsou zbraň nebo střelivo, které byly zajištěny, neprodleně odevzdány nebo nebylo umožněno jejich převzetí policií, může příslušník policie za účelem jejich zajištění vstoupit do obydlí, jiných prostor nebo na pozemek, lze-li předpokládat, že se zde zbraň nebo střelivo nalézají.",
+   "verdict": "DOLOŽENO"
+  },
+  "411": {
+   "ref": "§ 125 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_125-odst_1",
+   "quote": "Osoba, jejíž oprávnění k nakládání se zbraní nebo střelivem bylo pozastaveno nebo zaniklo, nebo osoba, která namísto takové osoby v době pozastavení nebo zániku jejího oprávnění se zbraní nebo střelivem nakládá, je povinna do 10 pracovních dnů odevzdat zbraň a střelivo krajskému ředitelství policie, nebo umožnit krajskému ředitelství policie jejich převzetí nebo zabezpečení proti přístupu neoprávn",
+   "verdict": "DOLOŽENO"
+  },
+  "412": {
+   "ref": "§ 125 odst. 2 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_125-odst_2-pism_a",
+   "quote": "Vlastník zbraně nebo střeliva, který pozbude oprávnění s nimi nakládat nebo takové oprávnění nenabude, je oprávněn požádat krajské ředitelství policie o předání zbraně nebo střeliva jiné osobě oprávněné s nimi nakládat, a to za účelem jejich úschovy, převodu, trvalého přeshraničního přemístění nebo nevratné úpravy, nebo",
+   "verdict": "DOLOŽENO"
+  },
+  "417": {
+   "ref": "§ 130 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_130-odst_1",
+   "quote": "Správce centrálního registru zbraní zveřejňuje na svých internetových stránkách seznam zapsaných zkouškových střelnic, údaje o ztracených nebo odcizených evropských zbrojních pasech a identifikující držitele zbrojní licence skupiny ZL1 a statistické údaje týkající se údajů vedených v centrálním registru zbraní a jeho provozu.",
+   "verdict": "DOLOŽENO"
+  },
+  "420": {
+   "ref": "§ 134 odst. 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_134-odst_1",
+   "quote": "2, zařadí zbraň nebo střelivo do kategorie Český úřad pro zkoušení zbraní a střeliva opatřením obecné povahy o kategorizaci zbraně nebo střeliva.",
+   "verdict": "DOLOŽENO"
+  },
+  "422": {
+   "ref": "§ 136 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_136-odst_3",
+   "quote": "2 nebo splnit informační povinnosti podle tohoto zákona lze u kteréhokoli krajského ředitelství policie.",
+   "verdict": "DOLOŽENO"
+  },
+  "427": {
+   "ref": "§ 142 odst. 6 písm. b) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_142-odst_6-pism_b-bod_1",
+   "quote": "Přestupky / Za přestupek lze uložit pokutu do / 50000 Kč, pokud jde o přestupek podle odstavce 1 a pachatel porušil povinnost stanovenou tímto zákonem opakovaně nebo udržoval-li delší dobu protiprávní stav, nebo",
+   "verdict": "K OVĚŘENÍ"
+  },
+  "430": {
+   "ref": "§ 143 odst. 1 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_143-odst_1-pism_c",
+   "quote": "Společná ustanovení k přestupkům / Přestupky podle tohoto zákona projednává obecní úřad obce s rozšířenou působností v ostatních případech.",
+   "verdict": "DOLOŽENO"
+  },
+  "432": {
+   "ref": "§ 145 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_145-odst_2",
+   "quote": "Krajské ředitelství policie vyzve držitele zbrojního oprávnění nebo držitele zapsané autorizace k předložení jím držených zbraní nejdéle do uplynutí 10 let ode dne vydání zbrojního oprávnění nebo ode dne jejího zápisu do centrálního registru zbraní a následně alespoň jednou za 10 let.",
+   "verdict": "DOLOŽENO"
+  },
+  "433": {
+   "ref": "§ 146 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_146-pism_b",
+   "quote": "Způsob prokázání oprávnění Oprávnění nakládat se zbraní podléhající registraci nebo zbraní kategorie PO, nejde-li o jejich přeshraniční přemístění, lze prokázat předložením zbrojního listu spolu s předložením občanského průkazu, cestovního pasu nebo obdobného dokladu osoby, které byl zbrojní list vydán,",
+   "verdict": "DOLOŽENO"
+  },
+  "434": {
+   "ref": "§ 146 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_146-pism_c",
+   "quote": "Způsob prokázání oprávnění Oprávnění nakládat se zbraní podléhající registraci nebo zbraní kategorie PO, nejde-li o jejich přeshraniční přemístění, lze prokázat před krajským ředitelstvím policie nebo Policejním prezidiem, které oprávnění ověří, a to popřípadě i na žádost osob, které navzájem chtějí oprávnění prokázat,",
+   "verdict": "DOLOŽENO"
+  },
+  "435": {
+   "ref": "§ 146 písm. c)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_146-pism_c",
+   "quote": "Způsob prokázání oprávnění Oprávnění nakládat se zbraní podléhající registraci nebo zbraní kategorie PO, nejde-li o jejich přeshraniční přemístění, lze prokázat před krajským ředitelstvím policie nebo Policejním prezidiem, které oprávnění ověří, a to popřípadě i na žádost osob, které navzájem chtějí oprávnění prokázat,",
+   "verdict": "DOLOŽENO"
+  },
+  "436": {
+   "ref": "§ 146 písm. e)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_146-pism_e",
+   "quote": "Způsob prokázání oprávnění Oprávnění nakládat se zbraní podléhající registraci nebo zbraní kategorie PO, nejde-li o jejich přeshraniční přemístění, lze prokázat předložením evropského zbrojního pasu vydávaného Českou republikou, ve kterém je zapsána zbraň, které se oprávnění podle tohoto zákona týká.",
+   "verdict": "DOLOŽENO"
+  },
+  "440": {
+   "ref": "§ 147 odst. 2",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_147-odst_2",
+   "quote": "Zbrojní list osobě, jíž se týká, vydá na žádost krajské ředitelství policie nebo kontaktní místo veřejné správy.",
+   "verdict": "DOLOŽENO"
+  },
+  "444": {
+   "ref": "§ 147 odst. 4",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_147-odst_4",
+   "quote": "Zbrojní list nenahrazuje evropský zbrojní pas, zbrojní průvodní list nebo jinou listinu vydávanou v souvislosti s přeshraničním přemístěním zbraně nebo střeliva, potvrzení hlášení přepravy zbraní nebo střeliva, nebo certifikát znehodnocené zbraně.",
+   "verdict": "DOLOŽENO"
+  },
+  "445": {
+   "ref": "§ 148 odst. 1 písm. d)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_148-odst_1-pism_d",
+   "quote": "Způsob a účinek zápisu oprávnění do centrálního registru zbraní / Krajské ředitelství policie rozhodnutí písemně nevyhotovuje a pouze zapíše údaj o přiznání práva do centrálního registru zbraní, pokud v plném rozsahu vyhoví žádosti o výjimku kategorie R1, S1, R2 nebo S2 anebo povolení kategorie R3,",
+   "verdict": "DOLOŽENO"
+  },
+  "448": {
+   "ref": "§ 150 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_150-odst_3",
+   "quote": "ledna 2021 se považuje za zbraň kategorie NO, pokud byla znehodnocena v souladu s právními předpisy platnými v době svého uvedení na trh;",
+   "verdict": "DOLOŽENO"
+  },
+  "449": {
+   "ref": "§ 150 odst. 19",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_150-odst_19",
+   "quote": "Povinnost označení zbraně identifikačními údaji podle § 86 nebo postup podle § 87 se nepoužijí na zbraň, která byla přede dnem nabytí účinnosti tohoto zákona uvedena na trh a platně ověřena, podléhala-li taková zbraň v době svého uvedení na trh ověřování.",
+   "verdict": "DOLOŽENO"
+  },
+  "516": {
+   "ref": "§ 48 odst. 3",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_48-odst_3",
+   "quote": "Za podmínek podle odstavce 2 lze výjimku kategorie R2 vydat pouze pro samonabíjecí palnou zbraň, která vznikla nevratnou úpravou ze samočinné palné zbraně nebo pro samonabíjecí palnou zbraň pro střelivo se středovým zápalem vybavenou nadlimitním zásobníkem.",
+   "verdict": "K OVĚŘENÍ"
+  },
+  "562": {
+   "ref": "§ 20 odst. 3 písm. b)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_3-pism_b",
+   "quote": "Odborná způsobilost / Žadatel při zkoušce odborné způsobilosti nebo komisionální zkoušce prokáže, že je odborně způsobilý, pokud v praktické části zkoušky při manipulaci se zbraní a se střelivem a při střelbě neohrozí nebo by v praxi neohrozil bezpečnost osob a současně v předepsaném rozsahu prokáže znalosti, schopnosti a dovednosti v oblasti postupů bezpečného nakládání se zbraněmi a střelivem a",
+   "verdict": "DOLOŽENO"
+  },
+  "565": {
+   "ref": "§ 20 odst. 3 písm. c) bod 1",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_20-odst_3-pism_c-bod_1",
+   "quote": "Odborná způsobilost / Žadatel při zkoušce odborné způsobilosti nebo komisionální zkoušce prokáže, že je odborně způsobilý, pokud / v praktické části zkoušky dosáhne při střelbě na kruhový terč o průměru 500 mm na vzdálenost 10 m z 5 výstřelů krátkou kulovou zbraní a na vzdálenost 25 m z 5 výstřelů dlouhou kulovou zbraní v čase nejvýše 5 minut alespoň celkem 6 zásahů, jde-li o žadatele o obecné zbr",
+   "verdict": "DOLOŽENO"
+  },
+  "628": {
+   "ref": "§ 135 odst. 1 písm. f)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_135-odst_1-pism_f",
+   "quote": "Státní správu na úseku zbraní a střeliva vykonávají Český úřad pro zkoušení zbraní a střeliva.",
+   "verdict": "DOLOŽENO"
+  },
+  "716": {
+   "ref": "§ 88 písm. a)",
+   "url": "https://e-sbirka.gov.cz/sb/2024/90/2026-01-01#par_88-pism_a",
+   "quote": "Údaje o ověření a kontrole identifikačních údajů zbraně Údaje o ověření a kontrole identifikačních údajů zbraně podléhající registraci nebo zbraně kategorie PO vyznačí v centrálním registru zbraní Český úřad pro zkoušení zbraní a střeliva, pokud jde o zbraň, kterou ověřil nebo u které provedl kontrolu identifikačních údajů,",
+   "verdict": "DOLOŽENO"
+  }
+ }
+}

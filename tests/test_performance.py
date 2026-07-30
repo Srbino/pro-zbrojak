@@ -6,13 +6,10 @@ import time
 import urllib.request
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
-
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 # Performance budgets
 BUDGETS = {
@@ -103,7 +100,7 @@ def test_db_query_benchmarks(tmp_path, monkeypatch):
     import random as _r
     U = "perf@example.cz"
     rng = _r.Random(42)
-    for i in range(1000):
+    for _i in range(1000):
         store.record_attempt(
             db,
             user_email=U,

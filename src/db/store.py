@@ -12,10 +12,13 @@ import sqlite_utils
 
 from src.paths import DB_PATH
 
-# Vlastník, kterému se při migraci přiřadí stará „single-user" data.
+# Komu se při migraci přiřadí stará „single-user" data. Bere se první admin;
+# když žádný není nastavený, použije se neutrální zástupce — konkrétní e-mail
+# do zdrojáků nepatří a cizí instalace by ho stejně neměla u sebe vidět.
 _LEGACY_OWNER = (
-    os.environ.get("PRO_ZBROJAK_ADMINS", "srba@unify.cz").split(",")[0] or "srba@unify.cz"
-).strip().lower()
+    os.environ.get("PRO_ZBROJAK_ADMINS", "").split(",")[0].strip().lower()
+    or "local@pro-zbrojak"
+)
 
 
 def get_db() -> sqlite_utils.Database:
@@ -171,6 +174,30 @@ def record_attempt(
     })
 
 
+def last_answers(
+    db: sqlite_utils.Database, user_email: str, question_ids: list[str], *, mode: str | None = None
+) -> dict[str, str]:
+    """Poslední odpověď uživatele u zadaných otázek → {question_id: chosen}.
+
+    Slouží k prohlížení historie („vrať se a mrkni, co jsi odpověděl"). Bere se
+    poslední pokus, protože to je ten, který má člověk v hlavě.
+    """
+    if not question_ids:
+        return {}
+    marks = ",".join("?" * len(question_ids))
+    sql = (
+        "SELECT question_id, chosen FROM attempts "
+        f"WHERE user_email = ? AND question_id IN ({marks})"
+    )
+    params: list = [user_email, *question_ids]
+    if mode:
+        sql += " AND mode = ?"
+        params.append(mode)
+    sql += " ORDER BY ts ASC, id ASC"  # pozdější přepíše dřívější
+
+    return {row["question_id"]: row["chosen"] for row in db.query(sql, params)}
+
+
 def stats_overall(db: sqlite_utils.Database, user_email: str) -> dict:
     row = next(db.query(
         "SELECT COUNT(*) AS n, SUM(is_correct) AS ok FROM attempts WHERE user_email=?",
@@ -308,7 +335,10 @@ def record_exam(
     total: int,
     duration_s: int,
 ):
-    threshold = 26 if level == "standard" else 28
+    # Hranice se přepočítává podle skutečného počtu otázek — simulace může mít
+    # 5 až 100 otázek, oficiální 26/30 platí jen pro třicet.
+    from src.learning.exam import threshold_for
+    threshold = threshold_for(level, total)
     db["exam_results"].insert({
         "user_email": user_email,
         "level": level,

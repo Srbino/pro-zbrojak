@@ -18,7 +18,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server, browser  # noqa: F401, E402
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 
 @pytest.fixture(scope="module")
@@ -71,7 +71,7 @@ def test_every_image_is_valid_png(image_questions):
                 broken.append((q["pdf_number"], f"too small: {w}x{h}"))
             if w > 5000 or h > 5000:
                 broken.append((q["pdf_number"], f"suspiciously large: {w}x{h}"))
-    assert not broken, f"Vadne obrazky:\n" + "\n".join(f"  Q{n}: {m}" for n, m in broken)
+    assert not broken, "Vadne obrazky:\n" + "\n".join(f"  Q{n}: {m}" for n, m in broken)
 
 
 def test_every_image_has_minimum_filesize(image_questions):
@@ -125,7 +125,7 @@ def test_every_image_served_http_200(server, image_questions):
                     failures.append((q["pdf_number"], f"size {size}B"))
         except Exception as e:
             failures.append((q["pdf_number"], f"exception {e}"))
-    assert not failures, f"HTTP serving problemy:\n" + "\n".join(
+    assert not failures, "HTTP serving problemy:\n" + "\n".join(
         f"  Q{n}: {m}" for n, m in failures
     )
 
@@ -237,9 +237,11 @@ def test_image_zoom_dialog_opens_on_click(server, browser):
             found = True
             break
         try:
+            # Odpověď se vybere klikem a potvrdí tlačítkem — teprve pak jde dál.
             page.locator(".zp-opt").first.click(timeout=3000, force=True)
             page.wait_for_timeout(250)
-            # Wait for next button to appear after answer
+            page.get_by_role("button", name="Vyhodnotit").first.click(timeout=2000)
+            page.wait_for_timeout(250)
             page.wait_for_selector('button:has-text("Další")', timeout=2000)
             page.locator('button:has-text("Další")').last.click(timeout=2000, force=True)
             page.wait_for_timeout(300)
@@ -340,6 +342,8 @@ def test_image_renders_in_quiz_card_when_navigated(server, browser):
         # Answer current (click first option) and go next
         try:
             page.locator(".zp-opt").first.click(timeout=2000)
+            page.wait_for_timeout(200)
+            page.get_by_role("button", name="Vyhodnotit").first.click(timeout=2000)
             page.wait_for_timeout(200)
             page.get_by_role("button", name="Další").click(timeout=2000)
             page.wait_for_timeout(300)

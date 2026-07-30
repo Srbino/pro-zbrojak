@@ -32,7 +32,22 @@ SHOW = _env_bool("SHOW", default=True)
 
 # Tajemství pro podpis session cookie (app.storage.user — drží přihlášení).
 # V nasazení nastav přes env STORAGE_SECRET, ať sessions přežijí restart.
-STORAGE_SECRET = os.environ.get("STORAGE_SECRET", "pro-zbrojak-local-dev-secret")
+DEV_SECRET = "pro-zbrojak-local-dev-secret"
+STORAGE_SECRET = os.environ.get("STORAGE_SECRET", DEV_SECRET)
+
+# Známé tajemství + poslech mimo localhost = kdokoli si může podepsat vlastní
+# session cookie a vydávat se za jiného uživatele. Radši nenastartovat.
+_LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
+if STORAGE_SECRET == DEV_SECRET and HOST not in _LOCAL_HOSTS:
+    print(
+        "CHYBA: aplikace poslouchá na " + HOST + " s výchozím STORAGE_SECRET.\n"
+        "Tohle tajemství je veřejné ve zdrojácích — kdokoli by si mohl podepsat\n"
+        "cizí session. Nastav vlastní, například:\n"
+        '    STORAGE_SECRET="$(python3 -c \'import secrets;print(secrets.token_urlsafe(32))\')"\n'
+        "Viz README, sekce Nasazení na server.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 # Questions content is bundled in the repo (data/questions.json + images/).
 # If missing, user has a broken clone — fail fast with clear message.

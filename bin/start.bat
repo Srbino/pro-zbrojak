@@ -2,7 +2,7 @@
 REM Pro Zbrojak — dvojklikovy launcher pro Windows.
 REM V Exploreru dvojklik -> otevre cmd a spusti aplikaci.
 
-cd /d "%~dp0"
+cd /d "%~dp0.."
 color 0A
 cls
 

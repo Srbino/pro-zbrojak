@@ -4,8 +4,8 @@ Pro každou z 837 otázek nezávisle z PDF detekuje, pod kterou variantou (A/B/C
 je šedé pozadí = správná odpověď, a porovná s uloženou odpovědí v questions.json.
 Zvládá i otázky přes zlom stránky (kombinuje source_page + následující).
 
-PDF není v repu (licenční důvody), takže se test bez něj přeskočí. Maintainer,
-který regeneruje data z nového PDF, ho spustí a MUSÍ projít s 0 nesrovnalostmi.
+PDF je verzované v docs/, takže test běží i v CI. Když chybí, přeskočí se.
+MUSÍ projít s 0 nesrovnalostmi — i po regeneraci dat z nové verze PDF.
 """
 from __future__ import annotations
 
@@ -18,7 +18,9 @@ import pytest
 pdfplumber = pytest.importorskip("pdfplumber")
 
 ROOT = Path(__file__).resolve().parent.parent
-PDF_PATH = ROOT / "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+PDF_NAME = "MV-Soubor_testovych_otazek_pro_teoretickou_cast_ZOZ_a_komisionalni_zkousku_-_20251215.pdf"
+PDF_PATH = next((p for p in (ROOT / "docs" / PDF_NAME, ROOT / PDF_NAME) if p.exists()),
+                ROOT / "docs" / PDF_NAME)
 QUESTIONS_PATH = ROOT / "data" / "questions.json"
 
 GRAY_TARGET = 0.827

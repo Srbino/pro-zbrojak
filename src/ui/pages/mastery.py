@@ -11,11 +11,32 @@ from src.db.store import get_db, record_attempt
 from src.ui.components import (
     SECTION_LABEL,
     QuizSession,
-    progress_bar,
     query_str,
 )
 from src.ui.icons import I
 from src.ui.layout import page_shell
+
+THRESHOLD_PCT = 90    # hranice zvládnutí oblasti
+SAMPLE_TARGET = 30    # kolik posledních odpovědí se hodnotí
+
+
+def _mastery_meter(pct: float, *, mastered: bool, sparse: bool, seen: bool) -> None:
+    """Pruh úspěšnosti s ryskou na hranici zvládnutí."""
+    classes = "zp-meter-fill"
+    if mastered:
+        classes += " ok"
+    elif seen and pct < 65:
+        classes += " low"
+    if sparse:
+        classes += " sparse"
+    width = max(0.0, min(100.0, pct))
+    ui.html(
+        '<div class="zp-meter">'
+        f'<div class="{classes}" style="width:{width}%;"></div>'
+        f'<div class="zp-meter-mark" style="left:{THRESHOLD_PCT}%;" '
+        f'data-label="{THRESHOLD_PCT} %"></div>'
+        "</div>"
+    )
 
 
 @ui.page("/mastery")
@@ -29,7 +50,10 @@ def mastery_page():
     with page_shell("Mastery", active_path="/mastery"):
         ui.label("Mastery podle oblasti").classes("zp-display")
         ui.label(
-            "Procvičuj oblast dokud nedosáhneš ≥ 90 % úspěšnosti na posledních 30 pokusech."
+            f"Oblast je zvládnutá při ≥ {THRESHOLD_PCT} % z posledních {SAMPLE_TARGET} odpovědí. "
+            "Počítají se odpovědi ze všech režimů, ne jen odsud — co jsi zvládl "
+            "v marathonu, se ti tu tedy započítá. Dokud odpovědí není "
+            f"{SAMPLE_TARGET}, je pruh šrafovaný: číslo platí, ale stojí na malém vzorku."
         ).classes("zp-body zp-prose zp-mb-lg")
 
         recent_per_sec: dict[str, list[int]] = defaultdict(list)
@@ -49,32 +73,39 @@ def mastery_page():
                 if pool_n == 0:
                     continue
                 recent = recent_per_sec.get(sec, [])
-                if recent:
-                    pct = round(sum(recent) / len(recent) * 100, 1)
-                    mastered = pct >= 90 and len(recent) >= 30
-                    sample_factor = min(len(recent) / 30.0, 1.0)
-                    display_ratio = pct * sample_factor / 100.0
-                else:
-                    pct = 0
-                    display_ratio = 0
-                    mastered = False
+                n = len(recent)
+                # Skutečná úspěšnost. Dřív se násobila koeficientem n/30, takže
+                # 80 % z pěti odpovědí se kreslilo jako 13 % a vypadalo to jako
+                # chyba. Malý vzorek se teď přizná štítkem a šrafováním, ne tím,
+                # že se číslo potichu stlačí dolů.
+                pct = round(sum(recent) / n * 100, 1) if n else 0.0
+                mastered = pct >= THRESHOLD_PCT and n >= SAMPLE_TARGET
+                sparse = 0 < n < SAMPLE_TARGET
 
                 with ui.element("div").classes("zp-card"):
-                    with ui.row().classes("zp-row-between zp-nowrap w-full"):
-                        ui.label(label).classes("zp-h3")
+                    with ui.row().classes("zp-row-between zp-nowrap w-full zp-gap-sm"):
+                        ui.label(label).classes("zp-h3 zp-flex-1")
                         if mastered:
                             ui.html('<span class="zp-badge success">zvládnuto</span>')
-                        elif len(recent) >= 10 and pct >= 75:
+                        elif sparse:
+                            ui.html('<span class="zp-badge neutral">málo dat</span>')
+                        elif n and pct >= 75:
                             ui.html('<span class="zp-badge warning">blízko</span>')
-                    variant = "success" if mastered else ("primary" if pct >= 65 else "danger" if recent else "primary")
-                    progress_bar(display_ratio, variant=variant)
-                    with ui.row().classes("zp-row-between zp-nowrap w-full zp-mt-sm"):
-                        if recent:
-                            detail = f"{pool_n} otázek  ·  {pct} % na posledních {len(recent)}/30"
+
+                    _mastery_meter(pct, mastered=mastered, sparse=sparse, seen=bool(n))
+
+                    with ui.row().classes("zp-row-between w-full zp-mt-sm zp-gap-sm").style(
+                        "flex-wrap: wrap;"
+                    ):
+                        if n:
+                            detail = (
+                                f"{pct} % z {n}/{SAMPLE_TARGET} posledních odpovědí"
+                                "  ·  napříč režimy"
+                            )
                         else:
                             detail = f"{pool_n} otázek  ·  zatím bez pokusu"
-                        ui.label(detail).classes("zp-body-sm")
-                        ui.button("Trénovat", icon=I["next"],
+                        ui.label(detail).classes("zp-body-sm zp-flex-1")
+                        ui.button("Trénovat" if n else "Začít", icon=I["next"],
                                   on_click=lambda s=sec: ui.navigate.to(f"/mastery/run?section={s}")).props(
                             "flat dense color=primary"
                         )
@@ -101,4 +132,5 @@ def mastery_run_page():
             empty_icon="info", empty_heading="Prázdná oblast",
             empty_subtitle="V této oblasti nejsou otázky.",
             on_record=_rec,
+            show_navigator=True,
         ).run()

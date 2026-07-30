@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Spousteci skript pro macOS / Linux (alternative k `make run`).
 set -e
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."   # kořen repa (skript je v bin/)
 
 if [ ! -d ".venv" ]; then
   echo "→ Vytvářím virtuální prostředí…"
