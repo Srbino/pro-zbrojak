@@ -205,12 +205,16 @@ class QuestionNavigator:
         status: dict[str, str] | None = None,
         on_pick: Callable[[int], None],
         flagged: set[str] | None = None,
+        filters: tuple[tuple[str, str], ...] | None = None,
     ):
         self.questions = questions
         self.current_index = current_index
         self.status = status or {}
         self.on_pick = on_pick
         self.flagged = flagged or set()
+        # Studium má stejné stavy, ale jinak se jim říká — „Umím" místo
+        # „Chybné". Popisky si proto smí režim přepsat.
+        self.filters = filters or self.FILTERS
         self._trap_numbers = traps.trap_numbers()
         self._list = None
         self._query = ""
@@ -246,7 +250,7 @@ class QuestionNavigator:
             search.on("update:model-value", lambda e: self._on_search(e.args))
 
             with ui.row().classes("zp-qnav-filters"):
-                for key, label in self.FILTERS:
+                for key, label in self.filters:
                     btn = ui.button(
                         label, on_click=lambda k=key: self._set_filter(k)
                     ).props("dense no-caps size=sm flat color=primary").classes("zp-qnav-filter")
@@ -270,8 +274,8 @@ class QuestionNavigator:
             )
 
     def _passes_filter(self, q: dict) -> bool:
-        if self._filter == "wrong":
-            return self.status.get(q["id"]) == "wrong"
+        if self._filter in ("wrong", "correct"):
+            return self.status.get(q["id"]) == self._filter
         if self._filter == "flagged":
             return q["id"] in self.flagged
         if self._filter == "trap":

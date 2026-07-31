@@ -1,8 +1,11 @@
 """Studium — projdi otázky se správnými odpověďmi.
 
-Výchozí režim je kartička (otázka → mezerníkem odhal správnou = lehké vybavování).
-Přepínače: „Rovnou ukázat" (čtení) a „Jen správná" (skryje distraktory).
-Navigátor: seznam čísel otázek — klikni a skoč na libovolnou.
+Výchozí režim je čtení: odpověď i ustanovení jsou vidět rovnou. Kdo se chce
+zkoušet po paměti, zapne si režim kartičky.
+
+Vlevo je stejný navigátor jako v marathonu — seznam otázek s hledáním
+a filtry. Nahradil dřívější políčko „Skoč na č." a rozklikávací mřížku čísel:
+obojí nutilo psát číslo otázky, kterou člověk hledá podle znění, ne podle čísla.
 """
 from __future__ import annotations
 
@@ -12,11 +15,26 @@ from nicegui import ui
 
 from src.auth import require_login
 from src.db.questions import load_questions
-from src.db.store import get_db, set_studied, studied_counts, studied_map
-from src.ui.components import SECTION_LABEL, law_reference, progress_bar, section_badge
+from src.db.store import all_flagged, get_db, set_studied, studied_counts, studied_map
+from src.ui.components import (
+    SECTION_LABEL,
+    QuestionNavigator,
+    law_reference,
+    progress_bar,
+    section_badge,
+)
 from src.ui.icons import I
 from src.ui.layout import page_shell
 from src.ui.shuffle import display_letter, option_order
+
+# Stavy ve studiu se jmenují jinak než v kvízu, mechanika je stejná.
+STUDY_FILTERS = (
+    ("", "Vše"),
+    ("correct", "Umím"),
+    ("wrong", "Ještě ne"),
+    ("flagged", "Označené"),
+    ("trap", "Chytáky"),
+)
 
 
 def _esc(s: str) -> str:
@@ -39,8 +57,7 @@ def study_page():
         "flashcard": False, "only_correct": False,
         "pool": [], "index": 0, "revealed": False,
         "known": studied_map(db, user.email),
-        "chips": {},          # qid -> ui element
-        "card": None, "grid": None, "counts": None,
+        "body": None, "counts": None,
     }
 
     def build_pool():
@@ -52,40 +69,32 @@ def study_page():
         st["index"] = 0
         st["revealed"] = False
 
-    # ---------- navigátor (seznam čísel) ----------
-    def chip_cls(qid: str, cur: bool) -> str:
-        cls = "zp-chip"
-        k = st["known"].get(qid)
-        if k == 1:
-            cls += " known"
-        elif k == 0:
-            cls += " seen"
-        if cur:
-            cls += " cur"
-        return cls
+    # ---------- navigátor ----------
+    def _navigator() -> QuestionNavigator:
+        """Seznam otázek vlevo, obarvený podle toho, co už umíš."""
+        status = {}
+        for q in st["pool"]:
+            k = st["known"].get(q["id"])
+            if k == 1:
+                status[q["id"]] = "correct"   # umím
+            elif k == 0:
+                status[q["id"]] = "wrong"     # ještě ne
+        return QuestionNavigator(
+            st["pool"], current_index=st["index"], status=status, on_pick=goto,
+            flagged=set(all_flagged(db, user.email)), filters=STUDY_FILTERS,
+        )
 
-    def render_grid():
-        st["grid"].clear()
-        st["chips"] = {}
-        with st["grid"]:
-            for i, q in enumerate(st["pool"]):
-                lbl = ui.label(str(q["pdf_number"])).classes(chip_cls(q["id"], i == st["index"]))
-                lbl.on("click", lambda e, i=i: goto(i))
-                st["chips"][q["id"]] = lbl
-
-    def restyle_chip(idx: int):
-        if 0 <= idx < len(st["pool"]):
-            q = st["pool"][idx]
-            ch = st["chips"].get(q["id"])
-            if ch is not None:
-                ch.classes(replace=chip_cls(q["id"], idx == st["index"]))
+    def render():
+        """Překreslí navigátor i kartu — panel musí vědět, kde právě jsi."""
+        st["body"].clear()
+        with st["body"], ui.element("div").classes("zp-quiz-with-nav"):
+            _navigator().render()
+            with ui.element("div").classes("zp-quiz-main"):
+                render_card()
 
     # ---------- karta ----------
     def render_card():
-        st["card"].clear()
-        # Stejný obal jako kvíz — bez něj se karta scvrkne na obsah,
-        # protože rodičovský sloupec má align-items: flex-start.
-        with st["card"], ui.element("div").classes("zp-quiz-wrap"):
+        with ui.element("div").classes("zp-quiz-wrap"):
             total = len(st["pool"])
             if total == 0:
                 ui.label("V této oblasti nejsou otázky.").classes("zp-body")
@@ -149,15 +158,12 @@ def study_page():
     # ---------- akce ----------
     def _reveal():
         st["revealed"] = True
-        render_card()
+        render()
 
     def goto(i: int):
-        old = st["index"]
         st["index"] = max(0, min(i, len(st["pool"]) - 1))
         st["revealed"] = False
-        restyle_chip(old)
-        restyle_chip(st["index"])
-        render_card()
+        render()
 
     def _next():
         if st["index"] < len(st["pool"]) - 1:
@@ -171,11 +177,10 @@ def study_page():
         q = st["pool"][st["index"]]
         set_studied(db, user.email, q["id"], known)
         st["known"][q["id"]] = int(known)
-        restyle_chip(st["index"])
         if st["index"] < len(st["pool"]) - 1:
             goto(st["index"] + 1)
         else:
-            render_card()
+            render()
 
     def _on_key(e):
         if not e.action.keydown:
@@ -193,28 +198,19 @@ def study_page():
         elif k == "u":
             _mark(True)
 
-    def _jump():
-        try:
-            n = int(jump.value)
-        except (TypeError, ValueError):
-            return
-        for i, q in enumerate(st["pool"]):
-            if q["pdf_number"] == n:
-                goto(i)
-                return
-        ui.notify(f"Otázka č. {n} není v aktuálním filtru", color="warning", position="top")
-
     # ---------- layout ----------
     with page_shell("Studium", active_path="/study"):
         ui.label("Studium").classes("zp-display")
+        # Krátce — na mobilu úvod ukrajoval půl obrazovky, než se objevila otázka.
         ui.label(
-            "Projdi si otázky rovnou se správnou odpovědí a s ustanovením, ze kterého "
-            "plyne. Chceš se zkoušet po paměti? Zapni si režim kartičky — odpověď se "
-            "pak schová a odhalíš ji mezerníkem."
+            "Otázky rovnou se správnou odpovědí a s ustanovením. Režim kartičky "
+            "odpověď schová, odhalíš ji mezerníkem."
         ).classes("zp-body zp-prose zp-mb-md")
 
         with ui.element("div").classes("zp-card w-full zp-mb-md"):
-            with ui.row().classes("w-full zp-gap-md").style("flex-wrap:wrap;align-items:center;"):
+            with ui.row().classes("w-full zp-gap-md zp-study-controls").style(
+                "flex-wrap:wrap;align-items:center;"
+            ):
                 sec = ui.select(
                     {"all": "Vše", **SECTION_LABEL}, value="all", label="Oblast",
                 ).props("outlined dense").style("min-width:200px;")
@@ -223,27 +219,22 @@ def study_page():
                 ).props("outlined dense").style("min-width:150px;")
                 sw_card = ui.switch("Režim kartičky")
                 sw_only = ui.switch("Jen správná odpověď")
+                # Na otázku se skáče ze seznamu vlevo, ne opisováním čísla.
+                st["counts"] = ui.label("").classes("zp-body-sm zp-flex-1").style(
+                    "text-align:right; min-width:200px;"
+                )
 
-            with ui.row().classes("w-full zp-gap-sm zp-mt-sm").style("align-items:center;"):
-                jump = ui.number("Skoč na č.", min=1, max=len(all_q)).props("outlined dense").style("width:130px;")
-                ui.button("Skoč", on_click=lambda: _jump()).props("flat color=primary")
-                st["counts"] = ui.label("").classes("zp-body-sm zp-flex-1").style("text-align:right;")
-
-            with ui.expansion("Seznam otázek — klikni a skoč na libovolnou", icon=I["study"]).classes("w-full zp-mt-sm"):
-                st["grid"] = ui.element("div").classes("zp-study-grid")
-
-        st["card"] = ui.column().classes("w-full")
+        st["body"] = ui.column().classes("w-full")
 
         def _rebuild():
             build_pool()
-            render_grid()
-            render_card()
+            render()
 
         def _on_toggle():
             st["flashcard"] = sw_card.value
             st["only_correct"] = sw_only.value
             st["revealed"] = False
-            render_card()
+            render()
 
         sec.on_value_change(lambda: (st.update(section=sec.value), _rebuild()))
         order.on_value_change(lambda: (st.update(order=order.value), _rebuild()))

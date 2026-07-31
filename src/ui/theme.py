@@ -224,7 +224,6 @@ BASE = """
     color: var(--zp-text); text-wrap: pretty; margin: 0;
   }
 
-  .zp-prose { max-width: 62ch; }
 }
 """
 
@@ -242,6 +241,10 @@ LAYOUT = """
   .zp-container { max-width: 960px; }
   .zp-container-narrow { max-width: 720px; }
   .zp-container > *, .zp-container-narrow > * { width: 100%; max-width: 100%; min-width: 0; }
+  /* Musí stát AŽ ZA pravidlem výše — to nastavuje potomkům max-width: 100%
+     a dřív tím rušilo omezení délky řádku. Souvislý text přes 1400 px
+     se čte špatně. */
+  .zp-prose { max-width: 62ch; }
 
   @media (min-width: 600px) {
     .zp-container, .zp-container-narrow { padding: var(--sp-5) var(--sp-5) var(--sp-8); }
@@ -272,6 +275,12 @@ LAYOUT = """
     .zp-container:has(.zp-quiz-with-nav) {
       max-width: none; padding: 0;
     }
+    /* Nadpis a filtry nad navigátorem ale nesmí být nalepené na okraj okna —
+       odsazení, které si obal zahodil, se jim vrátí zvlášť. */
+    .zp-container:has(.zp-quiz-with-nav) > *:not(.zp-quiz-with-nav) {
+      padding-inline: var(--sp-5);
+    }
+    .zp-container:has(.zp-quiz-with-nav) > *:first-child { margin-top: var(--sp-5); }
     .zp-quiz-with-nav { flex-direction: row; align-items: stretch; gap: 0; }
     .zp-quiz-with-nav > .zp-quiz-main { padding: var(--sp-5); }
   }
@@ -846,6 +855,17 @@ COMPONENTS = """
     margin-bottom: var(--sp-1);
   }
 
+  /* ---- studium: řádek s filtry ---- */
+  /* Na telefonu se čtyři ovládací prvky skládaly pod sebe a i s nadpisem
+     ukrojily 500 z 844 pixelů — otázka začínala až pod přehybem. */
+  .zp-study-controls { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2) var(--sp-3); }
+  .zp-study-controls > * { min-width: 0 !important; }
+  .zp-study-controls > .zp-flex-1 { grid-column: 1 / -1; text-align: left !important; }
+  @media (min-width: 900px) {
+    .zp-study-controls { display: flex; }
+    .zp-study-controls > .zp-flex-1 { text-align: right !important; }
+  }
+
   /* ---- studium ---- */
   .zp-study-grid { display: flex; flex-wrap: wrap; gap: 5px; max-height: 240px; overflow-y: auto; padding: 6px 2px; }
   .zp-chip {
@@ -973,6 +993,12 @@ body {
 .q-field--outlined .q-field__control::before { border-color: var(--zp-border) !important; }
 .q-checkbox__label, .q-radio__label, .q-toggle__label { color: var(--zp-text) !important; }
 .q-item { color: var(--zp-text); }
+
+/* Filtry v navigátoru jsou Quasar tlačítka — barvu popisku si nastavují samy
+   podle propu `color`, takže aktivní chip vycházel v barvě textu na stejně
+   barevném podkladu a nebyl vidět. */
+.zp-qnav-filter.active,
+.zp-qnav-filter.active .q-btn__content { color: var(--zp-on-primary) !important; }
 
 /* Hamburger. Na mobilu ho nahrazuje položka Menu ve spodní liště — dva
    vstupy do stejné navigace by si jen konkurovaly. */
