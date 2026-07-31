@@ -8,6 +8,7 @@ from . import (
     export,  # noqa: F401
     marathon,  # noqa: F401
     mastery,  # noqa: F401
+    patterns,  # noqa: F401
     practice,  # noqa: F401
     settings,  # noqa: F401
     srs,  # noqa: F401

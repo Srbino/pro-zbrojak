@@ -30,6 +30,7 @@ NAV_GROUPS: tuple[tuple[str, tuple[NavItem, ...]], ...] = (
         NavItem("/study",    "study",     "Studium",          "Projdi otázky + správné odpovědi"),
         NavItem("/random",   "random",    "Náhodně",          "Volné procvičování"),
         NavItem("/traps",    "trap",      "Chytáky",          "Odpovědi lišící se o jedno slovo"),
+        NavItem("/patterns", "pattern",   "Vzorce",           "Pravidla testu a jejich výjimky"),
     )),
     ("Ověření", (
         NavItem("/mistakes", "mistakes",  "Lekce z chyb",     "Jen otázky, kde jsi chyboval"),

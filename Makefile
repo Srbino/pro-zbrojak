@@ -15,7 +15,7 @@ VENV   := .venv
 PIP    := $(VENV)/bin/pip
 PY     := $(VENV)/bin/python
 
-.PHONY: help install parse run test test-ui test-data mindmap validate-zakon \
+.PHONY: help install parse run test test-ui test-data mindmap validate-zakon patterns \
         law-links traps prirucka prirucka-chybi podcast klic okruhy studium \
         lint clean clean-all
 
@@ -145,3 +145,8 @@ clean:
 clean-all: clean
 	rm -rf $(VENV)
 	@echo "Removed venv."
+
+# Pregeneruje data/patterns.json — strukturni pravidla testu a jejich vyjimky.
+# Cte jen katalog, na sit nechodi.
+patterns:
+	python3 scripts/gen_patterns.py

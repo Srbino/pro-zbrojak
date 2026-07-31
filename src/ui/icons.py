@@ -63,6 +63,7 @@ I: dict[str, str] = {
     # Odkaz do e-Sbírky + chytáky
     "law":          "gavel",
     "trap":         "warning_amber",
+    "pattern":      "lightbulb",
     "external":     "open_in_new",
     # Bookmark states
     "bookmark":     "bookmark",
