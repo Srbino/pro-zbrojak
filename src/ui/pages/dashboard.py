@@ -26,8 +26,8 @@ from src.ui.components import (
     stat_card,
 )
 from src.ui.layout import nav_items_for_dashboard, page_shell
+from src.version import VERSION
 
-VERSION = "0.4.0"
 APP_NAME = "Pro Zbroják"
 
 
