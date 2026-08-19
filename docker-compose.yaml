@@ -15,10 +15,14 @@ services:
       PORT: "8080"
       SHOW: "false"
       PRO_ZBROJAK_STATE_DIR: /state
-      # Podpis session cookie — NASTAV v Coolify na náhodný řetězec (jinak login není bezpečný).
+      # Podpis session cookie. MUSÍ být nastavený v Coolify na náhodný řetězec
+      # (aspoň 16 znaků) — se zástupnou hodnotou aplikace nenastartuje.
+      #   python3 -c "import secrets; print(secrets.token_urlsafe(32))"
       STORAGE_SECRET: ${STORAGE_SECRET:-change-me-in-coolify}
       # Admini (čárkami oddělené e-maily). Identita jinak z Cloudflare Access hlavičky.
       PRO_ZBROJAK_ADMINS: ${PRO_ZBROJAK_ADMINS:-}
+      # Volitelné přezdívky místo části e-mailu před zavináčem: mail=Jméno,mail2=Jiné
+      PRO_ZBROJAK_DISPLAY_NAMES: ${PRO_ZBROJAK_DISPLAY_NAMES:-}
       # Volitelný sdílený kód pro LAN login (prázdný = LAN bez kódu).
       PRO_ZBROJAK_LOGIN_CODE: ${PRO_ZBROJAK_LOGIN_CODE:-}
     volumes:

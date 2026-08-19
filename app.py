@@ -37,14 +37,26 @@ SHOW = _env_bool("SHOW", default=True)
 DEV_SECRET = "pro-zbrojak-local-dev-secret"
 STORAGE_SECRET = os.environ.get("STORAGE_SECRET", DEV_SECRET)
 
+# Zástupné hodnoty z šablon. Kontrolovat jen DEV_SECRET nestačilo — kdo
+# nasadil compose a proměnnou v Coolify nevyplnil, dostal veřejně známé
+# „change-me-in-coolify" a pojistka ho pustila dál.
+_SLABA_TAJEMSTVI = {
+    DEV_SECRET, "change-me", "change-me-in-coolify", "changeme", "secret",
+}
+_MIN_DELKA = 16
+
 # Známé tajemství + poslech mimo localhost = kdokoli si může podepsat vlastní
 # session cookie a vydávat se za jiného uživatele. Radši nenastartovat.
 _LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
-if STORAGE_SECRET == DEV_SECRET and HOST not in _LOCAL_HOSTS:
+_slabe = STORAGE_SECRET in _SLABA_TAJEMSTVI or len(STORAGE_SECRET) < _MIN_DELKA
+if _slabe and HOST not in _LOCAL_HOSTS:
+    duvod = ("je zástupná hodnota ze šablony"
+             if STORAGE_SECRET in _SLABA_TAJEMSTVI
+             else f"má jen {len(STORAGE_SECRET)} znaků (potřeba aspoň {_MIN_DELKA})")
     print(
-        "CHYBA: aplikace poslouchá na " + HOST + " s výchozím STORAGE_SECRET.\n"
-        "Tohle tajemství je veřejné ve zdrojácích — kdokoli by si mohl podepsat\n"
-        "cizí session. Nastav vlastní, například:\n"
+        f"CHYBA: aplikace poslouchá na {HOST} a STORAGE_SECRET {duvod}.\n"
+        "S uhodnutelným tajemstvím si kdokoli podepíše cizí session.\n"
+        "Nastav vlastní, například:\n"
         '    STORAGE_SECRET="$(python3 -c \'import secrets;print(secrets.token_urlsafe(32))\')"\n'
         "Viz README, sekce Nasazení na server.",
         file=sys.stderr,

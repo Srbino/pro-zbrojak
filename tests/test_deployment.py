@@ -111,6 +111,29 @@ def test_verejny_provoz_odmitne_vychozi_tajemstvi():
     assert "STORAGE_SECRET" in out
 
 
+@pytest.mark.parametrize("tajemstvi,duvod", [
+    ("pro-zbrojak-local-dev-secret", "vývojové ze zdrojáků"),
+    ("change-me-in-coolify", "zástupná hodnota z docker-compose"),
+    ("change-me", "zástupná hodnota z .env.example"),
+    ("kratke", "příliš krátké"),
+])
+def test_slabe_tajemstvi_neprojde_do_verejneho_provozu(tajemstvi, duvod):
+    """Kontrolovat jen vývojové tajemství nestačilo — kdo compose nasadil
+    a proměnnou v Coolify nevyplnil, dostal veřejně známý řetězec."""
+    code, out = _run_app({"HOST": "0.0.0.0", "PORT": "8126", "STORAGE_SECRET": tajemstvi})
+    assert code != 0, f"prošlo {duvod}: {tajemstvi!r}"
+    assert "STORAGE_SECRET" in out
+
+
+def test_compose_propousti_vsechny_promenne():
+    """Co není v `environment:`, to se do kontejneru nedostane — i kdyby
+    to bylo v Coolify nastavené."""
+    compose = (ROOT / "docker-compose.yaml").read_text(encoding="utf-8")
+    for promenna in ("STORAGE_SECRET", "PRO_ZBROJAK_ADMINS",
+                     "PRO_ZBROJAK_DISPLAY_NAMES", "PRO_ZBROJAK_LOGIN_CODE"):
+        assert promenna in compose, f"{promenna} se v compose nepropouští"
+
+
 def test_lokalni_beh_vychozi_tajemstvi_povoli():
     """Na localhostu je vývojové tajemství v pořádku — jinak by dvojklik nefungoval.
 
