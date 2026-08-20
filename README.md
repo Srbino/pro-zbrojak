@@ -180,6 +180,35 @@ a `data/vyklady-okruhy.json`, odkud se do materiálů vkládá.
 
 ---
 
+## Čtecí JSON API
+
+Aby si aktuální postup mohl vzít nástroj, ne jen člověk — typicky pustit na
+svoje výsledky AI a nechat si poradit, co doučit.
+
+**API je vypnuté**, dokud nenastavíš `PRO_ZBROJAK_API_TOKEN`. Zapomenutá
+proměnná tedy neznamená otevřená data, ale nedostupné API.
+
+```bash
+export TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(24))')"
+
+curl -H "Authorization: Bearer $TOKEN" https://…/api/kontext
+```
+
+| endpoint | co vrací |
+|---|---|
+| `/api` | rozcestník s popisem endpointů |
+| `/api/stav` | úspěšnost celkem i po oblastech, série, kolik čeká na review |
+| `/api/chyby` | otázky, kde chybuješ — se zněním, správnou odpovědí a paragrafem |
+| `/api/kontext` | vše podstatné v jednom balíku, i s pokynem pro AI |
+
+Parametry: `?email=` (čí data, výchozí první admin), `?limit=` (kolik otázek).
+
+Token jde poslat i jako `?token=…` kvůli nástrojům, které neumí hlavičky —
+ale zapíše se do logů proxy, takže hlavička je lepší. Všechny endpointy jsou
+**jen ke čtení**, žádný nic nemění.
+
+---
+
 ## Známé dluhy
 
 - **E-maily v git historii.** Sedm souborů `.nicegui/storage-user-*.json`
@@ -256,6 +285,7 @@ docker run -d --name pro-zbrojak -p 8080:8080 \
 | `PRO_ZBROJAK_ADMINS` | prázdný | Čárkami oddělení admini (vidí `/admin`). Prázdné = nikdo |
 | `PRO_ZBROJAK_DISPLAY_NAMES` | prázdný | Přezdívky: `mail=Jméno,mail2=Jiné`. Bez nich část e-mailu před `@` |
 | `PRO_ZBROJAK_LOGIN_CODE` | prázdný | Volitelný sdílený kód pro LAN login |
+| `PRO_ZBROJAK_API_TOKEN` | prázdný | Token pro čtecí JSON API. **Prázdný = API vypnuté** |
 
 Viz [`.env.example`](.env.example).
 

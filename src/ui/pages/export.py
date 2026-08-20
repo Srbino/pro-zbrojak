@@ -55,12 +55,12 @@ def export_page():
                     qids = qids[:int(limit.value)]
                 qs = [qmap[qid] for qid in qids if qid in qmap]
                 path = export_questions(qs, filename_hint="explain")
-                ui.notify(f"Uloženo: {path.name}", position="top", timeout=4000)
-                try:
-                    import pyperclip
-                    pyperclip.copy(str(path))
-                except Exception:
-                    pass
+                # Soubor vzniká na SERVERU. Přes prohlížeč se k němu jinak
+                # nedostaneš — na nasazené instanci zůstane v kontejneru.
+                ui.download.content(
+                    path.read_text(encoding="utf-8"), path.name, "text/markdown"
+                )
+                ui.notify(f"Stahuji {path.name}", position="top", timeout=3000)
 
             ui.button("Vygenerovat Markdown", icon=I["download"], on_click=do_export).props(
                 "color=primary unelevated size=md"
@@ -92,7 +92,11 @@ def export_page():
                         def make_export(qq):
                             def _ex():
                                 path = export_single(qq)
-                                ui.notify(f"Uloženo → {path.name}", position="top")
+                                ui.download.content(
+                                    path.read_text(encoding="utf-8"),
+                                    path.name, "text/markdown",
+                                )
+                                ui.notify(f"Stahuji {path.name}", position="top")
                             return _ex
                         ui.button(icon=I["upload"], on_click=make_export(q)).props(
                             "flat dense round"

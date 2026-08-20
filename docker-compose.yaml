@@ -23,6 +23,8 @@ services:
       PRO_ZBROJAK_ADMINS: ${PRO_ZBROJAK_ADMINS:-}
       # Volitelné přezdívky místo části e-mailu před zavináčem: mail=Jméno,mail2=Jiné
       PRO_ZBROJAK_DISPLAY_NAMES: ${PRO_ZBROJAK_DISPLAY_NAMES:-}
+      # Token pro čtecí JSON API (/api). Prázdný = API vypnuté.
+      PRO_ZBROJAK_API_TOKEN: ${PRO_ZBROJAK_API_TOKEN:-}
       # Volitelný sdílený kód pro LAN login (prázdný = LAN bez kódu).
       PRO_ZBROJAK_LOGIN_CODE: ${PRO_ZBROJAK_LOGIN_CODE:-}
     volumes:

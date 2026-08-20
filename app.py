@@ -112,6 +112,7 @@ def _diagnostika() -> dict:
         "state_dir": os.environ.get("PRO_ZBROJAK_STATE_DIR", str(ROOT)),
         "vlastni_storage_secret": STORAGE_SECRET != DEV_SECRET,
         "adminu": len([e for e in os.environ.get("PRO_ZBROJAK_ADMINS", "").split(",") if e.strip()]),
+        "api": _api_enabled(),
     }
 
 
@@ -122,6 +123,12 @@ def _healthz():
     return _diagnostika()
 
 
+# Čtecí JSON API — vypnuté, dokud není nastavený PRO_ZBROJAK_API_TOKEN.
+from src.api import enabled as _api_enabled  # noqa: E402
+from src.api import register as _register_api  # noqa: E402
+
+_register_api(app)
+
 # Registrace vsech stranek (import ma side effect @ui.page)
 from src.ui import pages  # noqa: F401, E402
 
@@ -130,7 +137,7 @@ if __name__ in {"__main__", "__mp_main__"}:
     _d = _diagnostika()
     print("Pro Zbroják — start", flush=True)
     for klic in ("verze_aplikace", "nicegui", "socket_io", "otazek", "obrazku",
-                 "host", "port", "state_dir", "vlastni_storage_secret", "adminu"):
+                 "host", "port", "state_dir", "vlastni_storage_secret", "adminu", "api"):
         print(f"   {klic:24} {_d[klic]}", flush=True)
     if not _d["vlastni_storage_secret"]:
         print("   POZOR: běží s vývojovým STORAGE_SECRET", flush=True)
