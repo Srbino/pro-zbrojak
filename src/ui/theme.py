@@ -836,6 +836,18 @@ COMPONENTS = """
     border-radius: 4px; border: 1px solid var(--zp-border);
   }
 
+  /* ---- diagnostika obrázků ---- */
+  .zp-diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--sp-2); }
+  .zp-diag-item {
+    border: 1px solid var(--zp-border); border-radius: var(--zp-radius-xs);
+    padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: var(--zp-surface);
+  }
+  .zp-diag-item img { max-width: 100%; height: 46px; object-fit: contain; }
+  .zp-diag-item span { font-size: .65rem; color: var(--zp-text-soft); font-variant-numeric: tabular-nums; }
+  .zp-diag-item.ok { border-color: var(--zp-ok-line); }
+  .zp-diag-item.bad { border-color: var(--zp-bad-line); background: var(--zp-bad-bg); }
+
   /* ---- prázdný stav ---- */
   .zp-empty, .zp-empty-container { text-align: center; padding: var(--sp-7) var(--sp-4); }
   .zp-empty-icon { font-size: 3rem; opacity: .4; margin-bottom: var(--sp-2); }

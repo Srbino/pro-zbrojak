@@ -4,6 +4,7 @@
 from . import (
     admin,  # noqa: F401
     dashboard,  # noqa: F401
+    diagnostika,  # noqa: F401
     exam,  # noqa: F401
     export,  # noqa: F401
     marathon,  # noqa: F401

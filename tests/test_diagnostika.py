@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tests.test_ui_e2e import server  # noqa: F401, E402
+from tests.test_ui_e2e import browser, server  # noqa: F401, E402
 
 
 def _healthz(server: str) -> dict:
@@ -69,3 +69,37 @@ def test_vsechny_obrazky_jsou_dostupne_pres_http(server):
         except Exception as e:  # noqa: BLE001
             spatne.append((q["pdf_number"], str(e)[:40]))
     assert not spatne, f"nedostupné obrázky: {spatne[:10]}"
+
+
+def test_stranka_diagnostiky_zkontroluje_vsechny_obrazky(server, browser):
+    """Kontrola musí proběhnout v prohlížeči — server umí říct jen to, že
+    soubor odeslal, ne že se vykreslil."""
+    ctx = browser.new_context(viewport={"width": 1300, "height": 1000})
+    page = ctx.new_page()
+    page.goto(server + "/diagnostika", wait_until="networkidle")
+    page.wait_for_timeout(5000)
+
+    otazky = json.loads((ROOT / "data" / "questions.json").read_text(encoding="utf-8"))
+    ocekavano = sum(1 for q in otazky if q.get("image"))
+
+    assert page.locator(".zp-diag-item").count() == ocekavano
+    chybne = page.locator(".zp-diag-item.bad").count()
+    assert chybne == 0, f"{chybne} obrázků se v prohlížeči nenačetlo"
+    assert "se načetlo" in page.locator("#zp-diag-souhrn").inner_text()
+
+
+def test_skript_diagnostiky_je_v_tele_stranky(server):
+    """Vložený přes ui.html by se nespustil — script z innerHTML prohlížeč
+    neprovádí. Tenhle test to hlídá, protože selhání by bylo tiché."""
+    # Bez identity vrátí stránka přihlášení — hlavička je stejná, jakou
+    # v provozu nastavuje Cloudflare Access.
+    from tests.test_ui_e2e import TEST_USER_EMAIL, TEST_USER_HEADER
+    req = urllib.request.Request(
+        server + "/diagnostika", headers={TEST_USER_HEADER: TEST_USER_EMAIL}
+    )
+    with urllib.request.urlopen(req, timeout=5) as r:
+        html = r.read().decode()
+    # Kontejnery vykreslí NiceGUI přes socket; skript musí být ve statickém
+    # HTML, aby se spustil i bez něj a chybějící kontejnery si doplnil sám.
+    assert "<script>" in html and "naturalWidth" in html
+    assert "zp-diag-souhrn" in html, "skript neumí kontejner vyrobit sám"
