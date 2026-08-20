@@ -206,6 +206,7 @@ class QuestionNavigator:
         on_pick: Callable[[int], None],
         flagged: set[str] | None = None,
         filters: tuple[tuple[str, str], ...] | None = None,
+        notes: dict[str, str] | None = None,
     ):
         self.questions = questions
         self.current_index = current_index
@@ -215,6 +216,8 @@ class QuestionNavigator:
         # Studium má stejné stavy, ale jinak se jim říká — „Umím" místo
         # „Chybné". Popisky si proto smí režim přepsat.
         self.filters = filters or self.FILTERS
+        # Krátký údaj u položky — třeba kolikrát na ní člověk chyboval.
+        self.notes = notes or {}
         self._trap_numbers = traps.trap_numbers()
         self._list = None
         self._query = ""
@@ -354,6 +357,9 @@ class QuestionNavigator:
         with item:
             ui.label(str(q["pdf_number"])).classes("zp-qnav-num")
             ui.label(q["question"]).classes("zp-qnav-text")
+            poznamka = self.notes.get(q["id"])
+            if poznamka:
+                ui.html(f'<span class="zp-qnav-note">{poznamka}</span>')
 
 
 def progress_bar(ratio: float, *, variant: str = "primary"):
@@ -637,6 +643,10 @@ class QuizSession:
     on_record: Callable[[str, str, str, int], None] | None = None
     # (question_id, chosen, correct, time_ms) → void
     show_navigator: bool = False  # levý panel se seznamem otázek + hledáním
+    # Míchat se hodí u volného procvičování. Když si pořadí určuje volající
+    # (řazení podle počtu chyb), zamíchání by ho zahodilo.
+    shuffle: bool = True
+    notes: dict[str, str] | None = None   # popisek u položky v navigátoru
 
     def run(self):
         """Pusti kviz loop uvnitr aktualniho NiceGUI kontextu."""
@@ -653,7 +663,8 @@ class QuizSession:
             return
 
         queue = self.pool[:]
-        _random.shuffle(queue)
+        if self.shuffle:
+            _random.shuffle(queue)
         state = {"index": 0, "correct": 0, "container": None}
 
         def render():
@@ -722,6 +733,7 @@ class QuizSession:
             QuestionNavigator(
                 queue, current_index=current, status=status, on_pick=_goto,
                 flagged=set(all_flagged(db, self.user_email)),
+                notes=self.notes,
             ).render()
 
         def _goto(index: int):
@@ -739,7 +751,8 @@ class QuizSession:
             render()
 
         def _restart():
-            _random.shuffle(queue)
+            if self.shuffle:
+                _random.shuffle(queue)
             state["index"] = 0
             state["correct"] = 0
             render()

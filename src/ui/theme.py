@@ -604,6 +604,12 @@ COMPONENTS = """
     font-size: .8125rem; line-height: 1.4; color: var(--zp-text-soft);
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
+  .zp-qnav-note {
+    margin-left: auto; flex: none; align-self: center;
+    font-size: .62rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    background: var(--zp-bad-bg); color: var(--zp-bad-fg);
+    border-radius: var(--zp-radius-pill); padding: 1px 6px; white-space: nowrap;
+  }
   .zp-qnav-item.correct::before { background: var(--zp-ok-line); }
   .zp-qnav-item.wrong::before { background: var(--zp-bad-line); }
 

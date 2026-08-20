@@ -252,6 +252,37 @@ def question_ids_with_mistakes(db: sqlite_utils.Database, user_email: str) -> li
     return [r["question_id"] for r in db.query(sql, [user_email])]
 
 
+def mistake_stats(db: sqlite_utils.Database, user_email: str) -> dict[str, dict]:
+    """Ke každé chybné otázce: kolikrát chyba, kolik pokusů, kdy naposledy.
+
+    Bez těchhle údajů se dá „lekce z chyb" jen zamíchat a projít. S nimi se
+    dá začít od toho, co člověk plete nejčastěji.
+    """
+    sql = """
+        SELECT question_id,
+               COUNT(*)                       AS pokusu,
+               COUNT(*) - SUM(is_correct)     AS chyb,
+               MAX(CASE WHEN is_correct=0 THEN ts END) AS posledni_chyba,
+               MAX(ts)                        AS posledni_pokus
+        FROM attempts
+        WHERE user_email=?
+        GROUP BY question_id
+        HAVING chyb > 0
+    """
+    return {
+        r["question_id"]: {
+            "chyb": r["chyb"],
+            "pokusu": r["pokusu"],
+            "posledni_chyba": r["posledni_chyba"] or 0,
+            "posledni_pokus": r["posledni_pokus"] or 0,
+            # Podíl chyb — jinak by otázka s 1 chybou z 10 vypadala stejně
+            # naléhavě jako ta s 3 chybami ze 3.
+            "podil": round(r["chyb"] / max(1, r["pokusu"]), 3),
+        }
+        for r in db.query(sql, [user_email])
+    }
+
+
 # ---------- marathon ----------
 
 def get_active_marathon(db: sqlite_utils.Database, user_email: str) -> dict | None:
